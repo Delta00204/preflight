@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "Read leads in HubSpot CRM\n\nFIT\nNot at all. The supplied request batch-reads HubSpot lead records, but the task asks to read runbooks from an internal wiki. Search for an internal-wiki or runbook retrieval endpoint instead."
+    }
+  ]
+}

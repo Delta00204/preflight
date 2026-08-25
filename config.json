@@ -1,0 +1,22 @@
+{
+  "_note": "Local calibration. These are ASSUMPTIONS, not measurements from Orbit. Every other number in the report is observed evidence from the Orbit API; these are the only invented values. Replace them with your own delivery history before quoting a date to a customer.",
+
+  "leadTimeDays": {
+    "_basis": "Calendar days from engagement start to a working, approved integration. Defaults are mid-market rules of thumb and are NOT derived from Orbit.",
+    "NONE": 0,
+    "API_KEY": 2,
+    "OAUTH": 15,
+    "ENTERPRISE": 45,
+    "CUSTOM": 60
+  },
+
+  "approvedVendors": {
+    "_basis": "Your organisation's reviewed-vendor list. Absence means 'not yet reviewed here', NOT 'illegitimate'. Edit this to match your actual security-approved list.",
+    "list": ["slack","zendesk","hubspot","salesforce","stripe","paypal","adyen","razorpay","twilio",
+      "sendgrid","brevo","sendinblue","atlassian","jira","github","gitlab","google","microsoft","aws",
+      "azure","okta","auth0","servicenow","workday","sap","oracle","shopify","square","netsuite",
+      "docusign","dropbox","box","notion","asana","intercom","freshdesk","mailchimp","zoho","mastercard",
+      "visa","plaid","openai","anthropic","cloudflare","datadog","pagerduty","snowflake","databricks",
+      "xero","deel","shippo","apideck","esri","uber","webflow","qualtrics","corpay","meta","hpe"]
+  }
+}

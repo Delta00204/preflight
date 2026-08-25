@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Fetch a specific payment refund, but cannot issue a refund (Razorpay)\n\nFIT\nNot at all. The supplied request only retrieves details for an existing refund; it does not create or issue a refund for a payment. Try a Razorpay refund-creation endpoint or search again for an API request that issues refunds. The supplied fetch-refund request is not relevant to the stated task."
+    }
+  ]
+}

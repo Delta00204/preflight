@@ -1,0 +1,11 @@
+{
+  "name": "Field Ops Dispatch Agent",
+  "customer": "Logistics, ~1200 field technicians",
+  "goal": "Let a dispatch agent geocode job sites, check payment status, and notify technicians.",
+  "capabilities": [
+    "geocode a street address into latitude and longitude",
+    "refund a captured payment to a customer",
+    "look up a customer record in a CRM",
+    "send a message to a Slack channel"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvaGJfyR9Nunqv3nsMqT60Vbhfcqzt6H6kPnNNpt0VXg7REgV2frgNWI0XNz:paramount:initiate-a-payment",
+      "name": "Initiate a Payment",
+      "description": "Initiates an Interac payin (deposit) by submitting encrypted transaction details to the Interac Gateway.\nAuthentication\nAES-256 Encryption — Transaction data is encrypted using your merchant_api_key (environment variable). No API key header is sent; the encryption itself serves as authentication.\nParameters (x-www-form-urlencoded)\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| merchant_id | string | Yes | Your 8-character merchant identifier |\n| details | str",
+      "method": "POST",
+      "url": "{{payinURL}}/consumer/interacGateway.do",
+      "evaluateGuide": "Starts an Interac deposit by submitting encrypted transaction details to the Paramount Commerce gateway. Use it to initiate a customer payin. \nUse for: Interac deposits, encrypted transaction submission, customer payins\nNot supported: Payment status retrieval, refunds, payouts",
+      "provider": "Paramount Commerce",
+      "product": "Paramount Commerce Interac API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWZwx8JB01HPubJYMOAZkZj2ItRwywl0lkIgAWZWHjLAO1ZyZ0:razorpay:fetch-payments-made-by-b",
+      "name": "Fetch Payments Made By Bank Transfer",
+      "description": "You can use this API to retrieve details of payments made using the bank transfer method. If Razorpay does not receive the bank account information of the customer from the remitting bank, the payer_bank_account parameter will be set to null.",
+      "method": "GET",
+      "url": "https://api.razorpay.com/v1/payments/pay_CmiztqmYJPtDAu/bank_transfer",
+      "evaluateGuide": "Retrieves details for a Razorpay payment made by bank transfer, including available remitter bank information. Use it to inspect a specific payment's transfer details.\nUse for: Bank transfer payment lookup, payer bank details, payment inspection\nNot supported: Payment creation, refunds, settlement reports",
+      "provider": "Razorpay",
+      "product": "Razorpay Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgatahnIpIrLJku6x65bzNJ7ltkwOIXOsDKO0Sq4kTiBkxGlHoQ5Pfh1B1L7:revolut:pay-for-an-order",
+      "name": "Pay for an order",
+      "description": "Initiate a payment to pay full amount for an order using a customer's saved payment method.\nFull documentation: Merchant API - Pay for an order",
+      "method": "POST",
+      "url": "{{base_url}}/api/orders/:order_id/payments",
+      "evaluateGuide": "Pays the full amount for an order using a customer's saved payment method. Use it to initiate payment against a Revolut Merchant API order.\nUse for: Order payment, saved payment method, full-amount checkout\nNot supported: Order creation, payment refunds, payment-method storage",
+      "provider": "Revolut",
+      "product": "Revolut Merchant API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31F3jAY7WkEv9saam7k9PQ4Qgvv2w:mambu:create-payment-sepa-cred",
+      "name": "Create Payment (SEPA Credit Transfer) - Initiate Payment",
+      "description": "Creates a payment initiation request (SEPA Credit Transfer).\nDocumentation: https://docs.mambu.com/api/payments-mpg/initiate-payment/\nQuick Start:\n- Ensure the Payments capability is enabled for your tenant and you have an API consumer with the MANAGE_PAYMENTS permission and a valid API key.\n- Send a POST request to /api/v1/payments with a payment initiation JSON body (see Open API Specification for the full request schema).\n- Include the API key in the apikey request header and optionally an Idempotency-Key header for safe retries.\nParameters Explained:\n- Request headers:\n  - apikey (required): Your Payments API key. Add as header apikey: {{apiKey}}.\n  - Content-Type (required): application/json (or application/xml if the endpoint accepts XML for this request; check Open API Specification).\n  - Accept (recommended): application/json.\n  - Idempotency-Key (optional): Unique idempotency key (UUID v4 recommended) to avoid duplicate processing for retries.\n- Path: /api/v1/payments — POST (no path variables).\n- Body (required): Payment initiation object (JSON). The page does not include the full request schema; consult the collection Open API Specification or the SEPA Credit Transfer Technical Information for field mapping. Note: SEPA Credit Transfer payments can only be created for the current date.\nCommon Errors & Fixes:\n- 201 Created — Payment initiation request created successfully. Check Location response header to poll the created resource.\n- 400 Bad Request — Validation error: verify request JSON structure and required fields (amount, accounts, identifications, dates, etc.). Use the OpenAPI schema to validate payload.\n- 405 Method Not Allowed — Wrong HTTP method; ensure you use POST.\n- 415 Unsupported Media Type — Wrong or missing Content-Type header; set Content-Type: application/json (or application/xml if supported by the endpoint in your tenant).\n- 500 Internal Server Error / 503 Service Unavailable — Server-side errors; retry later and contact Mambu support if persistent.\nEdge Cases:\n- SEPA Credit Transfer scheme: payments using this scheme can only be created for the current date (cannot schedule future-dated SEPA Credit Transfers).\n- The MPG will generate a pacs.008 ISO 20022 message from the provided payload; refer to the SEPA XML mapping article for how fields map into pacs.008.\nRate Limits & Constraints:\n- Not documented on this page. Consult your tenant SLA / Open API Specification or contact Mambu if you need rate limit information.\nDocumentation Links:\n- Open API Specification (collection): https://docs.mambu.com/api/payments-mpg/\n- SEPA mapping and XML technical information: https://support.mambu.com/docs/sepa-credit-transfer-technical-information",
+      "method": "POST",
+      "url": "",
+      "evaluateGuide": "Creates a SEPA Credit Transfer through Mambu Payments Gateway using a payment initiation payload. Use it to initiate an outbound bank payment.\nUse for: SEPA credit transfer, payment initiation, outbound bank payment\nNot supported: Payment retrieval, refunds, card payments",
+      "provider": "Mambu",
+      "product": "Mambu Payments Gateway"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgatahnIpIrLFJT6YJF05i4rLPQmGd5PBpYgnOu3WRs29Lizb5TK3qU47EpB:revolut:pay-for-an-order",
+      "name": "Pay for an order",
+      "description": "Initiate a payment to pay full amount for an order using a customer's saved payment method.\nFull documentation: Merchant API - Pay for an order",
+      "method": "POST",
+      "url": "{{base_url}}/api/orders/:order_id/payments",
+      "evaluateGuide": "Pays the full amount for an order using a customer's saved payment method. Use it to initiate payment against a Revolut Merchant API order.\nUse for: Order payment, saved payment method, full-amount checkout\nNot supported: Order creation, payment refunds, payment-method storage",
+      "provider": "Revolut",
+      "product": "Revolut Merchant API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31F3jAYDqqVE2asLNFLLz3GzBtBDw:mambu:initiate-credit-transfer",
+      "name": "Initiate Credit Transfer (ISO20022 payment DTO)",
+      "description": "Creates a SEPA Credit Transfer using an ISO20022-style payload.\nDocumentation: https://docs.mambu.com/api/payments-mpg/initiate-payment/\nQuick Start:\n- Use POST {{baseUrl}}/api/v1/payments/credit-transfers with apikey header and X-Request-ID.\nParameters Explained:\n- X-Request-ID (header, required) — unique request id.\n- Idempotency-Key (header, optional) — idempotency UUID.\n- Body accepts ISO20022-like payment fields (ISO mapping schema Iso20022PaymentDTO).\nCommon Errors & Fixes:\n- 400 when required ISO20022 fields are missing or not compliant.\nEdge Cases:\n- For bulk ISO20022 messages ensure each payment fits volume constraints documented in user guide.\nRate Limits & Constraints:\n- Not specified on this page.",
+      "method": "POST",
+      "url": "",
+      "evaluateGuide": "Creates a SEPA Credit Transfer with an ISO 20022-style payment payload through Mambu Payments Gateway. Use it to initiate a structured bank transfer.\nUse for: ISO 20022 credit transfer, SEPA payment, structured bank transfer\nNot supported: Payment retrieval, refunds, card payments",
+      "provider": "Mambu",
+      "product": "Mambu Payments Gateway"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDZe7jdAwnogvnmKBnu8Ok3zEXnhH1HlOkU1iLTRfAEtrjoVgTy:adyen:make-a-one-click-payment",
+      "name": "Make a one-click payment with a token and CVV",
+      "description": "Sends payment parameters (like amount, country, and currency) together with other required input details collected from the shopper. To know more about required parameters for specific payment methods, refer to our payment method guides.  The response depends on the payment flow: * For a direct flow, the response includes a pspReference and a resultCode with the payment result, for example Authorised or",
+      "method": "POST",
+      "url": "https://checkout-test.adyen.com/v72/payments",
+      "evaluateGuide": "Processes a one-click payment using a shopper's token and CVV, with amount, country, currency, and payment details. Use it to submit a card payment through Adyen Checkout.\nUse for: Tokenized card payment, one-click checkout, payment authorization\nNot supported: Payment refunds, recurring billing setup, payout transfers",
+      "provider": "Adyen",
+      "product": "Adyen Checkout"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MyjLtHRiZHNGOV2TmuLfJyZCq7S1BnWFf6r5y9h597ohBve8v9IovznOZ40V:kang:initiate-bank-transfer-v",
+      "name": "Initiate bank transfer via Flutterwave",
+      "description": "RETIRED on 2026-01-01. This endpoint returns HTTP 410 Gone. Use /v1/gateway/payouts?provider=flutterwave instead.\n⚠️ DEPRECATED (sunset: 2026-01-01): Use the unified Payment Gateway at /v1/gateway/charges instead.",
+      "method": "POST",
+      "url": "https://api.kangopenbanking.com/v1/v1/flutterwave/bank-transfer",
+      "evaluateGuide": "This retired endpoint was intended to initiate a Flutterwave bank transfer but returns HTTP 410 Gone. Use the successor gateway endpoint for supported payment operations.\nUse for: Identifying retired transfers, migration planning, legacy endpoint checks\nNot supported: Active bank transfers, payout execution, payment gateway charges",
+      "provider": "Kang Open Banking",
+      "product": "Kang OB API"
+    }
+  ],
+  "meta": {
+    "q": "initiate a bank payment transfer to a vendor",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

@@ -1,0 +1,7 @@
+{ "name":"HR Onboarding Agent","customer":"Enterprise, 8000 employees",
+  "goal":"Automate new-hire onboarding tasks across HR systems.",
+  "capabilities":[
+    "create a new employee record in an HR system",
+    "send a document for electronic signature",
+    "provision a user account in an identity provider",
+    "look up an employee's compensation band in our internal HRIS"] }

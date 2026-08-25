@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JO91LXd84jU4N3jLVIpRt2LdCCtxka2Rk4bXNKY2NO7EpE0iGKoCLaGh5JS:unified:update-contact",
+      "name": "Update contact",
+      "description": "Update contact",
+      "method": "PATCH",
+      "url": "https://unify.apideck.com/crm/contacts/:id?raw=false",
+      "evaluateGuide": "Partially updates a CRM contact through Apideck’s unified contact resource. Use it to modify an existing contact’s fields.\nUse for: change contact details, update contact properties, edit a CRM contact, sync contact changes\nNot supported: creating contacts, deleting contacts, listing contacts",
+      "provider": "Apideck",
+      "product": "Apideck Unified API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5fhvhesYF66m6Cocv724qtMoexi0BAtIj2SLPqh0QBjhwVyRZrVywXwPBaK:vonage:groups-groupid",
+      "name": "/groups/{{groupId}}",
+      "description": "See documentation for the PATCH /groups/{groupId} endpoint.",
+      "method": "PATCH",
+      "url": "https://{{region}}.api.cc.vonage.com/useradmin/groups/<insert group ID here>",
+      "evaluateGuide": "Updates an existing user group in Vonage Contact Centre using its group identifier.\nUse for: rename a group, change group settings, edit group details\nNot supported: creating groups, deleting groups, listing groups",
+      "provider": "Vonage",
+      "product": "Vonage Contact Center"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JO91LXd84jU4MWbapo58Rfavv8osKW4RLweHVZUeH9uPIRZAGpYhknH2GKw:unified:update-contact",
+      "name": "Update contact",
+      "description": "Update contact",
+      "method": "PATCH",
+      "url": "https://unify.apideck.com/crm/contacts/:id?raw=false",
+      "evaluateGuide": "Partially updates a CRM contact through Apideck’s unified contact resource. Use it to modify an existing contact’s fields.\nUse for: change contact details, update contact properties, edit a CRM contact, sync contact changes\nNot supported: creating contacts, deleting contacts, listing contacts",
+      "provider": "Apideck",
+      "product": "Apideck Unified API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2DCpWWSJEJjDyG7ol62i3lyoucueIscbLeIx5TleNBentdNHXC:salesforce:update-a-record",
+      "name": "Update a Record",
+      "description": "Update a record's data.\nUser Interface API enforces Salesforce validation rules. If a validation rule fails, the response is an Error with Output.\nWhen you make a PATCH request to update a record, make sure that the record hasn’t changed since the user started editing it. To find out whether it’s safe to save a record, pass the If-Modified-Since HTTP header in the request.\nAs of API version 43.0, if you pass read-only fields in a request body, the response is an Error with Output.",
+      "method": "PATCH",
+      "url": "{{_endpoint}}/services/data/v66.0/ui-api/records/:RECORD_ID",
+      "evaluateGuide": "Updates an existing Salesforce record through the User Interface API, enforcing Salesforce validation rules. Use it to save changes to a record while respecting editable fields and concurrency checks.\nUse for: edit a Salesforce record, change record fields, save validated updates, update with freshness checking\nNot supported: creating records, deleting records, querying records",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JO91LXd84jU5hzH2j19jeQqemi7o3f887z9R9esTcL20UyvAfKBU267zakx:unified:update-contact",
+      "name": "Update contact",
+      "description": "Update contact",
+      "method": "PATCH",
+      "url": "https://unify.apideck.com/crm/contacts/:id?raw=false",
+      "evaluateGuide": "Partially updates a CRM contact through Apideck’s unified contact resource. Use it to modify an existing contact’s fields.\nUse for: change contact details, update contact properties, edit a CRM contact, sync contact changes\nNot supported: creating contacts, deleting contacts, listing contacts",
+      "provider": "Apideck",
+      "product": "Apideck Unified API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5fhvhesYF66iy8KujkZUhmwsnGO5KLuXMvqEcU4mG242z6DLLUpqyHVrkDn:vonage:media-channels-pstn-addr",
+      "name": "/media-channels/pstn/addresses/{addressId}",
+      "description": "See documentation for the GET /subscriptions endpoint.",
+      "method": "PATCH",
+      "url": "https://{{region}}.api.cc.vonage.com/channels-configuration/media-channels/pstn/addresses/<insert address ID here>",
+      "evaluateGuide": "Updates an existing PSTN media-channel address in Vonage Contact Centre using its address identifier.\nUse for: edit a PSTN address, change address settings, update channel configuration\nNot supported: creating addresses, deleting addresses, managing SMS addresses",
+      "provider": "Vonage",
+      "product": "Vonage Contact Center"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5fhvhesYF67ZDJlaRDdQBJ8V78bBNO42m0VWNAoAxgdryuI6Y5H2zIK7wDS:vonage:media-channels-sms-addre",
+      "name": "/media-channels/sms/addresses/{addressId}",
+      "description": "See documentation for the GET /subscriptions endpoint.",
+      "method": "PATCH",
+      "url": "https://{{region}}.api.cc.vonage.com/channels-configuration/media-channels/sms/addresses/<insert address ID here>",
+      "evaluateGuide": "Updates an existing SMS media-channel address in Vonage Contact Centre using its address identifier.\nUse for: edit an SMS address, change SMS settings, update channel configuration\nNot supported: creating addresses, deleting addresses, managing PSTN addresses",
+      "provider": "Vonage",
+      "product": "Vonage Contact Center"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvrZ5psu6QWC73EJ2wpg5zaOHOxx3F6rpnqPEti2KVvd7K7FEm:zoho:contacts",
+      "name": "Contacts",
+      "description": "To update existing entities in the module.",
+      "method": "PUT",
+      "url": "https://www.zohoapis.com/crm/v8/Contacts/{{record-id}}",
+      "evaluateGuide": "Updates an existing contact in Zoho CRM, replacing supplied property values for the identified record.\nUse for: edit contact fields, replace contact properties, clear contact values, update a CRM contact\nNot supported: creating contacts, deleting contacts, searching contacts",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5fhvhesYF66js5g21nsrzmhQ99Mk8e5LUIsqXUE2pTm6QIpxoTOHO7aZIXY:vonage:media-channels-api-addre",
+      "name": "/media-channels/api/addresses/{addressId}",
+      "description": "See documentation for the GET /subscriptions endpoint.",
+      "method": "PATCH",
+      "url": "https://{{region}}.api.cc.vonage.com/channels-configuration/media-channels/api/addresses/<insert address ID here>",
+      "evaluateGuide": "Updates an existing API media-channel address in Vonage Contact Centre using its address identifier.\nUse for: edit an API address, change address settings, update channel configuration\nNot supported: creating addresses, deleting addresses, managing PSTN or SMS addresses",
+      "provider": "Vonage",
+      "product": "Vonage Contact Center"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2coqyZxZ9MRfMEYDueHEAPi0ayMMlv84JLYP2enqOU2tH3xkKXFW:hubspot:update-a-contact",
+      "name": "Update a contact",
+      "description": "Perform a partial update of an Object identified by {contactId}. {contactId} refers to the internal object ID. Provided property values will be overwritten. Read-only and non-existent properties will be ignored. Properties values can be cleared by passing an empty string.",
+      "method": "PATCH",
+      "url": "https://api.hubapi.com/crm/v3/objects/contacts/:contactId?idProperty=<string>",
+      "evaluateGuide": "Partially updates a HubSpot CRM contact identified by its internal object ID. Supplied property values overwrite existing values, while empty strings clear them.\nUse for: edit contact properties, clear contact values, update a CRM contact, sync contact changes\nNot supported: creating contacts, deleting contacts, listing contacts",
+      "provider": "HubSpot",
+      "product": "HubSpot CRM"
+    }
+  ],
+  "meta": {
+    "q": "update a contact record",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4Uh1tYHMK5wIlJkgG3SsddzdPg120qLbT8jPv9KZ4Px1KW7Dr68cWfyziqn:esri:geocode-a-set-of-address",
+      "name": "Geocode a set of addresses",
+      "description": "To learn more go to the Developer guide",
+      "method": "POST",
+      "url": "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses",
+      "evaluateGuide": "Converts multiple addresses into geographic coordinates using the ArcGIS geocoding service. Use it to batch-match address data to map locations.\nUse for: batch address geocoding, coordinate lookup, mapping address records\nNot supported: reverse geocoding, route planning, map rendering",
+      "provider": "Esri",
+      "product": "ArcGIS World Geocoding Service"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7ukwe9MwvZDEpvbgFRA0B6B01vInt:cloudmersive:geocode-street-address-f",
+      "name": "Geocode Street Address (forward)",
+      "description": "Converts a structured street address into latitude and longitude (forward geocoding).\nDocumentation: https://api.cloudmersive.com/docs/validate.asp\nQuick Start:\n- Provide StreetAddress, City and StateOrProvince for best results. API key required.\nParameters Explained:\n- Same fields as Validate Street Address.\nCommon Errors & Fixes:\n- 400 Bad Request: malformed JSON.\n- 401 Unauthorized: invalid API key.\nEdge Cases:\n- Ambiguous addresses may return the centroid of a region rather than exact coordinates.\nRate Limits & Constraints:\n- API key required. Respect plan limits.",
+      "method": "POST",
+      "url": "",
+      "evaluateGuide": "Converts a structured street address into latitude and longitude. Supply address fields to find the best matching location.\nUse for: street address geocoding, coordinate lookup, address validation workflows\nNot supported: reverse geocoding, batch geocoding, route planning",
+      "provider": "Cloudmersive",
+      "product": "Cloudmersive Validate API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4Uh1tYHMK5wCzlewpBOVgjYmv62XYS9gRH2hUDnGQsRGldhQyTU8XdL2FZD:esri:reverse-geocoding",
+      "name": "Reverse geocoding",
+      "description": "Use the /reverseGeocode operation to determine the address at a particular x/y location. \n\nGo to this example in the Developer guide",
+      "method": "GET",
+      "url": "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?f=pjson&token={{ACCESS_TOKEN}}&location=-79.3871,43.6426",
+      "evaluateGuide": "Determines a human-readable address from an x/y geographic location through ArcGIS. Use it to identify the address nearest to supplied coordinates.\nUse for: reverse geocoding, coordinate-to-address lookup, location identification\nNot supported: forward geocoding, batch address matching, route planning",
+      "provider": "Esri",
+      "product": "ArcGIS World Geocoding Service"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw3UMR6QRM2L6FOiidbtEx3KaTVv2:pinball:geocode-locations-by-lat",
+      "name": "Geocode Locations by Latitude/Longitude",
+      "description": "Converts a latitude/longitude pair into one or more Pinball Map location records near that point.\nDocumentation: https://pinballmap.com/api/v1/docs/1.0/locations/geocodelatlon.html\nQuick Start:\n- Ensure {{baseUrl}} is reachable from your environment.\n- Make a GET request to the endpoint with latitude and longitude query parameters.\n- The endpoint returns a JSON object (or array) of nearby location records including id, name, coordinates and basic address fields.\nParameters Explained:\n- latitude (required) - Decimal latitude of the lookup point. Example format: 37.7749.\n- longitude (required) - Decimal longitude of the lookup point. Example format: -122.4194.\n- radiusMiles (optional) - Radius in miles to search for nearby locations. Default (if not provided): 50 (documented defaults not available on page; example default provided here).\n- limit (optional) - Maximum number of results to return. Default: not documented; client should supply when needed (e.g., 20).\nCommon Errors & Fixes:\n- 400 Bad Request: Missing or malformed latitude/longitude. Ensure values are valid decimal numbers.\n- 404 Not Found: No locations found within the search radius. Try increasing radiusMiles or verifying coordinates.\n- 429 Too Many Requests: (If applicable) rate limit exceeded — add backoff and retries.\n- 500 Internal Server Error: Server-side problem — retry after a delay and report to API maintainers if persistent.\nEdge Cases:\n- Coordinates on coastlines or borders may return multiple nearby locations; results are typically ordered by proximity.\n- Very large radii return many results and may be truncated by the server; prefer reasonable radius values for predictable responses.\n- International coordinates are supported (lat/lon are global), but address formatting may vary by country.\nRate Limits & Constraints:\n- Rate limits are not documented on the page. Calls should be rate-limited on the client side to avoid potential 429 responses. If you need high volume access, contact Pinball Map maintainers.",
+      "method": "GET",
+      "url": "",
+      "evaluateGuide": "Finds nearby Pinball Map location records from a latitude and longitude. Results include matching venues and basic location details.\nUse for: nearby pinball locations, coordinate-based venue lookup, map pins\nNot supported: address geocoding, reverse address lookup, route planning",
+      "provider": "Pinball Map",
+      "product": "Pinball Map API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LKGXlgOcG8yPK3VhFCHNE60JlxB03MXIW5CoS2ccJgvfeT904cCPC7A9Jhwn:google:geocode",
+      "name": "geocode",
+      "description": "The Geocoding API is a service that provides geocoding and reverse geocoding of addresses.\nGeocoding is the process of converting addresses (like a street address) into geographic coordinates (like latitude and longitude), which you can use to place markers on a map, or position the map.\nReverse geocoding is the process of converting geographic coordinates into a human-readable address.\nYou can also use the Geocoding API to find the address for a given place ID.\nTo see countries currently suppor",
+      "method": "GET",
+      "url": "https://maps.googleapis.com/maps/api/geocode/json",
+      "evaluateGuide": "Provides Google address geocoding and reverse geocoding, including coordinate, address, and place ID lookups. Use it to translate between postal addresses and map coordinates.\nUse for: address geocoding, reverse geocoding, place ID lookup, map positioning\nNot supported: route planning, distance matrices, map tiles",
+      "provider": "Google",
+      "product": "Google Maps Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXWcfBS1o5lqsUf9Fzwd5ermbKHMyh53VK0F3WSQNfBEaTiSPH2vyX3RbM:hpe:lookup-the-latitude-long",
+      "name": "Lookup the latitude,longitude of an address",
+      "description": "Lookup the latitude and longitude of an address. It will return an array of locations that match the object, in the order of the locations that match the address the best. So if you're looking for the best match, you should use the first element in the array.",
+      "method": "GET",
+      "url": "https://172.16.3.20/gms/rest/location/addressToLocation?address=<string>",
+      "evaluateGuide": "Looks up latitude and longitude candidates for an address in HPE Aruba Networking EdgeConnect SD-WAN. Results are ordered by match quality.\nUse for: address coordinate lookup, best-match selection, location resolution\nNot supported: reverse geocoding, batch geocoding, route planning",
+      "provider": "HPE",
+      "product": "Aruba EdgeConnect SD-WAN"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4Uh1tYHMK5wFDch1GgEKl9meVYSw1K6kJZ26Thy5FfoidiTcHSlgjwb4DO0:esri:geocoder-service-definit",
+      "name": "Geocoder service definition",
+      "description": "To learn more go to the Developer guide",
+      "method": "GET",
+      "url": "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer?f=json&token={{ACCESS_TOKEN}}",
+      "evaluateGuide": "Returns the ArcGIS geocoder service definition and metadata. Use it to inspect the service capabilities before calling geocoding operations.\nUse for: service capability discovery, geocoder metadata, operation inspection\nNot supported: address geocoding, reverse geocoding, route planning",
+      "provider": "Esri",
+      "product": "ArcGIS World Geocoding Service"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXWcfBS1o6eWMU0COhq3Z33pQ3ixKi4guuUFvLtk1EHERi8R87AwFbHGy5:hpe:lookup-the-latitude-long",
+      "name": "Lookup the latitude,longitude of an address",
+      "description": "Lookup the latitude and longitude of an address. It will return an array of locations that match the object, in the order of the locations that match the address the best. So if you're looking for the best match, you should use the first element in the array.",
+      "method": "GET",
+      "url": "https://172.16.3.20/gms/rest/location/addressToLocation?address=aliquip eiusmod incididunt est",
+      "evaluateGuide": "Looks up latitude and longitude candidates for an address in HPE Aruba Networking EdgeConnect SD-WAN. Results are ordered by match quality.\nUse for: address coordinate lookup, best-match selection, location resolution\nNot supported: reverse geocoding, batch geocoding, route planning",
+      "provider": "HPE",
+      "product": "Aruba EdgeConnect SD-WAN"
+    }
+  ],
+  "meta": {
+    "q": "geocode a street address into latitude and longitude",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

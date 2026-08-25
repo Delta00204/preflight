@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1EFqEZL9kei7CZl8XCFH783AGeCMjfxXXLXGFR726B9gFNS5KjsnlAsip:published:create-jira-issue",
+      "name": "Create JIRA issue",
+      "description": "Working only through the Interceptor and Postman Chrome app",
+      "method": "POST",
+      "url": "https://postmanlabs.atlassian.net/rest/api/2/{{api_path}}/",
+      "evaluateGuide": "Creates a Jira issue through the Jira REST API. Use it to add a new issue from an external workflow.\nUse for: create Jira issue, add issue from GitHub, open tracked work item\nNot supported: updating issues, searching issues, managing comments",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPVOMjzmXDGi949Ywt5obOLrRW4nc:groove:post-integrationjiraserv",
+      "name": "POST integrationJiraServerUpsert",
+      "description": "None",
+      "method": "POST",
+      "url": "integrationJiraServerUpsert",
+      "evaluateGuide": "A POST endpoint associated with Groove's Jira server integration. Its supplied metadata does not specify the payload or the exact integration operation.\nUse for: invoke Jira server integration, submit integration data, trigger server upsert\nNot supported: issue creation details, issue search, issue retrieval",
+      "provider": "Groove",
+      "product": "Groove"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYAfgS6mi12arWEccSFhjpOXqAz6krxsUpEmYlKhFrT5zT1G8U:atlassian:store-development-inform",
+      "name": "Store development information",
+      "description": "Stores development information provided in the request to make it available when viewing issues in Jira. Existing repository and entity data for the same ID will be replaced if the updateSequenceId of existing data is less than the incoming data. Submissions are performed asynchronously. Submitted data will eventually be available in Jira; most updates are available within a short period of time, but may take some time during peak load and/or maintenance times.",
+      "method": "POST",
+      "url": "https://<your-domain-here>.atlassian.net/rest/devinfo/0.10/bulk",
+      "evaluateGuide": "Stores or replaces development information for Jira issues, repositories, and related entities. Processing is asynchronous, so submitted data becomes available later.\nUse for: submit development data, update repository links, attach development entities\nNot supported: reading development data, creating Jira issues, synchronous confirmation",
+      "provider": "Atlassian",
+      "product": "Jira Software Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYEvlI9Mf4MRkVJh6DUbECVsy4wdrX5XWXRdFo4Ce0Yix2gcoC:atlassian:submit-security-workspac",
+      "name": "Submit Security Workspaces to link",
+      "description": "Insert Security Workspace IDs to establish a relationship between them and the Jira site the app is installed on. If a relationship between the workspace ID and Jira already exists then the workspace ID will be ignored and Jira will process the rest of the entries.\nOnly Connect apps that define the jiraSecurityInfoProvider module can access this resource.\nThis resource requires the 'WRITE' scope for Connect apps.",
+      "method": "POST",
+      "url": "https://<your-domain-here>.atlassian.net/rest/security/1.0/linkedWorkspaces/bulk",
+      "evaluateGuide": "Links Security Workspace IDs to the Jira site where an app is installed. Existing links are retained while new valid links are processed.\nUse for: link security workspace, associate workspace IDs, bulk-submit security links\nNot supported: unlinking workspaces, reading linked workspaces, managing vulnerabilities",
+      "provider": "Atlassian",
+      "product": "Jira Software Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYCgLAIzaLWqVCfuCZcSYu1t0oLlFPNG7ILvCwupfzv7cUvtmS:atlassian:submit-incident-or-revie",
+      "name": "Submit Incident or Review data",
+      "description": "Update / insert Incident or Review data.\nIncidents and reviews are identified by their ID, and existing Incident and Review data for the same ID will be replaced if it exists and the updateSequenceNumber of existing data is less than the incoming data.\nSubmissions are performed asynchronously. Submitted data will eventually be available in Jira; most updates are available within a short period of time, but may take some time during peak load and/or maintenance times. The getIncidentById or getReviewById o",
+      "method": "POST",
+      "url": "https://<your-domain-here>.atlassian.net/rest/operations/1.0/bulk",
+      "evaluateGuide": "Submits or replaces Incident and Review data for Jira operations. Processing is asynchronous, and submitted records can be checked later by ID.\nUse for: submit incident data, submit review data, update operation records\nNot supported: retrieving records, deleting incidents, synchronous completion",
+      "provider": "Atlassian",
+      "product": "Jira Software Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0ZwSoFkxdjrHBa4YjVBDaZZuD94Eb:jira:register-modules",
+      "name": "Register modules",
+      "description": "Register modules\nRegisters a list of modules.\nPermissions required: Only Connect apps can make this request.\nResponse Codes\n\n200 Returned if the request is successful.\n400 Returned if:\nany of the provided modules is invalid. For example, required properties are missing.\n401 Returned if the call is not from a Connect app.",
+      "method": "POST",
+      "url": "{{baseUrl}}/rest/atlassian-connect/1/app/module/dynamic",
+      "evaluateGuide": "Registers a list of dynamic modules for a Jira Connect app. Use it to add or update app module definitions on the Jira platform.\nUse for: register app modules, add dynamic modules, update module definitions\nNot supported: removing modules, installing apps, managing Jira issues",
+      "provider": "Atlassian",
+      "product": "Jira Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYBbIg1OBnHuYmmsPe7ou9mZ9UDc7T7Fdm9Jy4luuJ0AkAVYsi:atlassian:submit-devops-components",
+      "name": "Submit DevOps Components",
+      "description": "Update / insert DevOps Component data.\nComponents are identified by their ID, and existing Component data for the same ID will be replaced if it exists and the updateSequenceNumber of existing data is less than the incoming data.\nSubmissions are performed asynchronously. Submitted data will eventually be available in Jira; most updates are available within a short period of time, but may take some time during peak load and/or maintenance times. The getComponentById operation can be used to confirm that da",
+      "method": "POST",
+      "url": "https://<your-domain-here>.atlassian.net/rest/devopscomponents/1.0/bulk",
+      "evaluateGuide": "Submits or replaces DevOps Component data in Jira. Processing is asynchronous, and submitted components can be verified later by ID.\nUse for: submit component data, update DevOps components, sync component metadata\nNot supported: retrieving components, deleting components, creating Jira issues",
+      "provider": "Atlassian",
+      "product": "Jira Software Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0ZwSoEDKPCgTQSpL2Td1PhVOBDmfl:jira:add-gadget-to-dashboard",
+      "name": "Add gadget to dashboard",
+      "description": "Add gadget to dashboard\nAdds a gadget to a dashboard.\nPermissions required: None.\nParameters\n| Name | In | Required | Description |\n|---|---|---|---|\n| dashboardId | path | Yes | The ID of the dashboard. |\nResponse Codes\n\n200 Returned if the request is successful.\n400 Returned if the request is invalid.\n401 Returned if the authentication credentials are incorrect or missing.\n404 Returned if the dashboard is not found.",
+      "method": "POST",
+      "url": "{{baseUrl}}/rest/api/3/dashboard/{{dashboardId}}/gadget",
+      "evaluateGuide": "Adds a gadget to a specified Jira dashboard. Supply the dashboard identifier and the gadget payload to place it on that dashboard.\nUse for: add dashboard gadget, configure dashboard layout, place app gadget\nNot supported: creating dashboards, removing gadgets, editing gadget content",
+      "provider": "Atlassian",
+      "product": "Jira Cloud"
+    }
+  ],
+  "meta": {
+    "q": "jira integration",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

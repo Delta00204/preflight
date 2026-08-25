@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2D9H1CcHh0jCVJgZBYCK3zNMBp8sGcLrPonI6DZZD8chlUgy3R:salesforce:run-data-clean-room-quer",
+      "name": "Run data clean room query",
+      "description": "Run a query job on a data clean room. You can start a query run only if the collaboration status is ACTIVE.\nAvailable Version: 63.0",
+      "method": "POST",
+      "url": "{{dne_cdpInstanceUrl}}/services/data/v66.0/ssot/data-clean-room/collaborations/:collaborationIdOrApiName/actions/run",
+      "evaluateGuide": "Starts a query job for an active Salesforce Data 360 clean-room collaboration. Use it to run an approved analysis and obtain the job response.\nUse for: run clean-room analysis, start query job, analyze collaboration data\nNot supported: creating collaborations, changing status, retrieving unrelated resources",
+      "provider": "Salesforce",
+      "product": "Data 360"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw3d4LsgjJ479exhTUJukAweJdCQy:city:datastore-sql-run-sql-on",
+      "name": "DataStore SQL (Run SQL on the DataStore)",
+      "description": "Execute SQL SELECT queries across DataStore resources using PostgreSQL SQL. Supports joins across resources. There is a server-enforced timeout and a maximum result row limit (default 32000). This action may be disabled via ckan.datastore.sqlsearch.enabled configuration.\nDocumentation: https://docs.ckan.org/en/2.9/maintaining/datastore.html\nQuick Start:\n- POST { \"sql\": \"SELECT * FROM \\\"{{resourceId}}\\\" LIMIT 10\" } to /api/3/action/datastore_search_sql.\n- Include Authorization header when querying private resources.\nParameters:\n- sql (required): Single SQL SELECT statement. Use double quotes for UPPERCASE CSV headers.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing Authorization for private resources.\n- 400 Bad Request: Invalid SQL or disabled sqlsearch on server.\n- Truncated results if query returns more than site max (check records_truncated flag).\nEdge Cases:\n- Action may be disabled globally (ckan.datastore.sqlsearch.enabled=false).\n- Results truncated when exceeding ckan.datastore.search.rows_max (defaults to 32000).\nRate Limits & Constraints:\n- Enforced timeout and maximum rows to protect against long-running queries.",
+      "method": "POST",
+      "url": "https://open.toronto.ca/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Executes a read-only SQL SELECT against a Toronto Open Data datastore and returns matching rows. Use it for joins, filtering, aggregation, or selecting specific columns.\nUse for: query datastore rows, join resources, aggregate data, filter records\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "City of Toronto",
+      "product": "Toronto Open Data"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw3d4LnQr8pQJ9fd2A3eJH25ogqcm:city:datastore-sql-query-data",
+      "name": "Datastore SQL Query (datastore_search_sql)",
+      "description": "Execute SQL-style queries against a datastore-backed resource. Useful for complex filtering, aggregation or selecting specific columns.\nDocumentation: https://open.toronto.ca/dataset/street-tree-data/\nQuick Start:\n- Make a GET request with a URL-encoded SQL statement in the sql parameter.\n- Example: SELECT * FROM \"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\" LIMIT 5\nParameters Explained:\n- sql (required): a SQL string addressing the datastore table (use the resource id as the table name). Example: SELECT * FROM \"{{resourceId}}\" LIMIT 10\nCommon Errors & Fixes:\n- 400 Bad Request: malformed SQL or forbidden operations — validate SQL syntax.\n- 403 Forbidden: attempt to run disallowed operations (rare for public read).\nEdge Cases:\n- SQL must reference the resource table name (usually the resource id). Quoting the table name is often required.\n- Long-running SQL may time out; prefer small result sets.\nRate Limits & Constraints:\n- No public per-endpoint rate limits documented; use responsibly.",
+      "method": "GET",
+      "url": "https://open.toronto.ca/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Executes a SQL-style read-only query against a Toronto Open Data datastore. Supply an SQL expression to retrieve, filter, aggregate, or join resource data.\nUse for: query datastore rows, filter records, aggregate data, join resources\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "City of Toronto",
+      "product": "Toronto Open Data"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SG1DS9oXZs3S7sLGvvtiGZLUue:open:datastore-sql-query-data",
+      "name": "DataStore: SQL Query (datastore_search_sql)",
+      "description": "Run a SQL SELECT statement against a DataStore resource. Useful for complex queries not expressible with the standard search parameters.\nDocumentation: https://www.opendata.nhs.scot/ne/api/1/util/snippet/api_info.html\nQuick Start:\n- Provide a URL-encoded sql parameter to the endpoint (GET) or send a JSON body with the sql string (POST). Example: ?sql=SELECT * from \"{{resourceId}}\" WHERE title LIKE 'jones'.\n- Note: SQL execution may be restricted for security; some CKAN instances disable this endpoint or restrict allowed SQL functions.\nParameters Explained:\n- sql (required): A single SQL SELECT statement to execute (string). The table name is the resource_id for the DataStore resource.\nCommon Errors & Fixes:\n- 400 Bad Request: Malformed SQL or unsupported SQL features. Ensure you submit a valid SELECT statement.\n- 403 Forbidden: SQL execution disabled for the instance or access denied for private resources.\n- 500 Internal Server Error: Query caused a server error (e.g., heavy aggregation on very large tables) — simplify the query or limit returned rows.\nEdge Cases:\n- The instance may restrict functions or statements for security. Do not rely on advanced DB functions unless documented as allowed by the CKAN instance.\n- Large SQL queries may time out or be limited by configured SQL row limits.\nRate Limits & Constraints:\n- SQL queries can be more expensive than parameterised searches; use them sparingly and consider pagination or limiting returned rows.",
+      "method": "GET",
+      "url": "https://www.opendata.nhs.scot/ne/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Runs a read-only SQL SELECT against an NHS Scotland DataStore resource when SQL search is enabled. It returns data for complex filtering, aggregation, and permitted joins.\nUse for: query datastore rows, filter records, aggregate data, join resources\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "NHS Scotland",
+      "product": "Open Data NHS Scotland"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SG1DZwsZn8PXbY715j2V9gbCXS:open:datastore-sql-query-data",
+      "name": "DataStore: SQL Query (datastore_search_sql)",
+      "description": "Execute a SQL SELECT query against the DataStore (read-only SQL execution where enabled).\nDocumentation: https://www.opendata.nhs.scot/en/api/3/action/datastoresearchsql\nQuick Start:\n- Provide a URL-encoded SQL SELECT statement in the sql query parameter (GET) or in the JSON body (POST). Example: ?sql=SELECT * from \"{{resourceId}}\" WHERE name LIKE 'jones' LIMIT 5.\n- Note: the endpoint is only available when the DataStore is backed by PostgreSQL and SQL execution is enabled by the site; some installations disable SQL access for security.\nParameters Explained:\n- sql (required): a single SQL SELECT statement. Only SELECT queries are allowed; other statements are rejected.\n- resource_id (optional): not required if SQL references the table; can be used by clients to indicate the target resource.\n- limit, offset (optional): may be used in SQL or ignored if server-side limits apply.\nCommon Errors & Fixes:\n- 400 Bad Request / 409 Conflict: malformed SQL or non-SELECT statement — restrict to single SELECT statements.\n- 403 Forbidden: SQL execution disabled on this site for security reasons.\n- 500 Internal Server Error: SQL timed out or server error — simplify query or reduce complexity.\nEdge Cases:\n- Results may return numeric values as strings for some column types depending on DB drivers.\n- SQL execution may have enforced timeouts and limited capabilities (no writes, limited functions).\nRate Limits & Constraints:\n- SQL queries may be subject to stricter limits and timeouts than datastore_search to prevent abuse.",
+      "method": "GET",
+      "url": "https://www.opendata.nhs.scot/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Runs a read-only SQL SELECT against an NHS Scotland DataStore resource when SQL search is enabled. It returns data for complex filtering, aggregation, and permitted joins.\nUse for: query datastore rows, filter records, aggregate data, join resources\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "NHS Scotland",
+      "product": "Open Data NHS Scotland"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SG1Da0wlfL5evNuTr7inkdGCZS:open:datastore-sql-query-data",
+      "name": "DataStore SQL Query (datastore_search_sql)",
+      "description": "Execute a SQL SELECT statement against the DataStore (if SQL search is enabled on the CKAN instance).\nDocumentation: https://www.opendata.nhs.scot/en/api/3/action/datastoresearchsql (primary), additional docs: https://www.opendata.nhs.scot/en/api/1/util/snippet/apiinfo.html?resourceid=e44eb789-b8e0-41d9-a264-eba18b2d2473 and CKAN DataStore docs: https://docs.ckan.org/en/2.10/maintaining/datastore.html\nQuick Start:\n- SQL search must be enabled on the CKAN site (ckan.datastore.sqlsearch.enabled).\n- Call via GET (example) or POST with a sql parameter.\n- Example GET:\n  - {{baseUrl}}/en/api/3/action/datastoresearchsql?sql=SELECT+*+FROM+\"{{resourceId}}\"+LIMIT+5\nParameters Explained:\n- sql (required): a single SQL SELECT statement string. The table name is the DataStore resource id (or alias). Example: SELECT * FROM \"e44eb789-b8e0-41d9-a264-eba18b2d2473\" WHERE title LIKE 'jones'.\nCommon Errors & Fixes:\n- 400 Bad Request: malformed SQL or unsupported SQL syntax. Validate SQL statement.\n- 409 Conflict or 500 Internal Server Error: server rejects or times out long-running SQL. Keep queries simple and use LIMIT.\n- 403 Forbidden / 401 Unauthorized: SQL query touches private resources and caller lacks authorization.\n- Not Implemented / disabled: the action may be disabled on the server (ckan.datastore.sqlsearch.enabled=false).\nEdge Cases:\n- SQL engine is PostgreSQL; some SQL functions may be restricted by configuration (site may whitelist functions).\n- Results capped by server configuration (ckan.datastore.search.rows_max); the site may enforce a hard limit (e.g., 32000).\n- Column names that were in the source CSV in ALL UPPERCASE may need double quotes in SQL.\nRate Limits & Constraints:\n- Server-enforced timeouts and row limits apply; avoid large unbounded SELECTs.",
+      "method": "GET",
+      "url": "https://www.opendata.nhs.scot/en/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Executes a read-only SQL SELECT against an NHS Scotland DataStore resource when SQL search is enabled. Use it for flexible filtering, aggregation, column selection, and permitted joins.\nUse for: query datastore rows, filter records, aggregate data, join resources\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "NHS Scotland",
+      "product": "Open Data NHS Scotland"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SG1DKQohEoNTy2MzXXRDyOknL9:open:datastore-sql-query-data",
+      "name": "DataStore - SQL Query (datastore_search_sql)",
+      "description": "Execute SQL queries against the DataStore. Allows flexible SQL SELECT statements (joins across resources supported when enabled).\nDocumentation: https://www.opendata.nhs.scot/km/api/1/util/snippet/api_info.html\nQuick Start:\n- HTTP GET {{baseUrl}}/km/api/3/action/datastoresearchsql?sql={{sql}}\n- sql must be a single SQL SELECT statement. Example from the snippet page: SELECT * from \"{{resourceId}}\" WHERE title LIKE 'jones'\nParameters Explained:\n- sql (required): A single SQL SELECT statement. Must reference resource tables by resource id (table name).\nCommon Errors & Fixes:\n- success: false with an error object: check SQL syntax and permissions (some sites disable SQL search).\n- records_truncated=true: results limited by server configuration (32000 by default).\nEdge Cases:\n- SQL search may be disabled on the site (ckan.datastore.sqlsearch.enabled = false).\n- Some SQL engines return numeric columns as strings; verify types when parsing results.\nRate Limits & Constraints:\n- SQL queries have enforced timeouts and row limits (default 32000). Queries requiring access to private resources need appropriate authorization.",
+      "method": "GET",
+      "url": "https://www.opendata.nhs.scot/km/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Executes a read-only SQL SELECT against an NHS Scotland DataStore resource. Use it for complex filtering, aggregation, and joins where the site permits cross-resource queries.\nUse for: query datastore rows, filter records, aggregate data, join resources\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "NHS Scotland",
+      "product": "Open Data NHS Scotland"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SG1Da0deHTPQ0W2UkdHwzvIHEj:open:datastore-sql-query-data",
+      "name": "DataStore - SQL Query (datastore_search_sql)",
+      "description": "Execute SQL SELECT statements against the DataStore (joins across resources supported where allowed).\nDocumentation: https://www.opendata.nhs.scot/en/api/1/util/snippet/apiinfo.html?resourceid=e44eb789-b8e0-41d9-a264-eba18b2d2473 and https://docs.ckan.org/en/2.11/maintaining/datastore.html#ckanext.datastore.logic.action.datastoresearchsql\nQuick Start:\n- POST JSON to {{baseUrl}}/en/api/3/action/datastoresearchsql with sql containing a single SELECT statement.\n- Note: SQL search may be disabled site-wide (ckan.datastore.sqlsearch.enabled). Ensure you have permission to query all referenced resources.\n- Result set size limited (default max ~32000 rows; configurable via site settings).\nParameters Explained:\n- sql (required): a single SQL SELECT statement using PostgreSQL semantics; quoting may be required for uppercase column names.\nCommon Errors & Fixes:\n- 400 Bad Request: malformed SQL or more than one statement provided — send a single SELECT only.\n- 403 Forbidden / success:false: access denied when user lacks permissions to one or more resources referenced in the query — ensure appropriate Authorization or query only public resources.\n- 500 Internal Server Error: complex queries exceeding timeout or DB limits — simplify query or increase site timeouts (sysadmin).\nEdge Cases:\n- Uppercase CSV-derived column headers must be double-quoted in SQL statements.\n- There is an enforced timeout on SQL queries to prevent DoS; very large/complex queries may be terminated.\nRate Limits & Constraints:\n- Query result cap (typically 32000 rows) and site-configured timeouts apply. SQL queries are allowed only when enabled by site configuration.",
+      "method": "POST",
+      "url": "https://www.opendata.nhs.scot/en/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Executes a read-only SQL SELECT against an NHS Scotland DataStore resource when SQL search is enabled. The response can contain results from permitted cross-resource joins.\nUse for: query datastore rows, join resources, aggregate data, filter records\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "NHS Scotland",
+      "product": "Open Data NHS Scotland"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SG1DSDsjS4jZRi8jhKa0rW0UxJ:open:datastore-sql-query-data",
+      "name": "Datastore SQL Query (datastore_search_sql)",
+      "description": "Run a SQL query against a DataStore resource (returns JSON). Useful for complex queries not expressible via datastore_search parameters.\nDocumentation: https://www.opendata.nhs.scot/faIR/api/1/util/snippet/apiinfo.html\nQuick Start:\n- Minimum: GET {{baseUrl}}/faIR/api/3/action/datastoresearch_sql?sql={{sql}}\n- Ensure the SQL references the DataStore table name (which is the resource id) in double quotes, e.g. SELECT * from \"{{resourceId}}\".\nParameters Explained:\n- sql (required): HTSQL/SQL statement to run against the DataStore. Must be URL-encoded when used in a query string.\nCommon Errors & Fixes:\n- 400 Bad Request: Malformed or unsafe SQL — ensure proper quoting and syntax.\n- 200 OK with success: false: CKAN-level SQL error returned in error object.\nEdge Cases:\n- SQL may be restricted by the CKAN installation (certain functions or constructs may not be allowed).\n- Large or expensive queries may time out; prefer server-side pagination or filters.\nRate Limits & Constraints:\n- The snippet page does not list portal-specific rate limits. Use responsibly.",
+      "method": "GET",
+      "url": "https://www.opendata.nhs.scot/fa_IR/api/3/action/datastore_search_sql"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SG1DKQohEoNTy2MzXXRDyOknL7:open:datastore-query-via-sql",
+      "name": "DataStore - Query via SQL (datastore_search_sql)",
+      "description": "Run a SQL SELECT query against a DataStore resource.\nDocumentation: https://www.opendata.nhs.scot/ro/api/1/util/snippet/api_info.html\nQuick Start:\n- Use GET with a url-encoded sql parameter, or POST with JSON containing sql.\n- Example: GET {{baseUrl}}/ro/api/3/action/datastore_search_sql?sql={{sql}} where sql = SELECT * from \"{{resourceId}}\" LIMIT 5.\nParameters Explained:\n- sql (required): A single SQL SELECT statement. Use the resource id (table name) double-quoted in SQL, e.g. SELECT * FROM \"e44eb...\" WHERE title LIKE 'jones'.\n- resource_id (optional in some setups): resource id to reference, but typically the resource id is used as the SQL table name.\nCommon Errors & Fixes:\n- 400 Bad Request: Malformed SQL or forbidden statements (only SELECT allowed).\n- 403 Forbidden: SQL search disabled on this CKAN installation or you lack permissions for private data.\n- 500 Internal Server Error: SQL execution error (check syntax or permissions).\nEdge Cases:\n- The DataStore SQL endpoint may be disabled on some instances (site config option). Join across multiple resources is supported only if the tables exist and permissions allow.\n- Beware SQL injection; only trusted SQL should be executed.\nRate Limits & Constraints:\n- Very large SQL queries may be limited by site configuration; prefer limits and filters.",
+      "method": "GET",
+      "url": "https://www.opendata.nhs.scot/ro/api/3/action/datastore_search_sql",
+      "evaluateGuide": "Runs a read-only SQL SELECT against an NHS Scotland DataStore resource. Use it to retrieve, filter, aggregate, or select resource data through a URL-encoded SQL parameter.\nUse for: query datastore rows, filter records, aggregate data, select columns\nNot supported: inserts or updates, resource creation, dataset administration",
+      "provider": "NHS Scotland",
+      "product": "Open Data NHS Scotland"
+    }
+  ],
+  "meta": {
+    "q": "run a SQL query against a data warehouse",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LJ5iooCxL6hYMqmt9NGDi3AkPospGx7ThEZZejFRxM9OcstSyfiPn7c4Z36v:talenthr:get-ats-job-position-cus",
+      "name": "Get ATS job position custom question",
+      "description": "This endpoint returns one ATS job position custom question by numeric id. The data object includes nested custom_question_type and custom_answers. Requires permission to view that custom question.",
+      "method": "GET",
+      "url": "https://pubapi.talenthr.io/v1/job-positions/custom-questions/:customQuestion",
+      "evaluateGuide": "Returns one ATS job-position custom question by numeric identifier, including its type and answers. Use it to inspect a permitted custom question resource.\nUse for: Retrieve a custom question, inspect question type, view custom answers\nNot supported: Creating, updating, deleting, or listing questions",
+      "provider": "TalentHR",
+      "product": "TalentHR"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SHofeDAHAUyZ9isMnJ9oITSlvd:epa:internal-dmap-query-endp",
+      "name": "Internal DMAP Query Endpoint - POST https://internal.aws-prod.aws.epa.gov/api/query",
+      "description": "Internal (non-public) DMAP API endpoint referenced in the documentation. Use only if you have internal network access.\nDocumentation: https://www.epa.gov/system/files/documents/2023-12/dmap-api.pdf (references internal endpoint)\nQuick Start:\n- POST JSON body identical to the public query endpoint: {\"query\":\"...\",\"variables\":{...}}\n- Endpoint host: https://internal.aws-prod.aws.epa.gov\nParameters:\n- query (required): GraphQL-like query text\n- variables (optional): variables object\nCommon Errors & Fixes:\n- Internal endpoint is likely restricted to internal network and/or IP allowlists; requests from the public internet will be blocked or return 403/404.\nEdge Cases:\n- This endpoint is listed as internal in the documentation; it may require VPN or internal AWS access and internal authentication not described in public documentation.\nRate Limits & Constraints:\n- None documented for internal endpoint in the provided PDF.",
+      "method": "POST",
+      "url": "https://internal.aws-prod.aws.epa.gov/api/query",
+      "evaluateGuide": "Runs a GraphQL-style query against the EPA DMAP internal service using a JSON payload. It is intended for environments with internal network access.\nUse for: Execute a DMAP query, pass query variables, retrieve portal data\nNot supported: Public access, non-query mutations, external network access",
+      "provider": "U.S. Environmental Protection Agency",
+      "product": "DMAP"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxou0bv8muU1UatszCj1N0EzXso90:apache:cancel-query-by-broker-i",
+      "name": "Cancel Query by broker internal ID",
+      "description": "Cancel a running query by broker-assigned internal query ID. Requires the broker identifier and the broker's internal query id.\nDocumentation: https://docs.pinot.apache.org/release-1.4.0/for-users/user-guide-query/query-cancellation\nQuick Start:\n- Use the controller GET /queries endpoint to obtain the map of brokers -> internal query IDs.\n- Issue a DELETE to /query/{brokerId}/{queryId} on the controller to request cancellation on the specified broker.\nParameters Explained:\n- brokerId (required, path): Broker name/identifier as returned by GET /queries (e.g., Broker_192.168.0.105_8000).\n- queryId (required, path): Broker-assigned internal ID for a running query (integer or string as returned by GET /queries).\n- verbose (optional, query): true or false. When true controller may return details of per-server responses.\nCommon Errors & Fixes:\n- 404 Not Found: Specified broker or query id not found or the query already finished.\n- 400 Bad Request: Malformed queryId or missing parameters.\n- 403 Forbidden: Caller lacks permission to control queries (if controller is secured).\nEdge Cases:\n- This method is operationally heavier: you must identify the correct broker and internal id. It may return partial success information showing per-server response codes.\nRate Limits & Constraints:\n- No specific rate limits documented here; administrative APIs may be subject to operator-imposed throttles.",
+      "method": "DELETE",
+      "url": "http://localhost:8099:9000/query/Broker_127.0.0.1_8099/7",
+      "evaluateGuide": "Cancels a running Apache Pinot broker query using the broker identifier and internal query identifier in the path. Use it to stop active query execution.\nUse for: Cancel a running query, stop broker execution, terminate query processing\nNot supported: Starting queries, retrieving results, listing active queries",
+      "provider": "Apache Software Foundation",
+      "product": "Apache Pinot"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9JEQxaWXlb22AeiUm1kgMFqEcD2:epa:dmap-query-internal-endp",
+      "name": "DMAP Query (Internal endpoint)",
+      "description": "Overview:\nInternal DMAP endpoint intended for internal/privileged environments. Functionality is the same as production but the host and path differ.\nDocumentation: https://www.epa.gov/system/files/documents/2023-12/dmap-api.pdf\nQuick Start:\n- Create a POST request to {{baseUrlInternal}}/api/query\n- Use a GraphQL body like: {\"query\":\"...\",\"variables\":{}}\nParameters Explained:\n- query (required, in request body): GraphQL-style query string.\n- variables (optional, in request body): JSON object with GraphQL variables.\n- Export formats and JSONP callback behave the same as production (/api/query/csv, /api/query/jsonp?callback=...).\nCommon Errors & Fixes:\n- Same as production: 400 for bad queries, 408/504 for timeouts, 500 for internal errors. Internal endpoints may be subject to additional internal network or IAM restrictions.\nEdge Cases:\n- Access to this internal host is typically restricted to EPA internal networks; do not assume public availability.\nRate Limits & Constraints:\n- Not documented publicly. Internal operational constraints may apply.",
+      "method": "POST",
+      "url": "https://internal.aws-prod.aws.epa.gov/api/query",
+      "evaluateGuide": "Runs a GraphQL-style query against the EPA DMAP internal service with query text and optional variables in the JSON payload. It supports internal or privileged environments.\nUse for: Execute a DMAP query, supply variables, retrieve grant data\nNot supported: Public access, non-query mutations, external network access",
+      "provider": "U.S. Environmental Protection Agency",
+      "product": "DMAP"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxovap2BPt2EBuEYca2ymf4C0fE9R:apache:tracing-zipkin-api-api-v",
+      "name": "Tracing Zipkin API - /api/v2/traces (debugging/query/zipkin/api/v2/traces)",
+      "description": "Proxy of Zipkin's /api/v2/traces endpoints with OAP debuggingTrace attached to results.\nDocumentation: https://skywalking.apache.org/docs/main/latest/en/debugging/query-tracing/\nQuick Start:\n- Use the same Zipkin query parameters as the standard Zipkin API when calling /debugging/query/zipkin/api/v2/traces.\nParameters Explained:\n- All parameters are the same as Zipkin API /api/v2/traces (serviceName, spanName, minDuration, endTs/startTs, etc.). See Zipkin docs for full list.\nCommon Errors & Fixes:\n- 400: Invalid Zipkin query parameters.\n- 500: Backend processing error.\nEdge Cases:\n- Results will include an additional debuggingTrace field with OAP internal trace info.\nRate Limits & Constraints:\n- Use Zipkin parameters as usual; large result sets may be truncated by backend or deployment limits.",
+      "method": "GET",
+      "url": "http://localhost:12800/debugging/query/zipkin/api/v2/traces",
+      "evaluateGuide": "Queries distributed trace spans through Apache SkyWalking’s Zipkin-compatible debugging proxy. Use Zipkin query parameters to filter and inspect trace results.\nUse for: Find traces, filter by service, filter by span, inspect durations\nNot supported: Creating spans, updating traces, deleting trace data",
+      "provider": "Apache Software Foundation",
+      "product": "Apache SkyWalking"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr3049B2UpCavfziyZw6ijDSVODo4xA:foursquare:query-api-internal-gener",
+      "name": "Query API (internal) - generic query",
+      "description": "Query API used internally for enrichment/extraction and other operations. Endpoint: /internal/v1/query.\nDocumentation: https://docs.foursquare.com/developer/docs/studio-data-sdk-reference\nQuick Start:\n- POST JSON describing the query or operation. Use Content-Type: application/json and appropriate Accept header for returned format.\nParameters Explained:\n- Body fields depend on operation (e.g., type: enrich, sourceId, geojson for extracts, etc.).\nCommon Errors & Fixes:\n- 400: Missing or invalid parameters.\n- 401: Missing token.",
+      "method": "POST",
+      "url": "https://data-api.foursquare.com/internal/v1/query",
+      "evaluateGuide": "Submits an internal Foursquare Studio Data API operation for enrichment, extraction, or related processing. The JSON payload describes the operation and its inputs.\nUse for: Enrich data, extract data, run a Studio operation\nNot supported: Public place search, place editing, map visualization",
+      "provider": "Foursquare",
+      "product": "Foursquare Places"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXWcfBS1o6eL607l0C6Hm9zfsxeG38Ghsfcjf9OZuH4VvaWAHAq5Bv0WEG:hpe:get-internaldrops-time-s",
+      "name": "Get internalDrops time series stats data of a single appliance filter by certain query parameters.",
+      "description": "This operation returns a JSON object containing COLUMNDEF and DATA. COLUMNDEF is an array containing the names indicating what corresponding number in data array means. Data objects of each appliance is an array of data arrays, each data array contains the stats for a particular timestamp. Each number is data array corresponds to a name in COLUMN_DEF.  DATA object contains only values not keys.",
+      "method": "GET",
+      "url": "https://172.16.3.20/gms/rest/stats/timeseries/internalDrops?nePk=<string>&startTime=<integer>&endTime=<integer>&granularity=minute",
+      "evaluateGuide": "Returns time-series internal-drops statistics for one EdgeConnect appliance over a selected interval and granularity. The response includes column definitions and timestamped data arrays.\nUse for: Retrieve drop statistics, analyze appliance trends, query minute metrics\nNot supported: Configuration changes, real-time control, statistics updates",
+      "provider": "Hewlett Packard Enterprise",
+      "product": "HPE Aruba Networking EdgeConnect SD-WAN"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXWcfBS1o5pNm3805USCvUUMDSg1uED8GvaAVgDNP9Sjw9ydQPCxaqq3Db:hpe:get-internaldrops-time-s",
+      "name": "Get internalDrops time series stats data of a single appliance filter by certain query parameters.",
+      "description": "This operation returns a JSON object containing COLUMNDEF and DATA. COLUMNDEF is an array containing the names indicating what corresponding number in data array means. Data objects of each appliance is an array of data arrays, each data array contains the stats for a particular timestamp. Each number is data array corresponds to a name in COLUMN_DEF.  DATA object contains only values not keys.",
+      "method": "GET",
+      "url": "https://172.16.3.20/gms/rest/stats/timeseries/internalDrops?nePk=aliquip eiusmod incididunt est&startTime=20700298&endTime=20700298&granularity=minute",
+      "evaluateGuide": "Returns time-series internal-drops statistics for one EdgeConnect appliance over a selected interval and granularity. The response includes column definitions and timestamped data arrays.\nUse for: Retrieve drop statistics, analyze appliance trends, query minute metrics\nNot supported: Configuration changes, real-time control, statistics updates",
+      "provider": "Hewlett Packard Enterprise",
+      "product": "HPE Aruba Networking EdgeConnect SD-WAN"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlzh2o9p50GmgyNtS0lMAyFkDBaF4L:foursquare:hex-tile-query-internal",
+      "name": "Hex Tile / Query Internal Endpoint (enrich / extract)",
+      "description": "Query/internal endpoint used for Hex Tile enrichment and extract operations. The Query API supports enrichment and extraction of Hex Tile datasets.\nDocumentation: https://docs.foursquare.com/developer/docs/studio-data-sdk-reference\nQuick Start:\n- POST /internal/v1/query with JSON body describing the operation (type: enrich or other), input, and parameters. Include Authorization header and Content-Type: application/json.\nParameters Explained:\n- type (body, required): process type, e.g., enrich.\n- sourceId (body, required for enrich): UUID of Hex Tile dataset.\n- sourceColumn / column / latColumn / lngColumn (body): columns used for enrichment/extraction.\n- input (body, required): array describing target dataset(s) to operate on.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing token.\n- 400 Bad Request: invalid or missing parameters.\nEdge Cases:\n- Extracting Hex Tiles uses the Query API; docs note contacting Foursquare if you wish to use Query API for extraction.\n- Returns data in format controlled by Accept header (CSV, JSON, Arrow, etc.).\nRate Limits & Constraints:\n- Not specified on this page.",
+      "method": "POST",
+      "url": "https://data-api.foursquare.com/internal/v1/query",
+      "evaluateGuide": "Submits an internal Foursquare Studio Data API operation for Hex Tile enrichment or extraction. The JSON payload identifies the operation, dataset, and processing fields.\nUse for: Enrich Hex Tile data, extract dataset data, process spatial columns\nNot supported: Public place search, place editing, map visualization",
+      "provider": "Foursquare",
+      "product": "Foursquare Places"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXWcfBS1o6cImH1prSmuHg9tDS4ALmffTOBDZDR9Qa0ecqg2ocU4UfXmFB:hpe:get-internaldrops-time-s",
+      "name": "Get internalDrops time series stats data of a single appliance filter by certain query parameters.",
+      "description": "This operation returns a JSON object containing COLUMNDEF and DATA. COLUMNDEF is an array containing the names indicating what corresponding number in data array means. Data objects of each appliance is an array of data arrays, each data array contains the stats for a particular timestamp. Each number is data array corresponds to a name in COLUMN_DEF.  DATA object contains only values not keys.",
+      "method": "GET",
+      "url": "https://172.16.3.20/gms/rest/stats/timeseries/internalDrops?nePk=velit elit et anim&startTime=-51501628&endTime=-51501628&granularity=hour",
+      "evaluateGuide": "Returns time-series internal-drops statistics for one EdgeConnect appliance over a selected interval and granularity. The response includes column definitions and timestamped data arrays.\nUse for: Retrieve drop statistics, analyze appliance trends, query hourly metrics\nNot supported: Configuration changes, real-time control, statistics updates",
+      "provider": "Hewlett Packard Enterprise",
+      "product": "HPE Aruba Networking EdgeConnect SD-WAN"
+    }
+  ],
+  "meta": {
+    "q": "query our internal HRIS",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbBcBlOQf0kZEVdeZryYR6n3ig0OK3icxZsBFGGK8DIAvU5l1v9:microsoft:search-teams-messages",
+      "name": "Search teams messages",
+      "description": "",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/beta/search/query",
+      "evaluateGuide": "Searches Microsoft Teams messages through Microsoft Graph search. Use it to find relevant message content across Teams resources.\nUse for: finding Teams messages, searching message text, locating conversations\nNot supported: sending messages, creating channels, retrieving message replies",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbCYCKWQZRQBiwycl5JO1mWOFTDhUiMWsuha1pwn9pDyWi3Ldlg:microsoft:create-an-html-chat-thre",
+      "name": "Create an HTML chat thread (beta)",
+      "description": "",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/beta/teams/{{TeamId}}/channels/{{ChannelId}}/messages",
+      "evaluateGuide": "Posts a channel message containing HTML-formatted content to a specified Teams channel. Use it to start a chat thread with rich text.\nUse for: posting formatted channel messages, starting HTML threads, sharing rich text\nNot supported: plain-text formatting, editing messages, replying to existing messages",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbBl5huAYjS3kgKX86HJN64BvpPU9n6qj5YEmD9XQwY9ZqpivFQ:microsoft:create-team",
+      "name": "Create team",
+      "description": "",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/v1.0/teams/{{TeamId}}/channels/{{ChannelId}}/members",
+      "evaluateGuide": "Adds a member to the specified Teams channel. Despite its label, the URL targets channel membership rather than team creation.\nUse for: adding channel members, assigning channel access, managing membership\nNot supported: creating teams, creating channels, removing members",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbBecGbXrhg4ieE9pFolNFuH1eximkl27q553LClAw0VnwAItfA:microsoft:search-teams-messages",
+      "name": "Search teams messages",
+      "description": "",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/beta/search/query",
+      "evaluateGuide": "Searches Microsoft Teams messages through Microsoft Graph search. Use it to find relevant message content across Teams resources.\nUse for: finding Teams messages, searching message text, locating conversations\nNot supported: sending messages, creating channels, retrieving message replies",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbBmOTekuDbLWOVLFYnFZJsCY5Xr3mSUNO5Ifpna0EV1GjiR1lr:microsoft:create-a-plain-text-chat",
+      "name": "Create a plain text chat thread (beta)",
+      "description": "",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/beta/teams/{{TeamId}}/channels/{{ChannelId}}/messages",
+      "evaluateGuide": "Posts a channel message containing plain-text content to a specified Teams channel. Use it to start a text-based chat thread.\nUse for: posting text messages, starting plain-text threads, sharing channel updates\nNot supported: HTML formatting, editing messages, replying to existing messages",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlzgvcYxjAMnK0ILsBHsvA7C1ZwRc6:microsoft:create-subscription-post",
+      "name": "Create subscription (POST /subscriptions) - Microsoft Graph (beta)",
+      "description": "Subscribes an application to receive change notifications for a specified Microsoft Graph resource.\nDocumentation: https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-beta\nQuick Start:\n- Ensure you have a valid bearer access token (delegated or application) with the appropriate read permission for the target resource (for example Mail.Read for messages).\n- Implement a notification endpoint at the URL you provide in notificationUrl that can respond to Microsoft Graph validation requests (respond with the validationToken within the request body during validation). If validation fails, subscription creation returns 400 Bad Request.\n- Make a POST to /subscriptions with a JSON body containing at minimum: changeType, notificationUrl, resource, and expirationDateTime (subject to resource-specific limits).\nParameters Explained:\n- changeType (required): The type(s) of change to subscribe to. Common values: created, updated, deleted. Multiple values comma-separated (e.g., created,updated).\n- notificationUrl (required): HTTPS endpoint that will receive change notifications. Must support validation requests from Microsoft Graph.\n- resource (required): The resource path to watch (examples: me/mailFolders('Inbox')/messages, /chats, users/{userId}/messages, sites/{site-id}/lists/{list-id}). Any path starting with me can be replaced with users/{id}.\n- expirationDateTime (required): ISO 8601 UTC time when subscription expires. Resource-specific maximum lifetimes apply (check resource docs).\n- clientState (optional): A client-specified string (up to 255 characters) included with each notification for validation.\n- latestSupportedTlsVersion (optional): The TLS version (e.g., v1_2) to require for delivery.\n- includeResourceData (optional, boolean): If true, include resource data in the notification (requires encryptionCertificate and encryptionCertificateId for resources that support resource-data notifications).\n- encryptionCertificate / encryptionCertificateId (optional): Base64 PKCS#12 certificate and an id you choose, required when requesting notifications that include resource data for certain resources.\n- lifecycleNotificationUrl (optional): URL to receive lifecycle notifications (required for some long expiration scenarios). Resource-specific rules apply.\n- notifyOnUserSpecificProperties (optional, query parameter pattern inside resource in some resources): For chat subscriptions you can add ?notifyOnUserSpecificProperties=true in the resource string to receive user-specific payloads.\nCommon Errors & Fixes:\n- 400 Bad Request: Notification URL validation failed — ensure your notificationUrl responds to validation requests as documented (respond with validationToken). Also returned when request body is malformed.\n- 401 Unauthorized: Missing or invalid access token — provide a valid bearer token with required permissions.\n- 403 Forbidden: Organization or resource quota reached (e.g., Teams subscriptions per organization) or insufficient permissions for resource. Check tenant quotas and permissions.\n- 409 Conflict: Duplicate subscription (same changeType + resource). The error message typically says: Subscription Id <> already exists for the requested combination.\n- 429 Too Many Requests / Throttling: Respect Retry-After header and back off.\nEdge Cases:\n- Duplicate subscriptions with identical changeType and resource are rejected with 409 Conflict.\n- Including resource data (includeResourceData=true) requires encryptionCertificate + encryptionCertificateId for many resources — subscription creation fails if encryption is required but not supplied.\n- For some resources (e.g., chat, virtual events, online meeting call events) there are stricter lifetime, quota, or lifecycle rules (for example: lifecycleNotificationUrl required when requesting expirationDateTime > 1 hour for certain chat subscriptions).\n- Any me path can be used as users/{id} to target a specific user.\nRate Limits & Constraints:\n- Resource-specific quotas apply. Examples documented: Teams subscriptions share a tenant-level limit (10,000 total subscriptions across Teams change-notification subscriptions). Mailbox-level resources often limit to 1,000 active subscriptions per mailbox. Virtual events and other resources have per-app and per-tenant limits. Check the \"Supported resources\" docs for exact quotas per resource.\n- APIs under /beta are subject to change and not supported for production use.",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/beta/subscriptions",
+      "evaluateGuide": "Creates a draft email in the signed-in user's mailbox or a specified mail folder. Use it to prepare a message without sending it.\nUse for: creating email drafts, saving messages, preparing outbound mail\nNot supported: sending email, reading mail, managing attachments",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbBjx9xlx68aavVgPpLYMODw3dELPiFOvJceXs67D4rclxMGgYC:microsoft:get-replies-to-a-message",
+      "name": "Get replies to a message in a channel (beta)",
+      "description": "",
+      "method": "GET",
+      "url": "https://graph.microsoft.com/beta/teams/{{TeamId}}/channels/{{ChannelId}}/messages/{{MessageId}}/replies",
+      "evaluateGuide": "Retrieves replies from a specified message in a Teams channel. Use it to read the conversation thread beneath that message.\nUse for: reading thread replies, displaying channel conversations, retrieving message responses\nNot supported: posting replies, editing messages, creating threads",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlzgvcZN71W0XIGCYGqGpGkTbD6XtQ:microsoft:create-message-post-me-m",
+      "name": "Create message (POST /me/messages)",
+      "description": "Create a draft message in the signed-in user's mailbox or in a specified mail folder.\nDocumentation: https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-beta\nQuick Start:\n- POST a Message object to /me/messages to create a draft. Provide JSON message object. Use application/json for JSON or text/plain for base64-encoded MIME.\nParameters Explained:\n- subject, body, toRecipients inside the message object. \n- mailFolderId (optional path): to create draft in a specific folder use /me/mailFolders/{mailFolderId}/messages.\nCommon Errors & Fixes:\n- 400 Bad Request: malformed MIME content — ensure base64 encoding.\n- 401 Unauthorized: missing token.\nEdge Cases:\n- Drafts are saved in Drafts folder by default unless mailFolderId specified.\n- S/MIME payloads may be limited (docs note 4 MB limit for S/MIME in this page).\nRate Limits & Constraints:\n- Beta APIs subject to change. Create returns 201 Created with message object.",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/beta/me/messages"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbCVkyHp0RZRWlKyRxqNMCK4QfTRh0NPHTTKMqjRGSlsvFbfQ9u:microsoft:create-channel",
+      "name": "Create channel",
+      "description": "",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/v1.0/teams/{{TeamId}}/channels",
+      "evaluateGuide": "Creates a channel within a specified Microsoft Teams team. Use it to add a new conversation space to an existing team.\nUse for: creating channels, adding team spaces, setting up conversations\nNot supported: creating teams, posting messages, adding channel members",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlzgvcZNDRh7xXxg3Rt4lrcVRN86pp:microsoft:create-message-for-a-use",
+      "name": "Create message for a user (POST /users/{userId}/messages)",
+      "description": "Create a draft of a new message in the mailbox of the specified user.\nDocumentation: https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-beta\nQuick Start:\n- Obtain a Bearer access token with the Mail.ReadWrite permission. For application permissions, ensure the app has Mail.ReadWrite and admin consent if creating drafts in other users' mailboxes.\n- POST to /users/{id | userPrincipalName}/messages. The path parameter can be the user's id (GUID) or their userPrincipalName (UPN/email).\nParameters Explained:\n- userId (path) — the user's unique id (GUID) or UPN (userPrincipalName). Use {{userId}} in the request URL.\n- Body parameters are the same as the /me/messages endpoint: subject, importance, body.contentType, body.content, toRecipients. MIME usage and limits are the same.\nCommon Errors & Fixes:\n- 403 Forbidden: App or delegated token lacks permission to create drafts in the target user's mailbox.\n- 400 Bad Request: Malformed request or MIME base64 problems.\nEdge Cases:\n- When providing a userPrincipalName as {userId}, ensure it is URL-encoded if it contains special characters.\n- Creating drafts in other users' mailboxes requires proper permissions and consent.\nRate Limits & Constraints:\n- Beta API; features may change. Observe Graph throttling responses (429) and back off accordingly.",
+      "method": "POST",
+      "url": "https://graph.microsoft.com/beta/users/user-id-or-upn/messages",
+      "evaluateGuide": "Creates a draft email in the mailbox of a specified user. Use it to prepare mail for another user's mailbox when authorized.\nUse for: creating user email drafts, saving mailbox messages, preparing mail\nNot supported: sending email, reading mail, creating Teams messages",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    }
+  ],
+  "meta": {
+    "q": "post a message to Microsoft Teams",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

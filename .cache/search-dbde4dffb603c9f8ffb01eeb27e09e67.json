@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LLRYpZHwFTfXAh3mA2GtTQp7texp3JZNEgq6DnJXq4m4EBuuDmglpjRwFUDJ:aws:createopportunity",
+      "name": "CreateOpportunity",
+      "description": "CreateOpportunity creates an Opportunity record in Partner Central. Use this operation to create a potential business opportunity for submission to AWS. Creating an opportunity sets Lifecycle.ReviewStatus to Pending Submission.\nTo submit an opportunity, follow these steps:\n\nTo create the opportunity, use CreateOpportunity.\nTo associate a solution with the opportunity, use AssociateOpportunity.",
+      "method": "POST",
+      "url": "{{BASE_URL}}/CreateOpportunity",
+      "evaluateGuide": "Creates an opportunity in AWS Partner Central for submission to AWS, initially marking it pending submission. Associate a solution separately before submitting.\nUse for: create partner opportunity, prepare AWS submission, add opportunity details\nNot supported: solution association, opportunity submission, opportunity updates",
+      "provider": "AWS",
+      "product": "AWS Partner Central"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2D9JUAx2Mxy9KORJkjQjipgCVRFZS9uhqFV43ZAvoI2xnGZmex:salesforce:opportunities-closing-so",
+      "name": "Opportunities Closing Soon (Explicit AND)",
+      "description": "",
+      "method": "POST",
+      "url": "{{_endpoint}}/services/data/v66.0/graphql",
+      "evaluateGuide": "Runs a Salesforce GraphQL query for opportunities closing soon using explicit AND conditions. Use it to retrieve matching opportunity data.\nUse for: find closing opportunities, apply AND filters, query opportunity fields\nNot supported: creating opportunities, updating records, product schedules",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LLRYpZHwFTfXAh15YIyzdmo49uQkmAp1XaOV1irFUHTXqr4fBgGQ68fdCNPA:aws:createopportunity",
+      "name": "CreateOpportunity",
+      "description": "",
+      "method": "POST",
+      "url": "{{BASE_URL}}/CreateOpportunity",
+      "evaluateGuide": "Creates an opportunity record in AWS Partner Central. Use it to begin preparing a potential business opportunity for AWS partner submission.\nUse for: create opportunity, start partner submission, record business details\nNot supported: solution association, submission, opportunity retrieval",
+      "provider": "AWS",
+      "product": "AWS Partner Central"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CH2BwagMTWAdcnpEShy4d7kq6dEO40MCHwv3E1zyZn48Qifuy:salesforce:product-schedules",
+      "name": "Product Schedules",
+      "description": "Work with revenue and quantity schedules for opportunity products. Establish or reestablish a product schedule with multiple installments for an opportunity product. Delete all installments in a schedule.\nThis resource is available in REST API version 43.0 and later.\nIn API version 46.0 and later, established and re-established schedules support custom fields, validation rules, and Apex triggers. Deleting all schedules now also fires delete triggers.\nhttps://developer.salesforce.com/docs/atlas.en-us.api_re",
+      "method": "GET",
+      "url": "{{_endpoint}}/services/data/v66.0/sobjects/OpportunityLineItem/:OPPORTUNITY_LINE_ITEM_ID/OpportunityLineItemSchedules",
+      "evaluateGuide": "Retrieves revenue and quantity schedule installments for a Salesforce opportunity product. Use it to inspect an opportunity product’s schedule.\nUse for: view product schedules, inspect installments, retrieve schedule data\nNot supported: creating schedules, deleting installments, updating opportunity products",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LLRYpZHwFTfXyU8G4OvYjXD8ykTyDYz9hLeKGwQC0nNy1Yyf88wbxbzeFwH4:aws:simulate-createopportuni",
+      "name": "[Simulate] CreateOpportunity - For Reject",
+      "description": "",
+      "method": "POST",
+      "url": "{{BASE_URL}}/CreateOpportunity",
+      "evaluateGuide": "Creates an AWS Partner Central opportunity for a rejection simulation flow. Use it to prepare test data for the reject scenario.\nUse for: simulate rejected opportunity, test rejection flow, create test opportunity\nNot supported: production submission, solution association, general opportunity retrieval",
+      "provider": "AWS",
+      "product": "AWS Partner Central"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CJ1pWS5q5jLu3Eo10NcCO7Q85O9iMga5Xs6xB7s40sZyn3Ohq:salesforce:get-default-values-to-cr",
+      "name": "Get Default Values to Create a Record",
+      "description": "Get the default values for fields for a new record of a specified object and optional record type. After getting the default values, make a request to POST /ui-api/records to create the record.\nThe response contains the default field values for the Full layout type for a new record of the object type specified in .\nIt also contains the corresponding layout for create mode. In the Salesforce user interface, an admin with “Customize Application” permission can mark a field as required in a",
+      "method": "GET",
+      "url": "{{_endpoint}}/services/data/v66.0/ui-api/record-defaults/create/:SOBJECT_API_NAME",
+      "evaluateGuide": "Retrieves default field values and the create layout for a new Salesforce record of a specified object type. Use the response to prepare a subsequent record-creation endpoint call.\nUse for: get record defaults, inspect create layout, prepare new record\nNot supported: creating records, updating fields, deleting records",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JO91LXd84jUsOllwiZ136usGJj1VK8NUPZg1snCZCNtE2IHhP2bLUfqPNId:unified:create-opportunity",
+      "name": "Create opportunity",
+      "description": "Create opportunity",
+      "method": "POST",
+      "url": "https://unify.apideck.com/crm/opportunities?raw=false",
+      "evaluateGuide": "Creates a CRM opportunity through Apideck’s unified CRM API. Use it to add a new opportunity with supplied values to a connected CRM system.\nUse for: create CRM opportunity, add sales opportunity, sync opportunity data\nNot supported: opportunity retrieval, deletion, stage history",
+      "provider": "Apideck",
+      "product": "Apideck Unified API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CNUYjWkUiauU6FaSBQSXo8PKyMSATq5uhJFEitXWVRzdJ9cK1:salesforce:user-messages-general",
+      "name": "User Messages, General",
+      "description": "Returns all the messages for all the private conversations for the context user. Also used to search across all messages and post a message.\nTo return all private conversations for the context user, see User Conversations, General.\nhttps://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connectresourcesusersmessagesgeneral.htm",
+      "method": "POST",
+      "url": "{{_endpoint}}/services/data/v66.0/chatter/users/me/messages?text=This is a private message&recipients=<USER1_ID>,<USER2_ID>",
+      "evaluateGuide": "Posts a message to private Salesforce Chatter conversations for the context user and can search across messages. Use it for private conversation messaging.\nUse for: send private message, search messages, message recipients\nNot supported: public posts, conversation management, opportunity operations",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHyg8a8PW6eDtSgxy6035K1EpQBSTgBbIYbOI8PltK7LT9XsoNE5:merge:opportunities-create",
+      "name": "opportunities create",
+      "description": "Creates an Opportunity object with the given values.",
+      "method": "POST",
+      "url": "https://api.merge.dev/api/crm/v1/opportunities",
+      "evaluateGuide": "Creates an opportunity object through Merge’s unified CRM API. Use it to add opportunity data across a connected CRM integration.\nUse for: create CRM opportunity, sync sales data, add pipeline record\nNot supported: retrieving opportunities, updating records, deleting opportunities",
+      "provider": "Merge",
+      "product": "Merge CRM API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CFuBv9sMhBiPdBkB0MzEnpaPpnZinArQZovrVFytNtnNLhoAh:salesforce:create-order-from-quote",
+      "name": "Create Order From Quote",
+      "description": "",
+      "method": "POST",
+      "url": "{{_endpoint}}/services/data/v66.0/actions/standard/createOrderFromQuote",
+      "evaluateGuide": "Creates a Salesforce order from an existing quote using the standard action endpoint. Use it to convert an eligible quote into an order.\nUse for: create order from quote, convert approved quote, generate sales order\nNot supported: creating quotes, editing orders, retrieving quote details",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    }
+  ],
+  "meta": {
+    "q": "create a sales opportunity",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

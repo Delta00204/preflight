@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Retrieve file metadata and a temporary download URL (Freshworks CRM)\n\nFIT\n  Not at all. The supplied request only retrieves an existing file; it does not archive a file to cold object storage. Search again for a file-archiving or object-storage endpoint."
+    }
+  ]
+}

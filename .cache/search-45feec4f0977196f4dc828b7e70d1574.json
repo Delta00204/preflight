@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr4zCJRBsgztMqUmj7nmnA1DMXEKSZc:boundaryml:create-agent-agents-api",
+      "name": "Create Agent (Agents API - Beta)",
+      "description": "Create a reusable, versioned agent configuration for Claude Managed Agents (Beta).\nDocumentation: https://platform.claude.com/docs/en/api/overview\nQuick Start:\n- POST an agent configuration to /v1/agents. Required headers include x-api-key and anthropic-version. Beta/Admin access may be required.\nParameters Explained:\n- name (required) — Agent name.\n- configuration (required) — Agent configuration object (instructions, tools, resources, versions).\nCommon Errors & Fixes:\n- 400 Bad Request for invalid agent configuration JSON.\n- 401/403 for missing or insufficient credentials.\nEdge Cases:\n- Agents are versioned; creating an agent may produce a version identifier.\nRate Limits & Constraints:\n- Agents and Sessions endpoints share the 32 MB request limit and are subject to Beta constraints.",
+      "method": "POST",
+      "url": "https://api.openai.com/v1/agents",
+      "evaluateGuide": "Creates a reusable, versioned agent configuration through the agents endpoint. Use it to define an agent and its configuration payload.\\nUse for: create an agent, define agent instructions, configure agent tools, version an agent\\nNot supported: running an agent, sending chat messages, retrieving agent versions",
+      "provider": "OpenAI",
+      "product": "OpenAI API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr32QFghiEP9I6dbYMfOv4f4hVlOBPP:workato:list-on-prem-agents",
+      "name": "List on-prem agents",
+      "description": "Retrieves a list of all on-prem agents in a customer workspace.\nDocumentation: https://docs.workato.com/en/oem/oem-api/on-prem.html#list-on-prem-agents\nQuick Start:\n- Provide managedUserId and issue a GET with a bearer token.\nParameters Explained:\n- managedUserId (required, path): Embedded customer workspace ID/external ID.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing/invalid token.\n- 404 Not Found: managedUserId not found.\nEdge Cases:\n- Response state values may vary (e.g., awaiting_setup, connected).\nRate Limits & Constraints:\n- 60 requests per minute for On-prem endpoints.",
+      "method": "GET",
+      "url": "https://www.workato.com/api/v2/managed_users/managed-user-id-here/on_prem_agents",
+      "evaluateGuide": "Retrieves on-premises agents associated with a managed customer account. Use it to inspect agent availability and connection state.\\nUse for: list on-premises agents, check connection states, inspect managed agents, verify agent setup\\nNot supported: creating agents, updating agent configuration, connecting an agent",
+      "provider": "Workato",
+      "product": "Workato Embedded API"
+    }
+  ],
+  "meta": {
+    "q": "claude Managed Agents",
+    "total": 2
+  }
+}

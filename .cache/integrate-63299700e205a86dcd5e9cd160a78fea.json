@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Read CRM object records (HubSpot CRM API)\n\nFIT\n  Not at all. The supplied request reads HubSpot CRM objects by ID or custom unique property; it does not access or retrieve runbooks from an internal wiki. The request is irrelevant to the task. Search for an internal-wiki content retrieval endpoint or the appropriate wiki API."
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2DBi3sEZd4oBRPe1P3ulahjcSrLPLYQTpNgvvnmaKLrMRa82e9:salesforce:forgot-password-change-p",
+      "name": "Forgot Password - Change Password",
+      "description": "Forgot Password/Change Password is a two step process:\nIn the first step you pass a username and recaptcha token into the endpoint. Salesforce then sends an OPT to the end user. In the second step you collect that OTP from the end user, confirming that they do own the email associated to the user, and the new password. This call is the second step in that process.",
+      "method": "POST",
+      "url": "https://login.salesforce.com{{site}}/services/auth/headless/forgot_password",
+      "evaluateGuide": "Completes the second step of Salesforce’s forgot-password flow by verifying the emailed code and applying a new password. Use it after the initial identity and CAPTCHA step. Use for: verify recovery code, set a new password, finish account recovery Not supported: starting recovery, sending the code, changing another user’s password",
+      "provider": "Salesforce",
+      "product": "Salesforce"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CNhDMsu27ZdZRoHqxYfkvox8NXeddD5sKTDp4LYibJWXHm8k2:salesforce:sobject-user-password",
+      "name": "SObject User Password",
+      "description": "Set, reset, or get information about a user password. This resource is available in REST API version 24.0 and later.",
+      "method": "GET",
+      "url": "{{_endpoint}}/services/data/v66.0/sobjects/User/:USER_ID/password",
+      "evaluateGuide": "Accesses the Salesforce User password resource for a specified user. It supports password information and password administration through the REST resource. Use for: retrieve password information, manage a user password, inspect password status Not supported: creating users, changing profile details, authenticating a user",
+      "provider": "Salesforce",
+      "product": "Salesforce"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I46ABmADpjZOLYPogJDgLcemqezmEoHgKHl3NvtuRvYj4g4Pjg4OGKfJH6It:seatable:reset-user-password",
+      "name": "Reset User Password",
+      "description": "Reset the password of a user and get a new password. The new password will be automatically sent to the user per email.",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v2.1/org/:org_id/admin/users/:user_id/set-password/",
+      "evaluateGuide": "Resets a SeaTable organization user’s password and emails the newly generated password to that user. Use for: reset an organization user password, generate a new password, notify the user by email Not supported: changing another organization’s users, editing user roles, managing email settings",
+      "provider": "SeaTable",
+      "product": "SeaTable"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPVOMjtylHcA9GQEI4ocVnElr8sfz:groove:post-agentresetpassword",
+      "name": "POST agentResetPassword",
+      "description": "None",
+      "method": "POST",
+      "url": "agentResetPassword",
+      "evaluateGuide": "Invokes Groove’s agent password-reset operation. The supplied fields do not identify further behavior beyond initiating that operation. Use for: initiate an agent password reset, trigger account recovery Not supported: user profile updates, password retrieval, general authentication",
+      "provider": "Groove",
+      "product": "Groove"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I46ABmADpjZOVZ1YCKR8skVpGVxJBp2bOg4CxSzyBDHgud0IEP12qzzl67j4:seatable:reset-user-s-password",
+      "name": "Reset User's Password",
+      "description": "Reset a user's password.",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v2.1/admin/users/:user_id/reset-password/",
+      "evaluateGuide": "Resets a SeaTable organization user’s password. Use it when an administrator needs to reset a specified user account. Use for: reset a user password, administer account access, restore user login Not supported: emailing a generated password, editing user roles, managing organization settings",
+      "provider": "SeaTable",
+      "product": "SeaTable"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2DAbBUfpZK1DTfGBC9bumqPep9nLWf8hSbVcORx4S2ozWLYaUI:salesforce:username-password-flow",
+      "name": "Username Password Flow",
+      "description": "",
+      "method": "POST",
+      "url": "https://login.salesforce.com{{site}}/services/oauth2/token",
+      "evaluateGuide": "Exchanges a Salesforce username and password for an OAuth access token through the password authentication flow. Use it to authenticate an integration with Salesforce. Use for: obtain an access token, authenticate with username and password, start an API session Not supported: authorization-code exchange, token revocation, password recovery",
+      "provider": "Salesforce",
+      "product": "Salesforce"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I46ABmADpjZOSE1Q4iqJStM9hj54lbXGqlAgDimFuEHS3yjVqTcqIH70e8CC:seatable:reset-user-password",
+      "name": "Reset User Password",
+      "description": "Reset the password of a user and get a new password. The new password will be automatically sent to the user per email.",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v2.1/org/:org_id/admin/users/:user_id/set-password/",
+      "evaluateGuide": "Resets a SeaTable organization user’s password and emails the newly generated password to that user. Use for: reset an organization user password, generate a new password, notify the user by email Not supported: changing another organization’s users, editing user roles, managing email settings",
+      "provider": "SeaTable",
+      "product": "SeaTable"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2D753LT7sp6QJTA3zbTIguC99D38lCJyUx7TdDLZxn7eKftCk5:salesforce:username-password-login",
+      "name": "Username Password Login - Authorize",
+      "description": "This request allows named users to use their username and password to get an access token and refresh token from Salesforce in a headless manner. There are two headers that must be included, the first is the Auth-Request-Type which must be set to Named-User, and then there is the Authorization Basic header which contains the base 64 encoded username:password of the user.\nThe result of this API call, is an Auth Code, which is then exchanged with another call at the token endpoint.",
+      "method": "POST",
+      "url": "https://login.salesforce.com{{site}}/services/oauth2/authorize",
+      "evaluateGuide": "Begins Salesforce headless named-user authentication by validating username and password and returning an authorization code for the token step. Use it before calling the token endpoint. Use for: start named-user login, obtain an authorization code, authenticate a Salesforce user Not supported: issuing the access token, refreshing tokens, recovering a password",
+      "provider": "Salesforce",
+      "product": "Salesforce"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I46ABmADpjZONyejoTN1OinEoN5wBNxG0t3TdfBtIAiL0ll7D5OBX8VAhshD:seatable:reset-user-s-password",
+      "name": "Reset User's Password",
+      "description": "Reset a user's password.",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v2.1/admin/users/:user_id/reset-password/",
+      "evaluateGuide": "Resets a SeaTable organization user’s password. Use it when an administrator needs to reset a specified user account. Use for: reset a user password, administer account access, restore user login Not supported: emailing a generated password, editing user roles, managing organization settings",
+      "provider": "SeaTable",
+      "product": "SeaTable"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2DCpnMHRkBtRK7v7Z4ssEjIaHK1RYHHiXJOLoIeuUMNDv7dGok:salesforce:sobject-self-service-use",
+      "name": "SObject Self Service User Password",
+      "description": "Set, reset, or get information about a user password. This resource is available in REST API version 24.0 and later.",
+      "method": "GET",
+      "url": "{{_endpoint}}/services/data/v66.0/sobjects/SelfServiceUser/:USER_ID/password",
+      "evaluateGuide": "Accesses the Salesforce SelfServiceUser password resource for a specified user. It supports password information and password administration through the REST resource. Use for: retrieve password information, manage a self-service password, inspect password status Not supported: creating users, changing profile details, authenticating a user",
+      "provider": "Salesforce",
+      "product": "Salesforce"
+    }
+  ],
+  "meta": {
+    "q": "reset a user password",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

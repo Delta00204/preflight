@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYAfgS6mi12arWEccSFhjpOXqAz6krxsUpEmYlKhFrT5zT1G8U:atlassian:store-development-inform",
+      "name": "Store development information",
+      "description": "Stores development information provided in the request to make it available when viewing issues in Jira. Existing repository and entity data for the same ID will be replaced if the updateSequenceId of existing data is less than the incoming data. Submissions are performed asynchronously. Submitted data will eventually be available in Jira; most updates are available within a short period of time, but may take some time during peak load and/or maintenance times.",
+      "method": "POST",
+      "url": "https://<your-domain-here>.atlassian.net/rest/devinfo/0.10/bulk",
+      "evaluateGuide": "Stores development information for Jira issues asynchronously, replacing older data for matching repository or entity IDs when the incoming update is newer.\nUse for: submit build data, submit deployment data, update repository details, attach development data to issues\nNot supported: reading development data, editing Jira issues, synchronous completion status",
+      "provider": "Atlassian",
+      "product": "Jira Software Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYCgLAIzaLWqVCfuCZcSYu1t0oLlFPNG7ILvCwupfzv7cUvtmS:atlassian:submit-incident-or-revie",
+      "name": "Submit Incident or Review data",
+      "description": "Update / insert Incident or Review data.\nIncidents and reviews are identified by their ID, and existing Incident and Review data for the same ID will be replaced if it exists and the updateSequenceNumber of existing data is less than the incoming data.\nSubmissions are performed asynchronously. Submitted data will eventually be available in Jira; most updates are available within a short period of time, but may take some time during peak load and/or maintenance times. The getIncidentById or getReviewById o",
+      "method": "POST",
+      "url": "https://<your-domain-here>.atlassian.net/rest/operations/1.0/bulk",
+      "evaluateGuide": "Creates or updates Jira incident and review data asynchronously, replacing older records when the incoming update sequence is newer.\nUse for: submit an incident, update an incident, submit a review, update a review\nNot supported: retrieving incidents or reviews, deleting operations data, synchronous completion status",
+      "provider": "Atlassian",
+      "product": "Jira Software Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy0Jq7sR4ZleeDphKW6dxz0zFuu2lNwiCsC1EPDE8enx3sIf4WG:atlassian:analyse-jira-expression",
+      "name": "Analyse Jira expression",
+      "description": "Analyses and validates Jira expressions.\nAs an experimental feature, this operation can also attempt to type-check the expressions.\nLearn more about Jira expressions in the documentation.\nPermissions required: None.",
+      "method": "POST",
+      "url": "https://your-domain.atlassian.net/rest/api/3/expression/analyse?check=syntax",
+      "evaluateGuide": "Validates Jira expressions and can analyze their syntax and types. Use it to check whether an expression is well-formed before using it.\nUse for: validate syntax, inspect expression errors, check expression types\nNot supported: executing expressions, editing issues, retrieving issue data",
+      "provider": "Atlassian",
+      "product": "Jira Cloud platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy0QITwslIy4VCHw8HTUSfVS7fTCEAQiPda7fuMo9AxtBiz0Ipm:atlassian:check-issues-against-jql",
+      "name": "Check issues against JQL",
+      "description": "Checks whether one or more issues would be returned by one or more JQL queries.\nPermissions required: None, however, issues are only matched against JQL queries where the user has:\n\nBrowse projects project permission for the project that the issue is in.\nIf issue-level security is configured, issue-level security permission to view the issue.",
+      "method": "POST",
+      "url": "https://your-domain.atlassian.net/rest/api/3/jql/match",
+      "evaluateGuide": "Checks whether specified Jira issues match one or more JQL queries, subject to the caller’s issue visibility permissions.\nUse for: test issue filters, validate JQL matches, compare issues with queries\nNot supported: searching full issue details, changing issues, returning inaccessible issues",
+      "provider": "Atlassian",
+      "product": "Jira Cloud platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy0RbFhQA34i1qeJlCHeBfy3PH2nhg6iIJPhezxpG74MhDzgvVo:atlassian:archive-issue-s-by-issue",
+      "name": "Archive issue(s) by issue ID/key",
+      "description": "Enables admins to archive up to 1000 issues in a single request using issue ID/key, returning details of the issue(s) archived in the process and the errors encountered, if any.\nNote that:\n\nyou can't archive subtasks directly, only through their parent issues\nyou can only archive issues from software, service management, and business projects\n\nPermissions required: Jira admin or site admin: global permission\nLicense required:",
+      "method": "PUT",
+      "url": "https://your-domain.atlassian.net/rest/api/3/issue/archive",
+      "evaluateGuide": "Archives up to 1,000 Jira issues identified by issue ID or key and returns archive results and any errors. It requires administrator privileges.\nUse for: archive issues by key, archive issues by ID, review archive errors\nNot supported: archiving subtasks directly, restoring issues, archiving without admin access",
+      "provider": "Atlassian",
+      "product": "Jira Cloud platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy0KwpeTKXud5btojQA3cTtic8bIB7hJGQ9fGfYl79jMwKbHsyA:atlassian:get-jira-instance-info",
+      "name": "Get Jira instance info",
+      "description": "Returns information about the Jira instance.\nThis operation can be accessed anonymously.\nPermissions required: None.",
+      "method": "GET",
+      "url": "https://your-domain.atlassian.net/rest/api/3/serverInfo",
+      "evaluateGuide": "Returns information about the Jira instance, including its server details. It can be accessed anonymously.\nUse for: identify Jira deployment, inspect instance details, check server information\nNot supported: reading projects, changing configuration, managing issues",
+      "provider": "Atlassian",
+      "product": "Jira Cloud platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy0Kkvtzk93JvHtINOIzpKEGSNfGglGoLkSZ0yymZNGDURcCanZ:atlassian:archive-issue-s-by-jql",
+      "name": "Archive issue(s) by JQL",
+      "description": "Enables admins to archive up to 100,000 issues in a single request using JQL, returning the URL to check the status of the submitted request.\nYou can use the get task and cancel task APIs to manage the request.\nNote that:\n\nyou can't archive subtasks directly, only through",
+      "method": "POST",
+      "url": "https://your-domain.atlassian.net/rest/api/3/issue/archive",
+      "evaluateGuide": "Archives up to 100,000 Jira issues selected by JQL and returns a URL for checking the asynchronous task status. It requires administrator privileges.\nUse for: archive issues by JQL, bulk archive matching issues, review archive task status\nNot supported: direct issue updates, restoring issues, archiving without admin access",
+      "provider": "Atlassian",
+      "product": "Jira Cloud platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy0OH1AfV2SPRJr2k1PHhVadIZ9eEYmW6A7EWcIv3pyEBq2uM5t:atlassian:search-issue-ids-using-j",
+      "name": "Search issue IDs using JQL",
+      "description": "Searches for IDs of issues using JQL.\nUse the Search endpoint if you need to fetch more than just issue IDs. The Search endpoint returns more information, but may take much longer to respond to requests. This is because it uses a different mechanism for ordering results than this endpoint and doesn't provide the total number of results for your query.\nThis operation can be accessed anonymously.\n**Permissions requi",
+      "method": "POST",
+      "url": "https://your-domain.atlassian.net/rest/api/3/search/id",
+      "evaluateGuide": "Searches Jira with JQL and returns matching issue IDs only. Use the broader search endpoint when issue fields or complete issue details are needed.\nUse for: find issue IDs, validate JQL results, identify matching issues\nNot supported: returning issue fields, editing issues, retrieving full issue details",
+      "provider": "Atlassian",
+      "product": "Jira Cloud platform"
+    }
+  ],
+  "meta": {
+    "q": "jira intergation",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

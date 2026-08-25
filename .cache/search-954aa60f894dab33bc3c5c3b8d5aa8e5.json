@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LKeypXV5Hkf4lUscDPLIEByuYo8xsJPiE3LSOjyyuCw8O16quqGaBPw7ntSj:integrationos:list-tables",
+      "name": "List Tables",
+      "description": "Get all Tables records",
+      "method": "GET",
+      "url": "https://api.integrationos.com/v1/unified/tables",
+      "evaluateGuide": "Lists table records available through the IntegrationOS unified tables resource, enabling an agent to inspect tabular data.\nUse for: retrieve tables, inspect table records, enumerate tabular resources\nNot supported: creating tables, updating records, deleting records",
+      "provider": "IntegrationOS",
+      "product": "IntegrationOS Unified API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEipvNjTkOm3WplxqVA1dHp3VvTezM2ItjYb97tBFIUMZj9Em8TE:oracle:gets-a-list-of-database",
+      "name": "Gets a list of Database Management private endpoints.",
+      "description": "Gets a list of Database Management private endpoints.",
+      "method": "GET",
+      "url": "https://dbmgmt.{{region}}.oci.oraclecloud.com/20201101/dbManagementPrivateEndpoints?compartmentId=<string>&name=<string>&vcnId=<string>&isCluster=false&lifecycleState=FAILED&limit=10&page=<string>&sortOrder=ASC&sortBy=TIMECREATED",
+      "evaluateGuide": "Lists Database Management private endpoints in an OCI compartment, with optional name, VCN, state, and pagination filters.\nUse for: find private endpoints, filter by compartment, inspect endpoint states\nNot supported: creating endpoints, modifying endpoints, deleting endpoints",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure Database Management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy1FQngxtNux6BD8hbwAHHKj5RKR5hSduEV3iNd7xSSX0PRvckl:baserow:list-database-tables",
+      "name": "list database tables",
+      "description": "Lists all the tables that are in the database related to the database_id parameter if the user has access to the database's workspace. A table is exactly as the name suggests. It can hold multiple fields, each having their own type and multiple rows. They can be added via the createdatabasetablefield and createdatabasetablerow endpoints.",
+      "method": "GET",
+      "url": "//api/database/tables/database/:database_id/",
+      "evaluateGuide": "Lists all tables in a specified Baserow database when the caller has access to its workspace. Use the results to discover tables before accessing their fields or rows.\nUse for: enumerate database tables, discover table IDs, inspect database structure\nNot supported: creating tables, listing rows, managing fields",
+      "provider": "Baserow",
+      "product": "Baserow"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEiqndMpOAxlz6lAxCcXT0Nn3m9wrAe2Q7TMc6lI0fXXmI4rdrhF:oracle:gets-a-list-of-tablespac",
+      "name": "Gets a list of tablespaces for a Managed Database.",
+      "description": "Gets the list of tablespaces for the specified managedDatabaseId.",
+      "method": "GET",
+      "url": "https://dbmgmt.{{region}}.oci.oraclecloud.com/20201101/managedDatabases/:managedDatabaseId/tablespaces?name=<string>&sortBy=TIMECREATED&sortOrder=ASC&page=<string>&limit=10"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OY4buTBbq79sx81yE8ur7aJKJWeALPr77QDcYYWNRUmatxs6GsWTD8ND8ogH:aws:list-tables",
+      "name": "List Tables",
+      "description": "List tables in the given table bucket. For more information, see S3 Tables in the Amazon Simple Storage Service User Guide.  Permissions  You must have the s3tables:ListTables permission to use this operation.",
+      "method": "GET",
+      "url": "https://s3tables.{{region}}.amazonaws.com/tables/:tableBucketARN?namespace=0xm43&prefix=string&continuationToken=string&maxTables=885.8349108892771",
+      "evaluateGuide": "Lists tables in an Amazon S3 table bucket, optionally filtered by namespace or prefix and paged with a continuation token.\nUse for: enumerate S3 tables, filter by prefix, page through table results\nNot supported: creating tables, reading table data, deleting tables",
+      "provider": "Amazon",
+      "product": "Amazon S3 Tables"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEipvOKBwB4MPQWLLAkaVyJrbmrV5qfrfN19UBRMNF5BpIGfoyA6:oracle:gets-the-list-of-databas",
+      "name": "Gets the list of databases using a specific Database Management private endpoint.",
+      "description": "Gets the list of databases using a specific Database Management private endpoint.",
+      "method": "GET",
+      "url": "https://dbmgmt.{{region}}.oci.oraclecloud.com/20201101/dbManagementPrivateEndpoints/:dbManagementPrivateEndpointId/associatedDatabases?compartmentId=<string>&limit=10&page=<string>&sortOrder=ASC&sortBy=timeRegistered",
+      "evaluateGuide": "Lists databases associated with a specified OCI Database Management private endpoint, with compartment and pagination controls.\nUse for: find associated databases, inspect endpoint relationships, page through databases\nNot supported: registering databases, changing associations, deleting databases",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure Database Management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEipwVTD7mdRV8ifjkUSODyLHN7o385a2tNSlrDPop3P204IEWtk:oracle:lists-managed-databases",
+      "name": "Lists Managed Databases.",
+      "description": "Gets the Managed Database for a specific ID or the list of Managed Databases in a specific compartment.\nManaged Databases can be filtered based on the name parameter. Only one of the parameters, ID or name\nshould be provided. If neither of these parameters is provided, all the Managed Databases in the compartment\nare listed. Managed Databases can also be filtered based on the deployment type and management option.\nIf the deployment type is not specified or if it is ONPREMISE, then the management option is",
+      "method": "GET",
+      "url": "https://dbmgmt.{{region}}.oci.oraclecloud.com/20201101/managedDatabases?compartmentId=<string>&id=<string>&name=<string>&managementOption=ADVANCED&deploymentType=AUTONOMOUS&externalExadataInfrastructureId=<string>&page=<string>&limit=10&sortBy=TIMECREATED&sortOrder=ASC",
+      "evaluateGuide": "Lists OCI Managed Databases in a compartment or returns one by ID, with filters for name, deployment type, and management option.\nUse for: find managed databases, filter by deployment type, inspect database inventory\nNot supported: creating databases, changing configuration, deleting databases",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure Database Management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEiqmkkpny3IL6mu7hYS8c3uuzn9MUnNESwJ0YlpMJddaTcJvlAe:oracle:lists-database-parameter",
+      "name": "Lists database parameters.",
+      "description": "Gets the list of database parameters for the specified Managed Database. The parameters are listed in alphabetical order, along with their current values.",
+      "method": "GET",
+      "url": "https://dbmgmt.{{region}}.oci.oraclecloud.com/20201101/managedDatabases/:managedDatabaseId/databaseParameters?source=CURRENT&name=<string>&isAllowedValuesIncluded=false&sortBy=NAME&sortOrder=ASC",
+      "evaluateGuide": "Lists current parameters and values for a specified OCI Managed Database, optionally filtering by parameter name.\nUse for: inspect database parameters, check current values, find allowed values\nNot supported: changing parameters, restarting databases, creating parameters",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure Database Management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEipyWB6i1AxQiVckBXV4cYKAuVN4V3YOY9zXlOYo2p2CEwHfUzR:oracle:lists-the-external-datab",
+      "name": "Lists the external databases.",
+      "description": "Lists the external databases in the specified compartment or in the specified DB system.",
+      "method": "GET",
+      "url": "https://dbmgmt.{{region}}.oci.oraclecloud.com/20201101/externalDatabases?compartmentId=<string>&externalDbSystemId=<string>&displayName=<string>&page=<string>&limit=10&sortBy=TIMECREATED&sortOrder=ASC",
+      "evaluateGuide": "Lists external databases in an OCI compartment or DB system, with optional display-name filtering and pagination.\nUse for: find external databases, filter by display name, inspect external database inventory\nNot supported: registering databases, changing database settings, deleting databases",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure Database Management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEiqkWa5IkKZcgpYAUlkPXKDigOzfaTZ4bgeLg5C09NgwgSIOEq1:oracle:lists-managed-database-g",
+      "name": "Lists Managed Database Groups.",
+      "description": "Gets the Managed Database Group for a specific ID or the list of Managed Database Groups in\na specific compartment. Managed Database Groups can also be filtered based on the name parameter.\nOnly one of the parameters, ID or name should be provided. If none of these parameters is provided,\nall the Managed Database Groups in the compartment are listed.",
+      "method": "GET",
+      "url": "https://dbmgmt.{{region}}.oci.oraclecloud.com/20201101/managedDatabaseGroups?compartmentId=<string>&id=<string>&name=<string>&lifecycleState=FAILED&page=<string>&limit=10&sortBy=TIMECREATED&sortOrder=ASC",
+      "evaluateGuide": "Lists OCI Managed Database Groups in a compartment or returns one by ID, with optional name and lifecycle-state filters.\nUse for: find database groups, filter by lifecycle state, inspect group inventory\nNot supported: creating groups, adding databases, deleting groups",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure Database Management"
+    }
+  ],
+  "meta": {
+    "q": "list tables in a database",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

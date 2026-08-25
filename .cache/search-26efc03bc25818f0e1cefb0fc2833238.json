@@ -1,0 +1,117 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:KyS9GREQUz7ccJn7QPEu1Qq6qoxy1pbdMklqfSQ2eh53UZUmblg9ImcvBRL:postman:deactivate-a-user",
+      "name": "Deactivate a user",
+      "description": "Removes a user from your Postman team and deactivates the account. This blocks the user from authenticating in to Postman.",
+      "method": "PATCH",
+      "url": "https://api.getpostman.com/scim/v2/Users/{{userId}}",
+      "evaluateGuide": "Removes a team user and disables authentication for that account.\nUse for: deactivate team users, block account authentication, remove team access\nNot supported: user creation, profile updates, team invitations"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDaNVIypC3SutIlyHB0nyeZKTFTdw1oPohmZ61PorQMLsfrQ7a0:adyen:deactivate-an-account-ho",
+      "name": "Deactivate an account holder",
+      "description": "Updates an account holder. When updating an account holder resource, if a parameter is not provided in the request, it is left unchanged.",
+      "method": "PATCH",
+      "url": "https://balanceplatform-api-test.adyen.com/bcl/v2/accountHolders/:id",
+      "evaluateGuide": "Updates an Adyen account holder resource, including deactivation when supported by its payload.\nUse for: deactivate account holders, update holder details, change holder status\nNot supported: creating holders, deleting holders, processing payments",
+      "provider": "Adyen",
+      "product": "Adyen Balance Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2D9HYaOyxkXvS6qfANYxEZg6yH74PEs9Eza2xgyLex4KlZdbFN:salesforce:user-info",
+      "name": "User Info",
+      "description": "",
+      "method": "GET",
+      "url": "https://login.salesforce.com{{site}}/services/oauth2/userinfo",
+      "evaluateGuide": "Returns identity and profile information for the authenticated Salesforce user.\nUse for: retrieve user identity, inspect profile details, verify OAuth identity\nNot supported: editing users, managing records, changing permissions",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LLqNHibSqnZoZT6QEQhUjFzn31wEXC6mHcmsncTDIQ7CP0wB1CGRqrUEy4do:leadsquared:deactivate-a-user",
+      "name": "Deactivate a User",
+      "description": "Deactivates a user in your account.",
+      "method": "GET",
+      "url": "{{host}}UserManagement.svc/User/Deactivate?userId=<string>",
+      "evaluateGuide": "Deactivates a LeadSquared user identified by the supplied user ID.\nUse for: deactivate users, disable user access, retire user accounts\nNot supported: creating users, updating profiles, deleting users",
+      "provider": "LeadSquared",
+      "product": "LeadSquared Sales CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4UmoCHGEY9bevIMPwYIaaSjGmbqE0i6dKb0CvAdJFUNKhXFAk5c3B0ErMci:salesforce:read",
+      "name": "Read",
+      "description": "",
+      "method": "GET",
+      "url": "https://pi.pardot.com/api/v5/objects/account?fields=id,company,level,website,pluginCampaignId,addressOne,addressTwo,city,state,zip,territory,country,phone,fax,adminId,createdAt,updatedAt,maximumDailyApiCalls,apiCallsUsed,createdById,updatedById,admin.id,admin.email,admin.firstName,admin.lastName,admin.username,admin.jobTitle,admin.role,admin.roleName,admin.salesforceId,admin.createdAt,admin.updatedAt,admin.isDeleted,admin.createdById,admin.updatedById,admin.tagReplacementLanguage,createdBy.id,createdBy.email,createdBy.firstName,createdBy.lastName,createdBy.username,createdBy.jobTitle,createdBy.role,createdBy.roleName,createdBy.salesforceId,createdBy.createdAt,createdBy.updatedAt,createdBy.isDeleted,createdBy.createdById,createdBy.updatedById,createdBy.tagReplacementLanguage,updatedBy.id,updatedBy.email,updatedBy.firstName,updatedBy.lastName,updatedBy.username,updatedBy.jobTitle,updatedBy.role,updatedBy.roleName,updatedBy.salesforceId,updatedBy.createdAt,updatedBy.updatedAt,updatedBy.isDeleted,updatedBy.createdBy",
+      "evaluateGuide": "Reads Account Engagement account details and selected related administrator and creator fields.\nUse for: retrieve account details, inspect API usage, view account contacts\nNot supported: creating accounts, updating fields, deleting accounts",
+      "provider": "Salesforce",
+      "product": "Marketing Cloud Account Engagement"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9alEhE9CWhtGeZFFc6RoxgSUVwF43jGPXCdMz2bTb4pSlCDIGO:devops:deactivate-a-user",
+      "name": "Deactivate a User",
+      "description": "Deactivates a user. This operation can only be performed on users that do not have a DEPROVISIONED status. While the asynchronous operation (triggered by HTTP header Prefer: respond-async) is proceeding the user's transitioningToStatus property is DEPROVISIONED. The user's status is DEPROVISIONED when the deactivation process is complete.",
+      "method": "POST",
+      "url": "https://subdomain.okta.com/api/v1/users/:userId/lifecycle/deactivate",
+      "evaluateGuide": "Deactivates an Okta user through its lifecycle endpoint, with optional asynchronous completion.\nUse for: deactivate users, begin user deprovisioning, disable Okta access\nNot supported: user creation, reactivation, group management",
+      "provider": "Okta",
+      "product": "Okta Workforce Identity Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2COoSBsCt3kfyTY9PFkVyCgvEHzxOKkTTZGZaCYnlkVUqTvZk0:salesforce:forgot-password-initiali",
+      "name": "Forgot Password - Initialize",
+      "description": "",
+      "method": "POST",
+      "url": "https://login.salesforce.com{{site}}/services/auth/headless/forgot_password",
+      "evaluateGuide": "Starts the Salesforce headless password-recovery flow for an account holder.\nUse for: initialize password recovery, start forgot-password flow, assist account access\nNot supported: resetting passwords directly, user administration, profile updates",
+      "provider": "Salesforce",
+      "product": "Salesforce Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5g5cgUAoQaEQds2Xp6L0jMuIQUCuC4uKZIetK7ROMLhJ8dHjdRU6pBGyHQY:xflow:deactivate-an-account",
+      "name": "Deactivate an Account",
+      "description": "Deactivate an Account object that is fundamental to Xflow and model entities like direct users, connected users, partners and platforms.",
+      "method": "POST",
+      "url": "https://api.xflowpay.com/v1/accounts/:id/deactivate",
+      "evaluateGuide": "Deactivates an Xflow Account resource by its identifier.\nUse for: deactivate accounts, disable account activity, retire account entities\nNot supported: creating accounts, editing account details, processing transfers",
+      "provider": "Xflow",
+      "product": "Xflow"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I2ulcNIZbe9XlZ2OTUBtGxA7Hgv3nnbIrHfbHC965RpimSE0Sd3NVxlqmPRf:docusign-s:adds-users-to-an-account",
+      "name": "Adds users to an account.",
+      "description": "Adds users to an account.\nRequired authentication scopes: user_write.\nRelated topics\n\nHow to create a new active eSignature user",
+      "method": "POST",
+      "url": "https://api.docusign.net/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/users",
+      "evaluateGuide": "Adds users to a DocuSign organization account.\nUse for: create account users, add eSignature users, provision active users\nNot supported: deactivating users, editing existing users, removing users",
+      "provider": "DocuSign",
+      "product": "DocuSign Admin API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9a1RHY89T0vuRQ0rfmmX7YR4uSwSSYfyDvS4IzLuLh9JqBVmzx:devops:deactivate-an-authentica",
+      "name": "Deactivate an Authenticator",
+      "description": "Deactivates an authenticator by authenticatorId",
+      "method": "POST",
+      "url": "https://subdomain.okta.com/api/v1/authenticators/:authenticatorId/lifecycle/deactivate",
+      "evaluateGuide": "Deactivates an Okta authenticator using its authenticator identifier.\nUse for: deactivate authenticators, retire authentication factors, disable factor options\nNot supported: creating authenticators, enrolling factors, managing users",
+      "provider": "Okta",
+      "product": "Okta Workforce Identity Cloud"
+    }
+  ],
+  "meta": {
+    "q": "deactivate a user account",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

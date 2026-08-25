@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I63l4CEzQrXTzITrBxLiV0SsAN5UjEDgcE4z77gKUdXFsvhCiHozgo54cWrR:paypal:refund-captured-payment",
+      "name": "Refund captured payment",
+      "description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an amount object in the JSON request body.",
+      "method": "POST",
+      "url": "https://api-m.sandbox.paypal.com/v2/payments/captures/:capture_id/refund",
+      "evaluateGuide": "Refunds a captured PayPal payment by capture ID, either fully or partially. Use it to issue the refund and receive its result.\\nUse for: full refunds, partial refunds, captured payment reversals\\nNot supported: payment capture, payment retrieval, refund status lookup",
+      "provider": "PayPal",
+      "product": "PayPal"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWYoPaFZGhnrr6Xyt4OyhbtKE4YJkIwlXMnzEBxsdUwuwejtIZ:razorpay:fetch-a-specific-refund",
+      "name": "Fetch a Specific Refund for a Payment",
+      "description": "You can use this API to retrieve details of a specific refund made for a payment.",
+      "method": "GET",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refunds/{rfnd_id}",
+      "evaluateGuide": "Retrieves details for one Razorpay refund associated with a payment. Use it to inspect a specific refund resource.\\nUse for: refund detail lookup, refund verification, payment refund audit\\nNot supported: creating refunds, listing all refunds, payment capture",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDaQox726aMDRhBEQdlipZVKfrbpmj4PUCVZ4JUbNnGSl8II5O5:adyen:refund-a-payment",
+      "name": "Refund a payment",
+      "description": "Refunds a payment that has been captured, and returns a unique reference for this request. You get the outcome of the request asynchronously, in a REFUND webhook.  You can refund either the full captured amount or a part of the captured amount. You can also perform multiple partial refunds, as long as their sum doesn't exceed the cap",
+      "method": "POST",
+      "url": "https://checkout-test.adyen.com/v72/payments/:paymentPspReference/refunds",
+      "evaluateGuide": "Creates a full or partial refund for a captured Adyen payment. The outcome is delivered asynchronously through a refund webhook.\\nUse for: full refunds, partial refunds, repeated partial refunds\\nNot supported: uncaptured payment refunds, synchronous outcome retrieval, payment capture",
+      "provider": "Adyen",
+      "product": "Adyen Checkout"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LJsIhi8YGJP3z64F7syflyGKkng2TFWXEZ0RPscWYAqtrI9ikEiRhyLNXqju:prontopaga:refund-of-a-payment",
+      "name": "Refund of a payment",
+      "description": "Endpoint to refund an specific payment. Only successful payments can be refunded.",
+      "method": "POST",
+      "url": "https://sandbox.prontopaga.com/api/reverse/new",
+      "evaluateGuide": "Refunds a specific successful ProntoPaga payment. Use it to reverse an eligible payment.\\nUse for: successful payment refunds, payment reversals\\nNot supported: unsuccessful payment refunds, refund lookup, payment capture",
+      "provider": "ProntoPaga",
+      "product": "ProntoPaga"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhmCFEs1UG31oP4GVzpHX8bJ4zYu2CtjGZpKckoct1KtAQtTrIgR10VaFlTE:mastercard:get-refund-payment-rails",
+      "name": "Get refund payment rails",
+      "description": "",
+      "method": "GET",
+      "url": "{{baseUrlPayments}}/refunds/:refundId/payment-rails",
+      "evaluateGuide": "Retrieves the payment rails associated with a Mastercard Open Finance refund. Use it to inspect how the refund is routed.\\nUse for: refund rail lookup, refund routing inspection, payment rail details\\nNot supported: creating refunds, changing rails, payment capture",
+      "provider": "Mastercard",
+      "product": "Mastercard Open Finance"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWREqy1sMsMgFPaTULIdYURaQcszwI2qxaKeNFWD0Yu51YEwES:razorpay:create-a-normal-refund",
+      "name": "Create a Normal Refund",
+      "description": "You can use this API to create a normal refund for a payment.",
+      "method": "POST",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refund",
+      "evaluateGuide": "Creates a normal refund for a Razorpay payment. Use it to return all or part of the captured payment according to the platform’s refund rules.\\nUse for: standard refunds, partial refunds, payment reversals\\nNot supported: instant refund processing, refund detail lookup, payment capture",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7sIPq6wbmZcRct7ehWnfARjgp2TCr:vality:get-v2-processing-invoic",
+      "name": "GET /v2/processing/invoices/{invoiceID}/payments/{paymentID}/refunds/{refundID}",
+      "description": "None",
+      "method": "GET",
+      "url": "{{baseUrl}}/v2/processing/invoices/{{invoiceID}}/payments/{{paymentID}}/refunds/{{refundID}}",
+      "evaluateGuide": "Retrieves one refund linked to a Vality invoice payment. Use it to inspect a refund by invoice, payment, and refund identifiers.\\nUse for: refund detail lookup, invoice refund audit, payment refund verification\\nNot supported: creating refunds, listing refunds, invoice payment creation",
+      "provider": "Vality",
+      "product": "Vality Payments API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWTFYnTjKBjlE5YdGmlLNNUyMwlnuXjAx6gEbX1Ax0JdWK5DyU:razorpay:create-an-instant-refund",
+      "name": "Create an Instant Refund",
+      "description": "You can use this API to process refunds instantaneously to your customers.",
+      "method": "POST",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refund",
+      "evaluateGuide": "Creates an instant refund for a Razorpay payment. Use it when the platform supports immediate refund processing for the customer.\\nUse for: instant refunds, payment reversals, customer refund processing\\nNot supported: normal refund creation, refund detail lookup, payment capture",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MwMYUlmQ3fhItSAdGtMyMt4kx6IJvHla800vWVW8SN2vKaxGJiMkYFQaFglJ:paypal:refund-captured-payment",
+      "name": "Refund captured payment",
+      "description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an amount object in the JSON request body.",
+      "method": "POST",
+      "url": "{{base_url}}/v2/payments/captures/:capture_id/refund",
+      "evaluateGuide": "Refunds a captured PayPal payment by capture ID, either fully or partially. Use it to issue the refund and receive its result.\\nUse for: full refunds, partial refunds, captured payment reversals\\nNot supported: payment capture, payment retrieval, refund status lookup",
+      "provider": "PayPal",
+      "product": "PayPal"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWQ8Bp96QMznadFsydY51HtrO8sIkoCbOCwn572d0gekmcbSTq:razorpay:fetch-multiple-refunds-f",
+      "name": "Fetch Multiple Refunds for a Payment",
+      "description": "You can use this API to retrieve multiple refunds for a payment.",
+      "method": "GET",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refunds",
+      "evaluateGuide": "Retrieves multiple Razorpay refunds associated with a payment. Use it to list the payment’s refund history.\\nUse for: refund history, refund listing, payment refund audit\\nNot supported: creating refunds, single refund detail lookup, payment capture",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    }
+  ],
+  "meta": {
+    "q": "issue a refund for a payment",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

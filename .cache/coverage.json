@@ -1,0 +1,358 @@
+{
+  "rows": [
+    {
+      "domain": "Comms",
+      "capability": "send a message to a Slack channel",
+      "total": 10,
+      "topVendor": "Slack",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Comms",
+      "capability": "post a message to Microsoft Teams",
+      "total": 10,
+      "topVendor": "Microsoft",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Comms",
+      "capability": "send a transactional email to a customer",
+      "total": 10,
+      "topVendor": "Brevo",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Comms",
+      "capability": "send an SMS notification",
+      "total": 10,
+      "topVendor": "Twilio",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "ITSM",
+      "capability": "create and update a customer support ticket",
+      "total": 10,
+      "topVendor": "HubSpot",
+      "defective": 4,
+      "defectRate": 0.4,
+      "leaks": 0
+    },
+    {
+      "domain": "ITSM",
+      "capability": "create a pagerduty incident",
+      "total": 10,
+      "topVendor": "PagerDuty",
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "ITSM",
+      "capability": "open an issue in a GitHub repository",
+      "total": 10,
+      "topVendor": "GitHub",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "ITSM",
+      "capability": "query application error metrics",
+      "total": 10,
+      "topVendor": "Meta",
+      "defective": 4,
+      "defectRate": 0.4,
+      "leaks": 0
+    },
+    {
+      "domain": "CRM",
+      "capability": "look up a customer record in a CRM",
+      "total": 10,
+      "topVendor": null,
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "CRM",
+      "capability": "create a sales opportunity",
+      "total": 10,
+      "topVendor": "Apideck",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "CRM",
+      "capability": "update a contact record",
+      "total": 10,
+      "topVendor": "Zoho",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "CRM",
+      "capability": "list accounts in a CRM",
+      "total": 10,
+      "topVendor": "Zoho",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Finance",
+      "capability": "issue a refund for a payment",
+      "total": 10,
+      "topVendor": "Razorpay",
+      "defective": 3,
+      "defectRate": 0.3,
+      "leaks": 0
+    },
+    {
+      "domain": "Finance",
+      "capability": "create an invoice in an accounting system",
+      "total": 10,
+      "topVendor": "Apideck",
+      "defective": 5,
+      "defectRate": 0.5,
+      "leaks": 0
+    },
+    {
+      "domain": "Finance",
+      "capability": "initiate a bank payment transfer",
+      "total": 10,
+      "topVendor": "Africa's Talking",
+      "defective": 2,
+      "defectRate": 0.2,
+      "leaks": 0
+    },
+    {
+      "domain": "Finance",
+      "capability": "look up a corporate card transaction",
+      "total": 10,
+      "topVendor": null,
+      "defective": 7,
+      "defectRate": 0.7,
+      "leaks": 0
+    },
+    {
+      "domain": "HR",
+      "capability": "create a new employee record in an HR system",
+      "total": 10,
+      "topVendor": "Xero",
+      "defective": 2,
+      "defectRate": 0.2,
+      "leaks": 0
+    },
+    {
+      "domain": "HR",
+      "capability": "send a document for electronic signature",
+      "total": 10,
+      "topVendor": "Zoho",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "HR",
+      "capability": "look up employee time off balance",
+      "total": 10,
+      "topVendor": "Merge",
+      "defective": 4,
+      "defectRate": 0.4,
+      "leaks": 0
+    },
+    {
+      "domain": "HR",
+      "capability": "run payroll for an employee",
+      "total": 10,
+      "topVendor": "Merge",
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "Identity",
+      "capability": "provision a user account in an identity provider",
+      "total": 10,
+      "topVendor": "DocuSign",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Identity",
+      "capability": "deactivate a user account",
+      "total": 10,
+      "topVendor": null,
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "Identity",
+      "capability": "list group memberships for a user",
+      "total": 10,
+      "topVendor": "Salesforce",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Identity",
+      "capability": "reset a user password",
+      "total": 10,
+      "topVendor": "SeaTable",
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "Data",
+      "capability": "run a SQL query against a data warehouse",
+      "total": 10,
+      "topVendor": "City of Toronto",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Data",
+      "capability": "list tables in a database",
+      "total": 10,
+      "topVendor": "IntegrationOS",
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "Data",
+      "capability": "export a report as CSV",
+      "total": 10,
+      "topVendor": "Check Point",
+      "defective": 2,
+      "defectRate": 0.2,
+      "leaks": 0
+    },
+    {
+      "domain": "Data",
+      "capability": "read rows from a spreadsheet",
+      "total": 10,
+      "topVendor": "Sheet2API",
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "Internal",
+      "capability": "search our internal company knowledge base",
+      "total": 10,
+      "topVendor": "Jasper AI",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Internal",
+      "capability": "read runbooks from our internal wiki",
+      "total": 10,
+      "topVendor": "HubSpot",
+      "defective": 1,
+      "defectRate": 0.1,
+      "leaks": 0
+    },
+    {
+      "domain": "Internal",
+      "capability": "look up a record in our proprietary system",
+      "total": 10,
+      "topVendor": "Zoho",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    },
+    {
+      "domain": "Internal",
+      "capability": "query our internal HRIS",
+      "total": 10,
+      "topVendor": "U.S. Environmental Protection Agency",
+      "defective": 0,
+      "defectRate": 0,
+      "leaks": 0
+    }
+  ],
+  "byDomain": {
+    "Comms": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 0,
+      "candidates": 40,
+      "leaks": 0
+    },
+    "ITSM": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 9,
+      "candidates": 40,
+      "leaks": 0
+    },
+    "CRM": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 1,
+      "candidates": 40,
+      "leaks": 0
+    },
+    "Finance": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 17,
+      "candidates": 40,
+      "leaks": 0
+    },
+    "HR": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 7,
+      "candidates": 40,
+      "leaks": 0
+    },
+    "Identity": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 2,
+      "candidates": 40,
+      "leaks": 0
+    },
+    "Data": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 4,
+      "candidates": 40,
+      "leaks": 0
+    },
+    "Internal": {
+      "capabilities": 4,
+      "zero": 0,
+      "results": 40,
+      "defective": 1,
+      "candidates": 40,
+      "leaks": 0
+    }
+  }
+}

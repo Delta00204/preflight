@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LLRwarj7MxseE3MniKMe0F85sTQxIXNenRUS84w8PihehSp62VebBizydrvk:roadhero:create-issue",
+      "name": "Create Issue",
+      "description": "",
+      "method": "POST",
+      "url": "https://postvehicles-solutions.atlassian.net/rest/api/3/issue",
+      "evaluateGuide": "Creates a Jira issue in the specified Atlassian site, enabling an agent to add tracked work or report a problem.\nUse for: create a bug, add a task, file a project issue\nNot supported: updating issues, searching issues, managing comments",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0A0xNq5QfG5ERgUxflBqD1xyojs0L:github:list-repository-issues",
+      "name": "List repository issues",
+      "description": "List repository issues\nList issues in a repository. Only open issues will be listed.\n\n[!NOTE]\n  GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, \"Issues\" endpoints may return both issues and pull requests in the response. You can identify pull requests by the pull_request key. Be aware that the id of a pull request returned from \"Issues\" endpoints will be an issue id. To find out the pull request id, use the \"List pull requests\" endpoint.\n\nThis endpoint supports the following custom media types. For more information, see \"Media types.\"\n\napplication/vnd.github.raw+json: Returns the raw markdown body. Response will include body. This is the default if you do not pass any specific media type.\napplication/vnd.github.text+json: Returns a text only representation of the markdown body. Response will include body_text.\napplication/vnd.github.html+json: Returns HTML rendered from the body's markdown. Response will include body_html.\napplication/vnd.github.full+json: Returns raw, text, and HTML representations. Response will include body, body_text, and body_html.\n\nParameters\n| Name | In | Required | Description |\n|---|---|---|---|\n| owner | path | Yes | The account owner of the repository. The name is not case sensitive. |\n| repo | path | Yes | The name of the repository without the .git extension. The name is not case sensitive. |\n| milestone | query | No | If an integer is passed, it should refer to a milestone by its number field. If the string * is passed, issues wit |\n| state | query | No | Indicates the state of the issues to return. |\n| assignee | query | No | Can be the name of a user. Pass in none for issues with no assigned user, and * for issues assigned to any user. |\n| type | query | No | Can be the name of an issue type. If the string * is passed, issues with any type are accepted. If the string none i |\n| creator | query | No | The user that created the issue. |\n| mentioned | query | No | A user that's mentioned in the issue. |\n| labels | query | No | A list of comma separated label names. Example: bug,ui,@high |\n| sort | query | No | What to sort results by. |\n| direction | query | No | The direction to sort the results by. |\n| since | query | No | Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.or |\n| per_page | query | No | The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.git |\n| page | query | No | The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.gith |\nResponse Codes\n\n200 Response\n301 Moved permanently\n404 Resource not found\n422 Validation failed, or the endpoint has been spammed.\n\nDocumentation: https://docs.github.com/rest/issues/issues#list-repository-issues",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{owner}}/{{repo}}/issues",
+      "evaluateGuide": "Lists open issues for a GitHub repository; responses may include pull requests identified by their pull_request data.\nUse for: list open issues, inspect repository work, find issue details\nNot supported: creating issues, listing closed issues, listing pull requests directly",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1EFqEZL9kei7CZl8XCFH783AGeCMjfxXXLXGFR726B9gFNS5KjsnlAsip:published:create-jira-issue",
+      "name": "Create JIRA issue",
+      "description": "Working only through the Interceptor and Postman Chrome app",
+      "method": "POST",
+      "url": "https://postmanlabs.atlassian.net/rest/api/2/{{api_path}}/",
+      "evaluateGuide": "Creates a Jira issue through the Atlassian Jira REST endpoint using the supplied API path and payload.\nUse for: create a Jira bug, add a task, file a project issue\nNot supported: reading issues, updating issues, managing comments",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I2ulcNIZbe9Wt5wrkj5V00neWmHPnevYprNluY1YxzeILOxjxgiYB2XKQlH8:docusign-s:creates-a-user-list-expo",
+      "name": "Creates a user list export request.",
+      "description": "Create a user list export request.\nThis method initiates a user list export request. You specify the type of export request as JSON in the body of method, like this:\njson\n{\n    \"type\": \"organization_memberships_export\"\n}\n\nThe export request type is one of three values:\n| Value                                      | Description                                                                                             |\n| :----------------------------------------- | :---------------------------------",
+      "method": "POST",
+      "url": "https://api.docusign.net/Management/v2/organizations/{{organizationId}}/exports/user_list",
+      "evaluateGuide": "Starts a DocuSign user-list export for an organization, allowing an agent to obtain organization membership data in a supported format.\nUse for: export organization members, start a membership export, retrieve user-list data\nNot supported: importing users, exporting account settings, modifying memberships",
+      "provider": "DocuSign",
+      "product": "DocuSign Admin API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHygC86ID5V8k26Gdx03F1F7AeamoS9LuEtJv85CeI1duPG2bSiL:merge:issues-list",
+      "name": "issues list",
+      "description": "Gets issues.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/ticketing/v1/issues",
+      "evaluateGuide": "Gets issues from the Merge ticketing resource, allowing an agent to review support or service-desk issue records.\nUse for: list support issues, review ticket records, inspect ticket data\nNot supported: creating issues, updating tickets, deleting tickets",
+      "provider": "Merge",
+      "product": "Merge Ticketing API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I2ulcNIZbe9XqCrY32LcdsLgSaEmbLIfaOZV3GnS386rwPxXtB550BkJRXYO:docusign-s:creates-a-new-account-se",
+      "name": "Creates a  new account settings export request.",
+      "description": "Creates a new account settings export request.\nTo learn more about exporting account settings,\nsee [Account Settings Export][guide-export]\nin the Docusign Admin Guide.\nYou can export settings for up to 40 accounts at a time.\nSpecify the accounts whose settings you are requesting as JSON in the body of the request, like this:\n``` json\n{\n  \"accounts\":   [\n    { \"accountid\": \"9ca037f4-xxxx-xxxx-xxxx-212e57d4f22e\"},\n    { \"accountid\": \"624e3e00-xxxx-xxxx-xxxx-43918c520dab\"}\n]\n}\n```\n[Required authenticatio",
+      "method": "POST",
+      "url": "https://api.docusign.net/Management/v2/organizations/{{organizationId}}/exports/account_settings",
+      "evaluateGuide": "Starts a DocuSign account-settings export for an organization, allowing an agent to obtain settings for selected accounts.\nUse for: export account settings, start a settings export, retrieve configuration data\nNot supported: importing settings, changing account configuration, exporting user lists",
+      "provider": "DocuSign",
+      "product": "DocuSign Admin API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHygxk77xN7RltPt7uFtZqStbGLBdAeu2WOcoo3Ui0bVp6gyUIQD:merge:issues-list",
+      "name": "issues list",
+      "description": "Gets issues.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/crm/v1/issues",
+      "evaluateGuide": "Gets issues from the Merge CRM resource, allowing an agent to review issue records associated with customer-management data.\nUse for: list CRM issues, review issue records, inspect CRM data\nNot supported: creating issues, updating records, deleting issues",
+      "provider": "Merge",
+      "product": "Merge CRM API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I2ulcNIZbe9XnlrjQw354iCP18YVpcWzjvprU198pSrrpXw4zMB0ScKMjCPj:docusign-s:creates-a-new-account-se",
+      "name": "Creates a new account settings import request.",
+      "description": "Creates a new account settings import request.\nThe request for this method consists of\nthe contents of a CSV\nfile.\nYou can export your current settings as a CSV file with\nAccountSettingsExport: createAccountSettingsExport\nand use it as the basis\nof the changes you want to import.\nTo learn more about the format\nof a settings CSV file, see\n[Preparing a CSV for account settings import][guide-import]\nin the Docusi",
+      "method": "POST",
+      "url": "https://api.docusign.net/Management/v2/organizations/{{organizationId}}/imports/account_settings",
+      "evaluateGuide": "Starts an account-settings import for a DocuSign organization using a CSV payload, allowing an agent to apply settings changes.\nUse for: import account settings, apply CSV configuration, update organization settings\nNot supported: exporting settings, importing users, changing individual documents",
+      "provider": "DocuSign",
+      "product": "DocuSign Admin API"
+    }
+  ],
+  "meta": {
+    "q": "a request that creates repository issues",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

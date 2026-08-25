@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "{\"taskBrief\":\"TASK BRIEF: Read internal wiki runbooks for production-incident triage (HubSpot CRM API)\\n\\nFIT\\n  Not at all. The supplied request batch-reads HubSpot CRM object records by ID or custom unique property; it does not retrieve internal wiki or runbook content. Search again for an internal-wiki or knowledge-base API endpoint that can read runbooks.\"}"
+    }
+  ]
+}

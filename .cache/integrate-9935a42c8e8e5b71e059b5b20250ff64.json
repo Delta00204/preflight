@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Send a message to Slack (Slack)\n\nFIT\n  Not at all. The supplied request only posts a message to Slack; it does not let an agent resolve order, refund, or order-status questions. Try searching for order lookup, refund, and status-management endpoints in the relevant support or commerce API. The Slack message request does not serve the stated task."
+    }
+  ]
+}

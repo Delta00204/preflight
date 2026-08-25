@@ -1,0 +1,94 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9ktWbl67yWvEu8EHvGUtZ8oT0boxL8HlLlYpvNCfZQvY4V9mMZcLBRp41S:speak:schedule-event",
+      "name": "Schedule Event",
+      "description": "Schedule Meeting Event\nThis endpoint allows you to schedule a meeting event by providing the meeting details.\nRequest Body\n\nmeetingDate (optional): The date and time for the scheduled meeting. If not provided, the meeting will be joined instantly.\nmeetingLanguage (optional): The language for the meeting. Default is en-US.\nmeetingURL (required): The URL of the meeting.\ntitle (required): The title of the meeting.\ntags (optional): You can pass comma seprated va",
+      "method": "POST",
+      "url": "{{url}}/v1/meeting-assistant/events/schedule",
+      "evaluateGuide": "Schedules a meeting event in Speak Ai using a meeting URL, title, optional date, language, and tags. Agents can create an immediate or future meeting entry.\nUse for: schedule a meeting, set meeting metadata, schedule a future session\nNot supported: joining a meeting, changing an existing event, calendar availability",
+      "provider": "Speak Ai",
+      "product": "Speak Ai"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyW9zA65Hb612hcgo6j9Vmxr1frEM:elastic:post-add-scheduled-event",
+      "name": "POST Add scheduled events to the calendar",
+      "description": "None",
+      "method": "POST",
+      "url": "Add scheduled events to the calendar",
+      "evaluateGuide": "Adds a scheduled event to a calendar through the described Elasticsearch endpoint. The supplied details do not identify the event resource or supported fields more precisely.\nUse for: add a calendar event, create a scheduled event\nNot supported: listing events, editing events, deleting events, checking availability",
+      "provider": "Elastic",
+      "product": "Elasticsearch"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5fnus0cjRIkcUIMEyf2ydHetV4TJ6cOIcfSBeLdt3LCbVZIEjpv0N631JWk:nylas:get-available-calendars",
+      "name": "Get Available Calendars",
+      "description": "Returns available calendars for a scheduling page, showing which calendars can be used for booking.",
+      "method": "GET",
+      "url": "https://api.schedule.nylas.com/manage/pages/{{page_id}}/calendars"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgBnGj23TaViks8I1aU9RQnjkPRBZsSWtiFrH5J8wjQi8OB5gw8kFCVu0zPL:zoom:create-a-meeting",
+      "name": "Create a meeting",
+      "description": "Creates a meeting for a user. For user-level apps, pass the me value instead of the userId parameter.\nPrerequisites:\n* A meeting's start_url value is the URL a host or an alternative host can use to start a meeting. The start_url value's expiration time is two hours for all regular users.\n* For custCreate meeting hosts - users created with the custCreate parameter via",
+      "method": "POST",
+      "url": "https://api.zoom.us/v2/users/:userId/meetings",
+      "evaluateGuide": "Creates a Zoom meeting for a specified user, including scheduled or supported ad-hoc meeting details. Agents can provision a meeting and receive its meeting information.\nUse for: create a meeting, schedule a meeting, provision a user meeting\nNot supported: listing meetings, inviting attendees separately, deleting meetings",
+      "provider": "Zoom",
+      "product": "Zoom"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyVqVDreogMrYyn5mdVaBHQeCGcYS:cisco:create-a-meeting",
+      "name": "Create a Meeting",
+      "description": "Creates/schedules a meeting. Use this endpoint to create scheduled meetings (or ad-hoc meetings when supported). The request body describes meeting metadata (title, start/end times, timezone) and advanced options (recording, breakout sessions, invitees, registration, etc.).\nDocumentation: https://developer.webex.com/docs/api/v1/meetings/create-a-meeting\nQuick Start:\n- Obtain an OAuth2 Bearer token with the required scopes (e.g., meeting:schedules_write).\n- Send a POST to /v1/meetings with a JSON body including at minimum the meeting start and end times (for scheduled meetings) and title.\nParameters Explained:\n- Body fields (common):\n  - title (string, required for scheduled meetings): Meeting title/topic.\n  - start (string, RFC3339 timestamp) and end (string, RFC3339): Meeting start and end times.\n  - timezone (string): IANA timezone (e.g., \"America/Los_Angeles\").\n  - sendEmail (boolean): Whether Webex sends invitation emails (default true).\n  - hostEmail (string): If admin-level scopes, create meeting for specified host email.\n  - invitees (array): List of invitee objects {\"email\": \"...\", \"displayName\": \"...\"}.\nCommon Errors & Fixes:\n- 400 Bad Request: Missing required body fields or invalid timestamp format. Use RFC3339 for times.\n- 401 Unauthorized: Missing/invalid/expired token.\n- 403 Forbidden: Missing required scope or disallowed operation.\nEdge Cases:\n- Creating ad-hoc meetings may require adhoc: true + roomId; ad-hoc meetings created with adhoc:true and a roomId have limitations (some cannot be deleted through the Delete endpoint).\n- Certain advanced fields (trackingCodes, simultaneousInterpretation, breakoutSessions) may require site/org-level settings and licenses.\nRate Limits & Constraints:\n- Respect Webex API rate limits and quota. For large volumes schedule/queue requests to avoid throttling.",
+      "method": "POST",
+      "url": "https://webexapis.com/v1/meetings",
+      "evaluateGuide": "Creates a Cisco Webex meeting with its title, timing, timezone, and supported meeting options. Agents can schedule a meeting or create an ad-hoc meeting when supported.\nUse for: create a Webex meeting, schedule a meeting, configure meeting options\nNot supported: listing meetings, adding a single invitee, deleting meetings",
+      "provider": "Cisco",
+      "product": "Webex"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyVqVDs3TU5ZuIe48Vo5TMwG8vKek:cisco:create-a-meeting-invitee",
+      "name": "Create a Meeting Invitee (single)",
+      "description": "Invite a person to attend a meeting by creating a single meeting invitee.\nDocumentation: https://developer.webex.com/docs/api/v1/meeting-invitees/create-a-meeting-invitee\nQuick Start:\n- Obtain an OAuth 2.0 token with meeting:schedules_write (or meeting:admin_schedule_write for admin-level calls).\n- POST a JSON body containing meetingId (target meeting) and email (invitee's email). sendEmail defaults to true.\nParameters Explained (body fields):\n- meetingId (required): Unique identifier of the meeting series or scheduled meeting to invite the person to.\n- email (required): Invitee email address.\n- displayName (optional): Display name for the invitee (max length 128). If not specified and the email maps to an existing Webex account, Webex displayName will be used.\n- coHost (optional): true if the invitee should be an alternate host/co-host.\n- hostEmail (optional): When set by an admin on-behalf-of, indicates which host the invite is for.\n- sendEmail (optional): If true (default), sends invitation emails to the invitee.\n- panelist (optional): For webinars, marks invitee as panelist when true.\nCommon Errors & Fixes:\n- 400 Bad Request: Missing required fields (meetingId, email) or invalid email format.\n- 401 Unauthorized: Missing/invalid access token.\n- 403 Forbidden: Missing required scopes.\n- 404 Not Found: meetingId not found or not supported (e.g., scheduled personal room meeting).\nEdge Cases:\n- meetingId applies to meeting series and scheduled meetings only; does not apply for ended/in-progress meeting instances.\n- If the invitee has an existing Webex account, the account displayName will be shown instead of a provided displayName in some clients.\nRate Limits & Constraints:\n- Creating invitees may trigger notification emails; bulk invites are available for large lists (use bulk endpoint).",
+      "method": "POST",
+      "url": "https://webexapis.com/v1/meetingInvitees",
+      "evaluateGuide": "Adds one person as an invitee to a Cisco Webex meeting by meeting ID and email address, with email notification enabled by default. Agents can invite an attendee to an existing meeting.\nUse for: invite an attendee, add an email invitee, notify a meeting participant\nNot supported: creating meetings, listing invitees, removing invitees",
+      "provider": "Cisco",
+      "product": "Webex"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgBnGj23TaVjWrjishNfZ1JJ3C1HkfL51luNoW7KoVz2I7HZJlhx3JZ75SNw:zoom:list-upcoming-meetings",
+      "name": "List upcoming meetings",
+      "description": "List a Zoom user's upcoming meetings. For user-level apps, pass the me value instead of the userId parameter.\nNotes:\n* This API includes the meetings that Zoom users schedule and the meetings they are invited to join.\n* This API only includes upcoming meetings within the next 24 hours.\nPrerequisites:\n* To retrieve data for Zoom meetings that the user has been invited to from a third-party calendar (Google, Exchange, Office 365, Apple iCloud), t",
+      "method": "GET",
+      "url": "https://api.zoom.us/v2/users/:userId/upcoming_meetings",
+      "evaluateGuide": "Lists a Zoom user's upcoming meetings within the endpoint's stated time window, including meetings they scheduled or were invited to join. Agents can inspect near-term meeting details.\nUse for: list upcoming meetings, inspect near-term meetings, find invited meetings\nNot supported: creating meetings, retrieving past meetings, deleting meetings",
+      "provider": "Zoom",
+      "product": "Zoom"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgBnGj23TaVjVlfOcoNcpH5xnl5LRgd0JKLNZFbzSXJJ42WJYgdANMVG5RaM:zoom:delete-a-meeting",
+      "name": "Delete a meeting",
+      "description": "Delete a meeting.\nPrerequisites:\n* For recurring meetings, the occurrence_id is required to delete a specific occurrence. If not provided, the entire recurring series will be deleted.\nScopes: meeting:write:admin,meeting:write\nGranular Scopes: meeting:delete:meeting,meeting:delete:meeting:admin\n**[Rate Limit Label](https://marketplace.zoom.us/",
+      "method": "DELETE",
+      "url": "https://api.zoom.us/v2/meetings/:meetingId?occurrence_id=<string>&schedule_for_reminder=<boolean>&cancel_meeting_reminder=<boolean>",
+      "evaluateGuide": "Deletes a Zoom meeting or a specified occurrence of a recurring meeting. Agents can remove an entire series or one occurrence when the occurrence identifier is supplied.\nUse for: delete a meeting, cancel a recurring occurrence, remove a meeting series\nNot supported: creating meetings, listing meetings, editing meeting details",
+      "provider": "Zoom",
+      "product": "Zoom"
+    }
+  ],
+  "meta": {
+    "q": "schedule calendar meeting with",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

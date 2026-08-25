@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAZ39JQnhVz1a9SPHX0kNjTgJAuWUDmGs0xdNLvrXgJtbFoPdxL:google:get-values-batch",
+      "name": "Get Values Batch",
+      "description": "Returns one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges.",
+      "method": "GET",
+      "url": "https://sheets.googleapis.com/v4/spreadsheets/:spreadsheetId/values:batchGet",
+      "evaluateGuide": "Reads one or more cell ranges from a Google Sheets spreadsheet by spreadsheet ID. Use it to retrieve selected spreadsheet values in a single response.\nUse for: read multiple ranges, retrieve cell values, fetch spreadsheet data\nNot supported: writing values, formatting cells, creating spreadsheets",
+      "provider": "Google",
+      "product": "Google Sheets"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7ueo4tKgdb1yQuy9N4zQ63IqCBJD8:sheet2api:list-rows-read",
+      "name": "List Rows (Read)",
+      "description": "Retrieves the rows (records) from the first sheet of the Spreadsheet API.\nDocumentation: testsp - API Documentation / Making Requests\nQuick Start:\n- Send a GET request to the endpoint below.\n- If your API is configured to require authentication include Basic auth (username & password).\nParameters Explained:\n- limit (optional): Maximum number of rows to return. Default: 100. Use integer values (e.g., 50).\n- offset (optional): Number of rows to skip (for pagination). Default: 0.\n- sheet (optional): If your spreadsheet has multiple worksheets, some APIs allow selecting sheet by name; the example spreadsheet's primary endpoint operates on the first sheet by default.\nCommon Errors & Fixes:\n- 401 Unauthorized: No Authorization header or invalid credentials. Use Basic auth with correct username/password.\n- 400 Bad Request: limit or offset not valid integers.\n- 500 Internal Server Error: Try again later or contact sheet2api support.\nEdge Cases:\n- Empty sheets return an empty array [].\n- Cells with empty values may be omitted or present with empty strings depending on the sheet contents.\nRate Limits & Constraints:\n- No public rate limits are documented on this page. Check your sheet2api account dashboard or contact support for quota details.",
+      "method": "GET",
+      "url": "https://sheet2api.com/v1/UHC796KdSvqC/testsp/",
+      "evaluateGuide": "Retrieves rows from the first worksheet exposed by a Sheet2API spreadsheet endpoint, with optional pagination and sheet selection where supported.\nUse for: read spreadsheet rows, paginate records, select a worksheet\nNot supported: writing rows, deleting records, changing spreadsheet structure",
+      "provider": "Sheet2API",
+      "product": "Sheet2API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZrSFYtiVmKYphhljXuEjczmsrx8aQaieTmKFEyuzwMipsxJrQ:flows:get-row-list",
+      "name": "Get row list",
+      "description": "",
+      "method": "GET",
+      "url": "https://graph.microsoft.com/v1.0/me/drive/items/{{microsoftExcelSheetID}}/workbook/worksheets/{{microsoftExcelSheetName}}/tables/{{microsoftExcelTable}}/rows",
+      "evaluateGuide": "Lists rows from a table in an Excel workbook stored in Microsoft Drive. Use it to read structured table records from a specified worksheet and table.\nUse for: list Excel table rows, read workbook records, retrieve table data\nNot supported: adding rows, updating cells, managing workbook permissions",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7ueo4tKXTxjSw6SdqIEtRrJAfPLns:sheet2api:list-read-rows-sheet",
+      "name": "List / Read Rows (Sheet)",
+      "description": "Returns all rows from a worksheet (sheet) in the spreadsheet as JSON. Supports filtering by column (use the column header as a query parameter), wildcard searches, negative matches, and relational operators for numeric comparisons.\nDocumentation: https://sheet2api.com/docs/requests/FgI6zV8qT121/characters/\nQuick Start:\n- Method: GET\n- URL: {{baseUrl}}/v1/{{workbookId}}/{{sheetName}}/\n- No body required. If your API requires authentication, include HTTP Basic Authorization as described in the docs.\nParameters Explained:\n- workbookId (required, path) - The unique ID for your Spreadsheet API (example: FgI6zV8qT121). Replace with your API's workbook id.\n- sheetName (required, path) - The worksheet name (sheet title). If it contains spaces, URL-encode it (e.g., \"Looney Tunes\" → \"Looney%20Tunes\").\n- Column filters (optional, query string) - Use the spreadsheet column header name as the query parameter. Example: ?Name=Bugs%20Bunny filters rows where the Name column equals \"Bugs Bunny\".\n  - Wildcard search: include an asterisk * anywhere in the value. Example: ?Name=Bugs*Bunny.\n  - Negative search: prefix value with ! to exclude. Example: ?Name=!Bugs%20Bunny.\n  - Relational (numeric) operators: prefix the value with <, >, <=, or >=. Example: ?age<20.\nCommon Errors & Fixes:\n- 401 Unauthorized: Your API is secured and you did not send Basic auth credentials (username:password base64 encoded). Provide credentials or disable auth for this API.\n- 404 Not Found: workbookId or sheetName is incorrect — check your API URL and ensure the sheet exists and is spelled/URL-encoded correctly.\n- 429 Too Many Requests: You exceeded your plan quota — see your account dashboard or upgrade your plan.\nEdge Cases:\n- Column names with special characters or spaces must be URL-encoded when used in a path or query string.\n- Searching numeric columns with relational operators requires the column values to be numeric in the sheet.\n- Large sheets might be cached; recent edits may take a short time to propagate depending on caching settings.\nRate Limits & Constraints:\n- Quota depends on your plan (see https://sheet2api.com/pricing/). Exceeding quota returns 429. Default caching and quota policies apply per account.",
+      "method": "GET",
+      "url": "https://sheet2api.com/v1/FgI6zV8qT121/characters/",
+      "evaluateGuide": "Returns worksheet rows as JSON from a Sheet2API spreadsheet, with filtering, wildcard matching, comparisons, pagination, and sorting through query parameters.\nUse for: filter sheet rows, search records, paginate results, sort worksheet data\nNot supported: writing rows, deleting records, editing formulas",
+      "provider": "Sheet2API",
+      "product": "Sheet2API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7Rm9Hs0ny6PJU0zfXYtcZ1pF9gpWw:colorado:read-dataset-rows-soda-2",
+      "name": "Read Dataset Rows (SODA 2.1 resource endpoint)",
+      "description": "Retrieves rows from a Socrata dataset (SODA Consumer API / Resource endpoint).\nDocumentation: https://dev.socrata.com/docs/endpoints\nQuick Start:\n- Use a dataset identifier (eight-character identifier, e.g. 4tka-6guv).\n- For simple reads you do not need user authentication for public datasets; include an application token in X-App-Token for higher rate limits.\n- Use SoQL parameters (e.g. $select, $where, $limit, $offset, $order, $q) as query parameters.\nParameters Explained:\n- datasetId (path, required): The dataset identifier (example: 4tka-6guv).\n- $select (query, optional): Comma-separated list of columns to return. Default: all columns.\n- $where (query, optional): SoQL WHERE clause for filtering rows.\n- $limit (query, optional): Number of rows to return. Default: 1000; max depends on endpoint/version.\n- $offset (query, optional): Result offset for paging. Default: 0.\n- $order (query, optional): SoQL ordering expression (e.g. :id or column DESC).\n- $q (query, optional): Full-text search over dataset fields.\n- X-App-Token (header, optional): Application token for higher throttling; not required for public reads.\nCommon Errors & Fixes:\n- 400 Bad Request: Malformed SoQL parameter; check URL-encoding and SoQL syntax.\n- 401 Unauthorized: Trying to read a private dataset without auth.\n- 403 Forbidden: CORS/JSONP dropped authentication — use server-side calls for authenticated reads.\n- 404 Not Found: Invalid datasetId or dataset removed.\nEdge Cases:\n- Ordering is not guaranteed unless you specify $order (use a stable key like :id).\n- Large limits may be capped by server; use $offset paging.\nRate Limits & Constraints:\n- Unauthenticated requests use shared rate limits; supplying X-App-Token attributes requests to your app and increases quota.",
+      "method": "GET",
+      "url": "https://data.colorado.gov/resource/4tka-6guv.json",
+      "evaluateGuide": "Queries a Socrata dataset resource and returns matching rows using SoQL query parameters. Use it to retrieve, filter, select, sort, or paginate public Colorado data.\nUse for: query dataset rows, filter public data, select fields, paginate results\nNot supported: inserting records, updating datasets, managing dataset definitions",
+      "provider": "Socrata",
+      "product": "Socrata Open Data API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7ueo4tKPgthFfkNAAWUjeiWHY9e8T:sheet2api:list-rows-read",
+      "name": "List Rows (Read)",
+      "description": "Retrieve rows from a worksheet (the default is the first sheet).\nDocumentation: https://sheet2api.com/documentation/\nQuick Start:\n- Use the generated Spreadsheet API URL (example: https://sheet2api.com/v1/FgI6zV8qT121/characters/)\n- If your API is protected enable Authorization (Basic) as configured in your account\n- Optional query params can filter, paginate or sort results\nParameters Explained:\n- apiId (required): Your spreadsheet API identifier (part of the generated URL). Example: FgI6zV8qT121\n- apiSlug (required): The API/endpoint slug (usually the API name). Example: characters\n- sheetName (optional path): Worksheet name (URL-encoded) to operate on a specific sheet. If omitted, the API will use the first sheet.\n- apiKey (optional): API key when the sheet is protected via API key (some accounts may use API keys instead of Basic auth)\n- limit (optional): Maximum number of rows returned. Default: service default (commonly 100)\n- offset / page (optional): Pagination controls. Use offset or page depending on your usage.\n- field filters (optional): Any column name can be used as a query param to filter rows, e.g. ?Name=Bugs%20Bunny\n- q / search (optional): Free-text search parameter (implementation varies)\n- sortBy, sortOrder (optional): Sorting fields (e.g., sortBy=Name&sortOrder=asc)\n- fields (optional): Comma-separated list of columns to return\nCommon Errors & Fixes:\n- 401 Unauthorized: API is protected and Authorization header is missing or invalid — set Basic credentials via the collection variables or include api_key if configured.\n- 429 Too Many Requests: You exceeded plan quota — upgrade or wait for quota reset.\n- 400 Bad Request: Invalid query parameter (check parameter names and encoding).\nEdge Cases:\n- If multiple worksheets exist you may either call the base URL (first sheet) or include the sheetName path segment (URL encoded).\n- Filtering by column uses exact match unless using advanced query features supported by your account.\nRate Limits & Constraints:\n- Rate limits depend on your plan (see account/pricing). Exceeding quota returns 429.",
+      "method": "GET",
+      "url": "https://sheet2api.com/v1/FgI6zV8qT121/characters",
+      "evaluateGuide": "Retrieves worksheet rows as JSON from a generated Sheet2API endpoint, with optional filtering, pagination, and sorting.\nUse for: read sheet rows, filter records, paginate data, sort results\nNot supported: writing rows, deleting records, modifying worksheet structure",
+      "provider": "Sheet2API",
+      "product": "Sheet2API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7ueo4tKJMQDPCczmFAabjpdaFIvoO:sheet2api:list-rows-read",
+      "name": "List Rows (Read)",
+      "description": "Returns the rows from the default (first) sheet of the Spreadsheet API as JSON.\nDocumentation: https://sheet2api.com/docs/FgI6zV8qT121/characters/\nQuick Start:\n- HTTP Method: GET\n- URL: {{baseUrl}}/v1/FgI6zV8qT121/characters/\n- No request body required. Use query string filters to restrict results.\nParameters Explained:\n- Name (optional): Example column-based filter. Replace Name with any column title from your sheet to filter by that column. Supports wildcard * (e.g. Name=Bugs*Bunny) and negation ! (e.g. Name=!Bugs Bunny). For numeric columns you may use relational operators by prefixing value with <, >, <=, >= (e.g. age>20).\n- OtherColumn (optional): Any other sheet column can be used as a query parameter in the same way as Name.\nCommon Errors & Fixes:\n- 401 Unauthorized: Your spreadsheet API is configured to require authentication but Authorization header is missing or invalid. Use Basic auth (username:password base64 encoded) or supply {{username}} & {{password}} in your client.\n- 400 Bad Request: Malformed query parameter. Ensure column names are spelled exactly as in the header row and values are URL-encoded.\n- 500 Internal Server Error: Transient server or upstream Sheets error — retry after a short delay.\nEdge Cases:\n- Column names with spaces or special characters must be URL-encoded in query string (e.g. Favourite Thing -> Favourite%20Thing).\n- When multiple rows match the filters, all matching rows are returned.\n- If the sheet is empty the response will be an empty array.\nRate Limits & Constraints:\n- Rate limits are not listed on this page. If you see 429 responses, implement exponential backoff. (Check account dashboard for plan-specific limits.)",
+      "method": "GET",
+      "url": "https://sheet2api.com/v1/FgI6zV8qT121/characters/",
+      "evaluateGuide": "Returns rows from the default worksheet of a Sheet2API spreadsheet as JSON. Query parameters can restrict and organize the returned records.\nUse for: read worksheet rows, filter by columns, paginate records, sort results\nNot supported: creating rows, updating values, changing formulas",
+      "provider": "Sheet2API",
+      "product": "Sheet2API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31p0swFQUWgoq8ZO4DuLh1vDTrMR6:ramp:list-native-table-rows-r",
+      "name": "List Native Table Rows (Read custom field values on native rows)",
+      "description": "Read extension rows for a native Ramp table. Use Ramp IDs to filter native table rows. Supports pagination and includeallreferenced_rows for relationship completeness.\nDocumentation: https://docs.ramp.com/llms-guides/custom-records.txt\nQuick Start:\n- Provide nativeTableName path parameter and optionally page_size, start, and include_all_referenced_rows query params.\nParameters Explained:\n- nativeTableName (path): The native Ramp table slug (e.g., users).\n- includeAllReferencedRows (query): If true, include the full set of referenced rows in each cell rather than a truncated subset.\n- pageSize and start: Pagination controls.\nCommon Errors & Fixes:\n- 404 Not Found: Native table not found.",
+      "method": "GET",
+      "url": "https://api.ramp.com/developer/v1/custom-records/native-tables/users/rows",
+      "evaluateGuide": "Reads custom field values from rows in a native Ramp table, with optional pagination and complete referenced-row expansion.\nUse for: list native table rows, read custom fields, expand related rows, paginate results\nNot supported: creating rows, updating fields, deleting records",
+      "provider": "Ramp",
+      "product": "Ramp"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw3d8eUiH3XljgOuZMkj0MBq5yGsn:open:get-dataset-rows-soda-re",
+      "name": "Get dataset rows (SODA resource read endpoint)",
+      "description": "Legacy SODA2-style resource endpoint for querying datasets using URL query parameters (SoQL via query string). Supports .json, .csv, .geojson (format selected by extension). This endpoint is widely used and remains available for many datasets.\nDocumentation: https://dev.socrata.com/foundry/soda.demo.socrata.com/4tka-6guv\nQuick Start:\n- Use {{baseUrl}}/resource/{{datasetId}}.json for JSON output.\n- Provide query parameters such as $select, $where, $limit, $offset, $order, $group, and $q.\n- For large/complex queries prefer SODA3 /api/v3/views/{id}/query.json (POST).\nParameters Explained:\n- $select (query): Comma-separated list of columns to return.\n- $where (query): SoQL WHERE clause (no leading WHERE).\n- $limit (query): Maximum number of rows to return. Default varies.\n- $offset (query): Row offset for pagination.\n- $order (query): SoQL ORDER BY clause.\n- $q (query): Full-text search across dataset.\nCommon Errors & Fixes:\n- 400 Bad Request: Invalid parameter syntax; validate SoQL and URL-encoded values.\n- 413 Request Entity Too Large: Asking too many rows without limits.\n- 401 Unauthorized / 403 Forbidden: Resource requires authentication or proper permissions.\nEdge Cases:\n- Query string length limits in GET requests — use POST SODA3 for long queries.\n- Some domains return different field names or computed fields; check metadata.\nRate Limits & Constraints:\n- Call quota limits may be applied per domain or per application token.",
+      "method": "GET",
+      "url": "https://soda.demo.socrata.com/resource/4tka-6guv.csv",
+      "evaluateGuide": "Queries a Socrata dataset resource and returns rows in the selected format, including CSV, using SoQL query parameters.\nUse for: export dataset rows, filter open data, select fields, paginate results\nNot supported: inserting records, updating datasets, changing dataset schemas",
+      "provider": "Socrata",
+      "product": "Socrata Open Data API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxv3oz4TDyF2jldlt8CE2yEfMXbet:bureau:soda-read-api-query-rows",
+      "name": "SODA Read API - Query Rows (CSV / XML) Export",
+      "description": "SODA resource endpoint supporting alternate output formats via file extension: .csv, .xml. Useful for quick exports using the SODA style query parameters.\nDocumentation: https://data.transportation.gov/d/dkgi-gbeh\nQuick Start:\n- To request CSV: GET {{baseUrl}}/resource/{{datasetId}}.csv?$select=year,commodity&$limit=100\nParameters Explained:\n- Same query parameters as the JSON SODA endpoint: $select, $where, $limit, $offset, $order.\n- format is controlled by the URL extension (.csv or .xml).\nCommon Errors & Fixes:\n- 400 Bad Request: malformed query syntax.\n- 415 Unsupported Media Type: requesting unsupported combination of parameters and format.\nEdge Cases:\n- CSV content is returned as text/csv; non-ASCII characters may be escaped depending on server settings.\nRate Limits & Constraints:\n- Exporting large CSV via the SODA CSV endpoint may be throttled; use rows.csv?accessType=DOWNLOAD for full dataset exports when available.",
+      "method": "GET",
+      "url": "",
+      "evaluateGuide": "Queries a Socrata resource and exports matching rows as CSV or XML using URL-based SoQL parameters.\nUse for: export rows as CSV, export rows as XML, filter survey data, select fields\nNot supported: JSON-specific output, inserting records, updating datasets",
+      "provider": "Socrata",
+      "product": "Socrata Open Data API"
+    }
+  ],
+  "meta": {
+    "q": "read rows from a spreadsheet",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

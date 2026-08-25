@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Delete a file (Freshworks CRM)\n\nFIT\n  Not at all. The supplied request permanently deletes a file; it does not archive or move a file to cold object storage. Search for a file archival or cold-storage endpoint in the Freshworks API."
+    }
+  ]
+}

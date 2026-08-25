@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Check store orderability status (Uber Eats Marketplace API)\n\nFIT\n  Not at all. The supplied request checks whether a store is online or offline, but does not look up an order or provide its shipping status. Search again for order lookup and delivery-status endpoints in the Uber Eats Marketplace API; the supplied store-status request is not relevant."
+    }
+  ]
+}

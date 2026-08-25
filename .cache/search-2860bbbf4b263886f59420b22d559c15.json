@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhmI5nOQ1LhLuTRH4E7SzhsvP7hlXlQLJF7YPkKegUUPJIUhGlVtG8NpXdHp:mastercard:retrieve-transactions-by",
+      "name": "Retrieve transactions by card ID",
+      "description": "Get transactions by Card Id API will retrieve the recent transactions for the specified card identifier. Integrators may retrieve recent transactions details for a specified card identifier via the Get Transaction Details request. If the Issuer of the card does not support Transaction Detail Service, the Get Transaction Details request will return an error.",
+      "method": "GET",
+      "url": "{{baseUrl}}/cards/:cardId/transactions?srcClientId=6aff5cba-3aac-4fe0-b0cd-a52fc948d0c6&serviceId=SECURE_COF_COMMERCE_PLATFORM%23E2E%2301&srciTransactionId=ea in adipisicing consectetur&transactionsFromTimestamp=0892-03-13T21:32:32z824-17:",
+      "evaluateGuide": "Retrieves recent transaction details for a specified card identifier, when the card issuer supports transaction detail service. Use it to inspect card activity by card ID.\nUse for: retrieve recent card transactions, inspect transaction details, filter by timestamp\nNot supported: card creation, transaction updates, card authorization",
+      "provider": "Mastercard",
+      "product": "Mastercard Checkout Solutions"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31pkq4DA3CWHGs7oIkJVfCizW8KNq:synchrony:check-status-dpos-transa",
+      "name": "Check Status (DPOS Transaction Lookup)",
+      "description": "Retrieves the results of a SetPay modal execution (DPOS Transaction Lookup / Check Status). This endpoint is used server-to-server after the SetPay modal closes: the widget returns a token (and the partner's clientTransId) to the partner site, and the partner calls this API to obtain the final credit application status and related details.\nDocumentation: https://www.synchrony.com/docs/syfsetpayonlineshoppingcartintegrationoverview_final.pdf (See section 3.4.1). Also referenced Swagger spec: https://developer.syf.com/api-reference/dpos-transaction-lookup-v1\nQuick Start:\n- Obtain OAuth2 access token (Apigee gateway) with required scopes.\n- When the SetPay modal returns a callback, capture the token (event.data.token) and clientTransId.\n- Make a server-to-server POST (JSON) to the Check Status endpoint with the token and clientTransId.\n- Parse the response's decisionCode/decisionMessage and merchantInfo/applicantInfo to determine next steps.\nParameters Explained:\n- partnerId (required for identification in some flows): Partner identifier assigned by Synchrony. Example formatted value: 16-char string.\n- merchantId (optional/conditional): Merchant identifier (MID) assigned by Synchrony. Example formatted value: 16-char string.\n- clientTransId (recommended/required for reconciliation): Partner-generated or Synchrony-echoed transaction id (max length 30). Must be retained by partner; used for Check Status and Returns API.\n- token (required): The token returned by the SetPay modal callback (event.data.token). Used to query the transaction status.\n- purchaseAmount (recommended): Final purchase amount including tax and shipping. BigDecimal with format up to 6.2 (e.g., \"100.00\").\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing or invalid OAuth2 token. Ensure you request a valid token from the Apigee OAuth2 flow and supply it as the collection's access token.\n- 400 Bad Request: Missing required fields (token or clientTransId) or invalid JSON. Verify request body is valid JSON and required parameters are present.\n- 404 Not Found: The provided token or clientTransId was not found/expired. Confirm you are using the token returned from the modal and call the API promptly.\n- 500 Internal Server Error: Server-side error; implement retry logic and contact Synchrony if persistent.\nEdge Cases:\n- The Check Status API may return application-level decision codes (e.g., 0010 = APPROVED, 0006 = DECLINED). These are part of the response body and not HTTP status codes — handle them in your business logic.\n- Timeouts: the integration guide recommends a 30 second timeout when waiting for Check Status responses; implement retries with backoff for transient network issues.\n- Some responses may contain cipher.* fields (masked/encrypted data). Partners must not attempt to decrypt unless explicitly instructed by Synchrony.\nRate Limits & Constraints:\n- The integration guide indicates APIs are fronted by an Apigee gateway and require OAuth2; any rate limit/quota will be enforced at the gateway. Request API access and quota details from Synchrony Developer Portal or your Synchrony contact.",
+      "method": "POST",
+      "url": "",
+      "evaluateGuide": "Retrieves the final credit application status and related details after a SetPay modal execution. Use the returned token and partner transaction identifier for server-to-server lookup.\nUse for: check application status, retrieve SetPay results, look up a transaction\nNot supported: initiating applications, displaying the modal, processing payments",
+      "provider": "Synchrony",
+      "product": "SetPay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MyjFrFkLD0S6lb2Z1TMKOFmqoRNqwAJ8aZejCbFfCktGnX52YKLuXHR6PydA:mastercard:tc1-request-without-a-co",
+      "name": "TC1: Request without a country code",
+      "description": "",
+      "method": "POST",
+      "url": "https://sandbox.api.ethocaweb.com/ethoca/consumer-clarity/searches",
+      "evaluateGuide": "Searches Mastercard Consumer Clarity for consumer information without supplying a country code. It is a sandbox test for validating country-code handling.\nUse for: test missing country code, search consumer clarity, validate error handling\nNot supported: transaction retrieval, card management, production searches",
+      "provider": "Mastercard",
+      "product": "Consumer Clarity"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OYTKaNcDHkOgzpSUiQrUBSFj9ljBTp91QKmqdEJUBlzDUN4cmBtL2Njd7Vy7:acme:list-corporate-cards",
+      "name": "List corporate cards",
+      "description": "",
+      "method": "GET",
+      "url": "{{requestsForFlowCorporateCardSpendMonitoringBaseUrl}}/cards?type=prepaid&status=active",
+      "evaluateGuide": "Lists active prepaid corporate cards for spend monitoring. Use the response to identify cards available for corporate spending oversight.\nUse for: list active cards, find prepaid cards, monitor corporate cards\nNot supported: card issuance, transaction retrieval, card updates",
+      "provider": "ACME Fin",
+      "product": "ACME Fin"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OYTKaNcDHkOgG25dKhKaww4RTZkXYIXIwsZxlj6zcIBpmHVXMnPGawpjjp4O:acme:list-card-transactions",
+      "name": "List card transactions",
+      "description": "",
+      "method": "GET",
+      "url": "{{requestsForFlowCorporateCardSpendMonitoringBaseUrl}}/cards/{{cardId}}/transactions",
+      "evaluateGuide": "Lists transactions associated with a specified corporate card. Use it to review spending activity for one card.\nUse for: review card spending, list card transactions, monitor corporate activity\nNot supported: card creation, transaction updates, card cancellation",
+      "provider": "ACME Fin",
+      "product": "ACME Fin"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIm0AilSCpjKbBGUoL9vsZm1zT6MFQD:lithic:list-card-transactions",
+      "name": "List card transactions",
+      "description": "List card transactions.\nDocumentation: https://docs.lithic.com/reference/gettransactions\nOverview:\nList card transactions. Returns transaction objects (card transaction collection). All amounts are in the smallest unit of their respective currency (e.g., cents for USD) and are inclusive of any acquirer fees.\nQuick Start:\n- Set {{baseUrl}} to https://api.lithic.com (or https://sandbox.lithic.com for sandbox testing).\n- Provide an API key via HTTP Basic auth as the username ({{apiKey}}) and leave the password blank.\n- Minimal request: GET {{baseUrl}}/v1/transactions\nParameters Explained:\n- account_token (optional, uuid): Filter for transactions associated with a specific account. Use {{accountToken}}.\n- card_token (optional, uuid): Filter for transactions associated with a specific card. Use {{cardToken}}.\n- result (optional, enum): Filter by transaction result. Allowed values: APPROVED, DECLINED. Use {{result}}.\n- status (optional, enum): Filter by transaction status. Allowed values: PENDING, VOIDED, SETTLED, DECLINED, EXPIRED. Use {{status}}.\n- begin / end (optional, date-time RFC3339): Only include entries created after begin and/or before end. Use {{begin}} and {{end}}.\n- starting_after / ending_before (optional, string): Cursor-based pagination. Use {{startingAfter}} and {{endingBefore}}.\n- page_size (optional, integer): 1-100, defaults to 50. Use {{pageSize}}.\nCommon Errors & Fixes:\n- 400 Bad Request: Invalid query param or value. Verify param names and formats (UUIDs, RFC3339 dates, page_size range).\n- 401 Unauthorized: Missing/invalid API key. Ensure Authorization header is present and valid.\n- 404 Not Found: Resource path incorrect—confirm base URL and path.\n- 429 Too Many Requests: Rate limiting. Back off and retry per your exponential backoff.\nEdge Cases:\n- Results are cursor-paginated; use starting_after / ending_before to iterate.\n- Filtering by narrow date ranges may return zero results even though transactions exist outside that range.\nRate Limits & Constraints:\n- Subject to Lithic per-second and daily rate limits (see docs). Typical page_size default 50, max 100.",
+      "method": "GET",
+      "url": "https://sandbox.lithic.com/v1/transactions",
+      "evaluateGuide": "Lists Lithic card transactions and returns transaction objects with amounts in the smallest currency unit. Use filters supported by the endpoint to review card activity.\nUse for: list transactions, review card activity, inspect transaction amounts\nNot supported: retrieving one transaction, issuing cards, modifying transactions",
+      "provider": "Lithic",
+      "product": "Lithic"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIm0AilSCpW7ekaM1pcPyn4Rcy4FrwC:lithic:get-card-transaction",
+      "name": "Get Card Transaction",
+      "description": "Get a specific card transaction by its transaction token. This endpoint returns a transaction object describing the activity on a card (authorizations, clearings, refunds, etc.). All amounts are in the smallest unit of their respective currency (e.g., cents for USD).\nDocumentation: https://docs.lithic.com/reference/gettransactionbytoken\nQuick Start:\n- Set {{baseUrl}} to the appropriate environment (sandbox shown by default).\n- Provide your API key using HTTP Basic Auth (API key as the username, empty password) via the collection auth or the Authorization header.\n- Call GET {{baseUrl}}/v1/transactions/{{transactionToken}} where {{transactionToken}} is a UUID for the transaction.\nParameters Explained:\n- transactionToken (required, path): Globally unique identifier (UUID) for the transaction to retrieve.\nCommon Errors & Fixes:\n- 400 Bad Request: One or more query/path parameters are malformed. Fix: validate UUID format for transactionToken and any query parameters.\n- 401 Unauthorized: Missing/invalid API key or authorization header. Fix: include API key via HTTP Basic Auth (API key as username) or full Authorization header as documented.\n- 404 Not Found: Transaction with the supplied token does not exist. Fix: confirm correct transaction token.\n- 429 Too Many Requests: Rate limited. Fix: retry later and implement backoff.\nEdge Cases:\n- Transaction objects are updated over time; the returned object is a live snapshot. If you need event history, inspect the transaction.events array in the returned object.\n- Some enhanced data (L2/L3) is accessible via separate endpoints (enhancedcommercialdata) and may not be available in sandbox.\nRate Limits & Constraints:\n- Subject to Lithic rate limits (per-second and daily limits). If you receive 429 responses, implement exponential backoff and reduce request rate.",
+      "method": "GET",
+      "url": "https://sandbox.lithic.com/v1/transactions/transaction-token-here",
+      "evaluateGuide": "Retrieves a specific Lithic card transaction by its transaction token, including activity such as authorizations, clearings, and refunds.\nUse for: retrieve a transaction, inspect authorization details, view refund activity\nNot supported: listing transactions, creating transactions, updating card records",
+      "provider": "Lithic",
+      "product": "Lithic"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIm0AilSCxSd6oLyQlIdqL2k4EpJ9Xz:lithic:list-card-financial-tran",
+      "name": "List card financial transactions",
+      "description": "List the financial transactions for a given card.\nDocumentation: https://docs.lithic.com/reference/getcardfinancialtransactions\nQuick Start:\n- Ensure you have a valid Lithic API key (Sandbox or Production) and include it using HTTP Basic auth or the Authorization header.\n- Provide a valid card token as the cardToken path parameter.\n- Minimal request: GET the endpoint with Authorization via Basic auth (username: your API key, password blank).\nParameters Explained:\n- cardToken (required, path): The unique UUID token for the card whose financial transactions should be returned.\n- category (optional, query): Filter by financial transaction category. Allowed: CARD, TRANSFER.\n- result (optional, query): Filter by result. Allowed: APPROVED, DECLINED.\n- status (optional, query): Filter by status. Allowed: DECLINED, EXPIRED, PENDING, RETURNED, SETTLED, VOIDED.\n- begin (optional, query): RFC3339 datetime; include transactions created on or after this time.\n- end (optional, query): RFC3339 datetime; include transactions created before this time.\n- ending_before (optional, query): Cursor to page results ending before this token.\n- starting_after (optional, query): Cursor to page results starting after this token.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing or invalid API key. Provide API key in Authorization header or via HTTP Basic auth (username = API key).\n- 400 Bad Request: Query parameter value invalid (e.g., malformed date or invalid enum). Validate parameter formats and allowed enum values.\n- 404 Not Found: Card token does not exist. Verify cardToken is correct.\n- 429 Too Many Requests: Rate limit exceeded. Implement exponential backoff and respect Retry-After header.\n- 422 Unprocessable Entity: Request parameters valid but semantically incorrect. Check payload/query semantics.\nEdge Cases:\n- Date filters are inclusive/exclusive as documented: begin includes entries on/after the datetime; end excludes the specified datetime.\n- Pagination uses cursor-style params starting_after / ending_before.\n- Sandbox environment may not enforce the same role restrictions as Production.\nRate Limits & Constraints:\n- Global per-endpoint limits apply (see docs.lithic.com/docs/rate-limits). Typical read RPS and daily limits are enforced. On 429 responses, respect Retry-After header.",
+      "method": "GET",
+      "url": "https://sandbox.lithic.com/v1/cards/card-token-here/financial_transactions",
+      "evaluateGuide": "Lists financial transactions for a specified Lithic card using its card token. Use it to review the card's financial activity.\nUse for: list card activity, inspect financial transactions, review card spending\nNot supported: retrieving one transaction, issuing cards, modifying transactions",
+      "provider": "Lithic",
+      "product": "Lithic"
+    }
+  ],
+  "meta": {
+    "q": "look up a corporate card transaction",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

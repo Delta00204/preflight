@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:LMVQOaiJ5sDu8NtYWYe7D8PY5O7XcEOmDHEXUCFBK7lLHi3Yqg2FQ8qy27P:pingone:read-user-identity-provi",
+      "name": "Read User Identity Provider",
+      "description": "This PingOne collection contains only the requests without documentation. For the official PingOne Platform API Reference documentation, see Read User Identity Provider.",
+      "method": "GET",
+      "url": "{{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider",
+      "evaluateGuide": "Reads the authoritative identity provider associated with a PingOne user and returns its data.\nUse for: inspect a user's identity provider, verify federation assignment, retrieve provider details\nNot supported: changing the provider, creating providers, reading other user attributes",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I2ulcNIZbe9Wzxt2d0F6ub3VhCz6SzGf2i1M35vGhsS02XcZqKmXYlF1gjem:docusign-s:delete-user-identities-f",
+      "name": "Delete user identities for a specified identity provider.",
+      "description": "Deletes all user identities linked to a specified identity provider.\nThe id request body property specifies the identity provider. To get the ID, call getUserProfiles and copy the provider_id value you want to use.\nRequired authentication scopes: user_write.",
+      "method": "DELETE",
+      "url": "https://api.docusign.net/Management/v2/organizations/{{organizationId}}/users/{{userId}}/identities",
+      "evaluateGuide": "Deletes all identities linked to a specified identity provider for a DocuSign user.\nUse for: remove linked identity, disconnect an identity provider, clean up user identities\nNot supported: adding identities, updating profiles, managing organization settings",
+      "provider": "DocuSign",
+      "product": "DocuSign Admin API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOcg8NBPvAepRZgJC5NZobIL3R3K4C6IN3jF7UbD77roTLpANmctOiS1IoS:pingone:read-user-identity-provi",
+      "name": "Read User Identity Provider",
+      "description": "To get data on the authoritative identity provider associated with a single user resource, the GET {{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider operation returns the identity provider data only for the user resource with the ID specified in the request URL.\n📌 NOTE\n\nWhen the actor is self and the `identityProvider` attribute is not included in any provided read scope (for example, `p1:read:user*`), a 403 status is returned.",
+      "method": "GET",
+      "url": "{{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider",
+      "evaluateGuide": "Reads the authoritative identity provider associated with a PingOne user and returns its data.\nUse for: inspect a user's identity provider, verify federation assignment, retrieve provider details\nNot supported: changing the provider, creating providers, reading other user attributes",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:LMVQOaiJ5sEjTfOCyxut3uyxaN62GRbIjWFnmzPRyXPZvKrzOYFjXwxOGqQ:pingone:read-user-identity-provi",
+      "name": "Read User Identity Provider",
+      "description": "This PingOne collection contains only the requests without documentation. For the official Platform SSO APIs documentation, see Read User Identity Provider.",
+      "method": "GET",
+      "url": "{{apiPath}}/v1/environments/{{envID}}/users/{{userID}}/identityProvider",
+      "evaluateGuide": "Reads the authoritative identity provider associated with a PingOne user through the versioned endpoint.\nUse for: inspect a user's identity provider, verify federation assignment, retrieve provider details\nNot supported: changing the provider, creating providers, reading other user attributes",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOcg8NBPvAegmAduPMu8JmTpIVAWA9M4cUk5hhbSGUeAzEAT3xIV5GMZ60G:pingone:create-identity-provider",
+      "name": "Create Identity Provider (Microsoft)",
+      "description": "The POST {{apiPath}}/environments/{{envID}}/identityProviders operation adds a new identity provider resource to the specified environment.\nWhen the type property value is set to MICROSOFT, Microsoft's clientId and clientSecret property values are required in the request body. The tenantId property is required if Entra ID is enabled.\nPrerequisites\n\nRefer to Identity Provider Management for importan",
+      "method": "POST",
+      "url": "{{apiPath}}/environments/{{envID}}/identityProviders",
+      "evaluateGuide": "Creates a Microsoft identity provider resource in a specified PingOne environment using supplied configuration data.\nUse for: add Microsoft federation, configure Entra ID sign-in, register an external provider\nNot supported: assigning a provider to a user, reading provider status, updating users",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:LMVQOaiJ5sDwLxbjYb0MDY0RBrBxuZWhXuKBfS62d1n47Pj5dCjIb8KBctd:pingone:update-user-identity-pro",
+      "name": "Update User Identity Provider",
+      "description": "This PingOne collection contains only the requests without documentation. For the official Platform SSO APIs documentation, see Update User Identity Provider.",
+      "method": "PUT",
+      "url": "{{apiPath}}/v1/environments/{{envID}}/users/{{userID}}/identityProvider",
+      "evaluateGuide": "Updates the identity provider associated with a specified PingOne user.\nUse for: assign a user identity provider, change federation assignment, set a user provider\nNot supported: creating providers, reading provider data, modifying unrelated user attributes",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOcg8NBPvAfcMIXMaJFx8hXNHtd5k9oRUYliEcWeacFeNXgR8NbY7OEphqO:pingone:update-user-identity-pro",
+      "name": "Update User Identity Provider",
+      "description": "Use the PUT {{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider request to update the identity provider for the specified user. To set the identity provider to PingOne, call this operation with no payload (an empty request body).\n📌 NOTE\n\nWhen the actor is self, a 403 status is returned and no change to the authoritative identity provider is persisted.\n\nPrerequisites\n\nRefer to Users and [User Operations](platform:",
+      "method": "PUT",
+      "url": "{{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider",
+      "evaluateGuide": "Updates the authoritative identity provider for a specified PingOne user, including resetting it to PingOne with an empty payload.\nUse for: change user federation, assign PingOne as provider, update provider association\nNot supported: creating providers, reading user identity data, changing other user attributes",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:LMVQOaiJ5sDxT9wQr0rp3JuJNPg8sj0kVRhjykgn759aNKwbrA2h7d9HCJ5:pingone:update-user-identity-pro",
+      "name": "Update User Identity Provider",
+      "description": "This PingOne collection contains only the requests without documentation. For the official PingOne Platform API Reference documentation, see Update User Identity Provider.",
+      "method": "PUT",
+      "url": "{{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider",
+      "evaluateGuide": "Updates the identity provider associated with a specified PingOne user.\nUse for: assign a user identity provider, change federation assignment, set a user provider\nNot supported: creating providers, reading provider data, modifying unrelated user attributes",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOcg8NBPvAenDSGkYtdYnX4YPDYjlbgh1YdIcAoXjhLyujVOb6cMiMjkGgf:pingone:create-identity-provider",
+      "name": "Create Identity Provider (Yahoo)",
+      "description": "The POST {{apiPath}}/environments/{{envID}}/identityProviders operation adds a new identity provider resource to the specified environment.\nWhen the type property value is set to YAHOO, Yahoo's clientId and clientSecret property values are required in the request body.\nPrerequisites\n\nRefer to Identity Provider Management for important overview information.\n\n**Yahoo identity provider settings data mod",
+      "method": "POST",
+      "url": "{{apiPath}}/environments/{{envID}}/identityProviders",
+      "evaluateGuide": "Creates a Yahoo identity provider resource in a specified PingOne environment using supplied configuration data.\nUse for: add Yahoo federation, configure Yahoo sign-in, register an external provider\nNot supported: assigning a provider to a user, reading provider status, updating users",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOcg8NBPvAfZElNZz09VT16cGztE2AFIKpeU1EnDAs4f0hpnjtk1iKTrd1m:pingone:update-user-identity-pro",
+      "name": "Update User Identity Provider",
+      "description": "Use the PUT {{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider request to update the identity provider for the specified user. To set the identity provider to PingOne, call this operation with no payload (an empty request body).\nNote: When the actor is self, a 403 status is returned and no change to the authoritative identity provider is persisted.\nPrerequisites\n\nRefer to Users and [User Operations](https://a",
+      "method": "PUT",
+      "url": "{{apiPath}}/environments/{{envID}}/users/{{userID}}/identityProvider",
+      "evaluateGuide": "Updates the authoritative identity provider for a specified PingOne user, including resetting it to PingOne with an empty payload.\nUse for: change user federation, assign PingOne as provider, update provider association\nNot supported: creating providers, reading user identity data, changing other user attributes",
+      "provider": "Ping Identity",
+      "product": "PingOne"
+    }
+  ],
+  "meta": {
+    "q": "provision a user account in an identity provider",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

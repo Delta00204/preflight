@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Search the internal company knowledge base for documents (Knowledge Base Agent APIs)\n\nFIT\nFully. The supplied request searches the knowledge base by query and URL, covering the stated goal. No supplied requests are irrelevant.\n\nAUTH\nNo authentication is specified.\n\nBASE URL\nhttp://localhost:4000\n\nSTEPS\n1. GET /documentation/search\n   Params:\n     query: string — 'Rate Limit' in the query string; replace with the documentation topic to find.\n     url: string — 'https://docs.luma.com/' in the query string; use the relevant documentation base URL.\n   Returns:\n     HTTP 200 OK with a JSON object containing success (boolean) and data (object). The data includes query (string), url (string), and results (array); each result shown contains content (string), similarity (number), and url (string).\n   Threading:\n     None\n\nGOTCHAS\n- The request uses query-string parameters named query and url; URL-encode spaces and other special characters.\n- The saved response example searches for a different query and shows an empty url, so treat its returned values as an example rather than fixed limits.\n- The collection resolves {{baseUrl}} to http://localhost:4000."
+    }
+  ]
+}

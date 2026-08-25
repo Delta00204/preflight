@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: List repository issues (GitHub)\n\nFIT\n  Not at all. The supplied request only lists issues; it cannot open an issue, which is required to triage production incidents end to end. Search for a GitHub issue-creation endpoint, such as a request that creates an issue in a repository."
+    }
+  ]
+}

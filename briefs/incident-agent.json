@@ -1,0 +1,7 @@
+{ "name":"DevOps Incident Response Agent","customer":"SaaS platform, 300 engineers",
+  "goal":"Let an agent triage production incidents end to end.",
+  "capabilities":[
+    "create a pagerduty incident and page the on-call engineer",
+    "open an issue in a GitHub repository",
+    "query application error metrics from a monitoring tool",
+    "read runbooks from our internal wiki"] }

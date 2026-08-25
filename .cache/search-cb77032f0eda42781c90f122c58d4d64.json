@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznpGda0l5BMUEFzWGs4LvKXVtqBBSawccsXuDSFwXX0xC0msjFI:postman:explain-authorization",
+      "name": "Explain authorization",
+      "description": "The collection description is also a good place to be explicit about how to authorize requests - including instructions explaining what developers need to do to acquire and use credentials. Additionally, Postman has auth helpers under the Authorization tab to help get users interacting with your API quickly. \nSome publishers choose to manually add authorization headers under the Headers tab of a request, but you can also add an au",
+      "method": "GET",
+      "url": "https://api.pagerduty.com/incidents",
+      "evaluateGuide": "Retrieves PagerDuty incidents. Use it to inspect incident records after authenticating with PagerDuty credentials.\nUse for: list incidents, review incident status, inspect incident records\nNot supported: creating, updating, or deleting incidents",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznoScC2fUM0qb77iz1JNoSHqIbO4eI7iXsI2dHHL8nrjAo6sJuP:published:pagerduty-authentication",
+      "name": "PagerDuty - Authentication (via manual header)",
+      "description": "From the PagerDuty Developer Platform, read the documentation for Creating incidents using the REST API, and Authentication of REST API calls.\nIn PagerDuty\nGenerate a General Access REST API key as described in the PagerDuty docs.\nIn Postman",
+      "method": "GET",
+      "url": "https://api.pagerduty.com/incidents",
+      "evaluateGuide": "Retrieves PagerDuty incidents using manually supplied authentication. Use it to inspect incident data with a General Access REST API key.\nUse for: list incidents, review incident status, inspect incident records\nNot supported: creating, updating, or deleting incidents",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4raVAuagojIetJVChbY2S3GqO6wMZUeOxJmKlr5PWc7Y1kAQQhL:postman:create-new-incident",
+      "name": "Create new Incident",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/pages",
+      "evaluateGuide": "Creates a Notion page resource, described here as an incident page. Use it to record incident details in Notion.\nUse for: create incident pages, log incidents, store incident details\nNot supported: reading, updating, or deleting pages",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4rbNqAcpYbt2QabAMfrJ944FzRB9up2LRokdSnEDQ8gCzBoOABb:postman:create-incident",
+      "name": "Create Incident",
+      "description": "",
+      "method": "POST",
+      "url": "http://api.pagerduty.com/incidents",
+      "evaluateGuide": "Creates an incident in PagerDuty. Use it to submit a new incident for incident-management workflows.\nUse for: create incidents, trigger incident workflows, submit incident details\nNot supported: listing, updating, or resolving incidents",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4raSxs5mAY2MqEBtBTEmlrYjZWKwGCSStDIedaxrYDKlfF9pxh5:postman:create-new-incident",
+      "name": "Create new Incident",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/pages",
+      "evaluateGuide": "Creates a Notion page resource, described here as an incident page. Use it to record incident details in Notion.\nUse for: create incident pages, log incidents, store incident details\nNot supported: reading, updating, or deleting pages",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfPUsjApzc8z770omqImDWAs3k1bZe5iy7xfI2ER2UBIgXtWbdmymdI9FWGx:datadog-s:create-a-new-service-obj",
+      "name": "Create a new service object",
+      "description": "Create a new service object in the PagerDuty integration.",
+      "method": "POST",
+      "url": "https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services",
+      "evaluateGuide": "Creates a service object in Datadog’s PagerDuty integration. Use it to configure a new integrated service.\nUse for: add an integration service, configure PagerDuty services, create service objects\nNot supported: retrieving, updating, or deleting service objects",
+      "provider": "Datadog",
+      "product": "Datadog"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZtgPuQaHuBXmEXjZys60D3H5Lgm0kHHaRAnBxpFwaZFG1rIgP:flows:get-oncalls",
+      "name": "Get oncalls",
+      "description": "",
+      "method": "GET",
+      "url": "https://api.pagerduty.com/oncalls",
+      "evaluateGuide": "Retrieves PagerDuty on-call schedules and assignments. Use it to identify who is currently or next on call.\nUse for: find on-call responders, inspect rotations, review assignments\nNot supported: changing schedules, assigning responders, managing incidents",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznoN2z1IInMJuNGlgNLhUmfpb5KkaFhkUBtq4sw6Kdl3IkENEmc:postman:pagerduty-pkce-flow-via",
+      "name": "PagerDuty - PKCE flow (via helper)",
+      "description": "From the PagerDuty Developer Platform, read the documentation for OAuth 2.0: PKCE Flow for mobile and browser apps.\nIn Postman\nUnder the Authorization tab of any request, select OAuth 2.0. Click Get New Access Token. From there, select a Grant Type of Authorization Code (With PKCE). Input your data like in the previous request. The Code Challenge Method can be either SHA-256 or Plain. You can also",
+      "method": "GET",
+      "url": "https://api.pagerduty.com/incidents",
+      "evaluateGuide": "Retrieves PagerDuty incidents for an OAuth 2.0 PKCE-authenticated integration. Use it to inspect incident records from browser or mobile flows.\nUse for: list incidents, review incident status, inspect incident records\nNot supported: creating, updating, or deleting incidents",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3hFkOJxQE4zN3NcTCxXOutAjBOqHwUkJJ9pAvGsz6o22WxSbXLoyDRT1JcF:developer:explain-authorization",
+      "name": "Explain authorization",
+      "description": "The collection description is also a good place to be explicit about how to authorize requests - including instructions explaining what developers need to do to acquire and use credentials. Additionally, Postman has auth helpers under the Authorization tab to help get users interacting with your API quickly. \nSome publishers choose to manually add authorization headers under the Headers tab of a request, but you can also add an au",
+      "method": "GET",
+      "url": "https://api.pagerduty.com/incidents",
+      "evaluateGuide": "Retrieves PagerDuty incidents. Use it to inspect incident records after authenticating with PagerDuty credentials.\nUse for: list incidents, review incident status, inspect incident records\nNot supported: creating, updating, or deleting incidents",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyW9zDd92sG8AsdHFaKFs3FtQim7W:elastic:put-create-a-transform",
+      "name": "PUT Create a transform",
+      "description": "None",
+      "method": "PUT",
+      "url": "Create a transform",
+      "evaluateGuide": "Creates or replaces an Elasticsearch transform configuration. Use it to define a transform resource in Elasticsearch.\nUse for: create transforms, replace transform definitions, configure data transforms\nNot supported: searching documents, indexing data, deleting transforms",
+      "provider": "Elastic",
+      "product": "Elasticsearch"
+    }
+  ],
+  "meta": {
+    "q": "create a pagerduty incident",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

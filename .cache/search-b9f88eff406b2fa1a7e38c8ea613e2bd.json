@@ -1,0 +1,115 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxocJGqc4jxUYIzdnsVwrlWVGbl4s:apache:get-internal-store-downs",
+      "name": "Get Internal Store (downstream) - http://internal.com/store",
+      "description": "Example downstream service the example JAX-RS resource calls when credential delegation is used. The CXF docs show a WebClient calling http://internal.com/store and demonstrate how delegated GSSCredential can be attached to the outgoing client request context.\nDocumentation: https://cxf.apache.org/docs/jaxrs-kerberos.html\nQuick Start:\n- To reproduce: configure CXF client to include a GSSCredential in the request context (WebClient.getConfig(wc).getRequestContext().put(GSSCredential.class.getName(), cred)).\n- If the downstream service expects SPNEGO/Kerberos, include a Negotiate token in the Authorization header or supply delegated credential as shown in the docs.\nParameters:\n- No path or query parameters in the example; the endpoint is shown as http://internal.com/store.\n- negotiateToken (if HTTP Negotiate is used) or use a delegated GSSCredential in the CXF request context.\nCommon Errors & Fixes:\n- 401 Unauthorized: No valid Kerberos service ticket or delegated credential provided to downstream service.\n- 403 Forbidden: The delegated principal lacks permission on the downstream service.\nEdge Cases:\n- If the delegated credential is null, the client must have fallback mechanism (e.g., re-login or fetch a service ticket).\n- The form of authentication accepted by the downstream service may require Kerberos OID vs SPNEGO OID; see auth.spnego.useKerberosOid switch in the client HTTP Conduit docs.\nRate Limits & Constraints:\n- No rate limits documented for this example downstream service.",
+      "method": "GET",
+      "url": "http://internal.com/store",
+      "evaluateGuide": "Retrieves data from the downstream store service used by an Apache CXF delegation example. Agents can call the internal store endpoint to obtain its response.\nUse for: fetch downstream store data, test delegated calls, verify service connectivity\nNot supported: store updates, authentication setup, credential issuance"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxou0bv8muU1UatszCj1N0EzXso90:apache:cancel-query-by-broker-i",
+      "name": "Cancel Query by broker internal ID",
+      "description": "Cancel a running query by broker-assigned internal query ID. Requires the broker identifier and the broker's internal query id.\nDocumentation: https://docs.pinot.apache.org/release-1.4.0/for-users/user-guide-query/query-cancellation\nQuick Start:\n- Use the controller GET /queries endpoint to obtain the map of brokers -> internal query IDs.\n- Issue a DELETE to /query/{brokerId}/{queryId} on the controller to request cancellation on the specified broker.\nParameters Explained:\n- brokerId (required, path): Broker name/identifier as returned by GET /queries (e.g., Broker_192.168.0.105_8000).\n- queryId (required, path): Broker-assigned internal ID for a running query (integer or string as returned by GET /queries).\n- verbose (optional, query): true or false. When true controller may return details of per-server responses.\nCommon Errors & Fixes:\n- 404 Not Found: Specified broker or query id not found or the query already finished.\n- 400 Bad Request: Malformed queryId or missing parameters.\n- 403 Forbidden: Caller lacks permission to control queries (if controller is secured).\nEdge Cases:\n- This method is operationally heavier: you must identify the correct broker and internal id. It may return partial success information showing per-server response codes.\nRate Limits & Constraints:\n- No specific rate limits documented here; administrative APIs may be subject to operator-imposed throttles.",
+      "method": "DELETE",
+      "url": "http://localhost:8099:9000/query/Broker_127.0.0.1_8099/7",
+      "evaluateGuide": "Cancels a running Apache Pinot query on a specified broker using its broker-assigned query identifier.\nUse for: stop a running query, cancel broker work, terminate long queries\nNot supported: starting queries, listing queries, retrieving query results",
+      "provider": "Apache",
+      "product": "Apache Pinot"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr4zlq7oXBAeQbX5Pef98XOUjrVbqLM:openehr:execute-stored-query-get",
+      "name": "Execute Stored Query (GET)",
+      "description": "Execute a stored query by its qualified name (and optional version) using HTTP GET.\nDocumentation: OpenEHR REST Query API - Execute Stored Query (GET)\nQuick Start:\n- GET {{baseUrl}}/api/v1/query/{{qualifiedQueryName}}/{{version}}\n- Supply any query parameters declared by the stored query as query string parameters (except offset/fetch are reserved for paging)\n- Use header openEHR-EHR-id or query param ehr_id to constrain to a single EHR\nParameters Explained:\n- qualified_query_name (path, required): Identifier of the stored query. Format may be <namespace>::<query-name> (e.g., org.openehr::compositions).\n- version (path, optional): SEMVER prefix (major, major.minor, or full). If omitted, latest matching version is used.\n- offset (query, optional): 0-based start row (default 0)\n- fetch (query, optional): Number of rows to fetch\n- Additional query parameters (query, optional): Named parameters declared by the stored query (e.g., uid, temperature_from). All parameters except offset and fetch are forwarded to the query engine.\nCommon Errors & Fixes:\n- 404 Not Found: Query name/version not found. Fix: verify qualified_query_name and version.\n- 400 Bad Request: Invalid parameter names or values.\nEdge Cases:\n- version can be partial; server will use latest matching version when a prefix is supplied.\n- The query-name MUST NOT be aql (reserved).\nRate Limits & Constraints:\n- Not specified on this page.",
+      "method": "GET",
+      "url": "https://openehrsys.example.com/api/v1/query/org.openehr::compositions/1.0?offset=0&fetch=10&ehr_id=7d44b88c-4199-4bad-97dc-d78268e01398",
+      "evaluateGuide": "Executes a versioned openEHR stored query with parameters supplied in the URL and supports paging and EHR scoping.\nUse for: run stored queries, page results, filter by EHR\nNot supported: creating queries, updating stored queries, deleting query definitions",
+      "product": "openEHR"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr4zlq7oXBENECOK8Fj6HbnEno79KKI:openehr:execute-stored-query-pos",
+      "name": "Execute Stored Query (POST)",
+      "description": "Execute a stored query by its qualified name (and version) using HTTP POST. Use when you prefer to send parameters in the body (or for larger parameter payloads).\nDocumentation: OpenEHR REST Query API - Execute Stored Query (POST)\nQuick Start:\n- POST to {{baseUrl}}/api/v1/query/{{qualifiedQueryName}}/{{version}} with Content-Type: application/json\n- Include optional offset, fetch, and query-parameters object in the body\n- Use If-None-Match header if needed for caching semantics\nParameters Explained:\n- Path qualified_query_name (required): The stored query identifier.\n- Path version (required/optional per server; here documented as required for POST in one place): SEMVER style version or prefix.\n- Body offset (optional): 0-based start row.\n- Body fetch (optional): Number of rows to fetch.\n- Body query-parameters (optional): Map of named parameters for the stored query.\n- Header If-None-Match (optional): ETag conditional header (example present in docs).\nCommon Errors & Fixes:\n- 404 Not Found: Query name/version not available. Verify name and version.\n- 400 Bad Request: Invalid or missing parameter values.\nEdge Cases:\n- When ehr_id header is absent, the stored query or parameters MAY contain multiple ehr_ids or be unconstrained (population queries).\n- Some stored queries may require particular named parameters; ensure keys and types match the stored query definition.\nRate Limits & Constraints:\n- Not specified on this page.",
+      "method": "POST",
+      "url": "https://openehrsys.example.com/api/v1/query/org.openehr::compositions/1.0",
+      "evaluateGuide": "Executes a versioned openEHR stored query with paging and query parameters supplied in a JSON payload.\nUse for: run stored queries, submit larger parameters, page results\nNot supported: creating queries, updating stored queries, deleting query definitions",
+      "product": "openEHR"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr2ajeDJYE1rqhXeeDvGzyPZLTPj4Fu:best:stores-search-query-coll",
+      "name": "Stores - Search / Query (collection & filtered queries)",
+      "description": "Search and retrieve Best Buy store information. This endpoint supports collection retrieval (all stores) and in-path filter expressions (e.g. region, postalCode, storeId, area()) to return matching stores.\nDocumentation: https://bestbuyapis.github.io/bby-query-builder/stores/stores.html\nQuick Start:\n- Provide a valid API key via the apiKey query parameter ({{apiKey}}).\n- Minimum working request to list stores: GET {{baseUrl}}/v1/stores?format=json&apiKey={{apiKey}}\n- To filter places the search expression inside parentheses in the path: /v1/stores(region=ut) or /v1/stores(postalCode=55423).\nParameters:\n- filter (optional, placed inside parentheses in the path): Search expression using API attributes (examples: region=ut, postalCode=55423, storeId=1118, area(55423,10)).\n- format (optional): Response format. Valid values: json, xml. Default: json.\n- show (optional): Comma-separated list of fields to return (example: storeId,city,region, city,longName, hours, services). Default: returns full store documents (server-defined).\n- pageSize (optional): Number of items per page. Default/max: 100 (API docs indicate 100 max pageSize).\n- page (optional): Page number for pagination. Default: 1.\n- cursorMark (optional): For cursor-based pagination; set cursorMark=* to retrieve first cursor subset. Use returned nextCursorMark to walk results.\n- apiKey (required): Your Best Buy API key (passed as query parameter apiKey).\nCommon Errors & Fixes:\n- 401 / 403: \"API key is not valid\" or call limit exceeded — ensure {{apiKey}} is valid and not rate-limited.\n- 400: Bad request — ensure your filter expression is well-formed and URL-encoded.\n- 404: Not Found — if filtering by a specific storeId that does not exist.\n- 500: Server error — retry after a short delay.\nEdge Cases:\n- Filters are placed in-path (inside parentheses). If you need to pass complex characters, URL-encode them.\n- The area(location,distance) function accepts a postal code or lat/long pair depending on usage; the search area is a square, and reported distances are linear from the center (stores near corners may appear slightly > distance).\n- distance is returned in results but is not queryable as an attribute (use area() or lat/long).\n- When requesting hours or detailedHours the endpoint may return nested arrays (see examples).\nRate Limits & Constraints:\n- API uses per-key rate limiting. Exceeding the limit will return 403. (Docs mention allocated call limits.)\n- Default maximum pageSize: 100. Use cursorMark for large result sets.",
+      "method": "GET",
+      "url": "https://api.bestbuy.com/v1/stores(region=ut)?format=json&show=sku,name,salePrice&pageSize=10&page=1&cursorMark=*&apiKey={{apiKey}}",
+      "evaluateGuide": "Searches Best Buy store records, returning all stores or those matching path filter expressions and selected fields.\nUse for: list stores, find stores by region, find stores by postal code, search by store ID\nNot supported: product searches, store updates, inventory transactions",
+      "provider": "Best Buy",
+      "product": "Best Buy APIs"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9JEQxaWXlb22AeiUm1kgMFqEcD2:epa:dmap-query-internal-endp",
+      "name": "DMAP Query (Internal endpoint)",
+      "description": "Overview:\nInternal DMAP endpoint intended for internal/privileged environments. Functionality is the same as production but the host and path differ.\nDocumentation: https://www.epa.gov/system/files/documents/2023-12/dmap-api.pdf\nQuick Start:\n- Create a POST request to {{baseUrlInternal}}/api/query\n- Use a GraphQL body like: {\"query\":\"...\",\"variables\":{}}\nParameters Explained:\n- query (required, in request body): GraphQL-style query string.\n- variables (optional, in request body): JSON object with GraphQL variables.\n- Export formats and JSONP callback behave the same as production (/api/query/csv, /api/query/jsonp?callback=...).\nCommon Errors & Fixes:\n- Same as production: 400 for bad queries, 408/504 for timeouts, 500 for internal errors. Internal endpoints may be subject to additional internal network or IAM restrictions.\nEdge Cases:\n- Access to this internal host is typically restricted to EPA internal networks; do not assume public availability.\nRate Limits & Constraints:\n- Not documented publicly. Internal operational constraints may apply.",
+      "method": "POST",
+      "url": "https://internal.aws-prod.aws.epa.gov/api/query",
+      "evaluateGuide": "Runs a GraphQL-style query against the EPA's internal DMAP service using a JSON payload.\nUse for: query internal DMAP data, submit variables, retrieve JSON results\nNot supported: public access, data updates, endpoint administration",
+      "provider": "U.S. Environmental Protection Agency",
+      "product": "DMAP"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlw9SHofeDAHAUyZ9isMnJ9oITSlvd:epa:internal-dmap-query-endp",
+      "name": "Internal DMAP Query Endpoint - POST https://internal.aws-prod.aws.epa.gov/api/query",
+      "description": "Internal (non-public) DMAP API endpoint referenced in the documentation. Use only if you have internal network access.\nDocumentation: https://www.epa.gov/system/files/documents/2023-12/dmap-api.pdf (references internal endpoint)\nQuick Start:\n- POST JSON body identical to the public query endpoint: {\"query\":\"...\",\"variables\":{...}}\n- Endpoint host: https://internal.aws-prod.aws.epa.gov\nParameters:\n- query (required): GraphQL-like query text\n- variables (optional): variables object\nCommon Errors & Fixes:\n- Internal endpoint is likely restricted to internal network and/or IP allowlists; requests from the public internet will be blocked or return 403/404.\nEdge Cases:\n- This endpoint is listed as internal in the documentation; it may require VPN or internal AWS access and internal authentication not described in public documentation.\nRate Limits & Constraints:\n- None documented for internal endpoint in the provided PDF.",
+      "method": "POST",
+      "url": "https://internal.aws-prod.aws.epa.gov/api/query",
+      "evaluateGuide": "Runs a GraphQL-style query against the EPA's internal DMAP service using a JSON payload in restricted environments.\nUse for: query internal DMAP data, submit variables, retrieve results\nNot supported: public access, data updates, endpoint administration",
+      "provider": "U.S. Environmental Protection Agency",
+      "product": "DMAP"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlz6WENYi8tRpiwd7j5O17lYqUpMLj:graphql:external-persisted-opera",
+      "name": "External Persisted Operation Store - Fetch Document (example)",
+      "description": "Example of fetching a persisted operation from an external persisted operation store (used when you don't store persisted operations in memory). This endpoint is shown as an example on the docs to demonstrate how to use an external store.\nDocumentation: https://the-guild.dev/graphql/hive/docs/gateway/persisted-documents\nQuick Start:\n- Implement a HTTP endpoint on your external store that returns the persisted operation (document) by key.\n- The gateway's getPersistedOperation function can call this endpoint and parse the JSON result.\nParameters Explained:\n- externalStoreUrl (required): Base URL of your external persisted operation store (example https://localhost:9999).\n- documentKey (required): The key/hash of the persisted document to fetch.\nCommon Errors & Fixes:\n- 404 Not Found: The store does not contain the requested document. Ensure the documentKey exists.\n- 401 Unauthorized: If the store requires auth, provide appropriate credentials. The docs example used an open localhost endpoint.\n- 500 Internal Server Error: Fix server-side issues in the external store.\nEdge Cases:\n- The store can return either the raw document string or a JSON structure. The gateway code must handle the returned shape. The example in docs expects res.json() and that JSON to contain the persisted operation directly.\nRate Limits & Constraints:\n- Determined by your external store implementation.",
+      "method": "GET",
+      "url": "https://localhost:9999/document/ecf4edb46db40b5132295c0291d62fb65d6759a9eedfa4d5d612dd5ec54a6b38",
+      "evaluateGuide": "Fetches a persisted GraphQL operation document by key from an external store for gateway execution.\nUse for: retrieve persisted documents, resolve operation keys, test external stores\nNot supported: storing documents, deleting documents, executing GraphQL operations",
+      "provider": "The Guild",
+      "product": "GraphQL Mesh"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OYrZiemMdIthg2Vpoj2guXSRJeswsQLO27LeKIcYh8PPsFgmD37QrR76jesi:boomi:retrieves-additional-res",
+      "name": "Retrieves additional results for a DocumentCountAccount query",
+      "description": "To learn about using queryMore, refer to the topic Query paging.",
+      "method": "POST",
+      "url": "https://api.boomi.com/api/rest/v1/{{accountId}}/DocumentCountAccount/queryMore",
+      "evaluateGuide": "Retrieves the next page of results for a Boomi DocumentCountAccount query using the platform's paging operation.\nUse for: continue account queries, retrieve next results, page large result sets\nNot supported: creating documents, modifying accounts, running unrelated object queries",
+      "provider": "Boomi",
+      "product": "Boomi Enterprise Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OYrZiemMdIthkIJih2Bqqz2YwEQn0R9QuPKvablkJTTDi69mYTPoUI7Glgp9:boomi:retrieves-additional-res",
+      "name": "Retrieves additional results for a DocumentCountAccountGroup query",
+      "description": "To learn about using queryMore, refer to the topic Query paging.",
+      "method": "POST",
+      "url": "https://api.boomi.com/api/rest/v1/{{accountId}}/DocumentCountAccountGroup/queryMore",
+      "evaluateGuide": "Retrieves the next page of results for a Boomi DocumentCountAccountGroup query using the platform's paging operation.\nUse for: continue group queries, retrieve next results, page large result sets\nNot supported: creating documents, modifying account groups, running unrelated object queries",
+      "provider": "Boomi",
+      "product": "Boomi Enterprise Platform"
+    }
+  ],
+  "meta": {
+    "q": "query our internal document store",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

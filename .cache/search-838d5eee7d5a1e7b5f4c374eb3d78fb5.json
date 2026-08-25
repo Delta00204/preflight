@@ -1,0 +1,95 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpkTnCp2X9C6bjErRN4i1s6daYS3Q6vvlbYoantQ9LYNxp0gg8idvsNBVy:api:search-knowledge-base",
+      "name": "Search Knowledge Base",
+      "description": "",
+      "method": "GET",
+      "url": "http://localhost:4000/documentation/search?query=Rate Limit&url=https://docs.luma.com/",
+      "evaluateGuide": "Searches documentation sources for a query and returns matching API knowledge. Use it to locate relevant guidance across a supplied documentation site.\nUse for: find rate-limit guidance, locate endpoint documentation, search a docs site\nNot supported: executing endpoints, modifying documentation, retrieving private data"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OY4buTBbq79tjqhJAdyomANB8AZJVPH5Psqdxpor5i7hp65N7fwvihJkZfE5:aws:search-content",
+      "name": "Search Content",
+      "description": "Searches for content in a specified knowledge base. Can be used to get a specific content\n      resource by its name.",
+      "method": "POST",
+      "url": "https://wisdom.{{region}}.amazonaws.com/knowledgeBases/:knowledgeBaseId/search?nextToken=string&maxResults=16.280620522716102",
+      "evaluateGuide": "Searches a specified Amazon Connect Wisdom knowledge base for relevant content or a named content resource. Results can be paged and limited.\nUse for: find relevant articles, retrieve named content, search support knowledge\nNot supported: creating content, updating knowledge bases, deleting resources",
+      "provider": "Amazon",
+      "product": "Amazon Connect Wisdom"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr30AsY3mtOVG3GOBhIvUaC2MCnHnrL:jasper:search-knowledge-base",
+      "name": "Search knowledge base",
+      "description": "Searches the Knowledge Base and returns items most relevant to the provided natural language query.\nDocumentation: https://developers.jasper.ai/reference/searchknowledge\nQuick Start:\n- Ensure {{apiKey}} is set.\n- POST a JSON body with query to /v1/knowledge/search.\nParameters Explained:\n- Request body (JSON):\n  - query (required, string): Natural language search query to find relevant Knowledge items.\nCommon Errors & Fixes:\n- 400 Bad Request: Missing query or malformed JSON body.\n- 401/403: Missing or invalid API key.\n- 500: Server error during search.\nEdge Cases:\n- Natural language search returns results by semantic relevance; exact keyword matches are not guaranteed.\n- Very long queries may be truncated or rejected.\nRate Limits & Constraints:\n- Search endpoints may have separate rate limits; consult Rate Limits documentation.",
+      "method": "POST",
+      "url": "https://api.jasper.ai/v1/knowledge/search",
+      "evaluateGuide": "Searches Jasper’s knowledge base using a natural-language query and returns relevant knowledge items.\nUse for: find reusable knowledge, answer content questions, search indexed material\nNot supported: adding knowledge, editing items, deleting sources",
+      "provider": "Jasper",
+      "product": "Jasper AI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:LkqKzWZdy1icJl4ydcJ0cumDbDWxp3uSJhJv3Fe9o59Bfd0oodwaMMPxHtg:sprinklr:search-knowledge-base-co",
+      "name": "Search Knowledge Base Content",
+      "description": "",
+      "method": "POST",
+      "url": "https://{{hostname}}.sprinklr.com{{path}}api/v2/knowledgebase/search",
+      "evaluateGuide": "Searches Sprinklr knowledge-base content and returns matching results through the platform API.\nUse for: find knowledge articles, locate support content, search indexed resources\nNot supported: creating articles, updating content, deleting knowledge",
+      "provider": "Sprinklr",
+      "product": "Sprinklr Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIoNS4kjASxdmwIR11mjWZh6ILWzJL8:monday-com:post-knowledge-base-sear",
+      "name": "POST knowledge_base_search",
+      "description": "None",
+      "method": "",
+      "url": "https://api.monday.com/v2",
+      "evaluateGuide": "Provides access to monday.com’s GraphQL API for a knowledge-base search operation. The supplied details identify the API entry point but not the operation schema.\nUse for: access GraphQL API, run a defined knowledge search, retrieve schema-backed data\nNot supported: REST resource operations, unspecified query details, inferred field selection",
+      "provider": "monday.com",
+      "product": "monday.com"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31vijIwY0JjyGrXFC5ZiBEGUhmxzG:tribe:search-knowledge-base",
+      "name": "Search Knowledge Base",
+      "description": "Search the TRIBE knowledge base for saved patterns, notes, and reusable artifacts.\nDocumentation: https://tribecode.ai/docs/muse\nQuick Start:\n- Use query parameters such as category and tags to scope your search.\n- Include Authorization: Bearer {{accessToken}} in the request header.\nParameters:\n- category (optional): Filter by knowledge base category (e.g., pattern).\n- tags (optional): Comma-separated tags to filter results (e.g., cors,bugfix).\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing/invalid API key.\n- 400 Bad Request: Invalid parameter formats.\nEdge Cases:\n- Tag matching may be exact or partial depending on backend indexing (not documented here).\n- Some knowledge items may be private and require permissions.\nRate Limits & Constraints:\n- Subject to collection-level rate limits described in API Reference.",
+      "method": "GET",
+      "url": "https://tribecode.ai/api/knowledge",
+      "evaluateGuide": "Searches the TRIBE knowledge base for saved patterns, notes, and reusable artifacts, with optional category and tag filters.\nUse for: find patterns, locate notes, filter reusable artifacts, search by tags\nNot supported: creating artifacts, editing entries, deleting knowledge",
+      "provider": "TRIBE AI",
+      "product": "TRIBE AI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr2XBLKJpBtzNQJetYbBrmuoRie0rht:askyourpdf:search-knowledge-bases",
+      "name": "Search Knowledge Bases",
+      "description": "Search knowledge bases by name or query string. Returns a list of matching knowledge bases and their document details.\nDocumentation: https://docs.askyourpdf.com/askyourpdf-docs\nQuick Start:\n- GET /v1/api/search/knowledge?query=YOUR_QUERY with x-api-key.\nParameters Explained:\n- query (required, query): Search string to filter knowledge bases by name.\nCommon Errors & Fixes:\n- 422 Validation Error: missing query parameter.\n- 401 Unauthorized: invalid API key.\nEdge Cases:\n- Matches are returned based on name/document metadata; relevance ranking not documented.\nRate Limits & Constraints:\n- Search requests count toward API usage.",
+      "method": "GET",
+      "url": "https://api.askyourpdf.com/v1/api/search/knowledge",
+      "evaluateGuide": "Searches AskYourPDF knowledge bases by name or query string and returns matching bases with document details.\nUse for: find a knowledge base, match document metadata, search by name\nNot supported: reading document content, uploading documents, changing knowledge bases",
+      "provider": "AskYourPDF",
+      "product": "AskYourPDF"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr2XBLKJpJkmZpdYz5BMxag8vrgN8JX:askyourpdf:search-knowledge-bases",
+      "name": "Search Knowledge Bases",
+      "description": "Search knowledge bases by name using a query string.\nDocumentation: https://docs.askyourpdf.com/askyourpdf-api-documentation\nQuick Start:\n- Ensure {{apiKey}} is set.\n- Call GET /v1/api/search/knowledge?query={{query}}.\nParameters Explained:\n- query (required, query): Search text to filter knowledge bases by name.\nCommon Errors & Fixes:\n- 422 Validation Error: Missing query param.\nEdge Cases:\n- Results are name-based; partial matches may be returned depending on implementation.\nRate Limits & Constraints:\n- Authentication required via x-api-key.",
+      "method": "GET",
+      "url": "https://api.askyourpdf.com/v1/api/search/knowledge?query=invoice",
+      "evaluateGuide": "Searches AskYourPDF knowledge bases by name using a query string and returns matching results.\nUse for: find a knowledge base, search by name, locate matching bases\nNot supported: reading document content, uploading documents, modifying knowledge bases",
+      "provider": "AskYourPDF",
+      "product": "AskYourPDF"
+    }
+  ],
+  "meta": {
+    "q": "search an internal company knowledge base",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

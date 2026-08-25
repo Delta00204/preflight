@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Look up customer records in the CRM using the Unbreakable API Lite (Unbreakable API Lite)\n\nFIT\nFully. The supplied customer endpoint provides the requested CRM customer-record lookup capability. No supplied requests are irrelevant.\n\nAUTH\nBearer token authentication.\nHeader: Authorization: Bearer <userToken>\nSupply a valid value for the collection variable `userToken`.\n\nBASE URL\nhttps://www.unbreakableapi.com\n\nSTEPS\n1. GET /api/customers/\n   Params:\n     Authorization: bearer token — `Bearer <userToken>` — request header\n     Query parameter `id` is shown in the schema but disabled, with no example value; do not send it unless the API requires an enabled customer filter.\n   Returns:\n     The request has no saved response examples, so the response status and body fields are not specified by the supplied schema.\n   Threading:\n     None\n\nGOTCHAS\n- Replace the empty `userToken` collection variable with a valid bearer token before calling the endpoint.\n- The URL uses the resolved collection variable `baseUrl`: `https://www.unbreakableapi.com`.\n- The `id` query parameter is disabled in the request schema, so this call does not specify a particular customer ID.\n- The response shape and success status are not documented in the supplied request."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Open an issue in a GitHub repository (GitHub)\n\nFIT\n  Not at all. The supplied request only lists open issues; it does not create or open a new issue. Search for a GitHub issue-creation endpoint, such as the repository issues creation operation."
+    }
+  ]
+}

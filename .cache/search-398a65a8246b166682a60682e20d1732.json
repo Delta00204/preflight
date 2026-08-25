@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9a0Y1yZaTh6i1s3XQtMOi56yait1WPed6OF248wpyZjlCVBOZ4:brewing:create-or-update-ticket",
+      "name": "Create or Update Ticket Field Option",
+      "description": "Creates or updates an option for the given drop-down ticket field.\nTo update an option, include the id of the option in the custom_field_option object. Example:\n{\"custom_field_option\": {\"id\": 10002, \"name\": \"Pineapples\", ... }\nIf an option exists for the given ID, the option will be updated. Otherwise, a new option will be created.\nResponse\nReturns one of the following status codes:\n\n200 with Location: /api/v2/ticket_fields/{ticket_field_id}/options.json if the ticket field option already",
+      "method": "POST",
+      "url": "https://support.zd-dev.com/api/v2/ticket_fields/:ticket_field_id/options",
+      "evaluateGuide": "Creates a new option or updates an existing option for a drop-down ticket field. Use the option identifier to modify an existing value.\nUse for: add a field option, rename an option, modify option details\nNot supported: creating ticket fields, updating tickets, managing forms",
+      "provider": "Zendesk",
+      "product": "Zendesk Support"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9alEh1D7MFVVe23yqA04eioasf243lNXqSsFf5nHrZtlRe08Zx:brewing:update-ticket-form",
+      "name": "Update Ticket Form",
+      "description": "Allowed For\n\nAdmins",
+      "method": "PUT",
+      "url": "https://support.zd-dev.com/api/v2/ticket_forms/:ticket_form_id",
+      "evaluateGuide": "Updates an existing ticket form for administrators. Supply the form identifier and changed properties.\nUse for: rename a form, change form settings, update form configuration\nNot supported: creating forms, editing tickets, managing field options",
+      "provider": "Zendesk",
+      "product": "Zendesk Support"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2cormbONjQx3T1DCpGSglPeFYW0yJpuW7VgkJnjCRYij1gZotYJy:hubspot:create-email-for-support",
+      "name": "Create Email for Support Ticket",
+      "description": "Create a email with the given properties and return a copy of the object, including the ID. Documentation and examples for creating standard emails is provided.",
+      "method": "POST",
+      "url": "{{baseUrl}}/crm/v3/objects/emails",
+      "evaluateGuide": "Creates an email record associated with support operations and returns the created object with its identifier.\nUse for: log a support email, create an email record, capture escalation correspondence\nNot supported: sending email, creating tickets, updating contacts",
+      "provider": "HubSpot",
+      "product": "HubSpot CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9al2qn7n9Uv926peKqzbni9ARUhQiLoxsoXfhA6FWriPIODD7r:integration:create-or-update-ticket",
+      "name": "Create or Update Ticket Field Option",
+      "description": "Creates or updates an option for the given drop-down ticket field.\nTo update an option, include the id of the option in the custom_field_option object. Example:\n{\"custom_field_option\": {\"id\": 10002, \"name\": \"Pineapples\", ... }\nIf an option exists for the given ID, the option will be updated. Otherwise, a new option will be created.\nResponse\nReturns one of the following status codes:\n\n200 with Location: /api/v2/ticket_fields/{ticket_field_id}/options.json if the ticket field option already",
+      "method": "POST",
+      "url": "https://support.zd-dev.com/api/v2/ticket_fields/:ticket_field_id/options",
+      "evaluateGuide": "Creates a new option or updates an existing option for a drop-down ticket field. Use the option identifier to modify an existing value.\nUse for: add a field option, rename an option, modify option details\nNot supported: creating ticket fields, updating tickets, managing forms",
+      "provider": "Zendesk",
+      "product": "Zendesk Support"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4raYUc8Z5ffVY4CtZ1Fm8AVd4EZXrpkeow5oSilvG0eqDvcdEFK:postman:update-ticket",
+      "name": "Update Ticket",
+      "description": "",
+      "method": "PUT",
+      "url": "https://{{zendesk_subdomain}}.zendesk.com/api/v2/tickets/{{ticket_id}}",
+      "evaluateGuide": "Updates an existing Zendesk ticket using its identifier and supplied properties. Fields omitted from the payload remain unchanged.\nUse for: change ticket status, update ticket priority, reassign a ticket\nNot supported: creating tickets, deleting tickets, updating ticket forms",
+      "provider": "Zendesk",
+      "product": "Zendesk Support"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2corj3udYF1IXjMZSrW3hP69zkwRvCh1h4B1SrGmeRJj5tj2pb6s:hubspot:create-or-update-a-batch",
+      "name": "Create or update a batch of tickets by unique property values",
+      "description": "Create or update records identified by a unique property value as specified by the idProperty query param. idProperty query param refers to a property whose values are unique for the object.",
+      "method": "POST",
+      "url": "https://api.hubapi.com/crm/v3/objects/tickets/batch/upsert",
+      "evaluateGuide": "Creates or updates multiple HubSpot ticket records using a unique property value for matching. The response reports the resulting records.\nUse for: batch upsert tickets, synchronize ticket records, update tickets by external ID\nNot supported: deleting tickets, querying tickets, managing ticket pipelines",
+      "provider": "HubSpot",
+      "product": "HubSpot CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2corkMPu6oVqstLzATxvGqz04d0eFESQmxowFDDqcQiA9fvKkTcW:hubspot:create",
+      "name": "Create",
+      "description": "Create a ticket with the given properties and return a copy of the object, including the ID. Documentation and examples for creating standard tickets is provided.",
+      "method": "POST",
+      "url": "https://api.hubapi.com/crm/v3/objects/tickets",
+      "evaluateGuide": "Creates a HubSpot ticket with supplied properties and returns the created object, including its identifier.\nUse for: create a support ticket, log a customer issue, open a service case\nNot supported: updating tickets, deleting tickets, searching existing tickets",
+      "provider": "HubSpot",
+      "product": "HubSpot CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfP1LAn5OQhYF4uBCm3TbnnOrvMgqMoeNGiEUrvg5BbXnp7NIHqkOQ15BI7F:qualtrics:update-ticket",
+      "name": "Update Ticket",
+      "description": "Using the ticket key, update the ticket. There are a few key things to note. \n1. At least one key is required in the body to update the ticket \n2. Once assigned, you cannot unset the ownerId, ticketTeamId, or ticketGroupId \n3. If a parameter is not included in the body, the field will not be updated. \n\n\n\nThis API call is only available to organizations that have purchased Closed Loop Follow Up. Organizations not enrolled will receive a 403 with the error code",
+      "method": "PUT",
+      "url": "{{baseUrl}}/tickets/:ticketKey",
+      "evaluateGuide": "Updates an existing Qualtrics ticket by ticket key. Include at least one editable field; omitted fields remain unchanged.\nUse for: change ticket status, update ticket ownership, modify ticket assignment\nNot supported: creating tickets, deleting tickets, retrieving ticket details",
+      "provider": "Qualtrics",
+      "product": "Qualtrics Closed Loop Follow Up"
+    }
+  ],
+  "meta": {
+    "q": "create and update a customer support ticket",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

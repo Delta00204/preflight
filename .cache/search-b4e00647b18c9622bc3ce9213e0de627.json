@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9a1fHaG7ixHgQc6cqQavirBYEryDRbnRmeglgH6iZKzdy0zGst:brewing:send-sms-message-to-a-mo",
+      "name": "Send SMS message to a mobile number",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.sendinblue.com/v3/transactionalSMS/sms",
+      "evaluateGuide": "Sends a transactional SMS to a mobile number through Brevo's SMS service. Use it to deliver an individual outbound message.\nUse for: send one SMS, deliver alerts, send transactional messages\nNot supported: campaign scheduling, delivery subscriptions, inbound SMS",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznoTuNfS5YynhryAaENOi3OZ3IXUoxhNWm6p3LRzbGoVhOCtdsy:published:sms-via-twilio",
+      "name": "SMS via Twilio",
+      "description": "Using Twilio test credentials to run this POST request to send an SMS.\nRead more about the Twilio Messaging API.",
+      "method": "POST",
+      "url": "https://api.twilio.com/2010-04-01/Accounts/{{twilioAccountSID}}/Messages.json",
+      "evaluateGuide": "Sends an SMS message through Twilio Messaging. Use it to deliver a message from a Twilio account to a recipient.\nUse for: send an SMS, send test messages, deliver notifications\nNot supported: campaign management, delivery subscriptions, inbound message handling",
+      "provider": "Twilio",
+      "product": "Twilio Messaging"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9al1zCaaGcWoVCKp7XoFBjTXzgUBl8b17kP6s1s526MRKBtTJR:brewing:send-your-sms-campaign-i",
+      "name": "Send your SMS campaign immediately",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.sendinblue.com/v3/smsCampaigns/:campaignId/sendNow",
+      "evaluateGuide": "Immediately sends an existing SMS campaign through Brevo. Use it when a prepared campaign is ready for delivery.\nUse for: launch an SMS campaign, send a scheduled campaign now, trigger campaign delivery\nNot supported: campaign creation, individual transactional SMS, test sends",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LL325AcJstIHF9F6hiH0LrnjD44MaReB9rjuMkzCbq5wLht7UGYNED8mIPfr:vodafone:send-sms-request-identif",
+      "name": "Send SMS - request identified by customerID",
+      "description": "Send an outbound SMS to one or many recipients.",
+      "method": "POST",
+      "url": "https://{{VF_SANDBOX_URL}}/omn/api/customer200/smsmessaging/v1/outbound/tel:+44202020202/requests",
+      "evaluateGuide": "Sends an outbound SMS to one or more recipients through Vodafone's OneAPI sandbox. Use it to test customer-identified messaging flows.\nUse for: send outbound SMS, message multiple recipients, test SMS delivery\nNot supported: inbound subscriptions, campaign management, delivery reports",
+      "provider": "Vodafone",
+      "product": "Vodafone OneAPI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIm0rYNIAGAkqM9QKqJojDuhYhLziUr:clicksend:send-sms-message-s",
+      "name": "Send sms message(s)",
+      "description": "Send sms message(s)\nSend one or more SMS messages\nYou can post up to 1000 messages with each API call. You can send to a mix of contacts and contact lists, as long as the total number of recipients is up to 1000. \nThe response contains status and details for each recipient.\nRefer to Application Status Codes for the possible response message status strings.\nResponse Codes\n\n200 SUCCESS\n400 BAD_REQUEST\n401 UNAUTHORIZED\n403 FORBIDDEN\n404 NOT_FOUND\n405 METHODNOTFOUND\n429 TOOMANYREQUESTS",
+      "method": "POST",
+      "url": "https://rest.clicksend.com/v3/sms/send",
+      "evaluateGuide": "Sends one or more SMS messages through ClickSend, supporting up to 1,000 recipients per endpoint call. The response reports status details for each recipient.\nUse for: bulk SMS, send contact-list messages, deliver notifications\nNot supported: campaign scheduling, inbound SMS, delivery subscription management",
+      "provider": "ClickSend",
+      "product": "ClickSend"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4UsnLZm0bcdwGAHCUYqJENsv4S4HgfmRhJXSs0psJOEIBMcC88VnlytTTIQ:published:send-sms",
+      "name": "Send SMS",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.twilio.com/2010-04-01/Accounts/{{twilioAccountSID}}/Messages.json",
+      "evaluateGuide": "Sends an SMS message through Twilio Messaging. Use it to deliver an outbound message from a Twilio account.\nUse for: send an SMS, deliver alerts, test messaging\nNot supported: campaign management, inbound message handling, delivery subscriptions",
+      "provider": "Twilio",
+      "product": "Twilio Messaging"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JiYmI81Qq0sj8QePHiX4Z6hgASoHFkN39APmxLizxcq72rpjU1yqgJvxSpbq:clicksend:sms-send-test-numbers",
+      "name": "sms/send test numbers",
+      "description": "Sends SMS messages to one or more test numbers for validation purposes. Accepts a request body containing recipient test numbers and message content. Returns the send status and details for each test message submitted.",
+      "method": "POST",
+      "url": "https://rest.clicksend.com/v3/sms/send",
+      "evaluateGuide": "Sends SMS messages to one or more test numbers through ClickSend for validation. The response provides submission status and details for each test message.\nUse for: validate SMS delivery, send test messages, check recipient handling\nNot supported: production campaign management, inbound SMS, delivery subscriptions",
+      "provider": "ClickSend",
+      "product": "ClickSend"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LL325AcJstIGT902YbayHlU3MZMThgWsz5Rrf9Ys7YqGZCQMZZbPNhBnMtLm:vodafone:subscribe-to-sms-deliver",
+      "name": "Subscribe to SMS delivery - request identified by customerID",
+      "description": "Subscribe to receive SMS delivery notifications for inbound SMS.",
+      "method": "POST",
+      "url": "https://{{VF_SANDBOX_URL}}/omn/api/customer200/smsmessaging/v1/inbound/subscriptions",
+      "evaluateGuide": "Creates a subscription for SMS delivery notifications through Vodafone's OneAPI sandbox. Use it to receive notifications about inbound SMS activity.\nUse for: subscribe to SMS notifications, monitor inbound SMS, test delivery subscriptions\nNot supported: sending outbound SMS, campaign management, message retrieval",
+      "provider": "Vodafone",
+      "product": "Vodafone OneAPI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9al2nHVW5Vlj8JBu158UlS49g13IoDvD8DAsQq7Vh6s7LYQVQg:brewing:send-a-test-sms-campaign",
+      "name": "Send a test SMS campaign",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.sendinblue.com/v3/smsCampaigns/:campaignId/sendTest",
+      "evaluateGuide": "Sends a test message for an existing SMS campaign through Brevo. Use it to validate campaign content before broader delivery.\nUse for: test an SMS campaign, preview campaign delivery, validate recipients\nNot supported: immediate campaign launch, campaign creation, transactional SMS",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZzEBf5VIcFEOC49llRVH12z42Z7d6QTDMcgIU7Uc7LAGyYu6i:devops:send-sms-message-to-a-mo",
+      "name": "Send SMS message to a mobile number",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.brevo.com/v3/transactionalSMS/sms",
+      "evaluateGuide": "Sends a transactional SMS to a mobile number through Brevo's SMS service. Use it to deliver an individual outbound message.\nUse for: send one SMS, deliver alerts, send transactional messages\nNot supported: campaign scheduling, delivery subscriptions, inbound SMS",
+      "provider": "Brevo",
+      "product": "Brevo"
+    }
+  ],
+  "meta": {
+    "q": "send an SMS notification",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

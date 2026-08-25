@@ -1,0 +1,63 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgzWAGXmnc9iozYpVzVFFIAMQL7nPD89Q4CkDBRpReOqMYRHwolAGrAP6f0k:whatsapp:get-endpoint-request-err",
+      "name": "Get Endpoint Request Error Rate Metric",
+      "description": "Can request specific fields by enabling the `fields` query param",
+      "method": "GET",
+      "url": "https://graph.facebook.com/v18.0/<FLOW_ID>?fields=metric.name(ENDPOINT_REQUEST_ERROR_RATE).granularity(LIFETIME).since(2024-01-28).until(2024-01-30)",
+      "evaluateGuide": "Retrieves the WhatsApp Flow endpoint request error-rate metric over a lifetime or specified date range. Selects the metric through the fields parameter.\nUse for: measuring endpoint errors, checking Flow reliability, retrieving date-range metrics\nNot supported: editing Flows, retrieving message analytics, changing metric data",
+      "provider": "Meta",
+      "product": "WhatsApp Business Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LL3hJy19KjAvHcoyGiHA3je0tWY6cvDDHijNlJ8gr9mwpMdiQwpEVSmC6ysT:mongodb:return-atlas-search-metr",
+      "name": "Return Atlas Search Metrics for One Index in One Specified Namespace",
+      "description": "Returns the Atlas Search metrics data series within the provided time range for one namespace and index name on the specified process. You must have the Project Read Only or higher role to view the Atlas Search metric types.",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/atlas/v2/groups/:groupId/hosts/:processId/fts/metrics/indexes/:databaseName/:collectionName/:indexName/measurements?granularity=<string>&period=<string>&start=<dateTime>&end=<dateTime>&envelope=false&metrics=TOTAL_NUMBER_OF_QUERIES&metrics=NUMBER_OF_ERROR_QUERIES",
+      "evaluateGuide": "Returns Atlas Search metric time series for one index and namespace on a specified process within a time range. Use it to inspect query and error-query measurements.\nUse for: viewing Search metrics, analyzing query errors, monitoring an index\nNot supported: changing indexes, editing Search definitions, managing database data",
+      "provider": "MongoDB",
+      "product": "MongoDB Atlas"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEipzeB0fsoOlswow8ihaaffSqdXbQKyX6hwKvmBcGBoxaNRWkcg:oracle:lists-work-request-error",
+      "name": "Lists work request errors",
+      "description": "Returns a paginated list of errors for the specified work request.",
+      "method": "GET",
+      "url": "https://dbtools.{{region}}.oci.oraclecloud.com/20201005/workRequests/:workRequestId/errors?sortOrder=ASC&sortBy=timeCreated&page=<string>&limit=10",
+      "evaluateGuide": "Returns a paginated list of errors associated with a specified OCI work operation, with sorting and page controls.\nUse for: inspecting operation failures, paging through errors, sorting error records\nNot supported: creating operations, retrying failures, changing database resources",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OYSlDe6Cc7pbsoa821NhTC5behpsOdFEkkyjmDuJFBoy6DQsjyVUp1EINfxF:dynatrace:lists-all-available-fail",
+      "name": "Lists all available failure detection parameter sets | maturity=EARLY_ADOPTER",
+      "description": "",
+      "method": "GET",
+      "url": "https://hma62016.live.dynatrace.com/api/config/v1/service/failureDetection/parameterSelection/parameterSets",
+      "evaluateGuide": "Lists the available failure-detection parameter sets in Dynatrace configuration. Use the response to discover selectable detection settings.\nUse for: discovering parameter sets, reviewing failure-detection options, preparing configuration\nNot supported: applying settings, editing services, retrieving runtime metrics",
+      "provider": "Dynatrace",
+      "product": "Dynatrace"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OY4buTBbq79tmGwEuBo6fYnmTeuaQM3MqXXNYhwE6nbLDQ8yo4mjI9rINDOi:aws:list-metrics",
+      "name": "List Metrics",
+      "description": "Lists the metrics that can be exported.",
+      "method": "POST",
+      "url": "https://resiliencehub.{{region}}.amazonaws.com/list-metrics",
+      "evaluateGuide": "Lists metrics available for export from AWS Resilience Hub. The endpoint returns the supported metric catalog for export workflows.\nUse for: discovering exportable metrics, selecting resilience metrics, preparing monitoring setup\nNot supported: exporting metric values, creating applications, changing resilience assessments",
+      "provider": "Amazon",
+      "product": "AWS Resilience Hub"
+    }
+  ],
+  "meta": {
+    "q": "query application error metrics from a monitoring tool",
+    "total": 5
+  }
+}

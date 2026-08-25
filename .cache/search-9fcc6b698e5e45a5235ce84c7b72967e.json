@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7ukgRJXBzWltNcLwewyy0jDp6H83U:reportforge:generate-a-report-from-c",
+      "name": "Generate a report from CSV data",
+      "description": "Parse a CSV string (first row must be a header) and render it as a complete, styled HTML report using the specified template.\nDocumentation: https://reportforge-api.vercel.app/docs\nQuick Start:\n- POST JSON { \"csv\": \"header1,header2\\nrow1col1,row1col2\", \"template\": \"sales-summary\" } to /api/csv-to-report\n- Content-Type: application/json required\n- Free tier: no API key required (5 reports/day, 100 KB input). Paid tiers require an API key.\nParameters Explained:\n- csv (required, string): Raw CSV text. First row must be a header row. Must have at least one data row.\n- template (required, string): One of the supported templates (sales-summary, expense-report, inventory-status, invoice, project-status, payroll-summary, meeting-minutes).\n- title (optional, string): Custom report title.\n- delimiter (optional, string): Field delimiter character. Default: \",\". Example: \";\" for semicolon-separated CSV.\nCommon Errors & Fixes:\n- 400 INVALIDINPUT: Missing csv, malformed CSV, or unknown template. Ensure CSV has a header row and at least one data row.\n- 401 UNAUTHORIZED: Missing or invalid API key when on a paid tier.\n- 413 INPUTTOOLARGE: Payload exceeds tier size limit.\n- 429 RATELIMITED: Daily report limit exceeded.\nEdge Cases:\n- CSV must include a header row; otherwise columns cannot be inferred.\n- Use delimiter when input uses a non-comma separator.\nRate Limits & Constraints:\n- Same tier limits as other report endpoints (Free: 5/day & 100 KB; Starter: 100/day & 2 MB; Business: unlimited & 10 MB). Daily reset at midnight UTC.",
+      "method": "POST",
+      "url": "",
+      "evaluateGuide": "Converts supplied CSV text into a styled HTML report using a selected template. The endpoint accepts report data and returns the rendered report.\nUse for: generate sales reports, render CSV data, create HTML summaries\nNot supported: spreadsheet export, chart-only output, report retrieval",
+      "provider": "ReportForge",
+      "product": "ReportForge"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0jnb3OFSCEIEjcLKBw2v2lYULNea5pa2H7yjd5ZBVmr2BFFi1o:docusign-s:returns-the-specified-re",
+      "name": "Returns the specified report as a CSV string",
+      "description": "",
+      "method": "PUT",
+      "url": "{{baseUrl}}/v2.1/accounts/{{accountId}}/reports/report_results_csv",
+      "evaluateGuide": "Returns the specified DocuSign report as CSV text for an account. Use it to export report results from the eSignature platform.\nUse for: export report results, retrieve account reports, obtain CSV data\nNot supported: creating reports, PDF export, report scheduling",
+      "provider": "DocuSign",
+      "product": "eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlza561uPhgLWn0wqe4q2dNTuFJM3E:kevel:public-csv-download-queu",
+      "name": "Public CSV Download (Queued/Scheduled Report)",
+      "description": "Public unauthenticated CSV download URL for a report run. This endpoint is typically surfaced via the report_run_csv_url field returned in ReportRuns or Poll for Queued Report Result when CsvReportVisibility is public.\nDocumentation / reference mentions: referenced in Create Queued Report and Report Runs docs (example downloads). No dedicated page, example usage shown in Create Queued Report docs.\nQuick Start:\n- If a report run includes report_run_csv_url and it points to a public path, you may GET that URL directly (no API key required) to download the CSV.\n- Example URL pattern: https://reports.adzerk.com/r/{reportGuid}/srr/{runId}/e/{networkId}?filename={filename}\nParameters Explained (query):\n- filename (optional): When present, server will set Content-Disposition to provide a suggested filename for the CSV.\nCommon Errors & Fixes:\n- 404 Not Found: The public URL expired or was not created (report run expired or was not granted public visibility).\n- 403 Forbidden: The URL is not public; ensure CsvReportVisibility was set to public when queuing the report.\nEdge Cases:\n- Public download links expire (report runs persist for 10 days; link expiry may be shorter, documentation/example links mention 7-day link expiry for some UI links).\n- Using filename query param will set Content-Disposition header with the requested filename if supported.\nRate Limits & Constraints:\n- These URLs are unauthenticated and should be treated as public; do not expose sensitive data if making them public.",
+      "method": "GET",
+      "url": "https://reports.adzerk.com/r/guid-here/srr/12345/e/1234",
+      "evaluateGuide": "Downloads a publicly accessible CSV file for a queued or scheduled Kevel report run. Use the supplied public report URL to retrieve completed report data without credentials.\nUse for: download queued reports, retrieve scheduled CSVs, access public report runs\nNot supported: creating report runs, private downloads, report filtering",
+      "provider": "Kevel",
+      "product": "Reporting API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyVhgRhkIPihZaxwgVSyP2akkjYzg:cloudguard:protected-assets-report",
+      "name": "Protected Assets Report - Export To Csv (DownloadCSV)",
+      "description": "Exports protected-assets report results to CSV and returns the CSV download stream.\nDocumentation: https://docs.cgn.portal.checkpoint.com/reference/protectedassetsreportexporttocsvdownloadcsvpost_v2protectedassetsreportexporttocsvdownloadcsv\nOverview:\nThis POST endpoint requests generation (or retrieval) of a protected-assets CSV report and returns the CSV file as a download/stream. The request accepts a searchRequest object (simple filter/search payload) and supports recipients (an array of email addresses) for emailing the report.\nQuick Start:\n- Set the collection base URL ({{baseUrl}}) to https://api.dome9.com.\n- Use HTTP Basic authentication (username/password).\n- Send a POST to /v2/ProtectedAssetsReport/exportToCsv/downloadCSV with a JSON body containing searchRequest and, optionally, recipients.\n- Minimum: supply valid Basic auth credentials and a body with any required search criteria; to receive emailed CSV, include recipients.\nParameters Explained:\n- searchRequest (object, required-ish depending on backend): search/filter object for protected assets. The docs list recipients inside it. Provide other search fields if your integration requires them.\n  - recipients (array of string): list of email addresses to which the report will be sent. Example: [\"user@example.com\"].\nHeaders:\n- Content-Type: application/json (default). The API also lists application/x-www-form-urlencoded as an accepted content type for form-style requests.\n- Accept: application/json or application/octet-stream/text/csv depending on client expectation. The endpoint typically returns CSV content with Content-Type: text/csv.\nCommon Errors & Fixes:\n- 400 Bad Request — usually the body is missing or invalid (e.g., malformed JSON, missing required searchRequest fields). Ensure Content-Type: application/json and a valid JSON body.\n- 401 Unauthorized — Basic auth missing or incorrect. Provide valid username/password credentials.\n- 403 Forbidden — authenticated user lacks permission to generate/report exports. Verify account permissions/roles.\n- 500 Internal Server Error — server-side issue; retry after a brief wait and contact support if it persists.\nEdge Cases:\n- If recipients are provided, the server may queue the email and return the CSV stream or a download token — behavior can vary; check response headers such as Content-Disposition and other returned metadata.\n- CSV result may be large; client should be prepared to stream the response instead of buffering entirely in memory.\n- Some clients / SDK examples may return a download token/UUID instead of direct CSV body. If you receive a token, call the appropriate download endpoint (site has related endpoints such as EntityReport/Download/{reportRequestUuid}).\nRate Limits & Constraints:\n- The documentation page does not list explicit rate limits. Treat exports as potentially expensive operations — avoid frequent repeated exports in short bursts.",
+      "method": "POST",
+      "url": "https://api.dome9.com/v2/ProtectedAssetsReport/exportToCsv/downloadCSV",
+      "evaluateGuide": "Exports protected-assets report results to CSV and returns the file as a download stream. Search criteria and optional recipients select the report contents.\nUse for: download asset reports, export filtered assets, retrieve CSV streams\nNot supported: asset changes, report links, non-CSV formats",
+      "provider": "Check Point",
+      "product": "CloudGuard"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyVhgRhitutq4p3CkBEOxZtNtem3h:cloudguard:protected-assets-report",
+      "name": "Protected Assets Report - Export To Csv",
+      "description": "Exports protected assets search results to CSV (generates an export job or sends CSV by email).\nDocumentation: https://docs.cgn.portal.checkpoint.com/reference/protectedassetsreportexporttocsvpost_v2protectedassetsreportexporttocsv\nQuick Start:\n- Set {{baseUrl}} to https://api.dome9.com\n- Use Basic authentication (username/password)\n- POST a JSON body containing the searchRequest object. To email the CSV include recipients in searchRequest.recipients.\nParameters Explained:\n- searchRequest (object, required): Search request payload for selecting protected assets to export. At minimum you can provide:\n  - recipients (array[string], optional): recipient email addresses to send the CSV by email. Example: [\"{{recipientEmail}}\"]\nCommon Errors & Fixes:\n- 400 Bad Request: Malformed JSON, missing required search criteria, or invalid parameter values. Ensure Content-Type: application/json and valid JSON body.\n- 401 Unauthorized: Invalid or missing Basic credentials. Provide valid username/password.\n- 403 Forbidden: Authenticated account lacks permission to run exports. Use an account with proper privileges.\n- 500 Internal Server Error: Server-side failure — retry after a short wait and contact support if persistent.\nEdge Cases:\n- If recipients is empty or omitted, the API may queue the CSV for download rather than email it (behavior may vary by deployment).\n- Very large result sets may queue background jobs — export may be asynchronous.\nRate Limits & Constraints:\n- Not specified on this page. Respect organizational API rate limits and implement exponential backoff for retries.",
+      "method": "POST",
+      "url": "https://api.dome9.com/v2/ProtectedAssetsReport/exportToCsv",
+      "evaluateGuide": "Exports protected-assets search results to CSV, generating an export job or sending the result by email. A search payload determines which assets are included.\nUse for: export protected assets, email CSV reports, create export jobs\nNot supported: direct file streaming, asset updates, PDF reports",
+      "provider": "Check Point",
+      "product": "CloudGuard"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyVhgRhitanTGNyZWGVAYqiDG9Vmj:cloudguard:protected-assets-report",
+      "name": "Protected Assets Report - Export To Csv (Download Link)",
+      "description": "Requests a download link for a previously prepared or newly generated Protected Assets Report CSV.\nDocumentation: https://docs.cgn.portal.checkpoint.com/reference/protectedassetsreportexporttocsvdownloadlinkpost_v2protectedassetsreportexporttocsvdownloadlink\nQuick Start:\n- Set {{baseUrl}} to https://api.dome9.com\n- Use Basic authentication (username/password)\n- POST a JSON body containing the searchRequest to receive a download link (or to request the generation of an export and a link).\nParameters Explained:\n- searchRequest (object, required): Search request payload for protected assets. Common field:\n  - recipients (array[string], optional): recipients for email delivery. (If API supports additional options for link generation they would appear in the body; this page documents recipients.)\nCommon Errors & Fixes:\n- 400 Bad Request: Ensure the body is valid JSON and searchRequest is well-formed.\n- 401 Unauthorized: Provide valid Basic credentials.\n- 404 Not Found: The requested export/job does not exist (if referencing an existing job id).\nEdge Cases:\n- The returned download link may be time-limited; download it before it expires.\n- Large exports may generate asynchronous jobs and the download link may be returned once generation completes.\nRate Limits & Constraints:\n- Not specified on this page.",
+      "method": "POST",
+      "url": "https://api.dome9.com/v2/ProtectedAssetsReport/exportToCsv/downloadLink",
+      "evaluateGuide": "Creates or locates a protected-assets CSV export and returns a download link. Use search criteria to select the assets included in the export.\nUse for: generate CSV links, export asset searches, retrieve report downloads\nNot supported: direct CSV streaming, asset modification, non-report exports",
+      "provider": "Check Point",
+      "product": "CloudGuard"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JixD4klujqoXl4hxuUh35HFz6goXrdP6gNfNr6VPXWNkIMBpXu3gmVq6DWFA:paddle:get-a-csv-file-for-a-rep",
+      "name": "Get a CSV file for a report",
+      "description": "Returns a link to a CSV file for a report.\nOnly returned for reports that are ready. This means Paddle has completed processing the report and it's ready to download.\nThe link returned is not a permanent link. It expires after 3 minutes.",
+      "method": "GET",
+      "url": "https://sandbox-api.paddle.com/reports/:report_id/download-url",
+      "evaluateGuide": "Returns a temporary download URL for a completed Paddle report. Use it when report processing is finished and the CSV file is ready.\nUse for: download billing reports, retrieve report files, get temporary CSV URLs\nNot supported: report creation, processing status, permanent links",
+      "provider": "Paddle",
+      "product": "Paddle Billing"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyVhgS76kk0gYLpFbot4fTzmtJc0o:cloudguard:get-assessment-executive",
+      "name": "Get Assessment Executive ReportCSV",
+      "description": "Retrieves a CSV executive report for a specific assessment.\nDocumentation: Get Assessment Executive ReportCSV\nQuick Start:\n- Use HTTP GET against the assessment's ExecutiveReport CSV path.\n- Authentication: Basic Auth (username/password) is required.\n- Minimum required: provide assessmentId (int64) in the path and valid Basic credentials.\nParameters Explained:\n- assessmentId (path, required): The numeric identifier (int64) of the assessment to export. Example placeholder: {{assessmentId}}.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing or invalid Basic credentials. Ensure {{username}} and {{password}} are correct.\n- 404 Not Found: assessmentId not found. Verify the ID is correct and that the assessment exists.\n- 400 Bad Request: Malformed request (e.g., invalid assessmentId format). Ensure assessmentId is a valid integer.\n- 500 Internal Server Error: Server-side problem; retry after a short delay and contact support if it persists.\nEdge Cases:\n- The endpoint returns CSV content (binary/text) — some HTTP clients may need to explicitly accept text/csv and handle the raw response body accordingly.\n- Large reports may be sizable; streaming or saving to disk is recommended for large CSV responses.\nRate Limits & Constraints:\n- The documentation page does not list explicit rate limits. Follow typical API best practices (throttle retries, exponential backoff). If your account has specific quotas, consult account billing/limits documentation or support.",
+      "method": "GET",
+      "url": "https://api.dome9.com/v2/AssessmentHistoryV2/assessment-id-here/ExecutiveReport/csv"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31pIZUdnfd8XolsNfUIkqpWSlnN1m:smartling:export-word-count-in-csv",
+      "name": "Export Word Count in CSV format",
+      "description": "Exports the Word Count report in CSV format for the specified parameters.\nDocumentation: https://api-reference.smartling.com/#operation/exportWordCountReport\nQuick Start:\n- Authenticate and obtain a Bearer token.\n- Provide startDate, endDate, and accountUid query parameters.\n- Call the GET /word-count/csv endpoint. The response will be CSV (text/csv).\nParameters Explained:\n- startDate (required): Limit words processed on or after this date. Format: YYYY-MM-DD. Timezone: America/NewYork.\n- endDate (required): Limit words processed on or before this date. Format: YYYY-MM-DD. Timezone: America/NewYork.\n- accountUid (required): The account's unique identifier.\n- projectIds, jobUids, agencyUid, userUids, targetLocaleIds, workflowStepTypes, offset: same semantics as JSON word-count endpoint.\nCommon Errors & Fixes:\n- 400 Bad Request: Missing required params or malformed values. Ensure dates and required params are present.\n- 401 Unauthorized: Invalid or expired access token.\n- 429 Too Many Requests: Throttled — retry after an interval.\n- 500 Internal Server Error: Server issue — retry and contact support if persistent.\nEdge Cases:\n- CSV output may be large for long date ranges; prefer paging/filtered queries or the JSON endpoint with pagination for programmatic processing.\n- CSV uses the same America/New_York date interpretation.\nRate Limits & Constraints:\n- Same rate-limiting rules apply; downloading large CSVs may be subject to quotas. Use smaller date ranges if you hit limits.",
+      "method": "GET",
+      "url": "https://api.smartling.com/reports-api/v3/word-count/csv",
+      "evaluateGuide": "Exports Smartling word-count report data as CSV for an account and date range. Use it to analyze processed translation volume over a specified period.\nUse for: export word counts, filter by dates, download translation metrics\nNot supported: translation submission, project changes, other report types",
+      "provider": "Smartling",
+      "product": "Smartling Translation Management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7tT2aro5Ir97zGQGHF2fAjB0MzAHu:malwarebazaar:download-export-csv-rece",
+      "name": "Download Export CSV (recent)",
+      "description": "Downloads the \"recent\" CSV export file (hash list) for MalwareBazaar.\nDocumentation: https://bazaar.abuse.ch/export/\nOverview:\nRetrieves the CSV export file containing recent malware hashes. The Export documentation shows an example curl which downloads the recent CSV export by including your Auth-Key as part of the URI path. Recent datasets include hashes from the last 48 hours and are generated every 5 minutes.\nQuick Start:\n- Obtain an Auth-Key from the abuse.ch Authentication Portal (https://auth.abuse.ch).\n- Replace YOUR-AUTH-KEY-HERE with your Auth-Key in the path segment.\n- Issue a GET request to the endpoint; the response is a CSV file (Content-Type: text/csv).\nParameters Explained:\n- authKey (required, path) — Your personal Auth-Key issued via the abuse.ch Authentication Portal. Place it in the path segment where shown (/v2/files/exports/{{authKey}}/recent.csv).\nCommon Errors & Fixes:\n- 401 Unauthorized / no_api_key: You did not provide a valid Auth-Key. Ensure authKey is correct and not expired. Obtain or renew at https://auth.abuse.ch.\n- 403 Forbidden / user_blacklisted: Your API key has been blacklisted. Contact Spamhaus/abuse.ch support.\n- 429 Too Many Requests: You are fetching the dataset too frequently. Respect the generation cadence (see Rate Limits).\n- 404 Not Found: The path or authKey is invalid. Verify the URL and your authKey.\nEdge Cases:\n- The export file is generated periodically — a recently generated batch may be empty if no new hashes were added since the last generation.\n- The CSV content may include header or comment lines; treat the payload as a CSV file, not JSON.\nRate Limits & Constraints:\n- Recent datasets are generated every 5 minutes; please do not fetch them more often than every 5 minutes.\n- Full data dumps are generated once per hour; please do not fetch them more often than once per hour.\nDocumentation URL: https://bazaar.abuse.ch/export/",
+      "method": "GET",
+      "url": "https://mb-api.abuse.ch/v2/files/exports/{{authKey}}/recent.csv",
+      "evaluateGuide": "Downloads MalwareBazaar's recent CSV hash export, containing malware hashes from the latest dataset period. Use the authenticated export path to retrieve the file.\nUse for: download recent hashes, ingest malware indicators, retrieve CSV exports\nNot supported: malware submission, sample analysis, historical exports",
+      "provider": "abuse.ch",
+      "product": "MalwareBazaar"
+    }
+  ],
+  "meta": {
+    "q": "export a report as CSV",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

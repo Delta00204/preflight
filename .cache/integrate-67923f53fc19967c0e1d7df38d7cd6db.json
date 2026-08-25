@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Look up transactions for a corporate card (Corporate Card Spend Monitoring)\n\nFIT\n  Fully. The supplied request provides the capability to look up transactions for a specified corporate card. No supplied requests are irrelevant.\n\nAUTH\n  No authentication is specified in the request or collection context.\n\nBASE URL\n  The base URL is unresolved: `baseUrl` references `{{requestsForFlowCorporateCardSpendMonitoringBaseUrl}}`, so supply the configured API origin before calling the request.\n\nSTEPS\n  1. GET /cards/{cardId}/transactions\n     Params:\n       cardId: string — the corporate card ID supplied by the caller (for example, `<card_id>`); place it in the path as `/cards/{cardId}/transactions`.\n     Returns:\n       The request has no saved response example, so the response status and body fields are not specified.\n     Threading:\n       None\n\nGOTCHAS\n  - Resolve `baseUrl` before making the call; the provided collection value is itself the unresolved placeholder `{{requestsForFlowCorporateCardSpendMonitoringBaseUrl}}`.\n  - Substitute `cardId` as a path segment, not a query parameter or request body field.\n  - No headers, request body, content type, pagination parameters, or response fields are specified."
+    }
+  ]
+}

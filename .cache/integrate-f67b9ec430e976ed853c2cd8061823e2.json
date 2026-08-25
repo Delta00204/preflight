@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Look up an order and its shipping status for support resolution using the Shippo API (Shippo)\n\nFIT\n  Partially. The supplied request can retrieve an existing order for order and status questions, but no supplied request issues refunds. All supplied requests serve the task.\n\nAUTH\n  API-key authentication\n  Header: Authorization: ShippoToken <apikey>\n  The `apikey` value is not provided in the collection variables and must be supplied separately.\n\nBASE URL\n  https://api.goshippo.com\n\nSTEPS\n  1. GET /orders/{order_object_id}\n     Params:\n       order_object_id: string — the Shippo order object ID, for example `ord_example`; place it in the path.\n       Accept: header — `application/json`; place it in the request header.\n       Authorization: header — `ShippoToken <apikey>`; place it in the request header.\n     Returns:\n       No saved response example is provided. The request is expected to return the existing order resource; the schema does not specify response fields or a status field.\n     Threading:\n       None\n\nGOTCHAS\n  - Replace `{{baseUrl}}` with `https://api.goshippo.com`.\n  - Supply a real Shippo API key for the unresolved `{{apikey}}` placeholder.\n  - Put the order object ID in the URL path, not in the query string or request body.\n  - The request schema does not define a body or specify which returned field contains shipping status; inspect the actual order response.\n  - No refund operation is available among the supplied requests."
+    }
+  ]
+}

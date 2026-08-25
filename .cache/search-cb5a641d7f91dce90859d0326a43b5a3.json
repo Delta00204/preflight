@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4UgqOxSDxXUZdxAglu8lYHahvNy5oLO4OtUl2g9T8dExUD3YqN7FmEq4BYQ:africa-s:bank-transfer",
+      "name": "Bank Transfer",
+      "description": "Move money from your Payment Wallet to bank accounts.",
+      "method": "POST",
+      "url": "https://payments.africastalking.com/bank/transfer",
+      "evaluateGuide": "Moves money from a payment wallet to a bank account through Africa's Talking payments. Use it to initiate a bank transfer.\\nUse for: wallet-to-bank transfers, sending funds to bank accounts, initiating payouts\\nNot supported: card payments, wallet top-ups, balance inquiries",
+      "provider": "Africa's Talking",
+      "product": "Africa's Talking Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgCArwhQuHcU1Kfl394JvAFYFCbYoeiOJ4f70MO6x4F4QlWTUykqNWVZs402:gocardless:create-an-outbound-payme",
+      "name": "Create an outbound payment",
+      "description": "Create a request to send money from your merchant account to a recipient bank account.\nAt a minimum, the following details are required fields:\n\namount in minor units (e.g., pence for GBP, cents for EUR).\nscheme - the payment scheme you want to use.\nrecipient_bank_account - your customer bank account id.",
+      "method": "POST",
+      "url": "https://api-sandbox.gocardless.com/outbound_payments",
+      "evaluateGuide": "Creates an outbound payment from a GoCardless merchant account to a recipient bank account, using a scheme and amount in minor units.\\nUse for: bank payouts, outbound transfers, sending merchant funds, initiating recipient payments\\nNot supported: inbound collections, card payments, payment refunds",
+      "provider": "GoCardless",
+      "product": "GoCardless Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDaOcBMUmrjK1nI4SQQHN1BkvdFdcf3nCmD8byJ11LViKgX8Ugo:adyen:add-a-uk-bank-account",
+      "name": "Add a UK bank account",
+      "description": "Creates a transfer instrument.   A transfer instrument is a bank account that a legal entity owns. Adyen performs verification checks on the transfer instrument as required by payment industry regulations. We inform you of the verification results through webhooks or API responses.  When the transfer instrument passes the verification checks, you can start sending funds from the balance platform to the transfer instrument (such as payouts).  Requests to this endpoint are subject to rate limits:  - Live envi",
+      "method": "POST",
+      "url": "https://kyc-test.adyen.com/lem/v4/transferInstruments",
+      "evaluateGuide": "Creates and verifies a UK bank account transfer instrument owned by a legal entity for later payouts from a balance platform.\\nUse for: adding UK bank accounts, creating transfer instruments, preparing payout destinations\\nNot supported: sending payouts, customer payments, identity verification of individuals",
+      "provider": "Adyen",
+      "product": "Legal Entity Management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7PQT8WWjIsotvpsiKmzO9fHIiKnCO:open:payments-domestic-paymen",
+      "name": "Payments - Domestic Payment Initiation (Credit Transfer)",
+      "description": "Submits a Domestic Payment Initiation request using an authorization string obtained after PSU SCA (payment consent flow).\nDocumentation: https://static.developer.mastercard.com/content/open-banking-connect/Documents/OBConnectAPISpecificationRelease1-21.0v1-0.pdf\nQuick Start:\n- POST payment initiation payload to /payments/domestic-credit-transfers including requestInfo.authorization that contains the authorization code from ASPSP.\nParameters Explained:\n- requestInfo.authorization (required): Authorization data from ASPSP after PSU completes SCA.\n- payments object (required): Payment instruction (creditor details, amount, localInstrument etc.).\n- requestInfo.aspspId (recommended): Target ASPSP identifier.\nCommon Errors & Fixes:\n- 400 FORMAT_ERROR: missing or invalid authorization or payment fields.\n- 400 PROVIDER_ERROR / 400 NOT_FOUND: invalid parameters for chosen ASPSP.\nEdge Cases:\n- Creditor Name may be truncated per ASPSP requirements (e.g., Barclays) — API truncates to 18 characters for domestic payments when sending to Barclays.\n- Debtor account country may be set by ASPSP country to avoid validation failures.\nRate Limits & Constraints:\n- See onboarding docs.",
+      "method": "POST",
+      "url": "https://api.mastercard.com/payments/domestic-credit-transfers",
+      "evaluateGuide": "Submits a domestic credit transfer through Mastercard Open Banking after user authentication, using authorization data and payment details.\\nUse for: domestic transfers, open-banking payments, credit-transfer initiation\\nNot supported: SEPA transfers, cross-border transfers, account information retrieval",
+      "provider": "Mastercard",
+      "product": "Open Banking Connect"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7PQT8WWjDZgd7fR6a4T4RhkTu1Cbo:open:payments-sepa-payment-in",
+      "name": "Payments - SEPA Payment Initiation (Credit Transfer)",
+      "description": "Submits a SEPA Payment Initiation (transfer) using authorization string obtained after PSU SCA.\nDocumentation: https://static.developer.mastercard.com/content/open-banking-connect/Documents/OBConnectAPISpecificationRelease1-21.0v1-0.pdf\nQuick Start:\n- POST to /payments/sepa-credit-transfers with requestInfo.authorization and payments details.\nParameters Explained:\n- authorization (required): Authorization string from ASPSP.\n- payments (required): SEPA payment details (amount, creditor, debtorAccount, etc.).\nCommon Errors & Fixes:\n- 400 FORMAT_ERROR: missing authorization or required payment fields.\nEdge Cases & Constraints:\n- See SEPA-specific validation and the requirement that debtorAccount must be present if debtor details provided.\nRate Limits & Constraints:\n- See onboarding materials.",
+      "method": "POST",
+      "url": "https://api.mastercard.com/payments/sepa-credit-transfers",
+      "evaluateGuide": "Submits a SEPA credit transfer through Mastercard Open Banking with authorization data and SEPA payment details.\\nUse for: SEPA transfers, open-banking payments, European credit transfers\\nNot supported: domestic non-SEPA transfers, cross-border transfers, account information retrieval",
+      "provider": "Mastercard",
+      "product": "Open Banking Connect"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYzol0xJ00DHJm34y1esDnNdgSvSfep8V5GTmvLx5loNcueQeB:free:initiate-a-transfer",
+      "name": "Initiate a transfer",
+      "description": "Use the /transfer/create endpoint to initiate a new transfer.",
+      "method": "POST",
+      "url": "https://{{env_url}}/transfer/create",
+      "evaluateGuide": "Initiates a new transfer through the Plaid transfer creation endpoint.\\nUse for: creating transfers, initiating money movement, starting payment transfers\\nNot supported: transfer status lookup, bank-account linking, refunds",
+      "provider": "Plaid",
+      "product": "Plaid Transfer"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7PQT8WWjF7fD2n36I0dOm92oDA184:open:payments-cross-border-pa",
+      "name": "Payments - Cross-Border Payment Initiation (Credit Transfer)",
+      "description": "Submits a Cross-Border Payment Initiation using ASPSP authorization data obtained after PSU SCA.\nDocumentation: https://static.developer.mastercard.com/content/open-banking-connect/Documents/OBConnectAPISpecificationRelease1-21.0v1-0.pdf\nQuick Start:\n- POST to /payments/cross-border-credit-transfers with requestInfo.authorization and payments details.\nParameters Explained:\n- authorization (required): Authorization string from ASPSP after PSU SCA.\n- payments (required): Cross-border payment details (amount, currency, creditor info).\nCommon Errors & Fixes:\n- 400 FORMAT_ERROR: missing required fields (authorization/payment info).\nEdge Cases:\n- Cross-border payments may return provider-specific status and require additional clearing fields.\nRate Limits & Constraints:\n- See onboarding.",
+      "method": "POST",
+      "url": "https://api.mastercard.com/payments/cross-border-credit-transfers",
+      "evaluateGuide": "Submits a cross-border credit transfer through Mastercard Open Banking after user authentication, including currency and creditor details.\\nUse for: international transfers, cross-border payments, open-banking credit transfers\\nNot supported: domestic transfers, SEPA-only transfers, account information retrieval",
+      "provider": "Mastercard",
+      "product": "Open Banking Connect"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9aju2LpjfHlxkmFvYW0tubrLSohRVcYt3Zfd1KwjzXrAp7mpWT:brewing:create-a-payout",
+      "name": "Create a payout",
+      "description": "To send funds to your own bank account, you create a new payout object. Your Stripe balance must be able to cover the payout amount, or you’ll receive an “Insufficient Funds” error.\nIf your API key is in test mode, money won’t actually be sent, though everything else will occur as if in live mode.\nIf you are creating a manual payout on a Stripe account that uses multiple payment source types, you’ll need to specify the source type balance that the payout s",
+      "method": "POST",
+      "url": "https://api.stripe.com//v1/payouts",
+      "evaluateGuide": "Creates a payout from a Stripe balance to the account holder's bank account.\\nUse for: bank payouts, manual payouts, withdrawing Stripe balance\\nNot supported: customer charges, transfers to third parties, refunds",
+      "provider": "Stripe",
+      "product": "Stripe"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7PQT8WWbVomgfTnEf1FEMWUPb55ZY:open:redeem-domestic-credit-t",
+      "name": "Redeem Domestic Credit Transfer (Payment)",
+      "description": "Redeem (execute) a domestic credit transfer payment which was previously consented by the PSU.\nDocumentation: https://developer.mastercard.com/devzone/api/portal/swagger/open-banking-connect-payment-initiation-service\nQuick Start:\n- POST to /payments/domestic-credit-transfers with a payments object and requestInfo.\nParameters Explained:\n- Payment details (debtor, creditor, instructedAmount, schedule if present) provided under payments.\n- requestInfo.xRequestId (required): Client request id (UUID).\nCommon Errors & Fixes:\n- 400: Missing required fields or invalid payment format.\n- 500/504: Backend errors; retry and escalate if persistent.\nEdge Cases:\n- Domestic schedules use RequestPisDomesticSchedule structure when scheduling recurring payments.\n- Some fields may be mandatory depending on ASPSP profile (e.g., instructionIdentification for CMA9).\nRate Limits & Constraints:\n- Not specified in swagger.",
+      "method": "POST",
+      "url": "https://api.mastercard.com/openbanking/sandbox/connect/api/payments/domestic-credit-transfers",
+      "evaluateGuide": "Executes a previously consented domestic credit transfer through Mastercard Open Banking using payment details and client authorization data.\\nUse for: redeeming payment consents, executing domestic transfers, completing open-banking payments\\nNot supported: creating consents, SEPA transfers, cross-border transfers",
+      "provider": "Mastercard",
+      "product": "Open Banking Connect"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgaPooqVSq0SdUdn20fT97hHYqrX821ZC9wOCSxF9ct9XdaFjklluz9oOKYa:revolut:create-a-transfer-to-ano",
+      "name": "Create a transfer to another account or card",
+      "description": "Make a payment to a counterparty. You can choose either a bank transfer or a card transfer. The resulting transaction has the type transfer.\nIf you make the payment to another Revolut account, either business or personal, the transaction is executed instantly.\nIf the counterparty has multiple payment methods available, for example, 2 accounts, or 1 account and 1 card, you must specify the account or card to which you want to transfer the money (receiver.account_id or receiver.card_id respe",
+      "method": "POST",
+      "url": "{{url}}/api/1.0/pay",
+      "evaluateGuide": "Creates a Revolut payment to a counterparty by bank transfer or card transfer, with the destination account or card selected when needed.\\nUse for: bank transfers, card transfers, Revolut-to-Revolut payments, counterparty payments\\nNot supported: receiving payments, balance transfers, card issuing",
+      "provider": "Revolut",
+      "product": "Revolut Business API"
+    }
+  ],
+  "meta": {
+    "q": "initiate a bank payment transfer",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

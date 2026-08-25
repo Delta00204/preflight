@@ -1,0 +1,74 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfPUsjApzc8z770omqImDWAs3k1bZe5iy7xfI2ER2UBIgXtWbdmymdI9FWGx:datadog-s:create-a-new-service-obj",
+      "name": "Create a new service object",
+      "description": "Create a new service object in the PagerDuty integration.",
+      "method": "POST",
+      "url": "https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services",
+      "evaluateGuide": "Creates a service resource for the PagerDuty integration in Datadog. Use it to configure a new integrated service.\\nUse for: create an integration service, add a PagerDuty service, configure service linkage\\nNot supported: updating services, deleting services, triggering incidents",
+      "provider": "Datadog",
+      "product": "Datadog"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31Ed7SA7ZPAe0IJffuiL5l8NNbEfZ:logicloop:pagerduty-service-integr",
+      "name": "PagerDuty - Service Integration Webhook (create/incidents)",
+      "description": "Trigger a PagerDuty incident via the Service Integration webhook URL (service integration key) configured on your PagerDuty Service.\nDocumentation: https://docs.logicloop.com/actions/destinations/pagerduty\nQuick Start:\n- In PagerDuty, configure a Service Integration and get the integration/webhook URL.\n- Create a PagerDuty action destination in LogicLoop and paste the integration webhook URL.\n- LogicLoop will POST event payloads to that webhook URL when the rule triggers.\nParameters Explained:\n- integrationWebhookUrl (required): The service-specific webhook URL from PagerDuty's service integrations page.\n- Request body: JSON payload per PagerDuty Events API (you may include payload.summary, payload.source, routing_key etc. depending on which Events API version is used).\nCommon Errors & Fixes:\n- 401/403: Invalid or missing integration key; ensure you used the exact webhook URL from PagerDuty.\n- 400 Bad Request: Payload missing required fields or malformed JSON.\nEdge Cases:\n- If the same LogicLoop alert triggers twice quickly, LogicLoop attempts to attach to the existing incident where possible (per docs).\nRate Limits & Constraints:\n- PagerDuty enforces rate limits on event ingestion; consult PagerDuty developer docs for specifics.",
+      "method": "POST",
+      "url": "https://events.pagerduty.com/v2/enqueue",
+      "evaluateGuide": "Submits an event payload to PagerDuty’s service integration endpoint to trigger an incident. Use it for automated incident creation through a configured integration URL.\\nUse for: trigger an incident, send an alert event, create an incident from automation\\nNot supported: incident queries, incident updates, on-call lookup",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznoScC2fUM0qb77iz1JNoSHqIbO4eI7iXsI2dHHL8nrjAo6sJuP:published:pagerduty-authentication",
+      "name": "PagerDuty - Authentication (via manual header)",
+      "description": "From the PagerDuty Developer Platform, read the documentation for Creating incidents using the REST API, and Authentication of REST API calls.\nIn PagerDuty\nGenerate a General Access REST API key as described in the PagerDuty docs.\nIn Postman",
+      "method": "GET",
+      "url": "https://api.pagerduty.com/incidents",
+      "evaluateGuide": "Retrieves PagerDuty incidents through the REST API. Use it to inspect incident data with authenticated access.\\nUse for: list incidents, inspect active incidents, retrieve incident records\\nNot supported: creating incidents, updating incidents, on-call schedules",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4rbNqAcpYbt2QabAMfrJ944FzRB9up2LRokdSnEDQ8gCzBoOABb:postman:create-incident",
+      "name": "Create Incident",
+      "description": "",
+      "method": "POST",
+      "url": "http://api.pagerduty.com/incidents",
+      "evaluateGuide": "Creates a new incident in PagerDuty. Use it to alert responders and start incident tracking.\\nUse for: create an incident, raise an operational alert, start incident response\\nNot supported: listing incidents, updating incidents, on-call lookup",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZtgPuQaHuBXmEXjZys60D3H5Lgm0kHHaRAnBxpFwaZFG1rIgP:flows:get-oncalls",
+      "name": "Get oncalls",
+      "description": "",
+      "method": "GET",
+      "url": "https://api.pagerduty.com/oncalls",
+      "evaluateGuide": "Retrieves PagerDuty on-call assignments. Use it to identify current responders for escalation or routing.\\nUse for: find on-call responders, inspect on-call assignments, route an alert\\nNot supported: creating incidents, managing schedules, changing escalation policies",
+      "provider": "PagerDuty",
+      "product": "PagerDuty"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Mx9ER7F045x7g7mSnOtC160YumNUQnLINUuAqVNZE2CcEwXu7xPFZ0OEHshU:rootly:add-pagerduty-integratio",
+      "name": "Add Pagerduty Integration",
+      "description": "Add a new PagerDuty integration.",
+      "method": "POST",
+      "url": "//pagerduty/integrations",
+      "evaluateGuide": "Adds a PagerDuty integration through Rootly’s on-call health API. Use it to connect PagerDuty with Rootly.\\nUse for: add a PagerDuty integration, connect on-call tooling, configure Rootly integration\\nNot supported: triggering incidents, querying on-call data, removing integrations",
+      "provider": "Rootly",
+      "product": "Rootly"
+    }
+  ],
+  "meta": {
+    "q": "create a pagerduty incident and page the on-call engineer",
+    "total": 6
+  }
+}

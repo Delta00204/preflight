@@ -1,0 +1,6 @@
+{ "name":"Accounts Payable Agent","customer":"Manufacturing, $2B revenue",
+  "goal":"Automate invoice processing and vendor payments.",
+  "capabilities":[
+    "initiate a bank payment transfer to a vendor",
+    "look up a corporate card transaction",
+    "create an invoice in an accounting system"] }

@@ -1,0 +1,31 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Start the server
+        run: |
+          node server.mjs &
+          for i in $(seq 1 40); do
+            curl -sf http://127.0.0.1:7878/api/brief >/dev/null && exit 0
+            sleep 0.25
+          done
+          echo "server did not start"; exit 1
+
+      # The committed Orbit cache makes this deterministic and offline. No live
+      # API calls are made, so the suite cannot fail on someone else's rate limit.
+      - name: Run the verification suite
+        run: node validate.mjs

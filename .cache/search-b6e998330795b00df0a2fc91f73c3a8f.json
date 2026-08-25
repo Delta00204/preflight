@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvqTmvSDGVlnf9ds5ciF1x5KrMIeA9gKOGGuc4a6oxZkpBtlWa:zoho:accounts",
+      "name": "Accounts",
+      "description": "To get the list of available records in the Accounts module.",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/Accounts?fields=Account_Name,Phone,Industry&per_page=5",
+      "evaluateGuide": "Retrieves a page of records from the Zoho CRM Accounts module, with selected account fields. Use it to inspect available account records.\nUse for: list accounts, preview account names, retrieve phone numbers, filter returned fields\nNot supported: creating, updating, deleting, or retrieving one account",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvuu9243ZuoO8ofMcPWYEeHvqepMOnSyPjVVB2D1bMplerFA0c:zoho:invoices",
+      "name": "Invoices",
+      "description": "To get the list of available records in the Invoices module.",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/Invoices?fields=Status,Grand_Total",
+      "evaluateGuide": "Retrieves a page of records from the Zoho CRM Invoices module with status and total fields. Use it to review available invoices.\nUse for: list invoices, check invoice statuses, read invoice totals, preview billing records\nNot supported: creating, updating, deleting, or retrieving one invoice",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I46A8vpdamwWQiCI5tlm1kMnbxVHs9Z5I2krjweZ1Kc6A9fqijtT4KPy4ODg:belvo:list-all-accounts",
+      "name": "List all accounts",
+      "description": "Documentation 📖\nSee detailed documentation for the List all accounts call in our API Reference.",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/accounts/?page=1&link=uuid",
+      "evaluateGuide": "Retrieves a paginated list of accounts from the Belvo API, with a page and link parameter. Use it to browse account resources.\nUse for: list accounts, paginate account results, retrieve linked accounts, inspect account records\nNot supported: creating, updating, deleting, or retrieving transactions",
+      "provider": "Belvo",
+      "product": "Belvo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvmDOHJXpSIPZvq0gV0q6fk6x5S9QQh49Tjen5F8c2M5w3CfmX:zoho:timeline",
+      "name": "Timeline",
+      "description": "",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/Leads/{{record_id}}/__timeline?include_inner_details=field_history.data_type, field_history.field_label, field_history.enable_colour_code, field_history.pick_list_values, done_by.type__s, done_by.profile&sort_by=audited_time&filters={\"comparator\":\"between\",\"field\":{\"api_name\":\"audited_time\"},\"value\":[\"{{datetime_value_1}}\",\"{{datetime_value_2}}\"]}",
+      "evaluateGuide": "Retrieves the audit timeline for a specified Zoho CRM lead within a time range, including selected history details. Use it to review lead activity and changes.\nUse for: inspect lead history, review field changes, audit lead activity, sort timeline events\nNot supported: changing history, creating timeline events, retrieving non-lead timelines",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2coqpT5xxcZdrxU5rnEGtFBiAlX7WvFe03VQqVbuq6gSfqHGGVO4:hubspot:list",
+      "name": "List",
+      "description": "Read a page of objects. Control what is returned via the properties query param.",
+      "method": "GET",
+      "url": "https://api.hubapi.com/crm/v3/objects/:objectType?limit=10&after=<string>&properties=<string>&properties=<string>&propertiesWithHistory=<string>&propertiesWithHistory=<string>&associations=<string>&associations=<string>&archived=false",
+      "evaluateGuide": "Retrieves a paginated page of HubSpot CRM objects for a specified object type, with selectable properties and associations. Use it to read CRM records.\nUse for: list CRM objects, paginate results, select properties, include associations\nNot supported: creating, updating, deleting, or restoring objects",
+      "provider": "HubSpot",
+      "product": "HubSpot CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvrmsR3vkrgCpaBtoK5tZ7LRlxYAzX6pXyRFiCxk6wFtUnVVCt:zoho:inventory-templates",
+      "name": "Inventory templates",
+      "description": "",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/settings/inventory_templates",
+      "evaluateGuide": "Retrieves inventory templates configured in Zoho CRM. Use it to inspect available template resources.\nUse for: list inventory templates, inspect template settings, browse configured templates\nNot supported: creating, updating, deleting, or applying templates",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgzKRfBT1eSwmlt8nukHgdYIQp3gei4ep3ixhW40h3nZLmzDneHEGVnkEoUO:signnow:get-the-list-of-crm-user",
+      "name": "Get the list of CRM users",
+      "description": "",
+      "method": "GET",
+      "url": "{{url}}/v2/crm/users",
+      "evaluateGuide": "Retrieves a list of CRM users through the SignNow API. Use it to inspect available user records.\nUse for: list CRM users, browse user records, retrieve user details\nNot supported: creating, updating, deleting, or managing user permissions",
+      "provider": "SignNow",
+      "product": "SignNow"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvnKrAps8I3Gg83CnBHmE6B3eGpNNh5EaduBdVmr69VTedwb9F:zoho:invoices",
+      "name": "Invoices",
+      "description": "To get the Invoices associated with an Account.",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/Accounts/{{record_id}}/Invoices?fields=Grand_Total,Product_Details,Invoice_Date",
+      "evaluateGuide": "Retrieves invoices associated with a specified Zoho CRM account, including totals, products, and invoice dates. Use it to review account billing records.\nUse for: list account invoices, inspect invoice totals, review products, check invoice dates\nNot supported: creating, updating, deleting, or retrieving unrelated invoices",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgzKRfBT1eSvwKGGI0tlcAHPTPdnqJWZUb2tJiS88m3CvJmnIleSCP7tXpNF:signnow:get-the-list-of-crm-cont",
+      "name": "Get the list of CRM Contacts",
+      "description": "",
+      "method": "GET",
+      "url": "{{url}}/v2/crm/contacts",
+      "evaluateGuide": "Retrieves a list of CRM contacts through the SignNow API. Use it to inspect available contact records.\nUse for: list CRM contacts, browse contact records, retrieve contact details\nNot supported: creating, updating, deleting, or managing contact relationships",
+      "provider": "SignNow",
+      "product": "SignNow"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvpMdVwa6jw9myofRkMJCWlAVz4Tx0EaRFaRvTndmCOV8gOTXb:zoho:invoices",
+      "name": "Invoices",
+      "description": "To add new entities to a module.",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v8/Invoices",
+      "evaluateGuide": "Creates new records in the Zoho CRM Invoices module. Use it to add invoice entities to CRM.\nUse for: create an invoice, add billing records, add invoice products, record invoice details\nNot supported: listing, updating, deleting, or retrieving existing invoices",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    }
+  ],
+  "meta": {
+    "q": "list accounts in a CRM",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

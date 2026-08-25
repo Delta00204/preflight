@@ -1,0 +1,89 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpkTnCp2X9C6bjErRN4i1s6daYS3Q6vvlbYoantQ9LYNxp0gg8idvsNBVy:api:search-knowledge-base",
+      "name": "Search Knowledge Base",
+      "description": "",
+      "method": "GET",
+      "url": "http://localhost:4000/documentation/search?query=Rate Limit&url=https://docs.luma.com/",
+      "evaluateGuide": "Searches indexed API documentation for a query and source URL, returning matching knowledge-base content.\nUse for: find rate-limit guidance, locate authentication docs, search endpoint references\nNot supported: generating a knowledge base, uploading files, exporting OpenAPI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpkTnCp2X9HS2UJNib6SeYvlz1E6ZCJvQvL5bjTAa85vEV2lbdwi3FNQ87:api:generate-knowledge-base",
+      "name": "Generate Knowledge Base",
+      "description": "",
+      "method": "POST",
+      "url": "http://localhost:4000/knowledge-base",
+      "evaluateGuide": "Creates a knowledge base from supplied documentation input, enabling later search and generated API descriptions.\nUse for: build a documentation index, ingest API reference content, create searchable knowledge\nNot supported: searching existing content, streaming progress, deleting a knowledge base"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpkTnCp2X9E9gnRDqzHTkEG4X9kyquxuoAXjIpo3tuN3mU2dqjTIWf4w8Q:api:sse-generate-knowledge-b",
+      "name": "[SSE] Generate Knowledge Base",
+      "description": "",
+      "method": "GET",
+      "url": "http://localhost:4000/knowledge-base/stream?url=https://docs.luma.com/reference",
+      "evaluateGuide": "Generates a knowledge base from a documentation URL and streams progress or results through an event stream.\nUse for: ingest documentation, monitor generation progress, build a searchable index\nNot supported: direct document search, file uploads, OpenAPI export"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpkTnCp2XA6acX19Lh8ApjowsXtpjGAiPFOWnSTypwEmNuwSEpy7VDfFqc:api:generate-openapi-from-kn",
+      "name": "Generate OpenAPI from knowledge base",
+      "description": "",
+      "method": "GET",
+      "url": "http://localhost:4000/documentation/postman?url=https://developer.paddle.com/api-reference&useAI=false",
+      "evaluateGuide": "Generates an OpenAPI description from documentation indexed in a knowledge base, with optional AI processing.\nUse for: create an OpenAPI description, convert API docs, export endpoint definitions\nNot supported: knowledge-base creation, document uploads, live progress streaming"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I46G2NnI4yLamH2JwBJGkbxQX9TFj4J0UUIHfiQFzpnMt8gZjwgK0sjr6Ffw:knowledgeowl:upload-a-new-file-to-you",
+      "name": "Upload a new file to your knowledge base",
+      "description": "Use this request to use the API to upload a new file to your knowledge base's Files storage.",
+      "method": "POST",
+      "url": "https://app.knowledgeowl.com/api/head/file.json",
+      "evaluateGuide": "Uploads a new file to the Files storage of a KnowledgeOwl knowledge base.\nUse for: add a documentation file, upload reference content, store a new file\nNot supported: searching files, editing file content, deleting a knowledge base",
+      "provider": "KnowledgeOwl",
+      "product": "KnowledgeOwl"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlwkPcHkxGqtpKwJez0HLdZGDHsPyt:searchly:search-documents",
+      "name": "Search Documents",
+      "description": "Performs a search query against the SearchLy index and returns ranked results.\nDocumentation: https://searchly.pro/documentation/\nQuick Start:\n- Set {{baseUrl}} = https://app.searchly.pro\n- Provide your API key in the X-API-Key header ({{apiKey}})\n- POST a JSON body containing at minimum query.\nParameters Explained:\n- query (required, string): Text to search for (e.g. \"laptop\").\n- top_k (optional, integer): Number of top results to return. Default: 10.\n- filters (optional, object): Field filters to narrow results. Example: { \"post_type\": \"product\" }.\n- algorithm (optional, string): Search algorithm. Valid values: default, fuzzy, exact. Default: default.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing or invalid X-API-Key header. Ensure X-API-Key: {{apiKey}} is set.\n- 400 Bad Request: Malformed JSON body or missing query. Validate JSON and include query.\n- 429 Too Many Requests: Rate limit exceeded. Back off and retry after a short delay.\n- 500 Internal Server Error: Server-side issue — retry later and contact support if persistent.\nEdge Cases:\n- Very short queries (1-2 characters) may return many low-quality results or be filtered.\n- Filters that reference non-indexed fields will return no results.\n- When GPT correction is enabled and the initial search returns few/no results, the service may call the GPT correction endpoint internally (additional credit usage may apply).\nRate Limits & Constraints:\n- API key scoped per-account. Refer to your plan for request quotas and credit usage.",
+      "method": "POST",
+      "url": "https://searchly.asuarez.dev/v1/search",
+      "evaluateGuide": "Searches a SearchLy index with a query and optional ranking, filtering, and result-count parameters.\nUse for: find indexed documents, filter search results, retrieve ranked matches\nNot supported: indexing documents, updating records, deleting an index",
+      "provider": "SearchLy",
+      "product": "SearchLy"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxuv4ZeHAcrmI6Y64fj0pnDeW7cnq:bland:delete-knowledge-base",
+      "name": "Delete Knowledge Base",
+      "description": "Soft deletes a knowledge base by setting its status to DELETED (soft delete). The KB data is retained but becomes inaccessible for normal operations.\nDocumentation: https://docs.bland.ai/api-v1/delete/knowledge-id\nQuick Start:\n- Provide authorization header\n- DELETE /v1/knowledge/{knowledgebaseid}\nParameters Explained:\n- knowledgeBaseId (path, required): ID of the knowledge base to delete\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing API key\n- 404 Not Found: KB does not exist\nEdge Cases:\n- This is a soft delete; data is retained but marked as DELETED.\nRate Limits & Constraints:\n- Not specified.",
+      "method": "DELETE",
+      "url": "https://api.bland.ai/v1/knowledge/kb_01H8X9QK5R2N7P3M6Z8W4Y1V5T",
+      "evaluateGuide": "Soft-deletes a Bland AI knowledge base, retaining its data while making it unavailable for normal operations.\nUse for: retire a knowledge base, mark a KB deleted, remove a KB from active use\nNot supported: permanent erasure, metadata updates, content search",
+      "provider": "Bland AI",
+      "product": "Bland AI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxuv4ZeH3NAGo3AWsLpbofXZxGfnV:bland:update-knowledge-base",
+      "name": "Update Knowledge Base",
+      "description": "Updates a knowledge base's name and/or description.\nDocumentation: https://docs.bland.ai/api-v1/put/knowledge-id\nQuick Start:\n- Provide authorization header\n- PUT JSON to /v1/knowledge/{knowledgebaseid} with fields to update\nParameters Explained:\n- knowledgeBaseId (path, required): KB ID to update\n- name (string, optional): New name\n- description (string, optional): New description (set to empty string or omit to remove)\nCommon Errors & Fixes:\n- 400 Bad Request: Invalid JSON\n- 401 Unauthorized: Missing API key\n- 404 Not Found: KB id does not exist\nEdge Cases:\n- Partial updates are supported (send only name or only description).\nRate Limits & Constraints:\n- Not specified.",
+      "method": "PUT",
+      "url": "https://api.bland.ai/v1/knowledge/kb_01H8X9QK5R2N7P3M6Z8W4Y1V5T",
+      "evaluateGuide": "Updates the name or description of an existing Bland AI knowledge base, supporting partial metadata changes.\nUse for: rename a knowledge base, change its description, clear KB metadata\nNot supported: deleting a KB, uploading content, searching indexed data",
+      "provider": "Bland AI",
+      "product": "Bland AI"
+    }
+  ],
+  "meta": {
+    "q": "search knowledge base of documents",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

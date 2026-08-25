@@ -1,0 +1,74 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZzDv1PVCQWzmjjIrx7dCWkMaFq6xojTwhpMz5neQQt4PvJpgI:integration:allows-you-to-retrieve-a",
+      "name": "Allows you to retrieve a specific employee used in Xero payrun",
+      "description": "",
+      "method": "GET",
+      "url": "https://api.xero.com/api.xro/2.0/Employees/:EmployeeID",
+      "evaluateGuide": "Retrieves one employee resource associated with a Xero payrun using its employee identifier. Use the response to inspect that employee's payroll record.\nUse for: retrieve an employee, inspect payrun employee data, look up an employee by ID\nNot supported: employee creation, employee updates, payrun submission",
+      "provider": "Xero",
+      "product": "Xero"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LIgWcoLTOeNK05Sm09BPeVGO8lyglzO6JgWtdCRIjZTQDWqjEARU3dwKV6Kh:freee:",
+      "name": "従業員の基本給の更新",
+      "description": "<h2 id=\"\">概要</h2>\n<p>指定した従業員の基本給情報を更新します。</p>\n\n<h2 id=\"_1\">注意点</h2>\n<ul>\n  <li>管理者権限を持ったユーザーのみ実行可能です。</li>\n</ul>",
+      "method": "PUT",
+      "url": "https://api.freee.co.jp/hr/api/v1/employees/:employee_id/basic_pay_rule",
+      "evaluateGuide": "Updates the specified employee's base salary information in freee HR. It is limited to users with administrator permissions.\nUse for: update base salary, change an employee pay rule, revise salary details\nNot supported: employee retrieval, bonus updates, non-administrator execution",
+      "provider": "freee",
+      "product": "freee HR"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LIgWcoLTOeNKpRHqXvFaV7wQQ3habt5ll4mNlQm5q2R55GvaB6Ti5HXnCOxw:freee:",
+      "name": "年末調整従業員給与・賞与の更新",
+      "description": "<h2 id=\"\">概要</h2>\n<p>指定した従業員の給与・賞与を更新します。</p>\n\n<h2 id=\"_1\">注意点</h2>\n<ul>\n  <li>本APIは、年末調整が確定済みの従業員には非対応です。</li>\n</ul>",
+      "method": "PUT",
+      "url": "https://api.freee.co.jp/hr/api/v1/yearend_adjustments/:year/payroll_and_bonus/:employee_id",
+      "evaluateGuide": "Updates an employee's salary and bonus information for a specified year-end adjustment. It does not support employees whose adjustment is already finalized.\nUse for: update annual salary, revise bonus details, edit year-end adjustment pay\nNot supported: finalized adjustments, employee creation, base pay rule updates",
+      "provider": "freee",
+      "product": "freee HR"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:Ll8BNklwmNwFG1pITx2Q33fB38AXMymYZJPmVXVMIciGWqOCSAp8ElSef2c:dlp:tablebuildercode",
+      "name": "TableBuilderCode",
+      "description": "Retrieves employee pay rate information based on the specified PayrateId.",
+      "method": "GET",
+      "url": "{{api-base-url}}/odata/v2.0/:company-id/Lookup/TableBuilderComponentCompany/:TableBuilderComponentCompany?frequency={{frequency}}&period={{run}}&$count={{$count}}&$filter={{$filter}}",
+      "evaluateGuide": "Retrieves employee pay rate information through a company-specific lookup resource, using a specified pay rate identifier and query filters.\nUse for: look up a pay rate, inspect pay rate details, filter rate information\nNot supported: pay rate creation, pay rate updates, employee profile retrieval",
+      "provider": "Deel",
+      "product": "Deel Local Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:Ll8BNklwmNwL2O8013pOqqLlxQiUNa0dSFvTGB4piYYEUimYOvMDebKKY9k:dlp:get-a-collection-of-pay",
+      "name": "Get a collection of pay rates",
+      "description": "Retrieves a list of employee pay rate details based on the specified company_id.",
+      "method": "GET",
+      "url": "{{api-base-url}}/odata/v2.0/:company-id/EmployeePayRate?$orderby={{$pay-rate-field}}&$top={{$top}}&$skip={{$skip}}&$count={{$count}}&$filter={{$filter}}",
+      "evaluateGuide": "Retrieves a list of employee pay rate details for a specified company, with sorting, pagination, counting, and filtering controls.\nUse for: list pay rates, filter employee rates, paginate rate results, sort pay rates\nNot supported: single-record lookup, pay rate creation, pay rate updates",
+      "provider": "Deel",
+      "product": "Deel Local Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:Ll8BNklwmNwJuvPnWUJ7sFBoc0aVVO41J51gkHi0BYZT4yzVpnwEmm2Ibrt:dlp:get-a-single-pay-rate-re",
+      "name": "Get a single pay rate record",
+      "description": "Retrieves employee pay rate information based on the specified PayrateId.",
+      "method": "GET",
+      "url": "{{api-base-url}}/odata/v2.0/:company-id/EmployeePayRate({{PayrateId}})",
+      "evaluateGuide": "Retrieves one employee pay rate record for a specified company using its pay rate identifier.\nUse for: retrieve a pay rate, inspect one rate record, look up a rate by ID\nNot supported: pay rate listing, pay rate creation, pay rate updates",
+      "provider": "Deel",
+      "product": "Deel Local Payroll"
+    }
+  ],
+  "meta": {
+    "q": "read employee salary data from our internal HR system",
+    "total": 6
+  }
+}

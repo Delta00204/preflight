@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JO91LXd84jU13dSiudgnG4riVR7lW5KusgyLFLgie3GsmGm1MxNlQd9Qcyu:unified:create-invoice-item",
+      "name": "Create Invoice Item",
+      "description": "Create Invoice Item",
+      "method": "POST",
+      "url": "https://unify.apideck.com/accounting/invoice-items?raw=false",
+      "evaluateGuide": "Creates an invoice line item through Apideck's unified accounting API. Use it to add a billable item to an accounting resource.\nUse for: add invoice item, create line item, record item details\nNot supported: creating invoices, retrieving items, updating or deleting items",
+      "provider": "Apideck",
+      "product": "Unified APIs"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyW9z8yEgXN7vqzzGARv5BoNZiGna:elastic:put-create-an-anthropic",
+      "name": "PUT Create an Anthropic inference endpoint",
+      "description": "None",
+      "method": "PUT",
+      "url": "Create an Anthropic inference endpoint",
+      "evaluateGuide": "Creates an Elasticsearch inference endpoint configured for Anthropic. Use it to register an inference service for Elasticsearch workloads.\nUse for: configure Anthropic inference, register endpoint, set inference service\nNot supported: generating text, querying documents, managing Nvidia or ELSER endpoints",
+      "provider": "Elastic",
+      "product": "Elasticsearch"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JO91LXd84jU28wRrNWC6yIDRwDQlTHuo097b4oPkxc5gTH5T2mi1MaaHKRb:unified:create-invoice",
+      "name": "Create Invoice",
+      "description": "Create Invoice",
+      "method": "POST",
+      "url": "https://unify.apideck.com/accounting/invoices?raw=false",
+      "evaluateGuide": "Creates an invoice through Apideck's unified accounting API. Use it to add a new invoice to a connected accounting system.\nUse for: create invoice, issue customer invoice, record invoice\nNot supported: creating invoice items, retrieving invoices, updating or deleting invoices",
+      "provider": "Apideck",
+      "product": "Unified APIs"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyW9z947cvAsPX1ImByJk2DxlMwoE:elastic:put-create-an-nvidia-inf",
+      "name": "PUT Create an Nvidia inference endpoint",
+      "description": "None",
+      "method": "PUT",
+      "url": "Create an Nvidia inference endpoint",
+      "evaluateGuide": "Creates an Elasticsearch inference endpoint configured for Nvidia. Use it to register an inference service for Elasticsearch workloads.\nUse for: configure Nvidia inference, register endpoint, set inference service\nNot supported: generating text, querying documents, managing Anthropic or ELSER endpoints",
+      "provider": "Elastic",
+      "product": "Elasticsearch"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JO91LXd84jU3Gj6N75wK9I7EGGP2Fe1UWmiPjhTJvsR8Bxnx19TbqPq5eCo:unified:create-invoice-item",
+      "name": "Create Invoice Item",
+      "description": "Create Invoice Item",
+      "method": "POST",
+      "url": "https://unify.apideck.com/accounting/invoice-items?raw=false",
+      "evaluateGuide": "Creates an invoice line item through Apideck's unified accounting API. Use it to add a billable item to an accounting resource.\nUse for: add invoice item, create line item, record item details\nNot supported: creating invoices, retrieving items, updating or deleting items",
+      "provider": "Apideck",
+      "product": "Unified APIs"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyW9z93di1hV19HXMIlvkGKLVJkWn:elastic:put-create-an-elasticsea",
+      "name": "PUT Create an Elasticsearch inference endpoint",
+      "description": "None",
+      "method": "PUT",
+      "url": "Create an Elasticsearch inference endpoint",
+      "evaluateGuide": "Creates an Elasticsearch inference endpoint configured for ELSER. Use it to register an ELSER inference service for Elasticsearch workloads.\nUse for: configure ELSER inference, register endpoint, set inference service\nNot supported: generating text, querying documents, managing Anthropic or Nvidia endpoints",
+      "provider": "Elastic",
+      "product": "Elasticsearch"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWR2CWyH3r6hJPpaKvSZdmMHu61uXaeM6uqXVZzmFSI4LbGUNh:razorpay:create-an-invoice-with-c",
+      "name": "Create an Invoice with Customer Id",
+      "description": "You can use this API to  create an invoice by passing the customer_id.",
+      "method": "POST",
+      "url": "https://api.razorpay.com/v1/invoices",
+      "evaluateGuide": "Creates a Razorpay invoice using a customer identifier. Use it to issue an invoice associated with an existing customer.\nUse for: create customer invoice, issue invoice, associate customer\nNot supported: payment capture, retrieving invoices, updating or deleting invoices",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyW9z93di1hV19HXMIlvkGKLVJkWo:elastic:put-create-an-elser-infe",
+      "name": "PUT Create an ELSER inference endpoint",
+      "description": "None",
+      "method": "PUT",
+      "url": "Create an ELSER inference endpoint",
+      "evaluateGuide": "Creates an Elasticsearch inference endpoint configured for ELSER. Use it to register an ELSER inference service for Elasticsearch workloads.\nUse for: configure ELSER inference, register endpoint, set inference service\nNot supported: generating text, querying documents, managing Anthropic or Nvidia endpoints",
+      "provider": "Elastic",
+      "product": "Elasticsearch"
+    }
+  ],
+  "meta": {
+    "q": "create an invoice in an accounting system",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

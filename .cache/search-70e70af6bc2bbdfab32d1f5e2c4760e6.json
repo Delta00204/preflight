@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4raYUcRxRUZr65i92SDbFAXjRAflglmVXgi91dZ4XlWnuw0wqvY:postman:create-issue",
+      "name": "Create Issue",
+      "description": "",
+      "method": "POST",
+      "url": "https://postmanlabs.atlassian.net/rest/api/3/issue",
+      "evaluateGuide": "Creates a new Jira issue from a supplied payload, enabling an agent to file work items in an Atlassian project.\nUse for: filing a ticket, creating a task, logging an incident\nNot supported: retrieving, updating, deleting, or notifying issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31pRUgNbVOxaPWvftMOY45633DWYL:smartling:jira-get-issue",
+      "name": "Jira - Get Issue",
+      "description": "Retrieves a Jira issue by its issue key.\nDocumentation: https://help.smartling.com/hc/en-us/articles/25306050598299-Setting-Up-Smartling-Issue-Management-for-Jira\nQuick Start:\n- Call this endpoint with the issue key (e.g., PROJECT-123) using the integration credentials.\nParameters Explained:\n- issueKey (required, path): The Jira issue key, e.g., PROJECT-123.\n- Optional query parameters (not documented here) may include fields to limit returned fields.\nCommon Errors & Fixes:\n- 404 Not Found: Issue key invalid or integration user lacks Browse Projects permission.\n- 401 Unauthorized: Bad credentials.\nEdge Cases:\n- If requestor lacks permission to view certain fields, those fields will be omitted from the response.\nRate Limits & Constraints:\n- Subject to Jira rate limits.",
+      "method": "GET",
+      "url": "https://your-domain.atlassian.net/rest/api/latest/issue/PROJECT-123",
+      "evaluateGuide": "Retrieves a Jira issue using its issue key and returns its available details.\nUse for: viewing an issue, checking ticket details, inspecting issue fields\nNot supported: creating, editing, deleting, or notifying issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy1FRNocmzTTkcezNLxMasnDP6A9EFj7dLADz72eNkOT2gT1Zk1:atlassian:send-notification-for-is",
+      "name": "Send notification for issue",
+      "description": "Creates an email notification for an issue and adds it to the mail queue.\nPermissions required:\n\nBrowse Projects project permission for the project that the issue is in.\nIf issue-level security is configured, issue-level security permission to view the issue.",
+      "method": "POST",
+      "url": "https://your-domain.atlassian.net/rest/api/3/issue/:issueIdOrKey/notify",
+      "evaluateGuide": "Adds an email notification for a Jira issue to the mail queue, allowing an agent to alert specified recipients.\nUse for: notifying issue watchers, emailing stakeholders, alerting collaborators\nNot supported: creating, retrieving, editing, or deleting issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31pRWN5K4r6wp4FxHQtVid8sggWRM:smartling:jira-delete-issue",
+      "name": "Jira - Delete Issue",
+      "description": "Deletes the specified Jira issue by issue key.\nDocumentation: https://help.smartling.com/hc/en-us/articles/25306050598299-Setting-Up-Smartling-Issue-Management-for-Jira\nQuick Start:\n- Ensure the integration user has Delete Own/Delete All permission as applicable and call DELETE with the issue key.\nParameters Explained:\n- issueKey (required, path): The Jira issue key to delete.\nCommon Errors & Fixes:\n- 404 Not Found: Issue does not exist or user lacks permission.\n- 401/403: Authentication/permission issues.\nEdge Cases:\n- Deleting an issue is irreversible unless your Jira instance has restore functionality; Smartling first recommends notifying Smartling support before removing integration.\nRate Limits & Constraints:\n- Subject to Jira rate limits and project policies.",
+      "method": "DELETE",
+      "url": "https://your-domain.atlassian.net/rest/api/latest/issue/PROJECT-123",
+      "evaluateGuide": "Permanently deletes a Jira issue identified by its issue key.\nUse for: removing an issue, deleting obsolete tickets, cleaning up test issues\nNot supported: restoring, retrieving, editing, or creating issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy1DQBnMsug1nAEWWUS0i0p48sdwJwBPlbKsYBsF275XYg3W6M8:atlassian:create-issue-type",
+      "name": "Create issue type",
+      "description": "Creates an issue type and adds it to the default issue type scheme.\nPermissions required: Administer Jira global permission.",
+      "method": "POST",
+      "url": "https://your-domain.atlassian.net/rest/api/3/issuetype",
+      "evaluateGuide": "Creates a Jira issue type and adds it to the default issue type scheme for administrators.\nUse for: adding an issue type, defining a work category, configuring Jira types\nNot supported: editing existing types, listing types, creating issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31pRWN5JyqCRqLgn00rUhXwiBJ0dj:smartling:jira-update-issue",
+      "name": "Jira - Update Issue",
+      "description": "Updates an existing Jira issue by issue key.\nDocumentation: https://help.smartling.com/hc/en-us/articles/25306050598299-Setting-Up-Smartling-Issue-Management-for-Jira\nQuick Start:\n- Use PUT with the issue key in the path and provide fields with values to update.\nParameters Explained:\n- issueKey (required, path): The Jira issue key to update.\n- Request body should include fields with the fields to change.\nCommon Errors & Fixes:\n- 400 Bad Request: Invalid field data.\n- 404 Not Found: Issue key not found.\n- 401 Unauthorized / 403 Forbidden: Authentication/permission issues.\nEdge Cases:\n- Partial updates are supported; provide only fields that need changing.\nRate Limits & Constraints:\n- Subject to Jira rate limits and project validations.",
+      "method": "PUT",
+      "url": "https://your-domain.atlassian.net/rest/api/latest/issue/PROJECT-123",
+      "evaluateGuide": "Updates an existing Jira issue using its issue key and supplied field values.\nUse for: changing ticket fields, editing a task, revising issue details\nNot supported: creating, retrieving, deleting, or notifying issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31pRUgNcl8VE6GfzxQXtwMEyEYluK:smartling:jira-get-issue-types",
+      "name": "Jira - Get Issue Types",
+      "description": "Retrieves the list of issue types available in Jira for the authenticated context.\nDocumentation: https://help.smartling.com/hc/en-us/articles/25306050598299-Setting-Up-Smartling-Issue-Management-for-Jira\nQuick Start:\n- Ensure your integration user PAT is available and has the Browse Projects permission.\n- Call the endpoint to list available issue types.\nParameters Explained:\n- No path or query parameters for this endpoint. It returns global issue types visible to the user.\nCommon Errors & Fixes:\n- 401 Unauthorized: Invalid or missing credentials for the Jira API. Provide a valid PAT.\n- 403 Forbidden: Integration user lacks Browse Projects permission.\nEdge Cases:\n- Returned issue types may be filtered by project-specific configurations; some types might not be available in all projects.\nRate Limits & Constraints:\n- Jira Cloud rate limits apply (not specified in this Smartling doc). Check your Jira instance or Atlassian documentation.",
+      "method": "GET",
+      "url": "https://your-domain.atlassian.net/rest/api/latest/issuetype",
+      "evaluateGuide": "Lists the Jira issue types available to the authenticated context.\nUse for: listing issue types, finding valid type identifiers, inspecting Jira configuration\nNot supported: creating, editing, deleting, or retrieving individual issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31pRUgNbVOxaPWvftMOY45633DWYz:smartling:jira-create-issue",
+      "name": "Jira - Create Issue",
+      "description": "Creates a new issue in Jira (used by the Smartling integration to create SOURCE/TRANSLATION issues).\nDocumentation: https://help.smartling.com/hc/en-us/articles/25306050598299-Setting-Up-Smartling-Issue-Management-for-Jira\nQuick Start:\n- Ensure integration user has Create Issues permission.\n- POST a minimal issue JSON with project.key, summary, and issuetype.id or issuetype.name.\nParameters Explained:\n- Request body must include fields object containing at least:\n  - project: { \"key\": \"PROJECT\" }\n  - summary: string\n  - issuetype: { \"id\": \"1\" } or { \"name\": \"Task\" }\n- Additional fields may be included (e.g., description, custom fields).\nCommon Errors & Fixes:\n- 400 Bad Request: Missing required fields or invalid field formats.\n- 403 Forbidden: Integration user lacks Create Issues permission.\n- 401 Unauthorized: Invalid credentials.\nEdge Cases:\n- If Jira has required custom fields not provided, creation will fail; include required fields with default values.\nRate Limits & Constraints:\n- Subject to Jira rate limits and project-specific validations.",
+      "method": "POST",
+      "url": "https://your-domain.atlassian.net/rest/api/latest/issue",
+      "evaluateGuide": "Creates a new Jira issue from project, summary, and issue-type details, supporting integration-created work items.\nUse for: creating a source issue, creating a translation issue, filing a Jira ticket\nNot supported: retrieving, editing, deleting, or notifying issues",
+      "provider": "Atlassian",
+      "product": "Jira"
+    }
+  ],
+  "meta": {
+    "q": "issue a jira ticket",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Delete user identities rather than provision a user account (Docusign Admin API)\n\nFIT\n  Not at all. The supplied request deletes identities linked to an existing user; it does not provision a user account in an identity provider. Search for a user- or identity-provisioning endpoint in the Docusign Admin API."
+    }
+  ]
+}

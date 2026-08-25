@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Read leads from HubSpot CRM (HubSpot CRM)\n\nFIT\n  Not at all. The supplied request reads CRM lead records, but the task requires retrieving runbooks from an internal wiki for production-incident triage. The lead-read request does not serve that goal and is dropped; search for an internal-wiki or knowledge-base API endpoint instead."
+    }
+  ]
+}

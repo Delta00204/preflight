@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvyVMGVWJOy0PBYVLBydh41W4b9Kkvow3b5fC160UNvKm41fhJcQ8p5mrn8w:mediawiki:search-wiki-pages",
+      "name": "Search Wiki Pages",
+      "description": "",
+      "method": "GET",
+      "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=:q&limit=:limit",
+      "evaluateGuide": "Searches English Wikipedia pages and returns matching page results for a text query. Use it to discover relevant encyclopedia pages.\\nUse for: find pages by topic, retrieve ranked matches, limit result count\\nNot supported: page editing, article retrieval by identifier, full-text section search",
+      "provider": "Wikimedia Foundation",
+      "product": "Wikipedia"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LJ5cvNHx1HeUIpbKyFgJihXVvfT3HFFE7zXlkVRJtmzGGtVrlKQ5Y5LmZkb3:perigon:wikipedia-vector",
+      "name": "Wikipedia (Vector)",
+      "description": "Perform a natural language search over Wikipedia pages using semantic relevance. The result includes a list of page sections most closely matched to your query intent.",
+      "method": "POST",
+      "url": "https://api.perigon.io/v1/vector/wikipedia/all",
+      "evaluateGuide": "Performs a semantic search across Wikipedia and returns the page sections most relevant to natural-language intent. Use it for meaning-based discovery rather than exact keyword matching.\\nUse for: semantic topic search, find relevant sections, explore related concepts\\nNot supported: editing pages, retrieving complete articles, non-Wikipedia sources",
+      "provider": "Perigon",
+      "product": "Perigon"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr32Py1uywFlc90oMZMkEmOZIBF4ZLd:wikipedia:perform-search-wikisearc",
+      "name": "Perform Search (WikiSearch)",
+      "description": "Performs a faceted/full-text search using the WikiSearch extension and returns search results, aggregations and (optionally) debug information.\nDocumentation: https://www.mediawiki.org/wiki/Extension:WikiSearch/api\nQuick Start:\n- Minimal required fields: action=query, format=json, meta=WikiSearch and a valid pageid referencing a page containing a WikiSearch configuration (created with #WikiSearchConfig).\n- Example (cURL): POST form to {{baseUrl}}/api.php with action=query&format=json&meta=WikiSearch&pageid={{pageId}}&limit={{limit}}.\nParameters Explained:\n- action (required): API action; use query. Default/example: query.\n- format (required): Response format. Use json for machine-readable output. Default/example: json.\n- meta (required): The meta module to call. For this extension use WikiSearch.\n- pageid (required): Integer. The MediaWiki page ID of the page that contains the search configuration (created via #WikiSearchConfig). Must be a valid page ID containing a configuration. Example: 698.\n- term (optional): string. Free-text search term. Defaults to empty string (returns all results when empty).\n- from (optional): integer. Offset cursor for pagination. Defaults to 0.\n- limit (optional): integer. Maximum number of results to return. Defaults to 10.\n- filter (optional): list (JSON-encoded). Filters to apply to the search. See Filters syntax section in the documentation for structure (PropertyRangeFilter, PropertyValueFilter, PropertyValuesFilter, HasPropertyFilter, PropertyTextFilter).\n- aggregations (optional): list (JSON-encoded). Aggregations to compute (range, property etc.). See Aggregations syntax in doc.\n- sorting (optional): list (JSON-encoded). Sorting objects (PropertySort, etc.).\nCommon Errors & Fixes:\n- 400 Bad Request / error key in response: Usually caused by malformed JSON in filter, aggregations or sorting parameters. Ensure those parameters are valid JSON and correctly URL-encoded or posted as form fields.\n- 404 Not Found / empty results: If pageid does not reference a configuration page, you may get no results. Verify pageid is correct and that the page contains a WikiSearch configuration.\n- Empty hits array: The query/filters returned no matching documents. Try removing filters or broadening term.\nEdge Cases:\n- The hits field in the response is a JSON-encoded string containing the raw ElasticSearch hits.hits structure — you must decode it (e.g., json_decode in PHP) to parse per-hit data and highlights.\n- Highlight snippets (if present) are in each hit under the highlight hit-field; duplicates may be removed when generating highlight terms.\n- Debug mode (if enabled on the server) will add a query object containing the raw ElasticSearch query used.\n- aggregations range to values are exclusive; to include value 5, set to to 6 (documentation example).\nRate Limits & Constraints:\n- Rate limits and quotas are determined by the hosting wiki (this extension documentation does not define global API quotas). Check your MediaWiki instance / hosting provider for per-site limits.",
+      "method": "POST",
+      "url": "https://www.mediawiki.org/api.php",
+      "evaluateGuide": "Runs a configured WikiSearch full-text or faceted search through the MediaWiki Action API, returning results and aggregations.\\nUse for: search configured wiki content, apply facets, inspect search aggregations\\nNot supported: ordinary page search without configuration, editing pages, page creation",
+      "provider": "Wikimedia Foundation",
+      "product": "MediaWiki"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OY4buTBbq79suhneGobjhV2vMbZGj6RPiv0DDN9epNUPg4ueEM5yhtVSyugM:aws:search-resources",
+      "name": "Search Resources",
+      "description": "Searches metadata and the content of folders, documents, document versions, and comments.",
+      "method": "POST",
+      "url": "https://workdocs.{{region}}.amazonaws.com/api/v1/search",
+      "evaluateGuide": "Searches Amazon WorkDocs metadata and content across folders, documents, versions, and comments.\\nUse for: find documents, search comments, locate versions, search folders\\nNot supported: document upload, content editing, permission administration",
+      "provider": "Amazon Web Services",
+      "product": "Amazon WorkDocs"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlzgmkJmU0PxjQHDrpwcNXZWCFFlfL:wikidata:wbsearchentities-wikibas",
+      "name": "wbsearchentities (Wikibase: search entities)",
+      "description": "Overview:\nSearch for Wikibase entities by label, alias or description.\nDocumentation: wbsearchentities\nQuick Start:\n- GET {{baseUrl}}/w/api.php?action=wbsearchentities&search={{search}}&format=json\nParameters Explained:\n- action: wbsearchentities.\n- search (required): text to search for.\n- language (optional): language code to search in.\n- limit (optional): number of results (default/use documented defaults).\n- format: json.\nCommon Errors & Fixes:\n- 400 Bad Request: missing search parameter.\nEdge Cases:\n- Search ranking may vary by language and alias data.\nRate Limits & Constraints:\n- Limit parameter controls number of results; site may enforce max.",
+      "method": "GET",
+      "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json",
+      "evaluateGuide": "Searches Wikibase entities by label, alias, or description and returns matching entity results.\\nUse for: find entities by name, search aliases, discover entity identifiers, search descriptions\\nNot supported: entity editing, statement retrieval, page-text search",
+      "provider": "Wikimedia Foundation",
+      "product": "Wikidata"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlzgmkJrdbWqZPlhv4aFwkwJOyGl6n:wikidata:opensearch-opensearch-se",
+      "name": "opensearch (OpenSearch search for the wiki)",
+      "description": "Search the wiki using the OpenSearch protocol (useful for quick suggestions/autocomplete).\nDocumentation: https://www.wikidata.org/w/api.php\nQuick Start:\n- GET action=opensearch&search=searchTerm&format=json&limit=10\nParameters Explained:\n- search (required): Query string.\n- limit (optional): Max results to return.\n- namespace (optional): Namespace to search in.\nCommon Errors & Fixes:\n- 400 Bad Request: Missing search parameter.\nEdge Cases:\n- Responses are simple arrays for compatibility with OpenSearch consumers.\nRate Limits & Constraints:\n- Rate-limited for heavy usage.",
+      "method": "GET",
+      "url": "https://www.wikidata.org/w/api.php?action=opensearch&format=json",
+      "evaluateGuide": "Uses the OpenSearch protocol to provide quick suggestions and autocomplete-style results from the wiki.\\nUse for: autocomplete terms, suggest page titles, find quick matches\\nNot supported: detailed entity search, full article retrieval, entity editing",
+      "provider": "Wikimedia Foundation",
+      "product": "Wikidata"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlwkPcHkxGqtpKwJez0HLdZGDHsPyt:searchly:search-documents",
+      "name": "Search Documents",
+      "description": "Performs a search query against the SearchLy index and returns ranked results.\nDocumentation: https://searchly.pro/documentation/\nQuick Start:\n- Set {{baseUrl}} = https://app.searchly.pro\n- Provide your API key in the X-API-Key header ({{apiKey}})\n- POST a JSON body containing at minimum query.\nParameters Explained:\n- query (required, string): Text to search for (e.g. \"laptop\").\n- top_k (optional, integer): Number of top results to return. Default: 10.\n- filters (optional, object): Field filters to narrow results. Example: { \"post_type\": \"product\" }.\n- algorithm (optional, string): Search algorithm. Valid values: default, fuzzy, exact. Default: default.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing or invalid X-API-Key header. Ensure X-API-Key: {{apiKey}} is set.\n- 400 Bad Request: Malformed JSON body or missing query. Validate JSON and include query.\n- 429 Too Many Requests: Rate limit exceeded. Back off and retry after a short delay.\n- 500 Internal Server Error: Server-side issue — retry later and contact support if persistent.\nEdge Cases:\n- Very short queries (1-2 characters) may return many low-quality results or be filtered.\n- Filters that reference non-indexed fields will return no results.\n- When GPT correction is enabled and the initial search returns few/no results, the service may call the GPT correction endpoint internally (additional credit usage may apply).\nRate Limits & Constraints:\n- API key scoped per-account. Refer to your plan for request quotas and credit usage.",
+      "method": "POST",
+      "url": "https://searchly.asuarez.dev/v1/search",
+      "evaluateGuide": "Runs a ranked search over a SearchLy index using full-text queries and optional field filters.\\nUse for: search indexed documents, rank results, filter by fields, retrieve top matches\\nNot supported: document indexing, document updates, source content management",
+      "provider": "SearchLy",
+      "product": "SearchLy API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr2cVCdGXjzeMMgWxRiKifoQ6dTnYz3:dandelion:wikisearch-search-wikipe",
+      "name": "Wikisearch - Search Wikipedia (v1)",
+      "description": "Searches Wikipedia for pages matching a provided text string and returns a ranked list of matching pages with optional enriched metadata (types, categories, abstract, images, LOD links, alternate labels).\nDocumentation: https://dandelion.eu/docs/api/datagraph/wikisearch/\nQuick Start:\n- Ensure you have a Dandelion API token (32-character hex) available from your profile.\n- Call the endpoint using GET (or POST) and provide text (required) and token (required). Example minimal GET: GET {{baseUrl}}/datagraph/wikisearch/v1?text=Paris&lang=en&token={{apiToken}}.\nParameters Explained:\n- text (required): The string to match against Wikipedia titles. Type: string. Example: tower of big ben.\n- lang (required): Language code for the search. Default: en. Accepted values: de | en | es | fr | it | pt | ru.\n- limit (optional): Maximum number of results returned. Type: integer. Default: 10. Accepted range: 1 .. 50.\n- offset (optional): Start index for results (for pagination). Type: integer. Default: 0.\n- query (optional): Search mode. full finds all entities containing the text; prefix finds entities starting with the text (useful for autocomplete). Default: full.\n- include (optional): Comma-separated list of additional fields to include for each entity: types, categories, abstract, image, lod, alternate_labels.\n- Authentication: token (required) — a 32-character hexadecimal API token passed as a query parameter. Legacy app_id/app_key pair is supported (deprecated).\nCommon Errors & Fixes:\n- 400 Bad Request / error.missingParameter: Missing required parameter (e.g., text). Ensure text is provided.\n- 401 Unauthorized / error.authenticationError: Invalid or missing token (or legacy app credentials). Provide a valid token via token={{apiToken}}.\n- 429 Too Many Requests / error.RateLimitExceeded: You exceeded the rate limit (50 calls/sec per token). Back off and retry later.\n- 413 Request Entity Too Large / error.requestTooLarge: Request body exceeds 1 MiB. Use GET/POST with smaller payloads or split requests.\nEdge Cases:\n- prefix query is optimized for autocomplete; it matches entries starting with the provided text.\n- include=types returns DBpedia types extracted according to the lang parameter; different DBpedia instances may have different type sets.\n- Images returned via include=image are hosted by Wikipedia — check licensing before using images in production.\nRate Limits & Constraints:\n- Rate limit: 50 requests per second per token (or per legacy appid/appkey pair).\n- Request size limit: 1 MiB (1,048,576 bytes).\n- Allowed methods: GET or POST.",
+      "method": "GET",
+      "url": "https://api.dandelion.eu/datagraph/wikisearch/v1",
+      "evaluateGuide": "Searches Wikipedia for matching pages and can return enriched metadata such as categories, abstracts, images, and links.\\nUse for: find Wikipedia pages, retrieve abstracts, get categories, discover related links\\nNot supported: editing articles, retrieving arbitrary web pages, semantic search across other sources",
+      "provider": "Dandelion",
+      "product": "Dandelion API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr4zCJP3ZEXWjp6zTxlO8CTnJINBh6h:arc:search-documents",
+      "name": "Search documents",
+      "description": "Performs hybrid search (full-text + semantic) against documents and returns paginated results.\nDocumentation: https://docs.intelliq.dev/api-reference/documents/search-documents\nQuick Start:\n- POST JSON to /api/v1/documents/search with the search query and optional language, page, and limit.\n- Set Content-Type: application/json.\nParameters Explained:\n- Body (application/json):\n  - query (required): search string.\n  - language (optional): language code or name to influence search (string).\n  - page (optional): page number (default: 1).\n  - limit (optional): results per page (default: 10).\nCommon Errors & Fixes:\n- 400 Bad Request: missing query or invalid JSON body — ensure Content-Type: application/json and provide a valid query string.\nEdge Cases:\n- Results include pagination metadata similar to other listing endpoints.\n- Semantic search relevance may vary depending on indexed embeddings and document processing status.\nRate Limits & Constraints:\n- No rate limits documented on this page.",
+      "method": "POST",
+      "url": "https://app.intelliq.dev/api/v1/documents/search",
+      "evaluateGuide": "Performs hybrid full-text and semantic search over indexed documents with pagination and optional language guidance.\\nUse for: search documents, combine keyword and semantic matching, paginate results, filter by language\\nNot supported: document upload, document modification, index administration",
+      "provider": "IntelliQ",
+      "product": "IntelliQ"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0b0doeMepxJbJfy2foM7KUZ4aw3JG:azure:post-organization-projec",
+      "name": "POST /{organization}/{project}/_apis/search/wikisearchresults",
+      "description": "Provides a set of wiki document search results for the given search text and filters.\nDocumentation: https://learn.microsoft.com/en-us/rest/api/azure/devops/search/wiki-search-results/fetch-wiki-search-results?view=azure-devops-rest-7.1\nQuick Start:\n- Send a POST to https://almsearch.dev.azure.com/{organization}/{project}/_apis/search/wikisearchresults?api-version=7.1\n- Include an OAuth2 access token authorized with the vso.wiki scope.\n- Minimal request body: { \"searchText\": \"\", \"$top\": , \"$skip\": 0 }\nParameters Explained:\n- URI parameters:\n  - organization (required, path): The name of the Azure DevOps organization.\n  - project (required, path): Project ID or project name.\n  - api-version (required, query): API version to use — documented examples use 7.1.\n- Request body:\n  - $orderBy (optional, array of Sort Option): Sorting options; default is relevance.\n  - $skip (optional, integer): Number of results to skip.\n  - $top (optional, integer): Number of results to return.\n  - filters (optional, object): Filters to be applied. Example: Project array.\n  - includeFacets (optional, boolean): Return facets when true. Default false.\n  - searchText (string): The search text.\nCommon Errors & Fixes:\n- The response includes an infoCode integer with documented meanings (check infoCode on response):\n  - 0: Ok\n  - 1: Account is being reindexed\n  - 2: Account indexing has not started\n  - 3: Invalid Request\n  - 4: Prefix wildcard query not supported\n  - 5: MultiWords with code facet not supported\n  - 6: Account is being onboarded\n  - 7: Account is being onboarded or reindexed\n  - 8: Top value trimmed to maxresult allowed\n  - 9: Branches are being indexed\n  - 10: Faceting not enabled\n  - 11: Work items not accessible\n  - 19: Phrase queries with code type filters not supported\n  - 20: Wildcard queries with code type filters not supported\nEdge Cases:\n- Results include hits with fieldReferenceName and highlights illustrating matched snippets.\n- includeFacets returns a facets object when enabled.\nRate Limits & Constraints:\n- Not documented on the endpoint page; none provided in the referenced documentation.",
+      "method": "POST",
+      "url": "{{baseUrl}}/{{organization}}/{{project}}/_apis/search/wikisearchresults",
+      "evaluateGuide": "Searches Azure DevOps wiki documents using supplied text and filters, returning matching wiki results.\\nUse for: find wiki pages, filter wiki search, paginate matches, search project documentation\\nNot supported: wiki editing, repository code search, work-item search",
+      "provider": "Microsoft",
+      "product": "Azure DevOps"
+    }
+  ],
+  "meta": {
+    "q": "search the internal wiki for documents",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

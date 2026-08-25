@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9aoMlxC79P5FGqMz7UvcXEHAka5xzKOyNL2uxRHJyr0ZUhwSet:brewing:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.sendinblue.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP email endpoint. Agents can deliver a message to specified recipients using a transactional payload.\nUse for: sending an email, delivering a notification, sending a receipt\nNot supported: email activity retrieval, batch delivery, campaign management",
+      "provider": "Brevo",
+      "product": "Brevo Transactional Email"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2cormaJs6No7cjVYvRIf9ddqnMiiW8z7O4fgcgIkUZpTJ5emaa8O:hubspot:send-a-single-send-trans",
+      "name": "Send a single send transactional email asynchronously.",
+      "description": "Asynchronously send a transactional email. Returns the status of the email send with a statusId that can be used to continuously query for the status using the Email Send Status API.",
+      "method": "POST",
+      "url": "https://api.hubapi.com/marketing/v3/transactional/single-email/send",
+      "evaluateGuide": "Queues one transactional email for asynchronous delivery through HubSpot. The response includes a status identifier for later delivery-status checks.\nUse for: sending one email, queueing asynchronous delivery, sending a transactional notification\nNot supported: bulk sending, contact management, status retrieval",
+      "provider": "HubSpot",
+      "product": "HubSpot Marketing Hub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZyKS9C2KYQSepkJccNsaQ0psNHnTZ0h1ZHlzITvEfoIkkqOK0:devops:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.brevo.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP email endpoint. Agents can deliver a message to specified recipients using a transactional payload.\nUse for: sending an email, delivering a notification, sending a receipt\nNot supported: email activity retrieval, batch delivery, campaign management",
+      "provider": "Brevo",
+      "product": "Brevo Transactional Email"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JmreOwbyWRKjAF0wMdCIRWefyI01mraJwXFYbtC2ESg68rgHnAc9xjT21ib:sendmux:send-a-single-email",
+      "name": "Send a single email",
+      "description": "Queue a single email for delivery. Requires email.send permission.",
+      "method": "POST",
+      "url": "https://smtp.sendmux.ai/api/v1/emails/send",
+      "evaluateGuide": "Queues one email for delivery through Sendmux. Agents can submit a single outbound message when the email.send permission is available.\nUse for: sending one email, queueing delivery, sending a notification\nNot supported: batch delivery, inbox retrieval, email analytics",
+      "provider": "Sendmux",
+      "product": "Sendmux Email API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9a0XY30fXOpyjzlxfiglw5DlyW7Z8OSN88a0gZvvSdKhceCsLY:integration:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.brevo.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP email endpoint. Agents can deliver a message to specified recipients using a transactional payload.\nUse for: sending an email, delivering a notification, sending a receipt\nNot supported: email activity retrieval, batch delivery, campaign management",
+      "provider": "Brevo",
+      "product": "Brevo Transactional Email"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JmreOwbyWRJwFYsuhLM6H9l5vdVUN6G5q6qaeG9UKUzzxYpPsfzxw6xY2Hn:sendmux:send-a-batch-of-emails",
+      "name": "Send a batch of emails",
+      "description": "Queue up to 100 emails for delivery in a single request. Uses partial success model — individual message failures do not fail the entire batch. Requires email.send permission.",
+      "method": "POST",
+      "url": "https://smtp.sendmux.ai/api/v1/emails/send/batch",
+      "evaluateGuide": "Queues up to 100 emails for delivery through Sendmux, allowing individual message failures without failing the entire batch. The email.send permission is required.\nUse for: batch email delivery, sending notifications, queuing bulk messages\nNot supported: single-message status lookup, inbox retrieval, email analytics",
+      "provider": "Sendmux",
+      "product": "Sendmux Email API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpvutuFBQMNjKRq336kC2gTqw3Z1kAH7r7GdCMwu4wjYk4LuakJXXi6Rhg:utility:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.brevo.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP email endpoint. Agents can deliver a message to specified recipients using a transactional payload.\nUse for: sending an email, delivering a notification, sending a receipt\nNot supported: email activity retrieval, batch delivery, campaign management",
+      "provider": "Brevo",
+      "product": "Brevo Transactional Email"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZvuUFDemuhYHISkMUxMEseJpAGdMNGKKalfmbeZsgBoSIbrs2:brewing:get-all-your-transaction",
+      "name": "Get all your transactional email activity (unaggregated events)",
+      "description": "This endpoint will show the aggregated stats for past 30 days by default if startDate and endDate OR days is not passed. The date range can not exceed 90 days",
+      "method": "GET",
+      "url": "https://api.sendinblue.com/v3/smtp/statistics/events?days=11&messageId=202212281024.62341432715@smtp-relay.mailin.fr",
+      "evaluateGuide": "Retrieves unaggregated transactional email activity from Brevo for a selected period, with a default recent range when no range is supplied. Agents can inspect delivery events and filter by message identifier.\nUse for: reviewing email events, checking delivery activity, filtering message activity\nNot supported: sending email, batch delivery, campaign management",
+      "provider": "Brevo",
+      "product": "Brevo Transactional Email"
+    }
+  ],
+  "meta": {
+    "q": "send a transactional email to a customer",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

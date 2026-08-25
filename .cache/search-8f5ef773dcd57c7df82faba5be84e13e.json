@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ak7ix6TX8qT21cymMjpOw8zcQd81eAxHmkBH5oZyZCay0zzRY:business:send-slack-message-templ",
+      "name": "send slack message (template)",
+      "description": "",
+      "method": "POST",
+      "url": "https://slack.com/api/chat.postMessage?channel={{slack user id}}&text={{template}}",
+      "evaluateGuide": "Publishes a text message to Slack through the chat message API, allowing an agent to notify a user or channel with supplied content.\nUse for: send a notification, post templated text, deliver an alert\nNot supported: listing channels, reading messages, editing or deleting messages",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1BNQmXdXGuQL93UcMJLBhNu8yh6tjfKQk3cb7hHXHxpxZ5g0Gv8jdwQYD:brewing:send-a-message-to-a-chan",
+      "name": "Send a message to a channel using Slack",
+      "description": "",
+      "method": "POST",
+      "url": "https://hooks.slack.com/services/{{webhook_key}}",
+      "evaluateGuide": "Delivers a message to Slack through an incoming webhook URL, allowing an agent to post predefined content to its configured destination.\nUse for: send an alert, post an automated update, publish a channel notification\nNot supported: choosing arbitrary channels, reading messages, listing channels",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZsXs9PvLunwFtB9DHrT1HMoeljuRQYuu15Hf3FOYfRza5vLw8:slack:slack-post-message",
+      "name": "slack-post-message",
+      "description": "",
+      "method": "POST",
+      "url": "https://slack.com/api/chat.postMessage",
+      "evaluateGuide": "Posts a message to Slack with the chat message API, enabling an agent to deliver text to a specified conversation.\nUse for: send a channel message, post an event update, notify a Slack conversation\nNot supported: listing channels, reading messages, editing or deleting messages",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9Zx0KrduGp39FuPCuZbQGlUDHFVQbTvcb0sat7xGQL2QeJA7Rj:utility:send-a-message-to-a-chan",
+      "name": "Send a message to a channel using Slack",
+      "description": "",
+      "method": "POST",
+      "url": "https://hooks.slack.com/services/{{webhook_key}}",
+      "evaluateGuide": "Delivers a message to Slack through an incoming webhook URL, allowing an agent to post automated content to its configured destination.\nUse for: send a notification, post an alert, publish an automated update\nNot supported: choosing arbitrary channels, reading messages, listing channels",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9a1SZdTO5ZUZEp21DwyqVbSfLoOTpPOniNJcQjFyE7CeKctUdV:slack:slack-channels",
+      "name": "slack-channels",
+      "description": "",
+      "method": "GET",
+      "url": "https://slack.com/api/conversations.list?types=public_channel,private_channel",
+      "evaluateGuide": "Lists public and private Slack conversations, enabling an agent to discover available channels and their identifiers.\nUse for: find channels, list private channels, discover conversation IDs\nNot supported: sending messages, reading channel history, creating channels",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3hXPLmTF7oMby5O6oyZyG7pXFgZxmwUzunX8FOa1zsNod1ZXKDKSOlhDcbz:postman:check-answer-and-send-re",
+      "name": "Check Answer and Send Result to Slack",
+      "description": "Checks If User Answered Correctly or Not and Send the Result to Slack.",
+      "method": "POST",
+      "url": "{{responseUrlToSlack}}",
+      "evaluateGuide": "Checks whether a user answer is correct and sends the result to Slack through the supplied response endpoint.\nUse for: evaluate a trivia answer, send a quiz result, report correctness\nNot supported: general message lookup, channel discovery, updating Slack messages",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgC4rMBtnNKD82q5rgXx7Egdjowkj1y8u3Hshl3EXraXAQfCkqq6pkJWsALq:brewing:send-slack-message-via-c",
+      "name": "Send Slack Message via Channel",
+      "description": "",
+      "method": "POST",
+      "url": "https://slack.com/api/chat.postMessage",
+      "evaluateGuide": "Posts a message to a Slack channel through the chat message API, enabling an agent to deliver channel updates.\nUse for: send a channel update, post an alert, publish generated content\nNot supported: listing channels, reading messages, editing or deleting messages",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZuyKJEEoJ4uew8akjUKJFPxIeKkVIEpPUUyck8HZRSKgtmO8u:slack:send-message-to-slack-bo",
+      "name": "Send message to Slack bot",
+      "description": "",
+      "method": "POST",
+      "url": "https://hooks.slack.com/commands/{{slack_hook_url}}",
+      "evaluateGuide": "Sends content to a Slack command endpoint, allowing an agent to invoke the configured Slack bot integration.\nUse for: trigger a bot, submit a bot message, send a stock-quote command\nNot supported: listing channels, reading messages, managing bot configuration",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9al2a64G1srYRVxJ3SKnSepsgceU9aKzl1nnJeNHWFxEudTUMG:slack:send-message-to-slack",
+      "name": "Send message to slack",
+      "description": "",
+      "method": "POST",
+      "url": "https://slack.com/api/chat.postMessage",
+      "evaluateGuide": "Posts a message to Slack through the chat message API, allowing an agent to send an update to a Slack conversation.\nUse for: send a message, post an alert, deliver an automated update\nNot supported: listing channels, reading messages, editing or deleting messages",
+      "provider": "Slack",
+      "product": "Slack"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgaJyCrA8uVpGn1AxibkAYq07DOlbYOfVsCBfuGPP1Cxm7k5cJqSx3udfKNP:brewing:slack-post-message",
+      "name": "slack-post-message",
+      "description": "",
+      "method": "POST",
+      "url": "https://slack.com/api/chat.postMessage",
+      "evaluateGuide": "Posts a message to Slack through the chat message API, enabling an agent to deliver trip-plan or calendar-related text to a conversation.\nUse for: send a trip plan, post an event summary, notify a Slack channel\nNot supported: listing channels, reading messages, editing or deleting messages",
+      "provider": "Slack",
+      "product": "Slack"
+    }
+  ],
+  "meta": {
+    "q": "send a message to a Slack channel",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

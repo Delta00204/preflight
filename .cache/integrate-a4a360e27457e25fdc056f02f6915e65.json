@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: List repository issues instead of opening an issue (GitHub REST API)\n\nFIT\n  Not at all. The supplied request only lists existing repository issues; none creates or opens a new issue. Use the GitHub REST API create-issue endpoint or search again for an issue-creation request."
+    }
+  ]
+}

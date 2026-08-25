@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Send a message to a Slack channel (Slack APIs)\n\nFIT\n  Fully. The supplied request provides the capability to post the requested Slack message.\n\nAUTH\n  OAuth 2.0 authentication is configured, with the access token added to the request header. Supply a valid OAuth access token; the schema also references client_id, client_secret, scopes, callback_uri, and other authorization-flow values, but no concrete values are provided.\n\nBASE URL\n  https://slack.com\n\nSTEPS\n  1. POST /api/chat.postMessage\n     Params (query):\n       channel: string — the target Slack channel or user ID, supplied by the caller (the schema placeholder is '{{slack user id}}')\n       text: string — the message text, supplied by the caller (the schema placeholder is '{{template}}')\n     Returns:\n       No saved response example is available; the response status and body fields are not specified by the request schema.\n     Threading:\n       None\n\nGOTCHAS\n  - The channel and message are sent as query parameters, not in a request body.\n  - The schema does not specify a Content-Type header or request body.\n  - Replace both unresolved placeholders with the intended Slack destination and message text.\n  - The configured OAuth authorization URLs reference Xero rather than Slack; verify that the token and OAuth configuration are valid for Slack before calling the endpoint."
+    }
+  ]
+}

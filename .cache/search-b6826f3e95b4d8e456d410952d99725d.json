@@ -1,0 +1,117 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpkTnCp2X9C6bjErRN4i1s6daYS3Q6vvlbYoantQ9LYNxp0gg8idvsNBVy:api:search-knowledge-base",
+      "name": "Search Knowledge Base",
+      "description": "",
+      "method": "GET",
+      "url": "http://localhost:4000/documentation/search?query=Rate Limit&url=https://docs.luma.com/",
+      "evaluateGuide": "Searches an API documentation knowledge base using a query and documentation URL, returning relevant results. Use it to find guidance across supplied documentation.\nUse for: find rate-limit guidance, search API docs, locate endpoint details\nNot supported: live API calls, document editing, knowledge-base management"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OY4buTBbq79tjqhJAdyomANB8AZJVPH5Psqdxpor5i7hp65N7fwvihJkZfE5:aws:search-content",
+      "name": "Search Content",
+      "description": "Searches for content in a specified knowledge base. Can be used to get a specific content\n      resource by its name.",
+      "method": "POST",
+      "url": "https://wisdom.{{region}}.amazonaws.com/knowledgeBases/:knowledgeBaseId/search?nextToken=string&maxResults=16.280620522716102",
+      "evaluateGuide": "Searches a specified Amazon Connect Wisdom knowledge base for content, including resources matching a query. Results can be paginated and limited.\nUse for: find support content, retrieve named content, search knowledge resources\nNot supported: creating content, updating resources, deleting knowledge bases",
+      "provider": "Amazon",
+      "product": "Amazon Connect Wisdom"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr30AsY3mtOVG3GOBhIvUaC2MCnHnrL:jasper:search-knowledge-base",
+      "name": "Search knowledge base",
+      "description": "Searches the Knowledge Base and returns items most relevant to the provided natural language query.\nDocumentation: https://developers.jasper.ai/reference/searchknowledge\nQuick Start:\n- Ensure {{apiKey}} is set.\n- POST a JSON body with query to /v1/knowledge/search.\nParameters Explained:\n- Request body (JSON):\n  - query (required, string): Natural language search query to find relevant Knowledge items.\nCommon Errors & Fixes:\n- 400 Bad Request: Missing query or malformed JSON body.\n- 401/403: Missing or invalid API key.\n- 500: Server error during search.\nEdge Cases:\n- Natural language search returns results by semantic relevance; exact keyword matches are not guaranteed.\n- Very long queries may be truncated or rejected.\nRate Limits & Constraints:\n- Search endpoints may have separate rate limits; consult Rate Limits documentation.",
+      "method": "POST",
+      "url": "https://api.jasper.ai/v1/knowledge/search",
+      "evaluateGuide": "Searches Jasper’s knowledge base for items relevant to a natural-language query and returns matching knowledge content.\nUse for: search internal knowledge, find relevant notes, retrieve supporting content\nNot supported: adding knowledge, editing items, deleting content",
+      "provider": "Jasper AI",
+      "product": "Jasper AI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:LkqKzWZdy1icJl4ydcJ0cumDbDWxp3uSJhJv3Fe9o59Bfd0oodwaMMPxHtg:sprinklr:search-knowledge-base-co",
+      "name": "Search Knowledge Base Content",
+      "description": "",
+      "method": "POST",
+      "url": "https://{{hostname}}.sprinklr.com{{path}}api/v2/knowledgebase/search",
+      "evaluateGuide": "Searches content in a Sprinklr knowledge base and returns matching knowledge-base results.\nUse for: find support content, search knowledge articles, locate relevant records\nNot supported: creating content, editing articles, deleting knowledge",
+      "provider": "Sprinklr",
+      "product": "Sprinklr Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIoNS4kjASxdmwIR11mjWZh6ILWzJL8:monday-com:post-knowledge-base-sear",
+      "name": "POST knowledge_base_search",
+      "description": "None",
+      "method": "",
+      "url": "https://api.monday.com/v2",
+      "evaluateGuide": "Provides the Monday.com GraphQL endpoint for executing the knowledge_base_search operation against the platform schema.\nUse for: run knowledge-base searches, query Monday data, retrieve matching records\nNot supported: REST-specific operations, standalone article management, schema changes",
+      "provider": "Monday.com",
+      "product": "Monday.com"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr31vijIwY0JjyGrXFC5ZiBEGUhmxzG:tribe:search-knowledge-base",
+      "name": "Search Knowledge Base",
+      "description": "Search the TRIBE knowledge base for saved patterns, notes, and reusable artifacts.\nDocumentation: https://tribecode.ai/docs/muse\nQuick Start:\n- Use query parameters such as category and tags to scope your search.\n- Include Authorization: Bearer {{accessToken}} in the request header.\nParameters:\n- category (optional): Filter by knowledge base category (e.g., pattern).\n- tags (optional): Comma-separated tags to filter results (e.g., cors,bugfix).\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing/invalid API key.\n- 400 Bad Request: Invalid parameter formats.\nEdge Cases:\n- Tag matching may be exact or partial depending on backend indexing (not documented here).\n- Some knowledge items may be private and require permissions.\nRate Limits & Constraints:\n- Subject to collection-level rate limits described in API Reference.",
+      "method": "GET",
+      "url": "https://tribecode.ai/api/knowledge",
+      "evaluateGuide": "Searches the TRIBE knowledge base for saved patterns, notes, and reusable artifacts, with optional category and tag filtering.\nUse for: find saved patterns, search notes, locate reusable artifacts\nNot supported: creating artifacts, editing entries, deleting knowledge",
+      "provider": "TRIBE AI",
+      "product": "TRIBE AI"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr2XBLKJpBtzNQJetYbBrmuoRie0rht:askyourpdf:search-knowledge-bases",
+      "name": "Search Knowledge Bases",
+      "description": "Search knowledge bases by name or query string. Returns a list of matching knowledge bases and their document details.\nDocumentation: https://docs.askyourpdf.com/askyourpdf-docs\nQuick Start:\n- GET /v1/api/search/knowledge?query=YOUR_QUERY with x-api-key.\nParameters Explained:\n- query (required, query): Search string to filter knowledge bases by name.\nCommon Errors & Fixes:\n- 422 Validation Error: missing query parameter.\n- 401 Unauthorized: invalid API key.\nEdge Cases:\n- Matches are returned based on name/document metadata; relevance ranking not documented.\nRate Limits & Constraints:\n- Search requests count toward API usage.",
+      "method": "GET",
+      "url": "https://api.askyourpdf.com/v1/api/search/knowledge",
+      "evaluateGuide": "Searches AskYourPDF knowledge bases by name or query string and returns matching knowledge bases with document details.\nUse for: find a knowledge base, search by name, inspect document metadata\nNot supported: searching document text, uploading documents, editing knowledge bases",
+      "provider": "AskYourPDF",
+      "product": "AskYourPDF"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr2XBLKJpJkmZpdYz5BMxag8vrgN8JX:askyourpdf:search-knowledge-bases",
+      "name": "Search Knowledge Bases",
+      "description": "Search knowledge bases by name using a query string.\nDocumentation: https://docs.askyourpdf.com/askyourpdf-api-documentation\nQuick Start:\n- Ensure {{apiKey}} is set.\n- Call GET /v1/api/search/knowledge?query={{query}}.\nParameters Explained:\n- query (required, query): Search text to filter knowledge bases by name.\nCommon Errors & Fixes:\n- 422 Validation Error: Missing query param.\nEdge Cases:\n- Results are name-based; partial matches may be returned depending on implementation.\nRate Limits & Constraints:\n- Authentication required via x-api-key.",
+      "method": "GET",
+      "url": "https://api.askyourpdf.com/v1/api/search/knowledge?query=invoice",
+      "evaluateGuide": "Searches AskYourPDF knowledge bases by name using a query string and returns matching results.\nUse for: find a knowledge base, filter by name, locate matching resources\nNot supported: full-text document search, document uploads, knowledge-base editing",
+      "provider": "AskYourPDF",
+      "product": "AskYourPDF"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPVOKbZn0kNaGZXI4uFA2bvTGe0Ho:groove:search-knowledge-base-ar",
+      "name": "Search Knowledge Base Articles",
+      "description": "Searches articles in a public knowledge base and returns matching article records.\nDocumentation: https://doc.groovehq.com/knowledge-base-public\nQuick Start:\n- No authentication required (public endpoints).\n- Call the GET endpoint with the knowledge base ID in the path and provide the required keyword query parameter.\nParameters Explained:\n- knowledgeBaseId (required, path): The ID of the knowledge base to search (string).\n- keyword (required, query): The search keyword. Use * to return all articles.\n- categoryId (optional, query): Filter results to a specific category ID.\n- featured (optional, query): Boolean to filter only featured articles.\n- ids (optional, query): Array of article IDs to restrict results to.\n- page (optional, query): Page number of results. Default: 1.\n- perPage (optional, query): Number of results per page. Default: 25.\n- tag (optional, query): Filter results by tag name.\nCommon Errors & Fixes:\n- 404 Not Found: Knowledge base is password/IP restricted or knowledgeBaseId is incorrect.\n- 400 Bad Request: Missing required keyword parameter or malformed query parameter types.\nEdge Cases:\n- When using ids, supply an array of IDs; behavior for mixed invalid IDs is undocumented.\n- featured expects a boolean value; string representations may not be accepted.\nRate Limits & Constraints:\n- The documentation does not list explicit rate limits for this endpoint on this page.",
+      "method": "GET",
+      "url": "https://api.groovehq.com/v1/kb/public/4216430596/articles/search",
+      "evaluateGuide": "Searches articles in a public Groove knowledge base by keyword, with optional category and featured filters. Use * to return all articles.\nUse for: find public articles, filter by category, list featured content\nNot supported: private article search, article creation, article editing",
+      "provider": "Groove",
+      "product": "Groove"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPVOKbAHMtWcC64Aeg5X7QravzhPJ:groove:search-knowledge-base-ar",
+      "name": "Search Knowledge Base Articles",
+      "description": "Search articles in a knowledge base using various filters and pagination.\nDocumentation: https://doc.groovehq.com/knowledge-base-articles\nQuick Start:\n- Provide knowledgeBaseId and a keyword value (use * to return all articles).\n- Include optional filters (authorid, categoryid, featured, ids, order, page, per_page, state, tag, unpaginated).\nParameters Explained:\n- keyword (query, required): Keyword to search articles by. Use * for all.\n- author_id (query, optional): Filter results by author ID.\n- category_id (query, optional): Filter by category ID.\n- featured (query, optional): true/false to filter featured articles.\n- ids (query, optional): Array of article IDs to limit results.\n- order (query, optional): Sort by a field and direction, e.g. title:asc or updated_at:desc.\n- page (query, optional, default 1): Page number.\n- per_page (query, optional, default 25): Results per page.\n- state (query, optional): Article state filter (draft, published, wip, deleted).\n- tag (query, optional): Tag name to filter by.\n- unpaginated (query, optional, default false): Return unpaginated results (max 100).\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing/invalid token. Ensure Authorization header is set.\n- 400 Bad Request: Invalid query param values (e.g., non-integer page/per_page).\nEdge Cases:\n- unpaginated=true returns at most 100 results.\n- Sorting fields are limited to documented sortable fields (average_ratings, position, title, updated_at).\nRate Limits & Constraints:\n- Not documented on this page.",
+      "method": "GET",
+      "url": "https://api.groovehq.com/v1/kb/4216430596/articles/search",
+      "evaluateGuide": "Searches Groove knowledge-base articles with keyword, author, category, status, tag, ordering, and pagination filters.\nUse for: search articles, filter by author, list tagged content, paginate results\nNot supported: creating articles, editing articles, deleting knowledge",
+      "provider": "Groove",
+      "product": "Groove"
+    }
+  ],
+  "meta": {
+    "q": "search our internal company knowledge base",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4n2ProQpiHqUVWJcHWoOKekN5X9bBjUhzy7V7kAugWagCchQmdPglEs67U:published:get-open-github-issues",
+      "name": "Get open GitHub issues",
+      "description": "",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{project_owner}}/{{project_repo}}/issues?state=open",
+      "evaluateGuide": "Retrieves open issues for a specified GitHub repository, enabling agents to review currently active work items. The response may also include pull requests.\nUse for: monitor open issues, find unassigned work, review repository activity\nNot supported: closed-issue retrieval, issue creation, issue comments, pull-request listing",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0A0xNq5QfG5ERgUxflBqD1xyojs0L:github:list-repository-issues",
+      "name": "List repository issues",
+      "description": "List repository issues\nList issues in a repository. Only open issues will be listed.\n\n[!NOTE]\n  GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, \"Issues\" endpoints may return both issues and pull requests in the response. You can identify pull requests by the pull_request key. Be aware that the id of a pull request returned from \"Issues\" endpoints will be an issue id. To find out the pull request id, use the \"List pull requests\" endpoint.\n\nThis endpoint supports the following custom media types. For more information, see \"Media types.\"\n\napplication/vnd.github.raw+json: Returns the raw markdown body. Response will include body. This is the default if you do not pass any specific media type.\napplication/vnd.github.text+json: Returns a text only representation of the markdown body. Response will include body_text.\napplication/vnd.github.html+json: Returns HTML rendered from the body's markdown. Response will include body_html.\napplication/vnd.github.full+json: Returns raw, text, and HTML representations. Response will include body, body_text, and body_html.\n\nParameters\n| Name | In | Required | Description |\n|---|---|---|---|\n| owner | path | Yes | The account owner of the repository. The name is not case sensitive. |\n| repo | path | Yes | The name of the repository without the .git extension. The name is not case sensitive. |\n| milestone | query | No | If an integer is passed, it should refer to a milestone by its number field. If the string * is passed, issues wit |\n| state | query | No | Indicates the state of the issues to return. |\n| assignee | query | No | Can be the name of a user. Pass in none for issues with no assigned user, and * for issues assigned to any user. |\n| type | query | No | Can be the name of an issue type. If the string * is passed, issues with any type are accepted. If the string none i |\n| creator | query | No | The user that created the issue. |\n| mentioned | query | No | A user that's mentioned in the issue. |\n| labels | query | No | A list of comma separated label names. Example: bug,ui,@high |\n| sort | query | No | What to sort results by. |\n| direction | query | No | The direction to sort the results by. |\n| since | query | No | Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.or |\n| per_page | query | No | The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.git |\n| page | query | No | The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.gith |\nResponse Codes\n\n200 Response\n301 Moved permanently\n404 Resource not found\n422 Validation failed, or the endpoint has been spammed.\n\nDocumentation: https://docs.github.com/rest/issues/issues#list-repository-issues",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{owner}}/{{repo}}/issues",
+      "evaluateGuide": "Lists issues in a specified GitHub repository. The response includes open issues and may also include pull requests because GitHub treats pull requests as issues in this resource.\nUse for: list repository issues, inspect open work, identify pull requests in results\nNot supported: issue creation, issue updates, comment listing, dedicated pull-request details",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1EFqEZL9lUxwFghzHy7E4GKEnLlkNB6ANXPceIx9kZhYMSVmY74HsndpB:published:get-a-postman-app-suppor",
+      "name": "Get a Postman app support issue",
+      "description": "Need to transfer issues between #672 and #1648",
+      "method": "GET",
+      "url": "https://api.github.com/repos/postmanlabs/postman-app-support/issues/{{current_issue_id}}",
+      "evaluateGuide": "Retrieves one issue from the postmanlabs/postman-app-support repository by issue identifier, allowing an agent to inspect its details.\nUse for: inspect a support issue, retrieve issue metadata, review issue status\nNot supported: issue listing, issue creation, issue updates, comment retrieval",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0A0xNq5YSK7Ri2aRLWw00AkrvzZfk:github:list-issue-events-for-a",
+      "name": "List issue events for a repository",
+      "description": "Lists events for a repository.\nDocumentation: https://docs.github.com/en/rest/issues/events\nQuick Start:\n- Set the Accept header to application/vnd.github+json (recommended).\n- If accessing private repositories or more than public data, include a bearer token (see Authentication). For fine-grained tokens, the token must include repository \"Issues\" permission (read).\n- Call: GET https://api.github.com/repos/OWNER/REPO/issues/events\nParameters Explained:\n- Headers:\n  - Accept (recommended): application/vnd.github+json.\n  - Authorization (optional when accessing private resources): Bearer <TOKEN>.\n  - X-GitHub-Api-Version (optional): version string such as 2026-03-10 (shown in examples).\n- Path parameters:\n  - owner (required): repository owner (case-insensitive string).\n  - repo (required): repository name without .git (case-insensitive string).\n- Query parameters:\n  - per_page (integer, optional): Number of results per page (max 100). Default: 30.\n  - page (integer, optional): Page number to fetch. Default: 1.\nCommon Errors & Fixes:\n- 200 OK: Successful response.\n- 422 Validation failed or 422 endpoint has been spammed: Usually invalid query parameters or rate/abuse protections triggered — check request parameters and retry after a delay.\n- Authorization issues: If you receive 401/403, ensure Authorization header is present and token has the required repository scope/permissions.\nEdge Cases:\n- This endpoint can be called without authentication for public repositories; to access private repository events you must provide a valid token with appropriate permissions.\n- Some event fields (for example, commit_id, commit_url, or nested issue content) may be null or absent depending on event type.\n- Pagination: results are paginated; use per_page and page to iterate through results and examine Link headers in responses for navigation.\nRate Limits & Constraints:\n- Subject to GitHub REST API rate limits. For numeric limits and details (per authenticated vs unauthenticated requests), see the GitHub REST API Rate Limits documentation.",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{owner}}/{{repo}}/issues/events",
+      "evaluateGuide": "Lists events associated with issues in a specified GitHub repository, helping agents review issue activity history.\nUse for: audit issue activity, review repository events, track issue changes\nNot supported: issue details, issue comments, issue creation, pull-request event filtering",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4raRqwUXQITmmSvOiSGE3YxxxKp1iWgk0m5DEXR0QH3reqzbcoA:postman:get-issue",
+      "name": "Get Issue",
+      "description": "",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{org_name}}/{{repo_name}}/issues/{{issue_id}}",
+      "evaluateGuide": "Retrieves one issue from a specified GitHub repository by identifier, enabling an agent to inspect its details.\nUse for: retrieve issue details, inspect issue status, review issue metadata\nNot supported: issue listing, issue creation, issue updates, comment retrieval",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0A0xNq5Qdi1sBbn7FsPR21uiKcs1J:github:list-issue-comments-for",
+      "name": "List issue comments for a repository",
+      "description": "List issue comments for a repository\nYou can use the REST API to list comments on issues and pull requests for a repository. Every pull request is an issue, but not every issue is a pull request.\nBy default, issue comments are ordered by ascending ID.\nThis endpoint supports the following custom media types. For more information, see \"Media types.\"\n\napplication/vnd.github.raw+json: Returns the raw markdown body. Response will include body. This is the default if you do not pass any specific media type.\napplication/vnd.github.text+json: Returns a text only representation of the markdown body. Response will include body_text.\napplication/vnd.github.html+json: Returns HTML rendered from the body's markdown. Response will include body_html.\napplication/vnd.github.full+json: Returns raw, text, and HTML representations. Response will include body, body_text, and body_html.\n\nParameters\n| Name | In | Required | Description |\n|---|---|---|---|\n| owner | path | Yes | The account owner of the repository. The name is not case sensitive. |\n| repo | path | Yes | The name of the repository without the .git extension. The name is not case sensitive. |\n| sort | query | No | The property to sort the results by. |\n| direction | query | No | Either asc or desc. Ignored without the sort parameter. |\n| since | query | No | Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.or |\n| per_page | query | No | The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.git |\n| page | query | No | The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.gith |\nResponse Codes\n\n200 Response\n404 Resource not found\n422 Validation failed, or the endpoint has been spammed.\n\nDocumentation: https://docs.github.com/rest/issues/comments#list-issue-comments-for-a-repository",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{owner}}/{{repo}}/issues/comments",
+      "evaluateGuide": "Lists comments on issues and pull requests in a specified GitHub repository, enabling agents to review discussion content.\nUse for: list issue comments, review pull-request discussion, retrieve comment history\nNot supported: issue details, comment creation, comment updates, issue event history",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JmIBw074ztpO1EDKUtdq1eGB1UETUDyDoYdl71WscOtgM3In7MY5yupYsew:published:get-github-issues",
+      "name": "get-github-issues",
+      "description": "This gets the last 20 github open issues for the current repo. This request is run for every repository being watched.\nThen it plucks out the issues\n - which has no labels\n - which has no Assignee\nIt skips any issues which were opened before last 24 hours or 72 hours (if it's Monday it checks for issues from last Friday)\nUpdates Environment Variables\n - config.missedIssues\n - config.potentiallyMissedIssues\n - current-repo-url\n - current-repo-name\n - slack-title-url\n - config.slack (In case of an error or",
+      "method": "GET",
+      "url": "{{current-repo-url}}",
+      "evaluateGuide": "Retrieves the current repository resource to support monitoring of recent open issues, especially issues without labels or assignees. The exact resource depends on the supplied repository URL.\nUse for: monitor repository issues, find unlabeled issues, find unassigned issues\nNot supported: issue creation, issue updates, comment retrieval, repository-wide configuration",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyzNymypM2Qv5lcT8sXKrJNxo3k6a:github:list-repository-issues",
+      "name": "List repository issues",
+      "description": "List repository issues\nList issues in a repository. Only open issues will be listed.\n\n[!NOTE]\n  GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, \"Issues\" endpoints may return both issues and pull requests in the response. You can identify pull requests by the pull_request key. Be aware that the id of a pull request returned from \"Issues\" endpoints will be an issue id. To find out the pull request id, use the \"List pull requests\" endpoint.\n\nThis endpoint supports the following custom media types. For more information, see \"Media types.\"\n\napplication/vnd.github.raw+json: Returns the raw markdown body. Response will include body. This is the default if you do not pass any specific media type.\napplication/vnd.github.text+json: Returns a text only representation of the markdown body. Response will include body_text.\napplication/vnd.github.html+json: Returns HTML rendered from the body's markdown. Response will include body_html.\napplication/vnd.github.full+json: Returns raw, text, and HTML representations. Response will include body, body_text, and body_html.\n\nParameters\n| Name | In | Required | Description |\n|---|---|---|---|\n| owner | path | Yes | The account owner of the repository. The name is not case sensitive. |\n| repo | path | Yes | The name of the repository without the .git extension. The name is not case sensitive. |\n| milestone | query | No | If an integer is passed, it should refer to a milestone by its number field. If the string * is passed, issues wit |\n| state | query | No | Indicates the state of the issues to return. |\n| assignee | query | No | Can be the name of a user. Pass in none for issues with no assigned user, and * for issues assigned to any user. |\n| type | query | No | Can be the name of an issue type. If the string * is passed, issues with any type are accepted. If the string none i |\n| creator | query | No | The user that created the issue. |\n| mentioned | query | No | A user that's mentioned in the issue. |\n| labels | query | No | A list of comma separated label names. Example: bug,ui,@high |\n| sort | query | No | What to sort results by. |\n| direction | query | No | The direction to sort the results by. |\n| since | query | No | Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.or |\n| per_page | query | No | The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.git |\n| page | query | No | The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.gith |\nResponse Codes\n\n200 Response\n301 Moved permanently\n404 Resource not found\n422 Validation failed, or the endpoint has been spammed.\n\nDocumentation: https://docs.github.com/rest/issues/issues#list-repository-issues",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{owner}}/{{repo}}/issues",
+      "evaluateGuide": "Lists open issues in a specified GitHub repository. Results may include pull requests because GitHub exposes both through its issues resource.\nUse for: list open issues, monitor repository work, identify pull requests in results\nNot supported: issue creation, issue updates, comment listing, Actions configuration",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MvBXdndSC4raRp3htajrJuXiInqiG8UMYnK1CZSHbUP32UlkXfTqhZQYv7OX:postman:get-issue-comments",
+      "name": "Get Issue Comments",
+      "description": "",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{org_name}}/{{repo_name}}/issues/{{issue_id}}/comments?per_page=100&page={{current_page}}",
+      "evaluateGuide": "Retrieves paginated comments for one issue or pull request in a specified GitHub repository, supporting discussion review.\nUse for: retrieve issue comments, review discussion, paginate comment history\nNot supported: issue details, comment creation, comment updates, issue event history",
+      "provider": "GitHub",
+      "product": "GitHub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyzNymSQSqpna6PWelWcHP5YEV4f0:github:get-github-actions-permi",
+      "name": "Get GitHub Actions permissions for a repository",
+      "description": "Get GitHub Actions permissions for a repository (shows whether Actions are enabled and allowed actions configuration).\nDocumentation: https://docs.github.com/en/rest/actions/permissions\nQuick Start:\n- Authorization: token with repo scope (classic) or fine-grained token with repository Administration (read).\n- GET https://api.github.com/repos/{owner}/{repo}/actions/permissions with Accept: application/vnd.github+json\nParameters Explained:\n- owner (path, required): account owner of the repository.\n- repo (path, required): repository name.\n- Header accept: application/vnd.github+json recommended.\nCommon Errors & Fixes:\n- 401/403: insufficient token or scope.\n- 404: repository not found or lack of access.\nEdge Cases:\n- Fine-grained tokens supported: GitHub App user/installation tokens and fine-grained PATs with \"Administration\" repository permission (read).",
+      "method": "GET",
+      "url": "https://api.github.com/repos/{{owner}}/{{repo}}/actions/permissions",
+      "evaluateGuide": "Retrieves the GitHub Actions permissions and allowed-actions configuration for a specified repository, enabling agents to inspect automation policy.\nUse for: check Actions status, inspect allowed actions, audit automation permissions\nNot supported: workflow runs, workflow creation, permission updates, issue management",
+      "provider": "GitHub",
+      "product": "GitHub Actions"
+    }
+  ],
+  "meta": {
+    "q": "open an issue in a GitHub repository",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

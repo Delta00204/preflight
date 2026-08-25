@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9aoMlxC79P5FGqMz7UvcXEHAka5xzKOyNL2uxRHJyr0ZUhwSet:brewing:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.sendinblue.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP API, allowing an agent to deliver a message to recipients. Use for: send an order confirmation, send a password reset, deliver an account alert Not supported: email activity reporting, batch delivery, template management",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2cormaJs6No7cjVYvRIf9ddqnMiiW8z7O4fgcgIkUZpTJ5emaa8O:hubspot:send-a-single-send-trans",
+      "name": "Send a single send transactional email asynchronously.",
+      "description": "Asynchronously send a transactional email. Returns the status of the email send with a statusId that can be used to continuously query for the status using the Email Send Status API.",
+      "method": "POST",
+      "url": "https://api.hubapi.com/marketing/v3/transactional/single-email/send",
+      "evaluateGuide": "Queues one transactional email asynchronously through HubSpot and returns a status identifier for tracking delivery progress. Use for: send a transactional message, queue an account email, track send status Not supported: bulk sending, campaign analytics, contact management",
+      "provider": "HubSpot",
+      "product": "HubSpot Marketing Hub"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZyKS9C2KYQSepkJccNsaQ0psNHnTZ0h1ZHlzITvEfoIkkqOK0:devops:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.brevo.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP API, allowing an agent to deliver a message to recipients. Use for: send an order confirmation, send a password reset, deliver an account alert Not supported: email activity reporting, batch delivery, template management",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JmreOwbyWRKjAF0wMdCIRWefyI01mraJwXFYbtC2ESg68rgHnAc9xjT21ib:sendmux:send-a-single-email",
+      "name": "Send a single email",
+      "description": "Queue a single email for delivery. Requires email.send permission.",
+      "method": "POST",
+      "url": "https://smtp.sendmux.ai/api/v1/emails/send",
+      "evaluateGuide": "Queues one email for delivery through Sendmux. Use for: send an email, deliver a notification, queue a message Not supported: batch delivery, delivery-status lookup, inbox operations",
+      "provider": "Sendmux",
+      "product": "Sendmux Email API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9a0XY30fXOpyjzlxfiglw5DlyW7Z8OSN88a0gZvvSdKhceCsLY:integration:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.brevo.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP API, allowing an agent to deliver a message to recipients. Use for: send an order confirmation, send a password reset, deliver an account alert Not supported: email activity reporting, batch delivery, template management",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JmreOwbyWRJwFYsuhLM6H9l5vdVUN6G5q6qaeG9UKUzzxYpPsfzxw6xY2Hn:sendmux:send-a-batch-of-emails",
+      "name": "Send a batch of emails",
+      "description": "Queue up to 100 emails for delivery in a single request. Uses partial success model — individual message failures do not fail the entire batch. Requires email.send permission.",
+      "method": "POST",
+      "url": "https://smtp.sendmux.ai/api/v1/emails/send/batch",
+      "evaluateGuide": "Queues up to 100 emails for delivery in one Sendmux payload, with individual message outcomes. Use for: send bulk notifications, deliver up to 100 messages, queue multiple emails Not supported: single-message status lookup, inbox operations, campaign analytics",
+      "provider": "Sendmux",
+      "product": "Sendmux Email API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfnpvutuFBQMNjKRq336kC2gTqw3Z1kAH7r7GdCMwu4wjYk4LuakJXXi6Rhg:utility:send-a-transactional-ema",
+      "name": "Send a transactional email",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.brevo.com/v3/smtp/email",
+      "evaluateGuide": "Sends a transactional email through Brevo’s SMTP API, allowing an agent to deliver a message to recipients. Use for: send an order confirmation, send a password reset, deliver an account alert Not supported: email activity reporting, batch delivery, template management",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZvuUFDemuhYHISkMUxMEseJpAGdMNGKKalfmbeZsgBoSIbrs2:brewing:get-all-your-transaction",
+      "name": "Get all your transactional email activity (unaggregated events)",
+      "description": "This endpoint will show the aggregated stats for past 30 days by default if startDate and endDate OR days is not passed. The date range can not exceed 90 days",
+      "method": "GET",
+      "url": "https://api.sendinblue.com/v3/smtp/statistics/events?days=11&messageId=202212281024.62341432715@smtp-relay.mailin.fr",
+      "evaluateGuide": "Retrieves transactional email events and activity for a selected period through Brevo. Use for: inspect delivery events, review email activity, filter events by message Not supported: sending email, composing messages, contact management",
+      "provider": "Brevo",
+      "product": "Brevo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45yHidiigR7Dxe2wZfhT2EqhxE3ldNknhnmNg3s0ddHkWeKlWNbWCepXxDh:salesforce:send-email-triggered-sen",
+      "name": "Send Email - Triggered Send Definition",
+      "description": "https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-apis.meta/mc-apis/messageDefinitionSends.htm\nSends transactional email using Marketing Cloud's triggered send functionality. In order to use this service, configure a triggered send definition in Email Studio.",
+      "method": "POST",
+      "url": "https://{{et_subdomain}}.rest.marketingcloudapis.com/messaging/v1/messageDefinitionSends/key:<tsd_external_key>/send",
+      "evaluateGuide": "Sends transactional email using a configured Salesforce Marketing Cloud triggered send definition. Use for: trigger an order email, send a welcome message, deliver a service notification Not supported: creating send definitions, campaign design, email reporting",
+      "provider": "Salesforce",
+      "product": "Salesforce Marketing Cloud"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxoM28njoBBY2xjOLWBHMTHJFooVc:ahasend:ahasend-send-emails",
+      "name": "AhaSend Send Emails",
+      "description": "AhaSend Send Emails\nYou can send emails to up to 100 recipients using this API at the same time.\nParameters\n| Name | In | Required | Description |\n|---|---|---|---|\n| Content-Type | header | No | Only application/json is supported |\nResponse Codes\n\n201 Request was accepted. This doesn't necessarily mean immediate delivery or even queueing of the email\n400 The request is malformed and could not be validated.\n403 You are not allowed to send for any reason such as invalid credentials, not having access to the sen",
+      "method": "POST",
+      "url": "https://api.ahasend.com/v1/email/send",
+      "evaluateGuide": "Sends email to up to 100 recipients through AhaSend. Use for: send a notification, deliver email to multiple recipients, queue a transactional message Not supported: delivery analytics, inbox management, contact-list administration",
+      "provider": "AhaSend",
+      "product": "AhaSend"
+    }
+  ],
+  "meta": {
+    "q": "send a transactional email to a customer",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

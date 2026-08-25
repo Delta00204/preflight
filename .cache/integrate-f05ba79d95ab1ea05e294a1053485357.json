@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Look up an order and its shipping status (Shippo API)\n\nFIT\n  Fully. The supplied request retrieves an existing Shippo order by object ID, which is the available operation for inspecting its order and shipping-status information. No requests are unrelated.\n\nAUTH\n  API-key authentication via the Authorization header: `Authorization: ShippoToken <apikey>`. The API key placeholder is not supplied and must be provided by the caller.\n\nBASE URL\n  https://api.goshippo.com\n\nSTEPS\n  1. GET /orders/{order_object_id}\n     Params:\n       order_object_id: string — e.g. `order_object_id_here`; place it in the path and replace the unresolved collection variable `{{order_object_id}}`.\n       Accept: string — `application/json`; send as a request header.\n     Returns:\n       The request has no saved response example. It returns the existing order representation; the schema does not specify its status field names or response shape.\n     Threading:\n       None\n\nGOTCHAS\n  - Supply a real Shippo API key; the collection's `{{apikey}}` value is unresolved.\n  - `order_object_id` is also unresolved and must be replaced with the target order's object ID.\n  - The `SHIPPO-API-VERSION` and `SHIPPO-ACCOUNT-ID` headers are present in the schema but disabled, so do not send them unless you intentionally enable and populate them.\n  - The response examples are empty, so confirm the returned order field used for shipping status against the live Shippo response or API documentation."
+    }
+  ]
+}

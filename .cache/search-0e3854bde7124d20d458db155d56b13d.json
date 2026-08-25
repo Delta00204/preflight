@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I63l4CEzQrXTzITrBxLiV0SsAN5UjEDgcE4z77gKUdXFsvhCiHozgo54cWrR:paypal:refund-captured-payment",
+      "name": "Refund captured payment",
+      "description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an amount object in the JSON request body.",
+      "method": "POST",
+      "url": "https://api-m.sandbox.paypal.com/v2/payments/captures/:capture_id/refund",
+      "evaluateGuide": "Refunds a captured PayPal payment by capture ID, either fully or partially, using the payload to specify a partial amount.\nUse for: full payment refunds, partial payment refunds, reversing captured payments\nNot supported: payment capture, payment detail lookup, token management",
+      "provider": "PayPal",
+      "product": "PayPal Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRXJWtpDCYw4xLHj3DeKRYnBpQY7Up2bshVnHoi1bNw96ySOU13:razorpay:refunds",
+      "name": "Refunds",
+      "description": "Use this API to refund payments to customers and reverse transfers from linked accounts.",
+      "method": "POST",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refund",
+      "evaluateGuide": "Refunds a Razorpay payment by payment ID and can reverse transfers from linked accounts.\nUse for: customer payment refunds, reversing linked-account transfers, issuing payment reversals\nNot supported: payment creation, payment capture, payment status lookup",
+      "provider": "Razorpay",
+      "product": "Razorpay Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I63l4CEzQrXU3m4gJejWP5jH85MSBM4HmeDzGPc0DE2AEjUn0bwGs8BOQtrp:paypal:show-captured-payment-de",
+      "name": "Show captured payment details",
+      "description": "Shows details for a captured payment, by ID.",
+      "method": "GET",
+      "url": "https://api-m.sandbox.paypal.com/v2/payments/captures/:capture_id",
+      "evaluateGuide": "Retrieves details for a captured PayPal payment by capture ID, enabling agents to inspect its response data.\nUse for: checking capture details, retrieving payment status, inspecting captured payment data\nNot supported: refunds, payment capture, payment token management",
+      "provider": "PayPal",
+      "product": "PayPal Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDaQox726aMDRhBEQdlipZVKfrbpmj4PUCVZ4JUbNnGSl8II5O5:adyen:refund-a-payment",
+      "name": "Refund a payment",
+      "description": "Refunds a payment that has been captured, and returns a unique reference for this request. You get the outcome of the request asynchronously, in a REFUND webhook.  You can refund either the full captured amount or a part of the captured amount. You can also perform multiple partial refunds, as long as their sum doesn't exceed the cap",
+      "method": "POST",
+      "url": "https://checkout-test.adyen.com/v72/payments/:paymentPspReference/refunds",
+      "evaluateGuide": "Initiates a full or partial refund for a captured Adyen payment and provides the outcome asynchronously through a refund webhook.\nUse for: full refunds, partial refunds, repeated partial refunds\nNot supported: payment authorization, payment capture, synchronous refund results",
+      "provider": "Adyen",
+      "product": "Adyen Checkout"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I63l4CEzQrXTFiGM6zRlQI5Ge4GAdSN3kD4l8igkVdrEkJduUywvT3PWDLHt:paypal:list-all-payment-tokens",
+      "name": "List all payment tokens for customer",
+      "description": "Returns all payment tokens for a customer.",
+      "method": "GET",
+      "url": "https://api-m.sandbox.paypal.com/v3/vault/payment-tokens?customer_id={{vault_customer_id}}",
+      "evaluateGuide": "Lists all PayPal payment tokens associated with a specified customer.\nUse for: listing customer payment tokens, reviewing saved payment methods, retrieving token records\nNot supported: creating tokens, deleting tokens, processing payments",
+      "provider": "PayPal",
+      "product": "PayPal Vault"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgCArwhQuHcTsQC2hAKQtA6IlR3Oey2cCfyZ5JtLkZ6NdixVFsTuynl0oqIs:gocardless:refund-returned-scenario",
+      "name": "Refund Returned Scenario",
+      "description": "https://developer.gocardless.com/api-reference/#core-endpoints-scenario-simulators",
+      "method": "POST",
+      "url": "https://api-sandbox.gocardless.com/scenario_simulators/refund_returned/actions/run",
+      "evaluateGuide": "Runs the GoCardless refund-returned scenario simulator for testing a refund that is returned.\nUse for: simulating returned refunds, testing refund failure handling, validating webhook flows\nNot supported: live refunds, customer payment processing, production settlement",
+      "provider": "GoCardless",
+      "product": "GoCardless Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MwMYUlmQ3fhItSAdGtMyMt4kx6IJvHla800vWVW8SN2vKaxGJiMkYFQaFglJ:paypal:refund-captured-payment",
+      "name": "Refund captured payment",
+      "description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an amount object in the JSON request body.",
+      "method": "POST",
+      "url": "{{base_url}}/v2/payments/captures/:capture_id/refund",
+      "evaluateGuide": "Refunds a captured PayPal payment by capture ID, either fully or partially, using the payload to specify a partial amount.\nUse for: full payment refunds, partial payment refunds, reversing captured payments\nNot supported: payment capture, payment detail lookup, token management",
+      "provider": "PayPal",
+      "product": "PayPal Payments"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgCArwhQuHcUjoC9ujb5PQj4UKDxKiYApTIKLeaFU85j8VvACKjmUqzjWeRC:gocardless:refund-paid-scenario",
+      "name": "Refund Paid Scenario",
+      "description": "https://developer.gocardless.com/api-reference/#core-endpoints-scenario-simulators",
+      "method": "POST",
+      "url": "https://api-sandbox.gocardless.com/scenario_simulators/refund_paid/actions/run",
+      "evaluateGuide": "Runs the GoCardless refund-paid scenario simulator for testing a refund that completes successfully.\nUse for: simulating paid refunds, testing successful refund handling, validating webhook flows\nNot supported: live refunds, customer payment processing, production settlement",
+      "provider": "GoCardless",
+      "product": "GoCardless Payments"
+    }
+  ],
+  "meta": {
+    "q": "refund a captured payment to a customer",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

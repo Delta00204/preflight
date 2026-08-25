@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:Ll8BNklwmNwFG1pITx2Q33fB38AXMymYZJPmVXVMIciGWqOCSAp8ElSef2c:dlp:tablebuildercode",
+      "name": "TableBuilderCode",
+      "description": "Retrieves employee pay rate information based on the specified PayrateId.",
+      "method": "GET",
+      "url": "{{api-base-url}}/odata/v2.0/:company-id/Lookup/TableBuilderComponentCompany/:TableBuilderComponentCompany?frequency={{frequency}}&period={{run}}&$count={{$count}}&$filter={{$filter}}",
+      "evaluateGuide": "Retrieves employee pay rate information for a specified PayrateId from the Deel Local Payroll OData resource. Agents can query matching payroll data with supported filters and periods.\nUse for: Look up a pay rate, retrieve payroll rate data, filter payroll records\nNot supported: Creating or updating pay rates, processing payroll, employee management",
+      "provider": "Deel",
+      "product": "Deel Local Payroll"
+    }
+  ],
+  "meta": {
+    "q": "look up an employee's compensation band in our internal HRIS",
+    "total": 1
+  }
+}

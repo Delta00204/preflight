@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preflight Integration Readiness</title>
+<style>
+:root{
+  --paper:#fbfaf7; --inset:#f4f1ea; --rule:#e0dbd0; --rule-strong:#c9c2b3;
+  --ink:#17181a; --ink-soft:#57544d; --ink-faint:#8d887c;
+  --accent:#1f4a6f;
+  --risk:#9b2c22; --caution:#8a6412; --clear:#2c6144;
+  --serif:"Iowan Old Style","Charter","Source Serif 4",Georgia,serif;
+  --sans:-apple-system,"SF Pro Text",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14151a; --inset:#1b1d23; --rule:#2b2e36; --rule-strong:#3d414c;
+    --ink:#eceae4; --ink-soft:#a5a196; --ink-faint:#78746a; --accent:#7fb0d8;
+    --risk:#e0776c; --caution:#d3a441; --clear:#63b487; }
+}
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);
+  font-variant-numeric:tabular-nums}
+.sheet{max-width:1100px;margin:0 auto;padding:52px 44px 110px}
+/* Prose holds a readable measure; charts and tables use the full sheet. */
+.standfirst,.verdict,.note,.item p,.basis p{max-width:74ch}
+@media (max-width:1000px){ .sheet{padding:44px 26px 90px} .chart{--gut:190px} }
+@media (max-width:820px){
+  .sheet{padding:32px 18px 70px}
+  .chart{--gut:0}
+  .track{grid-template-columns:1fr;gap:7px}
+  .tlabel{padding-right:0}
+  .axis{margin-left:0}
+  .basis{grid-template-columns:1fr;gap:26px}
+  .phases{grid-template-columns:1fr}
+  .ph{border-right:0;border-bottom:1px solid var(--rule);padding:0 0 18px;margin-bottom:18px}
+  .ph:last-child{border-bottom:0;margin-bottom:0}
+  .tstep{grid-template-columns:1fr;gap:3px}
+  table{font-size:13px}
+  h1{font-size:27px}
+}
+
+/* masthead */
+.mast{border-bottom:1.5px solid var(--ink);padding-bottom:14px;
+  display:flex;align-items:baseline;justify-content:space-between;gap:20px}
+.mark{font:600 12px var(--sans);letter-spacing:.19em;text-transform:uppercase}
+.mast .meta{font:11px var(--mono);color:var(--ink-faint);letter-spacing:.04em}
+h1{font:400 37px/1.16 var(--serif);margin:26px 0 0;letter-spacing:-.015em;max-width:22ch}
+.standfirst{font:400 17.5px/1.62 var(--serif);color:var(--ink-soft);margin:15px 0 0}
+
+/* section headings */
+section{margin-top:52px}
+.shead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule);
+  padding-bottom:7px;margin-bottom:22px}
+.shead h2{font:600 11.5px var(--sans);letter-spacing:.15em;text-transform:uppercase;margin:0}
+.shead .n{font:600 11.5px var(--mono);color:var(--ink-faint)}
+.shead .aside{margin-left:auto;font:11.5px var(--sans);color:var(--ink-faint)}
+
+/* brief input */
+.brief{background:var(--inset);border:1px solid var(--rule);border-radius:3px;padding:20px 22px}
+.brief label{display:block;font:600 11px var(--sans);letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);margin-bottom:11px}
+textarea{width:100%;background:transparent;color:var(--ink);border:0;border-left:2px solid var(--rule-strong);
+  padding:2px 0 2px 14px;font:14px/1.95 var(--mono);resize:vertical;min-height:132px;outline:none;overflow:hidden}
+.controls{display:flex;gap:10px;align-items:center;margin-top:18px;
+  border-top:1px solid var(--rule);padding-top:16px;flex-wrap:wrap}
+button{font:600 13px var(--sans);border-radius:2px;padding:8px 17px;cursor:pointer;
+  border:1px solid var(--ink);background:var(--ink);color:var(--paper)}
+button.quiet{background:transparent;color:var(--ink-soft);border-color:var(--rule-strong)}
+button:disabled{opacity:.4;cursor:default}
+.stat{font:11.5px var(--mono);color:var(--ink-faint);margin-left:auto}
+.hide{display:none}
+
+/* verdict */
+.verdict{font:400 26px/1.45 var(--serif);letter-spacing:-.006em;margin:0}
+.verdict em{font-style:normal;border-bottom:2px solid var(--risk);padding-bottom:1px}
+.verdict .lede{display:block;font-size:13px;font-family:var(--sans);color:var(--ink-faint);
+  letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:14px}
+
+/* critical path chart */
+.chart{margin-top:6px}
+.axis{position:relative;height:17px;margin-left:var(--gut);border-bottom:1px solid var(--rule-strong)}
+.axis span{position:absolute;transform:translateX(-50%);font:10.5px var(--mono);
+  color:var(--ink-faint);bottom:4px}
+.track{position:relative;padding:11px 0;border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:var(--gut) 1fr;align-items:center;gap:0}
+.chart{--gut:300px}
+.track:last-of-type{border-bottom:1px solid var(--rule-strong)}
+.tlabel{padding-right:20px;font-size:13.5px;line-height:1.4}
+.tlabel i{display:block;font:10.5px var(--mono);font-style:normal;color:var(--ink-faint);margin-top:3px}
+.tbar{position:relative;height:22px}
+.tbar .fill{position:absolute;left:0;top:0;height:100%;border-radius:1px;
+  display:flex;align-items:center;padding-left:9px}
+.tbar .v{font:600 11.5px var(--mono);color:var(--paper);white-space:nowrap}
+.tbar .v.out{color:var(--ink-soft);position:absolute;padding-left:9px}
+.grid{position:absolute;inset:0;pointer-events:none}
+.grid i{position:absolute;top:-1px;bottom:-1px;width:1px;background:var(--rule)}
+.marker{position:absolute;top:0;bottom:0;width:1px;background:var(--accent)}
+.marker b{position:absolute;top:-1px;left:6px;font:600 10px var(--sans);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+thead th{text-align:left;font:600 10.5px var(--sans);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);padding:0 14px 9px 0;border-bottom:1px solid var(--rule-strong)}
+thead th.r{text-align:right;padding-right:0}
+td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td.r{text-align:right;padding-right:0;font:600 13px var(--mono)}
+.capname{font-weight:520;line-height:1.4}
+.epline{font:11px/1.5 var(--mono);color:var(--ink-faint);margin-top:5px;word-break:break-all;max-width:40ch}
+.auth{font:600 12px var(--sans);white-space:nowrap}
+.auth i{font-style:normal;color:var(--ink-faint);font-weight:400;display:block;font-size:11px;margin-top:2px}
+.flags{display:flex;flex-direction:column;gap:4px}
+.fl{font:11.5px var(--sans);color:var(--ink-soft);white-space:nowrap;cursor:help;
+  border-bottom:1px dotted var(--rule-strong);align-self:flex-start}
+.fl::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+  margin-right:7px;vertical-align:1px}
+.fl.high::before{background:var(--risk)} .fl.med::before{background:var(--caution)}
+.fl.low::before{background:var(--ink-faint)}
+.none{color:var(--ink-faint)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tablewrap table{min-width:660px}
+tr.cap-row{cursor:pointer}
+tr.cap-row:hover td{background:var(--inset)}
+.why{font:10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+  border:1px solid var(--rule-strong);border-radius:2px;padding:1px 6px;margin-left:8px;white-space:nowrap}
+tr.trace-row td{padding:0;border-bottom:1px solid var(--rule)}
+.trace{background:var(--inset);padding:20px 22px;display:grid;gap:0}
+.tstep{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:11px 0;
+  border-bottom:1px dotted var(--rule-strong)}
+.tstep:last-child{border-bottom:0}
+.tkind{font:600 9.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;padding-top:2px}
+.tkind.evidence{color:var(--clear)} .tkind.inference{color:var(--caution)} .tkind.assumption{color:var(--risk)}
+.tclaim{font-size:13.5px;font-weight:520;line-height:1.45}
+.tsrc{font:11px var(--mono);color:var(--ink-faint);margin-top:4px}
+.tdetail{font-size:12.5px;color:var(--ink-soft);margin-top:5px;line-height:1.55;max-width:78ch}
+.telem{display:flex;gap:26px;flex-wrap:wrap;font:11.5px var(--mono);color:var(--ink-faint);
+  border-top:1px solid var(--rule);margin-top:16px;padding-top:13px}
+.telem b{color:var(--ink);font-weight:600}
+
+/* findings, audit style */
+.item{display:grid;grid-template-columns:34px 1fr;gap:0;padding:18px 0;border-bottom:1px solid var(--rule)}
+.item:first-child{border-top:1px solid var(--rule-strong)}
+.idx{font:600 12px var(--mono);color:var(--ink-faint);padding-top:2px}
+.item h3{font:600 14.5px var(--sans);margin:0 0 2px}
+.item .subj{font:11.5px var(--mono);color:var(--ink-faint);margin-bottom:8px}
+.item p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-soft);max-width:70ch}
+.item code{font:11.5px var(--mono);background:var(--inset);padding:1px 5px;border-radius:2px;color:var(--risk)}
+.tag{float:right;font:600 10px var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);border:1px solid var(--rule-strong);padding:2px 7px;border-radius:2px}
+.clear{color:var(--clear);font-size:14px;padding:16px 0;border-top:1px solid var(--rule-strong)}
+
+/* phases */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule-strong)}
+.ph{padding:0 22px 20px;border-right:1px solid var(--rule);min-width:0}
+.ph:first-child{padding-left:0}
+.ph:last-child{border-right:0;padding-right:0}
+.ph .cap-bar{height:3px;margin-bottom:15px}
+.ph.p1 .cap-bar{background:var(--clear)}
+.ph.p2 .cap-bar{background:var(--caution)}
+.ph.p3 .cap-bar{background:var(--risk)}
+.ph .hd{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.ph h3{margin:0;font:600 11.5px var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.ph .count{font:600 20px var(--mono);line-height:1;letter-spacing:-.02em}
+.ph.p1 .count{color:var(--clear)}
+.ph.p2 .count{color:var(--caution)}
+.ph.p3 .count{color:var(--risk)}
+.ph .ready{font:600 12.5px var(--mono);margin-top:8px}
+.ph .when{font:11.5px/1.5 var(--sans);color:var(--ink-faint);margin-top:4px}
+.ph ul{margin:14px 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.ph li{font-size:13px;line-height:1.45;padding:9px 0;border-bottom:1px dotted var(--rule);
+  display:block;overflow-wrap:break-word}
+.ph li:last-child{border-bottom:0}
+.ph li i{display:block;font-style:normal;color:var(--ink-faint);font:10.5px var(--mono);margin-top:3px}
+.ph .empty{font-size:12.5px;color:var(--ink-faint);padding:10px 0;font-style:italic}
+
+
+.basis{display:grid;grid-template-columns:1fr 1fr;gap:44px;border-top:1px solid var(--rule-strong);padding-top:22px}
+.basis h4{font:600 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin:0 0 9px}
+.basis p{margin:0;font-size:13.5px;line-height:1.65;color:var(--ink-soft)}
+.cal{margin-top:16px;font-size:12.5px;width:100%}
+.cal td{padding:5px 0;border-bottom:1px dotted var(--rule)}
+.cal td:last-child{text-align:right;font:600 12px var(--mono)}
+.note code{font:11.5px var(--mono);background:var(--inset);padding:1px 5px;border-radius:2px}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font:11.5px var(--sans);
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.provbar{display:flex;height:30px;border:1px solid var(--rule-strong);border-radius:2px;
+  overflow:hidden;margin:18px 0 10px}
+.provbar i{display:block;height:100%;position:relative}
+.provbar i.evidence{background:var(--clear)}
+.provbar i.inference{background:var(--caution)}
+.provbar i.assumption{background:var(--risk)}
+.provbar i span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font:600 11px var(--mono);color:var(--paper)}
+.provlegend{display:flex;gap:24px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);
+  margin-bottom:26px}
+.provlegend b{font-weight:600;color:var(--ink)}
+.provlegend s{text-decoration:none;display:inline-block;width:9px;height:9px;border-radius:2px;
+  margin-right:7px}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+  border:1px solid var(--rule);border-right:0}
+.stat2{padding:14px 16px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat2 b{display:block;font:600 21px var(--mono);letter-spacing:-.02em;line-height:1.15}
+.stat2 span{font:600 9.5px var(--sans);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);display:block;margin-top:5px;line-height:1.45}
+details{border-top:1px solid var(--rule-strong)}
+summary{cursor:pointer;padding:15px 0;font:600 13px var(--sans);list-style:none;
+  display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 17px var(--mono);color:var(--ink-faint)}
+details[open] summary::after{content:"–"}
+pre{background:var(--inset);border:1px solid var(--rule);border-radius:2px;padding:18px;
+  overflow:auto;font:11.5px/1.65 var(--mono);max-height:420px;margin:0 0 18px}
+.note{font:12.5px/1.6 var(--sans);color:var(--ink-faint);max-width:72ch;margin-top:14px}
+footer{margin-top:70px;padding-top:18px;border-top:1px solid var(--rule);
+  font:11px var(--mono);color:var(--ink-faint);display:flex;justify-content:space-between;gap:20px}
+</style>
+</head>
+<body><div class="sheet">
+
+<div class="mast">
+  <div class="mark">Preflight</div>
+  <div class="meta" id="stamp"></div>
+</div>
+<h1>Integration readiness assessment</h1>
+<p class="standfirst">Enterprise agent deployments slip on integration authorisation, not model
+quality, and the evidence exists on day one. Preflight resolves each requested capability against
+Orbit&rsquo;s public API catalogue and returns the critical path, the blockers, and a phased plan.</p>
+
+<section>
+  <div class="shead"><span class="n">01</span><h2>Deployment brief</h2>
+    <span class="aside">one capability per line</span></div>
+  <div class="brief">
+    <label for="caps">Requested agent capabilities</label>
+    <textarea id="caps" spellcheck="false"></textarea>
+    <div class="controls">
+      <button id="run">Run assessment</button>
+      <button id="reset" class="quiet">Restore sample</button>
+      <span class="stat" id="status"></span>
+    </div>
+  </div>
+</section>
+
+<div id="out" class="hide">
+  <section>
+    <div class="shead"><span class="n">02</span><h2>Finding</h2></div>
+    <p class="verdict" id="verdict"></p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">03</span><h2>Critical path</h2>
+      <span class="aside">calendar days to a working, approved integration</span></div>
+    <div class="chart" id="chart"></div>
+    <p class="note">Bar <em style="font-style:normal;border-bottom:1px dotted var(--rule-strong)">lengths</em>
+    come from the calibration table in section 09 and are assumptions. Which tier each capability
+    lands in is evidence, taken from the authorisation section Orbit returned.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">04</span><h2>Capability detail</h2></div>
+    <div class="tablewrap"><table><thead><tr>
+      <th style="width:38%">Capability &amp; resolved endpoint</th>
+      <th style="width:16%">Authorisation</th>
+      <th style="width:26%">Risk</th>
+      <th class="r" style="width:10%">Lead</th>
+      <th class="r" style="width:10%">Fit</th>
+    </tr></thead><tbody id="tbody"></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">05</span><h2>Blocking findings</h2></div>
+    <div id="findings"></div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">06</span><h2>Catalogue hygiene</h2>
+      <span class="aside" id="scanned"></span></div>
+    <div id="hygiene"></div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">07</span><h2>Recommended phasing</h2></div>
+    <div class="phases" id="phases"></div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">08</span><h2>Agent tool definitions</h2>
+      <span class="aside">cleared capabilities only</span></div>
+    <details><summary id="toolsum">Anthropic tool-use schemas</summary>
+      <pre id="tools"></pre></details>
+    <p class="note">Emitted only for endpoints carrying no blocking finding. Secret-bearing
+    parameters are excluded from every schema. Those are injected by your proxy at
+    call time and must never be selectable by the model.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">09</span><h2>Provenance &amp; dependency</h2>
+      <span class="aside"><button id="expandall" class="linkbtn">expand all traces</button></span></div>
+    <p class="note" style="margin-top:0">Every conclusion in this report is typed by how it was
+    reached. An assessment you cannot defend line by line is not usable in front of a customer.</p>
+    <div class="provbar" id="provbar"></div>
+    <div class="provlegend" id="provlegend"></div>
+    <div class="statgrid" id="statgrid"></div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">10</span><h2>Basis of estimate</h2>
+      <span class="aside">what is measured, and what is assumed</span></div>
+    <div class="basis">
+      <div><h4>Observed</h4><p id="observed"></p></div>
+      <div><h4>Assumed</h4><p id="assumed"></p>
+        <table class="cal" id="cal"></table></div>
+    </div>
+    <p class="note">Every endpoint, authorisation requirement, gotcha and coverage gap above is
+    returned by Orbit and reproduced unaltered. The day counts are the only invented numbers in this
+    report: they are local calibration held in <code>config.json</code>, not a measurement. Replace
+    them with your own delivery history before quoting a date to a customer.</p>
+  </section>
+
+  <footer><span>Preflight · integration readiness</span>
+    <span>Evidence: Orbit by Postman &middot; /v1/search, /v1/integrate</span></footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let BRIEF = null;
+
+$('#stamp').textContent = new Date().toISOString().slice(0,10).replace(/-/g,'.');
+
+// The brief must never truncate what the user typed: grow to fit the content.
+function autosize(){
+  const el = $('#caps');
+  el.style.height = 'auto';
+  el.style.height = Math.max(132, el.scrollHeight) + 'px';
+}
+$('#caps').addEventListener('input', autosize);
+
+async function loadBrief(){
+  BRIEF = await (await fetch('/api/brief')).json();
+  $('#caps').value = BRIEF.capabilities.join('\n');
+  autosize();
+}
+loadBrief();
+$('#reset').onclick = loadBrief;
+
+$('#run').onclick = async () => {
+  const caps = $('#caps').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if(!caps.length) return;
+  $('#run').disabled = true; $('#out').classList.add('hide');
+  const res = await fetch('/api/scan',{method:'POST',headers:{'content-type':'application/json'},
+    body:JSON.stringify({capabilities:caps, goal:BRIEF?.goal ?? 'Enterprise agent deployment'})});
+  const rd = res.body.getReader(); const dec = new TextDecoder(); let buf='';
+  while(true){
+    const {value,done} = await rd.read(); if(done) break;
+    buf += dec.decode(value,{stream:true});
+    const lines = buf.split('\n'); buf = lines.pop();
+    for(const l of lines) if(l.trim()) handle(JSON.parse(l));
+  }
+  $('#run').disabled = false;
+};
+
+function handle(ev){
+  if(ev.type==='progress') $('#status').textContent =
+    `${String(ev.step).padStart(2,'0')}/${String(ev.total).padStart(2,'0')}  ${ev.stage}`;
+  if(ev.type==='warn') console.warn(ev.message);
+  if(ev.type==='error') $('#status').textContent = 'error: '+ev.message;
+  if(ev.type==='done'){ $('#status').textContent = 'assessment complete'; render(ev); }
+}
+
+// Nice round tick interval for the day axis.
+function ticks(max){
+  const step = max<=10 ? 2 : max<=30 ? 5 : max<=90 ? 15 : 30;
+  const out=[]; for(let d=0; d<=max; d+=step) out.push(d);
+  if(out[out.length-1] !== max) out.push(max);
+  return out;
+}
+
+function render({report, rows, tools, tiers, flags, config, telemetry}){
+  $('#out').classList.remove('hide');
+
+  // 02 Finding. The split leads: whether a capability has a public path at
+  //    all is the answer that changes a statement of work. The timeline is a
+  //    consequence of that split, not the headline.
+  const custom = rows.filter(r => r.tier === 'CUSTOM');
+  const integrable = rows.length - custom.length;
+  const ready = report.phases['1'].length;
+  const gated = integrable - ready;
+
+  const splitLine = custom.length
+    ? `<em>${custom.length} of ${rows.length}</em> capabilities ${custom.length === 1 ? 'has' : 'have'}
+       no public path and must be built. Engineering work, not integration.`
+    : `All <em>${rows.length}</em> capabilities resolve to a public API. None require a custom build.`;
+
+  const readyLine = integrable
+    ? ` Of the ${integrable} that ${integrable === 1 ? 'is' : 'are'} integrable,
+        <em>${ready}</em> can ship in <em>${report.pilotDays} days</em> without a security review` +
+      (gated > 0 ? `, and ${gated} ${gated === 1 ? 'waits' : 'wait'} on admin consent.` : '.')
+    : '';
+
+  $('#verdict').innerHTML =
+    `<span class="lede">Assessment</span>${splitLine}${readyLine}` +
+    ` Full scope takes <em>${report.criticalDays} days</em>.` +
+    ` ${report.vendors.length} third-party ${report.vendors.length === 1 ? 'vendor enters' : 'vendors enter'} the security review.`;
+
+  // 03 Critical path: the insight made visible.
+  const max = Math.max(...rows.map(r=>r.days), 1);
+  const sorted = [...rows].sort((a,b)=>b.days-a.days);
+  const pct = d => (d/max)*100;
+  const tone = d => d===0 ? 'var(--clear)' : d<=3 ? 'var(--clear)' : d<=20 ? 'var(--caution)' : 'var(--risk)';
+
+  const grid = ticks(max).map(d=>`<i style="left:${pct(d)}%"></i>`).join('');
+  $('#chart').innerHTML =
+    `<div class="axis">${ticks(max).map(d=>`<span style="left:${pct(d)}%">${d}d</span>`).join('')}</div>` +
+    sorted.map(r=>{
+      const w = pct(r.days);
+      const inside = w > 13;
+      return `<div class="track">
+        <div class="tlabel">${esc(r.capability)}
+          <i>${r.tier === 'CUSTOM' ? 'no public path' : esc(r.endpoint?.provider ?? 'no public API')}</i></div>
+        <div class="tbar"><div class="grid">${grid}</div>
+          <div class="fill" style="width:${Math.max(w,0.4)}%;background:${tone(r.days)}">
+            ${inside?`<span class="v">${r.days} days</span>`:''}</div>
+          ${inside?'':`<span class="v out" style="left:${Math.max(w,0.4)}%">${r.days} days</span>`}
+        </div></div>`;
+    }).join('') +
+    `<div class="axis" style="border:0;height:22px;position:relative">
+       <div class="marker" style="left:${pct(report.pilotDays)}%"><b>pilot ${report.pilotDays}d</b></div>
+     </div>`;
+
+  // 04 Capability detail. Every row is interrogable: an assessment an FDE
+  //    cannot defend line by line is not usable in front of a customer.
+  $('#tbody').innerHTML = rows.map((r,idx)=>{
+    const t = tiers[r.tier];
+    // A custom-tier row may still carry the candidate Orbit returned. Show it,
+    // but never as the resolution. It is the match we rejected.
+    const ep = !r.endpoint
+      ? `<div class="epline">no candidate endpoint returned</div>`
+      : r.tier === 'CUSTOM'
+        ? `<div class="epline">no public path &middot; rejected match: ${esc(r.endpoint.provider ?? '?')}</div>`
+        : `<div class="epline">${esc(r.endpoint.provider ?? '?')} · ${esc(r.endpoint.method)} ${esc((r.endpoint.url??'').split('?')[0])}</div>`;
+    const fl = r.flags.length
+      ? `<div class="flags">${r.flags.map(f=>`<span class="fl ${flags[f].sev}" title="${esc(flags[f].why)}">${esc(flags[f].title)}</span>`).join('')}</div>`
+      : `<span class="none">none</span>`;
+    const trace = (r.trace ?? []).map(st=>`
+      <div class="tstep"><div class="tkind ${esc(st.kind)}">${esc(st.kind)}</div>
+        <div><div class="tclaim">${esc(st.claim)}</div>
+          <div class="tsrc">${esc(st.source)}</div>
+          ${st.detail?`<div class="tdetail">${esc(st.detail)}</div>`:''}</div></div>`).join('');
+    return `<tr class="cap-row" data-i="${idx}">
+      <td><div class="capname">${esc(r.capability)}<span class="why">why</span></div>${ep}</td>
+      <td><div class="auth">${esc(t.label)}<i>${esc(t.note)}</i></div></td>
+      <td>${fl}</td>
+      <td class="r">${r.days}d</td>
+      <td class="r" style="color:${r.fit>=60?'var(--ink)':'var(--caution)'}">${r.fit}%</td>
+    </tr>
+    <tr class="trace-row hide" data-t="${idx}"><td colspan="5"><div class="trace">${trace}</div></td></tr>`;
+  }).join('');
+
+  $('#tbody').querySelectorAll('.cap-row').forEach(tr=>{
+    tr.onclick = () => {
+      const t = $(`tr[data-t="${tr.dataset.i}"]`);
+      t.classList.toggle('hide');
+      tr.querySelector('.why').textContent = t.classList.contains('hide') ? 'why' : 'hide';
+    };
+  });
+
+  // 05 Blocking findings.
+  $('#findings').innerHTML = report.blocking.length ? report.blocking.map((b,i)=>{
+    const row = rows.find(r=>r.capability===b.capability); const f = flags[b.flag];
+    const leak = b.flag==='LEAKED_CREDENTIAL' && row.leak
+      ? `<p style="margin-top:8px">Parameter <code>${esc(row.leak.param)}</code> carries the literal
+         value <code>${esc(row.leak.redacted)}</code>, redacted here deliberately.</p>` : '';
+    return `<div class="item"><div class="idx">${String(i+1).padStart(2,'0')}</div><div>
+      <h3>${esc(f.title)}</h3><div class="subj">${esc(b.capability)}</div>
+      <p>${esc(f.why)}</p>${leak}</div></div>`;
+  }).join('') : `<div class="clear">No blocking findings. Every resolved endpoint is production-addressable.</div>`;
+
+  // 06 Catalogue hygiene.
+  $('#scanned').textContent = `${report.scanned} candidates inspected, selected and rejected alike`;
+  $('#hygiene').innerHTML = report.hygiene.length ? report.hygiene.map((h,i)=>{
+    const f = flags[h.flags[0]];
+    const leak = h.leak ? `<p style="margin-top:8px">Secret parameter <code>${esc(h.leak.param)}</code>
+      holds a literal value. Treat it as compromised; never reuse it.</p>` : '';
+    return `<div class="item"><div class="idx">${String(i+1).padStart(2,'0')}</div><div>
+      <span class="tag">${h.selected?'selected':'rejected'}</span>
+      <h3>${esc(f.title)}</h3>
+      <div class="subj">${esc(h.provider ?? '?')} · ${esc(h.name)}</div>
+      <p>${esc(f.why)}</p>${leak}
+      ${h.url?`<p style="font:11px var(--mono);color:var(--ink-faint);margin-top:8px;word-break:break-all">${esc(h.url.slice(0,160))}</p>`:''}
+      </div></div>`;
+  }).join('') : `<div class="clear">No hygiene defects across ${report.scanned} candidates.</div>`;
+
+  // 07 Phasing. Laid out left to right because the phases are sequential, and
+  //    all three are always shown so the shape of the plan reads at a glance
+  //    rather than being discovered by scrolling.
+  const P = [
+    ['p1','Phase I',  'Pilot',                    'No admin consent required.'],
+    ['p2','Phase II', 'After security review',    'OAuth applications, scope approval, blockers remediated.'],
+    ['p3','Phase III','Custom build',             'No public API or contract-gated. Scope as engineering work.'],
+  ];
+  $('#phases').innerHTML = P.map(([cls,title,label,when],i)=>{
+    const items = report.phases[i+1];
+    const ready = items.length ? Math.max(...items.map(r=>r.days)) : null;
+    return `<div class="ph ${cls}">
+      <div class="cap-bar"></div>
+      <div class="hd"><h3>${title}</h3><span class="count">${items.length}</span></div>
+      <div class="ready">${ready===null ? 'nothing scheduled' : `ready by day ${ready}`}</div>
+      <div class="when">${esc(label)}. ${esc(when)}</div>
+      ${items.length
+        ? `<ul>${items.map(r=>`<li>${esc(r.capability)}<i>${esc(tiers[r.tier].label)}</i></li>`).join('')}</ul>`
+        : `<div class="empty">No capabilities in this phase.</div>`}
+    </div>`;
+  }).join('');
+
+  // 09 Basis of estimate. Never let calibration masquerade as measurement.
+  const gaps = rows.filter(r => r.flags.includes('NO_COVERAGE') || r.flags.includes('NO_VIABLE_MATCH')).length;
+  $('#observed').textContent =
+    `${report.scanned} candidate endpoints returned by Orbit across ${rows.length} capabilities. ` +
+    `Each selected endpoint's authorisation model, base URL, call steps and gotchas are reproduced ` +
+    `from Orbit's integration brief verbatim. ${report.hygiene.length} catalogue defects and ` +
+    `${gaps} coverage gaps were observed, not inferred.`;
+  $('#assumed').textContent =
+    `The mapping from authorisation tier to calendar days, and the approved-vendor list used by the ` +
+    `"vendor not on approved list" flag. Both are local configuration, editable in config.json:`;
+  $('#cal').innerHTML = Object.entries(config.leadTimeDays)
+    .filter(([k]) => !k.startsWith('_'))
+    .map(([k, v]) => `<tr><td>${esc(tiers[k]?.label ?? k)}</td><td>${v} days</td></tr>`).join('') +
+    `<tr><td>Approved vendors on file</td><td>${config.approvedVendors.list.length}</td></tr>`;
+
+  // 09 Provenance. The headline question for any assessment is how much of it
+  //    is evidence and how much is us. Make that answerable at a glance.
+  const steps = rows.flatMap(r => r.trace ?? []);
+  const tally = {evidence:0, inference:0, assumption:0};
+  for (const st of steps) if (st.kind in tally) tally[st.kind]++;
+  const total = steps.length || 1;
+  const LBL = {evidence:'Evidence: returned by Orbit',
+               inference:'Inference: Preflight rules applied to that evidence',
+               assumption:'Assumption: local calibration in config.json'};
+  $('#provbar').innerHTML = ['evidence','inference','assumption'].map(k=>{
+    const w = (tally[k]/total)*100;
+    return `<i class="${k}" style="width:${w}%" title="${esc(LBL[k])}">${w>9?`<span>${tally[k]}</span>`:''}</i>`;
+  }).join('');
+  $('#provlegend').innerHTML = ['evidence','inference','assumption'].map(k=>
+    `<span><s class="${k}" style="background:var(--${k==='evidence'?'clear':k==='inference'?'caution':'risk'})"></s>` +
+    `<b>${tally[k]}</b> ${esc(LBL[k])}</span>`).join('');
+
+  // Dependency telemetry. Orbit is rate-limited with ~7s integrate latency;
+  //    a scan we cannot see is a scan we cannot tune.
+  const T = telemetry ?? {};
+  const hitRate = T.orbitCalls ? Math.round((T.cacheHits / T.orbitCalls) * 100) : 0;
+  const secs = ms => `${((ms ?? 0)/1000).toFixed(1)}s`;
+  $('#statgrid').innerHTML = [
+    ['Orbit API calls', T.orbitCalls, `${T.search} search · ${T.integrate} integrate`],
+    ['Cache hits', `${hitRate}%`, `${T.cacheHits} served from disk`],
+    ['Integrate latency', secs(T.msIntegrate), 'the slow dependency'],
+    ['Search latency', secs(T.msSearch), 'negligible by comparison'],
+    ['Wall clock', secs(T.wallMs), 'end to end'],
+    ['Rate limits hit', T.retries429, T.retries429 ? 'backed off and retried' : 'none'],
+    ['Errors', T.errors, T.errors ? 'see console' : 'none'],
+    ['Candidates inspected', report.scanned, 'selected and rejected'],
+  ].map(([k,v,note])=>`<div class="stat2"><b>${esc(String(v))}</b><span>${esc(k)}</span>
+      <span style="text-transform:none;letter-spacing:0;font-weight:400;font-family:var(--mono);
+      font-size:10.5px;margin-top:4px">${esc(note)}</span></div>`).join('');
+
+  $('#expandall').onclick = () => {
+    const hidden = [...document.querySelectorAll('.trace-row')].filter(t=>t.classList.contains('hide'));
+    const open = hidden.length > 0;
+    document.querySelectorAll('.trace-row').forEach(t=>t.classList.toggle('hide', !open));
+    document.querySelectorAll('.cap-row .why').forEach(w=>w.textContent = open ? 'hide' : 'why');
+    $('#expandall').textContent = open ? 'collapse all traces' : 'expand all traces';
+  };
+
+  // 08 Tools.
+  $('#toolsum').firstChild.textContent = `Anthropic tool-use schemas, ${tools.length} emitted `;
+  $('#tools').textContent = JSON.stringify(tools, null, 2);
+}
+</script>
+</div></body></html>

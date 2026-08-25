@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+*.log
+
+# Orbit responses are committed on purpose: see README, "Why the cache is in git".
+# These are transient working files only.
+.cache/server.log
+.cache/*.ndjson
+.cache/inline.js
+.cache/validation.json
+.cache/*.bak.html

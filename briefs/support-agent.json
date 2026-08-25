@@ -1,0 +1,13 @@
+{
+  "name": "Tier-1 Support Deflection Agent",
+  "customer": "Mid-market e-commerce, ~400 seats",
+  "goal": "Deflect 40% of tier-1 support contacts by letting an agent resolve order, refund and status questions end to end.",
+  "capabilities": [
+    "look up an order and its shipping status in an e-commerce store",
+    "issue a refund for a payment",
+    "create and update a customer support ticket",
+    "send a message to a Slack channel",
+    "send a transactional email to a customer",
+    "search an internal company knowledge base of documents"
+  ]
+}

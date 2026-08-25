@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CI9AWtkfGCsMN9ZZ55k7JglSQTyWQzuVk4ewkKHoexYJAPOM8:salesforce:get-groups-for-a-user",
+      "name": "Get Groups for a User",
+      "description": "https://help.tableau.com/current/api/restapi/en-us/REST/restapirefusersandgroups.htm#getgroupsforauser",
+      "method": "GET",
+      "url": "https://your-server/api/3.20/sites/{{site-id}}/users/:user-id/groups",
+      "evaluateGuide": "Lists the groups associated with a specified Tableau user. Use it to inspect that user's group memberships.\nUse for: audit user memberships, find a user's groups, review group access\nNot supported: adding or removing memberships, listing group users",
+      "provider": "Salesforce",
+      "product": "Tableau"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEiqlQdUJr8sVng2SZx2327dNQctG9uYBh9gZOnwkBF0f9ng5XyK:oracle:listusergroupmemberships",
+      "name": "ListUserGroupMemberships",
+      "description": "Lists the UserGroupMembership objects in your tenancy. You must specify your tenancy's OCID\nas the value for the compartment ID\n(see Where to Get the Tenancy's OCID and User's OCID).\nYou must also then filter the list in one of these ways:\n\nYou can limit the results to just the memberships for a given user by specifying a userId.\nSimilarly, you can limit the results to just the memberships for a given group by specifying a `",
+      "method": "GET",
+      "url": "https://identity.{{region}}.oraclecloud.com/20160918/userGroupMemberships/?compartmentId={{tenancy_ocid}}&userId={{user_ocid}}&limit=693",
+      "evaluateGuide": "Lists user-group membership resources in an Oracle Cloud tenancy, optionally filtered by user or group. Use it to inspect identity membership relationships.\nUse for: list user memberships, list group members, audit tenancy access\nNot supported: creating memberships, changing users or groups",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CKLwkcfk7kTChP9xYoZxggTtOT81RX9nwBa9QntnMmWN8HltJ:salesforce:list-of-groups",
+      "name": "List of Groups",
+      "description": "A list of all the groups in the organization. Get information about groups or create a group.\nhttps://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connectresourcesgroups_ListOfGroups.htm",
+      "method": "GET",
+      "url": "{{_endpoint}}/services/data/v66.0/chatter/groups",
+      "evaluateGuide": "Returns the organization's Salesforce Chatter groups. Use it to discover groups and their details.\nUse for: list Chatter groups, inspect group details, discover group resources\nNot supported: creating groups, updating groups, listing group members",
+      "provider": "Salesforce",
+      "product": "Salesforce Chatter"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LLqNHibSqnZoaaIcn5t4YyFKcIVbbbm744VUXtzz7iHc5WtMPLYNtJeHGB0t:leadsquared:get-users-of-a-sales-gro",
+      "name": "Get Users of a Sales Group",
+      "description": "Retrieves all users in a specified sales group.\n\nPass the GroupId parameter in the query string. You can retrieve it using the Get Sales Groups API\nThe response will return all users present in the group along with their permissions.",
+      "method": "GET",
+      "url": "{{host}}UserGroup.svc/RetrieveUsers?GroupId=<string>",
+      "evaluateGuide": "Retrieves all users in a specified LeadSquared sales group, including their permissions. Use it to inspect group membership and access.\nUse for: list sales-group users, review group permissions, audit membership\nNot supported: adding users, creating groups, modifying permissions",
+      "provider": "LeadSquared",
+      "product": "LeadSquared Sales CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4ywWVOyGbBhxMLynya9SkCqpgudMHa99wU71Tdkp7GhJe4a5osyPnalQ3h:microsoft:get-my-groups",
+      "name": "Get my groups",
+      "description": "",
+      "method": "GET",
+      "url": "https://graph.microsoft.com/v1.0/me/memberOf",
+      "evaluateGuide": "Returns the groups and directory objects that the signed-in Microsoft account belongs to. Use it to inspect the current user's memberships.\nUse for: list my groups, inspect memberships, find directory associations\nNot supported: managing memberships, listing arbitrary users, creating groups",
+      "provider": "Microsoft",
+      "product": "Microsoft Graph"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CLTMiImv7PizhPCuy7di8KOHez991LXYhSJYedOmPj7RqzkPp:salesforce:list-of-groups-post",
+      "name": "List of Groups - POST",
+      "description": "A list of all the groups in the organization. Get information about groups or create a group.\nhttps://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connectresourcesgroups_ListOfGroups.htm",
+      "method": "POST",
+      "url": "{{_endpoint}}/services/data/v66.0/chatter/groups?name=New Chatter Group  (Private Access)&visibility=PrivateAccess&description=Created via API&information=Private Information&isArchived=false&isAutoArchiveDisabled=false&isBroadcast=false&canHaveChatterGuests\t=true",
+      "evaluateGuide": "Creates a Salesforce Chatter group with the supplied name, visibility, description, and configuration values. Use it to add a new organization group.\nUse for: create Chatter group, create private group, set group properties\nNot supported: listing groups, adding members, editing an existing group",
+      "provider": "Salesforce",
+      "product": "Salesforce Chatter"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M8zU6hVNXgKnXuNgWpALgVeQCGJJQANxteKuw6usAZv0HE8qbFs1suz2UjO:box-s:list-user-s-groups",
+      "name": "List user's groups",
+      "description": "Retrieves all the groups for a user. Only members of this\nhttps://developer.box.com/reference/get-users-id-memberships",
+      "method": "GET",
+      "url": "https://api.box.com/2.0/users/:user_id/memberships",
+      "evaluateGuide": "Returns the group memberships for a specified Box user. Use it to inspect which groups a user belongs to.\nUse for: list user groups, audit memberships, inspect group roles\nNot supported: adding memberships, removing memberships, listing group users",
+      "provider": "Box",
+      "product": "Box"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LLqNHibSqnZnfsHA9DbNQrfpFxnDsxoyodZIEY72lBra0BSBNttGdHEEEvSM:leadsquared:add-users-to-a-sales-gro",
+      "name": "Add Users to a Sales Group",
+      "description": "Adds multiple users to a sales group.\n\nNote: The processing for this API is Async. \n\nPayload\nYou can assign the following permissions -\n\nViewAllAccountsOfGroup\nModifyAllAccountsOfGroup\nViewAllLeadsOfGroup\nModifyAllLeadsOfGroup\nAddUsersToGroup\nCreateGroupAutomation\n\nIf even one permission is passed as true, the user will become a group manager. A sales group can have mul",
+      "method": "POST",
+      "url": "{{host}}UserGroup.svc/AddUsers",
+      "evaluateGuide": "Adds multiple users to a specified LeadSquared sales group with optional sales permissions. Processing is asynchronous.\nUse for: add users to group, assign group permissions, grant group manager access\nNot supported: retrieving members, removing users, creating groups",
+      "provider": "LeadSquared",
+      "product": "LeadSquared Sales CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M8zU6hVNXgLaeAB1DyhbwKwc6UwNd6e3UIDROz8lSPhtQvjoZDH8RS5qfdj:box-s:list-members-of-group",
+      "name": "List members of group",
+      "description": "Retrieves all the members for a group. Only members of this\nhttps://developer.box.com/reference/get-groups-id-memberships",
+      "method": "GET",
+      "url": "https://api.box.com/2.0/groups/:group_id/memberships",
+      "evaluateGuide": "Returns the memberships and roles for users in a specified Box group. Use it to inspect group members and their access.\nUse for: list group members, inspect member roles, audit group access\nNot supported: adding members, removing members, creating groups",
+      "provider": "Box",
+      "product": "Box"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CEcHBQkXuN595PxvjvT82qgYk0xQtpjDTAtk6WaFjcX490h5m:salesforce:get-users-in-group",
+      "name": "Get Users in Group",
+      "description": "Gets a list of users in the specified group.\n\nVersion: Available in API 2.0 and later.\n  Versioning Overview\n\n\nPermissions: This method can only be called by server administrators and site administrators.\n  Permissions Overview\n\n\nLicense: No additional license required.\n\n\nAccess Scope: `tableau:grou",
+      "method": "GET",
+      "url": "https://your-server/api/3.20/sites/{{site-id}}/groups/:group-id/users/",
+      "evaluateGuide": "Lists the users belonging to a specified Tableau group. Use it to review group membership and access.\nUse for: list group users, audit group membership, review access\nNot supported: adding or removing users, listing user groups, changing permissions",
+      "provider": "Salesforce",
+      "product": "Tableau"
+    }
+  ],
+  "meta": {
+    "q": "list group memberships for a user",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

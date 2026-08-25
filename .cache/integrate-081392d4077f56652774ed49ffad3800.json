@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Fetch bank-transfer payment details (Razorpay)\n\nFIT\nNot at all. The supplied request only retrieves details for an existing bank-transfer payment; it does not initiate a bank payment transfer to a vendor. Search for a Razorpay payment, fund-transfer, or payout-creation endpoint instead. The supplied bank-transfer details request is not relevant to the stated task."
+    }
+  ]
+}

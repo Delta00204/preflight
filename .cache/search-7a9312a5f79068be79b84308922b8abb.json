@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4UV9GCJxbHV8fClZ3zG49ooy0YpRItTo7PeWePMBYmP6asddqZ0rUKpp3Y6:notion-s:add-comment-to-discussio",
+      "name": "Add comment to discussion",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/comments",
+      "evaluateGuide": "Adds a comment to a Notion discussion using the supplied comment payload. Use it to contribute feedback or conversation to an existing discussion.\nUse for: Add discussion feedback, post a comment, continue a conversation\nNot supported: Page creation, database queries, searching content",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4UV9GCJxbHV7kRQOn6mzlfrwVYEkSrqSWZWFkvapjJS3eFTSsmI6Jv27c18:notion-s:query-a-database",
+      "name": "Query a database",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/databases/:id/query",
+      "evaluateGuide": "Queries rows in a specified Notion database and returns matching results. Use it to retrieve database entries for filtering, reporting, or automation.\nUse for: List database entries, filter records, retrieve matching pages\nNot supported: Creating pages, full-content search, adding comments",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYBbFLstYh3YH73PqYrGxIGofuYCuSwJH9jkgcD5i2qEMsn8IY:free:create-a-page",
+      "name": "Create a page",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/pages/",
+      "evaluateGuide": "Creates a new page in Notion from the supplied page payload. Use it to add content to a parent page or database.\nUse for: Create a page, add a database record, publish structured content\nNot supported: Updating pages, querying databases, searching content",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OYr0AS4rxxC1dmkbagzKeXhhyCqEeBoP2UUIO1r92cuJ0nd8dpYYhldd2VCz:notion-s:search",
+      "name": "Search",
+      "description": "Searches all parent or child pages and databases that have been shared with the integration.",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/v1/search",
+      "evaluateGuide": "Searches parent and child pages and databases shared with the integration. Use it to locate accessible Notion resources by search criteria.\nUse for: Find pages, find databases, locate shared content\nNot supported: Creating content, querying database rows, token inspection",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznoOAi2ESqctwWZMsFFIOFaLZ7WbxTmeFzY45hPzl7n57sEhL4I:postman:create-notion-page-in-da",
+      "name": "Create Notion page in database",
+      "description": "Let's iterate over Typeform responses and create a corresponding page on Notion.\nIf you modified the Notion database, like renaming columns or changing column type, this request might fail.",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/pages",
+      "evaluateGuide": "Creates a Notion page corresponding to a Typeform response, typically within a configured database. Database schema changes may cause the operation to fail.\nUse for: Create response pages, add Typeform records, populate a Notion database\nNot supported: Reading responses, searching pages, updating existing pages",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznpEbJHfELIxNXLMZrXGBnh2JfdhnyxnJd935ic9TUkCbNBro8P:postman:get-parent-page-in-notio",
+      "name": "Get parent page in Notion",
+      "description": "Easily find all the pages on your Notion workspace and identify on which page you want to add the Book Recommendations database.",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/search",
+      "evaluateGuide": "Searches Notion resources to help identify a parent page for new content. Use it to locate pages shared with the integration.\nUse for: Find a parent page, locate workspace pages, identify a destination\nNot supported: Creating pages, querying databases, retrieving page contents",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OYr0AS4rxxC1gtFyjyDpi7jK1KOFiCtjrb5o0iuEhWh5WwjLkI1YwoMGVnZh:notion-s:introspect",
+      "name": "Introspect",
+      "description": "Returns information about an access token.",
+      "method": "POST",
+      "url": "https://api.notion.com/v1/v1/oauth/introspect",
+      "evaluateGuide": "Returns information about a Notion access token. Use it to inspect token-associated details and verify token identity.\nUse for: Inspect an access token, identify token details, validate token context\nNot supported: Searching content, creating pages, managing database entries",
+      "provider": "Notion",
+      "product": "Notion"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Mxwrmgw3s0OiKDZBOkOeZyoob24GtaY8rGqLXDfIiG9KoL2pRABpBstt8XEg:m2n:post-append-blocks",
+      "name": "POST /append-blocks",
+      "description": "Appends prebuilt Notion blocks directly to a page. Use this when you already have Notion block JSON (e.g., from /convert or another system). Includes intelligent planning, batching, and retry logic.\nSkips Markdown conversion and directly processes your block array. Supports complex structures including tables, synced blocks, and nested children.\nRequest: { blocks: array, notionToken: string, pageId: string, after?: string }\nResponse 200: { status: 'success', data: { totalBlocks: number, requestCount: numb",
+      "method": "POST",
+      "url": "https://api.mark2notion.com/api/append-blocks",
+      "evaluateGuide": "Appends prebuilt Notion block JSON directly to a page, with batching and retry handling. Use it when block content is already structured and should be added without Markdown conversion.\nUse for: Append blocks, add tables, add nested content\nNot supported: Markdown conversion, page creation, database querying",
+      "provider": "Mark2Notion",
+      "product": "Mark2Notion API"
+    }
+  ],
+  "meta": {
+    "q": "notion integration",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

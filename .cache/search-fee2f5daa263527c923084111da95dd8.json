@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JiYy0kmPs9QKXvYtm7aoQ5Ubv2uWFEYwXp1AWqPf3MsGEa39lfpzfD6Gp6mK:salesforce:3-all-rtf-agents",
+      "name": "3. All RTF Agents",
+      "description": "",
+      "method": "GET",
+      "url": "https://anypoint.mulesoft.com/workercloud/api/organizations/{{orgId}}/agents",
+      "evaluateGuide": "Lists RTF agents in the MuleSoft worker cloud for the specified organization. Use the response to inspect available agents.\nUse for: list agents, discover runtime agents, review organization agents\nNot supported: creating agents, updating agents, deleting agents",
+      "provider": "MuleSoft",
+      "product": "Anypoint Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OY4buTBbq79tm3Q3mxe68UfLv6cwbZdGlIsavfPs5u5Y4qjB7HPyzbxAopWq:aws:create-agent-runtime",
+      "name": "Create Agent Runtime",
+      "description": "Creates an Amazon Bedrock AgentCore Runtime.",
+      "method": "PUT",
+      "url": "https://bedrock-agentcore-control.{{region}}.amazonaws.com/runtimes/",
+      "evaluateGuide": "Creates an Amazon Bedrock AgentCore Runtime resource. Use it to provision a runtime for deploying or hosting an agent workload.\nUse for: create a runtime, provision agent infrastructure, initialize a runtime\nNot supported: creating runtime endpoints, listing runtimes, deleting runtimes",
+      "provider": "Amazon Web Services",
+      "product": "Amazon Bedrock AgentCore"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M8zU6hVNXgKmPMuNQYMh8Z2uCjJJ4sbOZtD1EA5SeZFUJdugktm0ax49OTq:box-s:create-ai-agent",
+      "name": "Create AI agent",
+      "description": "Creates an AI agent. At least one of the following capabilities must be provided: ask, text_gen, extract.\nhttps://developer.box.com/reference/post-ai-agents",
+      "method": "POST",
+      "url": "https://api.box.com/2.0/ai_agents",
+      "evaluateGuide": "Creates a Box AI agent with one or more supported capabilities such as asking questions, text generation, or extraction. Use it to configure an AI agent resource.\nUse for: create an AI agent, enable text generation, enable extraction, enable question answering\nNot supported: listing agents, updating agents, deleting agents",
+      "provider": "Box",
+      "product": "Box"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1OY4buTBbq79srOgUz5RlBdhH0pN75xjWegkVFPKRpDmONKLg3wIHjOCKa1fa:aws:create-agent-runtime-end",
+      "name": "Create Agent Runtime Endpoint",
+      "description": "Creates an AgentCore Runtime endpoint.",
+      "method": "PUT",
+      "url": "https://bedrock-agentcore-control.{{region}}.amazonaws.com/runtimes/:agentRuntimeId/runtime-endpoints/",
+      "evaluateGuide": "Creates an endpoint for an existing Amazon Bedrock AgentCore Runtime. Use it to expose a runtime through a callable endpoint.\nUse for: create a runtime endpoint, expose a runtime, configure runtime access\nNot supported: creating runtimes, listing endpoints, deleting endpoints",
+      "provider": "Amazon Web Services",
+      "product": "Amazon Bedrock AgentCore"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LJrv4z6FSUCFG6AxEreUxo6u4T6z1vUGmsfKf4seTm8FhpVPKGhrtXeCNEkE:team:2-crear-agente",
+      "name": "2. Crear agente",
+      "description": "Descripción:\nEsta API permite crear desde soluciones externas nuevos agentes, parametrizando el nombre, su identificación y usuario de red, información requerida para hacer el logueo.\nBeneficio:\nOptimice los procesos y el tiempo al crear agentes de soluciones externas de manera ágil y simple.\nTipo de petición:\nMétodo ‘POST’\nCómo funciona:\n\nEl consumo de esta API se realiza por método POST.\nPara consumir esta API debe reemplazar en la url {{wolkvox_serve",
+      "method": "POST",
+      "url": "https://wv{{wolkvox_server}}.wolkvox.com/api/v2/configuration.php?api=create_agent",
+      "evaluateGuide": "Creates a Wolkvox agent from an external solution using identifying and login-related agent information. Use it to add an agent to the Wolkvox configuration.\nUse for: create an agent, register an agent, configure agent login data\nNot supported: listing agents, updating agents, deleting agents",
+      "provider": "Wolkvox",
+      "product": "Wolkvox"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGpMQ10vqxl6xfIuOX4vkBZosAUn2OTI:elevenlabs:list-agents",
+      "name": "List Agents",
+      "description": "Returns a paginated list of Conversational AI agents available to your workspace (and optionally only those you own), including metadata such as name, tags, creation time, access info, last call time, and archived status.\nDocumentation: https://elevenlabs.io/docs/eleven-agents/api-reference/agents/list\nQuick Start:\n- Create an ElevenLabs API key and pass it as the xi-api-key header.\n- Call GET {{baseUrl}}/v1/convai/agents.\n- Use pageSize (default 30) and the returned nextCursor for pagination.\nParameters Explained:\n- pageSize (optional, integer, default: 30, min: 1, max: 100): Max number of agents to return.\n- search (optional, string): Search by agent name.\n- archived (optional, boolean): Filter by archived status.\n- showOnlyOwnedAgents (optional, boolean, default: false): If true, omits agents shared with you and returns only agents you own.\n- sortDirection (optional, enum: asc | desc): Sort direction.\n- sortBy (optional, enum: name | created_at): Field to sort by.\n- cursor (optional, string): Cursor for the next page; use the nextCursor returned by a previous response.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing/invalid API key. Ensure xi-api-key is present and correct.\n- 422 Unprocessable Entity: One or more query parameters are invalid (e.g., pageSize out of range, invalid enum values). Use allowed enum values and keep pageSize within 1–100.\nEdge Cases:\n- Pagination is cursor-based: when has_more is true, pass nextCursor into cursor to fetch the next page.\n- nextCursor can be null when there is no next page.\nRate Limits & Constraints:\n- Not specified on this page; follow workspace/API key limits enforced by ElevenLabs.",
+      "method": "GET",
+      "url": "https://api.elevenlabs.io/v1/convai/agents",
+      "evaluateGuide": "Returns a paginated list of ElevenLabs conversational AI agents, with metadata and access details. Use cursors and page-size parameters to browse available agents.\nUse for: list agents, paginate agents, inspect agent metadata, find owned agents\nNot supported: creating agents, modifying agents, calling agents",
+      "provider": "ElevenLabs",
+      "product": "ElevenLabs"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MxA5r8h0mMiEsjUNv9CQ3ZDUJLPPneOKrELvmIj7LpAWGIrGRKnWqAJB9FZe:corti:create-agent",
+      "name": "Create Agent",
+      "description": "This endpoint allows the creation of a new agent that can be utilized in the POST /agents/{id}/v1/message:send endpoint. Documentation",
+      "method": "POST",
+      "url": "https://api.{{environment}}.corti.app/agents",
+      "evaluateGuide": "Creates a Corti AI agent that can be used with the message-sending endpoint. Use it to define a new agent for conversational interactions.\nUse for: create an agent, configure a Corti agent, prepare message handling\nNot supported: sending messages, listing agents, updating agents",
+      "provider": "Corti",
+      "product": "Corti API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LJrv4z6FSUCFGz9curSkfELz44psjJwUnLP0LR3GYHlaH66MwxXlonR4Z9w0:team:2-create-agent",
+      "name": "2. Create Agent",
+      "description": "Description\nThis API allows you to create new agents from external solutions, parameterizing their name, identification, and network username—information required for login.\n\nBenefit\nOptimize processes and save time by creating agents from external solutions in an agile and simple way.\n\nRequest Type\nMethod: POST\n\nHow It Works?\n\nThis API is consumed using the POST method.\nTo consume this API, replace {{wolkvox_server}} in the URL with the",
+      "method": "POST",
+      "url": "https://wv{{wolkvox_server}}.wolkvox.com/api/v2/configuration.php?api=create_agent",
+      "evaluateGuide": "Creates a Wolkvox agent from an external solution using identifying and login-related agent information. Use it to add an agent to the Wolkvox configuration.\nUse for: create an agent, register an agent, configure agent login data\nNot supported: listing agents, updating agents, deleting agents",
+      "provider": "Wolkvox",
+      "product": "Wolkvox"
+    }
+  ],
+  "meta": {
+    "q": "create an elevenlabs agent",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

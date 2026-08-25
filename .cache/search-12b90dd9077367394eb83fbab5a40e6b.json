@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JiwpPAhzKrIa3gYCoYsRa1bzu5bNqvzzEqObAYqL70jUyYmnf0DFaCJIInY2:uber:retrieve-store-status",
+      "name": "Retrieve Store Status",
+      "description": "The Get Store Status endpoint retrieves the orderability status of a location.",
+      "method": "GET",
+      "url": "{{base_url}}/v1/delivery/store/{{store_id}}/status",
+      "evaluateGuide": "Checks whether a specified Uber Eats location is currently orderable. Agents can determine store availability before offering delivery options.\nUse for: check store orderability, verify location availability, gate ordering flows\nNot supported: placing orders, menu retrieval, delivery tracking",
+      "provider": "Uber",
+      "product": "Uber Eats"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:KxmgAuPsuuusIrA5XoliB845j2qSq9NaVCYCfoYH35G6XbgnI9LUYsyvUGX:cambridgeproduct-s:lookup-orders",
+      "name": "Lookup Orders",
+      "description": "Allows you to view the following information for a specific order:\n\n'regEDisclosure' - RegE Disclosure information (if applicable)\n'payments' - beneficiary details\n'settlements' - settlement details\n'orderDetails' - rates, amounts, trade details, etc.\n\nNote: If the order is subject to the Regulation E remittance transfer rule as required by the Dodd-Frank Wall Street Reform and Consumer Protection Act (commonly referred to as Dodd-Frank), and the order includes at least one p",
+      "method": "GET",
+      "url": "/api/{clientCode}/0/orders/{ordNum}",
+      "evaluateGuide": "Retrieves detailed information for a specific cross-border payment order, including disclosures, beneficiary payments, settlements, and trade details when available.\nUse for: inspect order details, view payment information, review settlements, check disclosures\nNot supported: creating orders, updating orders, initiating transfers",
+      "provider": "Corpay",
+      "product": "Corpay Cross-Border"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4z2EXtNwXfDfCqtG3yxki1WTOVoIiaio8lT1rSPqCv4jFf4vznRfxAFzSV:withings:order-v2-get-detail",
+      "name": "Order v2 - Get Detail",
+      "description": "",
+      "method": "POST",
+      "url": "{{base_url}}/v2/order",
+      "evaluateGuide": "Retrieves detail for an order through the Withings health integration. Agents can obtain order-specific information using the v2 order resource.\nUse for: get order detail, inspect an order, retrieve order information\nNot supported: order creation, order updates, shipment tracking",
+      "provider": "Withings",
+      "product": "Withings Health Solutions"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNTTbNnPsAYF7Km3J3Uai7OCEszeajwcibOPQwOYDDyC4HU3QLBxB35vPtI:free:searchorders-fulfillment",
+      "name": "SearchOrders (fulfillment_filter)",
+      "description": "",
+      "method": "POST",
+      "url": "https://{{host}}/v2/orders/search",
+      "evaluateGuide": "Searches Square orders using supplied search criteria, including fulfillment filtering. Agents can find matching orders for operational or fulfillment workflows.\nUse for: search orders, filter by fulfillment, find matching orders\nNot supported: creating orders, updating orders, processing payments",
+      "provider": "Square",
+      "product": "Square"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:4n3sTACaRzwGLy3pVrqYEqqiSyqU5ln1aiRg5pyRirgQWjDIkzzDGajkOK:marketrock:order-statuses",
+      "name": "Order Statuses",
+      "description": "Recupera gli stati degli ordini.\nGli stati non sono altro che cartelle in cui gli ordini possono essere \ninseriti. Un ordine deve necessariamente stare in uno stato.\nMarketRock contiene 4 stati predefiniti:\n\nAcquistato: lo stato in cui vengono creati tutti gli ordini nuovi\nRicevuto\nSpedito: quando un ordine viene spostato in questo stato, viene segnalata la spedizione al marketplace da cui l'ordine proviene.\nChiuso\n\nSegnaliamo che \"Pagato\" non è uno stato su Ma",
+      "method": "GET",
+      "url": "{{endpoint}}/OrderStatus/All",
+      "evaluateGuide": "Retrieves all order statuses configured in MarketRock, including predefined lifecycle states. Agents can use them to interpret or organize order progress.\nUse for: list order statuses, inspect lifecycle states, map order folders\nNot supported: retrieving orders, changing statuses, managing shipments",
+      "provider": "MarketRock",
+      "product": "MarketRock"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgz8XYY2qi0x6K310zTAjmCd3zp9d6ztZqUlnxHmahFskpNb889dn0ZS0At7:webflow:get-order",
+      "name": "Get Order",
+      "description": "Retrieve a single product by its ID. All of its SKUs will also be\nretrieved.\nRequired scope | ecommerce:read",
+      "method": "GET",
+      "url": "{{baseUrl}}/sites/:site_id/orders/:order_id",
+      "evaluateGuide": "Retrieves a single Webflow order by site and order ID, including its associated SKUs. Agents can inspect an individual ecommerce order.\nUse for: get an order, inspect order SKUs, retrieve ecommerce details\nNot supported: listing orders, creating orders, updating orders",
+      "provider": "Webflow",
+      "product": "Webflow Ecommerce"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:LMPRCVMoR150xwY335KTIRhf1UM3sm43flCAycrngxkISoA8XwFBI4iXI2z:oneprovider:store-orders-order-id",
+      "name": "/store/orders/{{order_id}}",
+      "description": "Get information on a specified order.",
+      "method": "GET",
+      "url": "https://api.oneprovider.com/store/orders/{{order_id}}",
+      "evaluateGuide": "Retrieves information about a specified order from OneProvider. Agents can inspect an order using its identifier.\nUse for: get an order, inspect order details, retrieve order information\nNot supported: creating orders, updating orders, listing orders",
+      "provider": "OneProvider",
+      "product": "OneProvider"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I4sq9Yp9RMN52HV34bMUgBIJFMZhXXB8kwcSSWFj01nVpGo4ouExtNG5tSvY:flow:retrieve-an-order",
+      "name": "Retrieve an order",
+      "description": "Retrieves an existing order using an object ID.",
+      "method": "GET",
+      "url": "https://api.goshippo.com/orders/{{order_object_id}}",
+      "evaluateGuide": "Retrieves an existing Shippo order by its object ID. Agents can inspect order data associated with a shipment workflow.\nUse for: get an order, inspect order data, retrieve shipping order details\nNot supported: creating orders, updating orders, tracking shipments",
+      "provider": "Shippo",
+      "product": "Shippo"
+    }
+  ],
+  "meta": {
+    "q": "look up an order and its shipping status in an e-commerce store",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

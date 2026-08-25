@@ -1,0 +1,91 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3IioZaMtTHFBvQciMoAWqUDaPvlSwcdS2xAWSQ54oEnJ2WTn0vOqUAziQkf:unbreakable:employee-create-admin",
+      "name": "Employee create (admin)",
+      "description": "",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/employees/",
+      "evaluateGuide": "Creates an employee through the Unbreakable API employee resource, enabling an administrator to add a record.\nUse for: add an employee, provision staff, create employee records\nNot supported: employee updates, deletion, retrieval, payroll processing"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3IioZaMtTHFAcRBCEWlvtHUliBfTu0F7Jhs3JJOGEDmzMQ6ODjnUqIi96rF:unbreakable:employee-create-admin",
+      "name": "Employee create (admin)",
+      "description": "",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/employees/",
+      "evaluateGuide": "Creates an employee through the Unbreakable API employee resource, enabling an administrator to add a record.\nUse for: add an employee, provision staff, create employee records\nNot supported: employee updates, deletion, retrieval, payroll processing"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3IioZaMtTHFyfR2EEJi9Q8rrRmY5swkYEw9VjnzP7s2dI18E3F0aij6FOdU:unbreakable:employee-create-endpoint",
+      "name": "Employee create endpoint",
+      "description": "",
+      "method": "POST",
+      "url": "//api/employees/",
+      "evaluateGuide": "Creates an employee using the Unbreakable API employee resource.\nUse for: add an employee, create staff records, provision an employee\nNot supported: employee updates, deletion, retrieval, payroll processing"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9al34DujSxTkhdWrC7ByBFQjR8ubTTVtazcvCEjpwkM7MtZFhr:integration:allows-you-to-create-new",
+      "name": "Allows you to create new employees used in Xero payrun",
+      "description": "",
+      "method": "PUT",
+      "url": "https://api.xero.com/api.xro/2.0/Employees?summarizeErrors=false",
+      "evaluateGuide": "Creates employee resources in Xero for use in pay runs, supporting creation of new employee payroll records.\nUse for: add payroll employees, prepare pay runs, create employee records\nNot supported: pay-run execution, employee retrieval, employee deletion",
+      "provider": "Xero",
+      "product": "Xero Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9a1exNgCjCJnRss6u0aquvcQU62SLEw3WqhSk0eeGrXS5rC2ZG:integration:allows-you-to-create-a-s",
+      "name": "Allows you to create a single new employees used in Xero payrun",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.xero.com/api.xro/2.0/Employees?summarizeErrors=false",
+      "evaluateGuide": "Creates one employee resource in Xero for use in pay runs.\nUse for: add one payroll employee, prepare pay runs, create employee records\nNot supported: bulk employee creation, pay-run execution, employee retrieval",
+      "provider": "Xero",
+      "product": "Xero Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZvtgITkAeTxbjQ9qOzUGgr5REWXBrjurP8VJARyCICenChQdM:brewing:allows-you-to-create-a-s",
+      "name": "Allows you to create a single new employees used in Xero payrun",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.xero.com/api.xro/2.0/Employees?summarizeErrors=false",
+      "evaluateGuide": "Creates one employee resource in Xero for use in pay runs.\nUse for: add one payroll employee, prepare pay runs, create employee records\nNot supported: bulk employee creation, pay-run execution, employee retrieval",
+      "provider": "Xero",
+      "product": "Xero Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9Zx0vNiLgXD0ulS5bUMiHPqETeN5Fz8i7pEC9axAVwqUL49Wn0:brewing:allows-you-to-create-new",
+      "name": "Allows you to create new employees used in Xero payrun",
+      "description": "",
+      "method": "PUT",
+      "url": "https://api.xero.com/api.xro/2.0/Employees?summarizeErrors=false",
+      "evaluateGuide": "Creates employee resources in Xero for use in pay runs, supporting creation of new employee payroll records.\nUse for: add payroll employees, prepare pay runs, create employee records\nNot supported: pay-run execution, employee retrieval, employee deletion",
+      "provider": "Xero",
+      "product": "Xero Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Mxw6LqBEW9UTGAezmyBxp8IYbWLn1oyiyP0UOzhnVDBbrBFAyIH9S9FEOa5W:bill:create-an-employee",
+      "name": "Create an employee",
+      "description": "Create a new employee.",
+      "method": "POST",
+      "url": "{{baseUrl}}/v3/classifications/employees",
+      "evaluateGuide": "Creates a new employee in the BILL API classification resource.\nUse for: add an employee, create staff records, register an employee\nNot supported: employee updates, deletion, retrieval, payroll processing",
+      "provider": "BILL",
+      "product": "BILL API Platform"
+    }
+  ],
+  "meta": {
+    "q": "create a new employee record in an HR system",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

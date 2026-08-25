@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "Look up a customer record for CRM support operations (Unbreakable API Lite)\n\nFIT\nPartially. The supplied request supports looking up a customer record, but no supplied requests geocode job sites, check payment status, or notify technicians. No requests were supplied for those missing capabilities.\n\nAUTH\nBearer token authentication\nHeader: Authorization: Bearer <userToken>\nThe token value is unresolved in the supplied collection variables and must be provided by the caller.\n\nBASE URL\nhttps://www.unbreakableapi.com\n\nSTEPS\n1. GET /api/customers/\n   Params:\n     None enabled in the request. An optional query parameter `id` is shown but disabled; if enabled, its type and accepted value are not specified.\n   Returns:\n     No saved response example is provided, so the response status and body fields are not specified.\n   Threading:\n     None\n\nGOTCHAS\n- Replace the unresolved `{{userToken}}` value with a valid bearer token before calling the endpoint.\n- The request does not specify a customer identifier because the `id` query parameter is disabled.\n- The response shape and error behavior are not documented by the supplied schema.\n- This request only addresses customer lookup; it does not provide geocoding, payment-status checks, or technician notifications."
+    }
+  ]
+}

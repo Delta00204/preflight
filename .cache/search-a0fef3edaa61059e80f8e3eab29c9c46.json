@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5HGz2ZuYDoSpy0NLQy9qoiPjQihu0DHWWjpKtnxq9qnocJyxiZZ7RvryeXp:zoho:send-document-for-signat",
+      "name": "Send document for signature",
+      "description": "This will help you to send a document to your recipients for signature.",
+      "method": "POST",
+      "url": "https://sign.zoho.com/api/v1/requests/:Request_Id/submit",
+      "evaluateGuide": "Submits a prepared signature resource so its document can be sent to recipients for signing.\nUse for: send a document for signing, notify recipients, start a signature workflow\nNot supported: drafting documents, retrieving signature status, downloading completed files",
+      "provider": "Zoho",
+      "product": "Zoho Sign"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0iu1qU4wLL3swylTWak8XK6DOVxypWqomvThpQEw65471IWfWL:docusign-s:gets-the-electronic-reco",
+      "name": "Gets the Electronic Record and Signature Disclosure.",
+      "description": "Retrieves the Electronic Record and Signature Disclosure, with HTML formatting, for the requested envelope recipient. This might be different than the current account disclosure depending on account settings, such as branding, and when the account disclosure was last updated. An optional query string can be included to return the language for the disclosure.",
+      "method": "GET",
+      "url": "{{baseUrl}}/v2.1/accounts/{{accountId}}/consumer_disclosure/{{langCode}}",
+      "evaluateGuide": "Retrieves the HTML electronic record and signature disclosure for a specified envelope recipient, optionally in a chosen language.\nUse for: display recipient disclosure, retrieve disclosure HTML, localize disclosure language\nNot supported: sending envelopes, managing recipients, retrieving signed documents",
+      "provider": "DocuSign",
+      "product": "DocuSign eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0joj3ExQvaDUqznBRv2i11b4MFYyK97QtZm37fvjU8ga25FFZL:docusign-s:18-send-envelope-with-te",
+      "name": "18. Send Envelope with Template",
+      "description": "Send an envelop with a single template.",
+      "method": "POST",
+      "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+      "evaluateGuide": "Creates and sends an envelope using one template, allowing a template-based signing workflow to begin.\nUse for: send a template envelope, start signature collection, initiate a signing workflow\nNot supported: editing templates, retrieving envelope status, downloading signed files",
+      "provider": "DocuSign",
+      "product": "DocuSign eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0jlCCwkNZcTsZvKXqI75rUITM1crTQY9lx8xcmdFH005iN9qMg:docusign-s:gets-the-electronic-reco",
+      "name": "Gets the Electronic Record and Signature Disclosure for the account.",
+      "description": "Retrieves the Electronic Record and Signature Disclosure, with HTML formatting, associated with the account. You can use an optional query string to set the language for the disclosure.",
+      "method": "GET",
+      "url": "{{baseUrl}}/v2.1/accounts/{{accountId}}/consumer_disclosure?langCode={{langCode}}",
+      "evaluateGuide": "Retrieves the account-level HTML electronic record and signature disclosure, optionally in a specified language.\nUse for: retrieve account disclosure, display disclosure HTML, select disclosure language\nNot supported: recipient-specific disclosure, sending envelopes, managing signatures",
+      "provider": "DocuSign",
+      "product": "DocuSign eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I5HGz2ZuYDoSqAAs9FerEDAicmU4hnOtmxpF0rbLCJuufAc9gdrBSNu7Va9y:zoho:send-document-out-for-si",
+      "name": "Send document out for signature using templates",
+      "description": "In order to use the template, the recipient details need to be given. In previous call the actions array contains number of recipients. It may or may not have an email address. When using the template, the actions need to be sent along with email id and name for all. Number of actions cannot be changed. In case there are document fields to be filled (documentfields array) then the value for those also needs to be filled. If the “ismandatory” is true for a field then it must have a value. Else value ne",
+      "method": "POST",
+      "url": "https://sign.zoho.com/api/v1/templates/:Template_Id/createdocument",
+      "evaluateGuide": "Creates a signing document from an existing template with recipient details and required field values, preparing it to be sent for signature.\nUse for: create from template, assign recipients, populate document fields\nNot supported: sending the signing document, creating templates, retrieving completed files",
+      "provider": "Zoho",
+      "product": "Zoho Sign"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0jmIKZdL3TYZonClj9LFjVyaDGYuDld1001FqT084e1bdoJd1X:docusign-s:gets-the-electronic-reco",
+      "name": "Gets the Electronic Record and Signature Disclosure associated with the account.",
+      "description": "Retrieves the Electronic Record and Signature Disclosure, with html formatting, associated with the account. You can use an optional query string to set the language for the disclosure.",
+      "method": "GET",
+      "url": "{{baseUrl}}/v2.1/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/consumer_disclosure?langCode={{langCode}}",
+      "evaluateGuide": "Retrieves the HTML electronic record and signature disclosure for a recipient within a specific envelope, optionally in a chosen language.\nUse for: retrieve recipient disclosure, display envelope disclosure, localize disclosure HTML\nNot supported: sending envelopes, changing recipients, downloading signed documents",
+      "provider": "DocuSign",
+      "product": "DocuSign eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0iv7hIe9o1nUReGYp7sSpCp61I68ONxTNznQ5XTR3S86evybhp:docusign-s:adds-a-document-to-an-ex",
+      "name": "Adds a document to an existing draft envelope.",
+      "description": "Adds a document to an existing draft envelope.",
+      "method": "PUT",
+      "url": "{{baseUrl}}/v2.1/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents/{{documentId}}",
+      "evaluateGuide": "Adds or replaces a document in an existing draft envelope.\nUse for: add a draft document, update envelope contents, prepare an envelope\nNot supported: sending the envelope, editing recipient roles, retrieving signed files",
+      "provider": "DocuSign",
+      "product": "DocuSign eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0itpBmnxpzyY9lrjAJqHRCjIf8LDMN9PemWm1D0BTXc0NxVAgu:docusign-s:reserved-gets-the-electr",
+      "name": "Reserved: Gets the Electronic Record and Signature Disclosure associated with the account.",
+      "description": "Reserved: Retrieves the Electronic Record and Signature Disclosure, with HTML formatting, associated with the account.",
+      "method": "GET",
+      "url": "{{baseUrl}}/v2.1/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/consumer_disclosure/:langCode?langCode={{langCode}}",
+      "evaluateGuide": "Retrieves the HTML electronic record and signature disclosure for a recipient in a specific envelope, with an optional language value.\nUse for: retrieve recipient disclosure, display disclosure HTML, select disclosure language\nNot supported: sending envelopes, modifying recipients, downloading signed documents",
+      "provider": "DocuSign",
+      "product": "DocuSign eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I45mTMp78m0jmIKJPyfE13iP4GEgw2RKy3iuZQttblyU1vOCL9cuaUZ2TUN4:docusign-s:adds-a-document-to-a-tem",
+      "name": "Adds a document to a template document.",
+      "description": "Adds the specified document to an existing template document.",
+      "method": "PUT",
+      "url": "{{baseUrl}}/v2.1/accounts/{{accountId}}/templates/{{templateId}}/documents/{{documentId}}?is_envelope_definition={{is_envelope_definition}}",
+      "evaluateGuide": "Adds a document to an existing template document, optionally treating it as an envelope definition.\nUse for: add a template document, update template contents, prepare template materials\nNot supported: sending envelopes, managing recipients, retrieving signed files",
+      "provider": "DocuSign",
+      "product": "DocuSign eSignature"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I64KY87RDtRJERZiTCKcjwR6ayAzs9BitknFLvncGFVUNniYFlxKrd5vHRkh:signeasy:upload-an-original",
+      "name": "Upload an original",
+      "description": "Easily import documents from your local machine onto Signeasy in order to request them for e-signatures.",
+      "method": "POST",
+      "url": "{{baseUrl}}/v3/original",
+      "evaluateGuide": "Uploads an original document to Signeasy so it can be prepared for electronic signatures.\nUse for: upload a document, import a local file, prepare a signing document\nNot supported: sending for signature, adding recipients, retrieving signature status",
+      "provider": "Signeasy",
+      "product": "Signeasy"
+    }
+  ],
+  "meta": {
+    "q": "send a document for electronic signature",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

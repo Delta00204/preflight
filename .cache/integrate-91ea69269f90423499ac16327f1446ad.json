@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: List repository issues instead of opening an issue (GitHub REST API)\n\nFIT\n  Not at all. The supplied request lists issues from a repository; it does not create or open an issue, which is required for triaging production incidents end to end. Try again with a GitHub issue-creation endpoint, such as the repository issues creation operation."
+    }
+  ]
+}

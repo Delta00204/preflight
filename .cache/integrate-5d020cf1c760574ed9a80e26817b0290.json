@@ -1,0 +1,7 @@
+{
+  "data": [
+    {
+      "taskBrief": "TASK BRIEF: Open an issue in a GitHub repository (Jira REST API)\n\nFIT\n  Not at all. The supplied request creates a Task issue in the Jira project ROAD, not an issue in a GitHub repository, so it does not serve the stated goal. Search again for a GitHub Issues API endpoint, such as a repository issue-creation request."
+    }
+  ]
+}

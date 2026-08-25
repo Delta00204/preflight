@@ -1,0 +1,458 @@
+<title>Preflight Field Notes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+:root{
+  --ground:#e8edf3; --surface:#f3f6fa; --sunk:#dde5ee;
+  --ink:#0e2338; --ink-2:#3d566f; --ink-3:#6d8399;
+  --rule:#bfcedd; --rule-2:#9fb4c8;
+  --accent:#0b5394; --redline:#a8371f; --ok:#256a51;
+  --disp:"IBM Plex Sans Condensed",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Serif",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0a1724; --surface:#0f2031; --sunk:#081320;
+  --ink:#dfe8f1; --ink-2:#a2b6c9; --ink-3:#6d8398;
+  --rule:#20364b; --rule-2:#31506e;
+  --accent:#66a9e2; --redline:#e0806a; --ok:#5fb18e;
+}}
+:root[data-theme="dark"]{
+  --ground:#0a1724; --surface:#0f2031; --sunk:#081320;
+  --ink:#dfe8f1; --ink-2:#a2b6c9; --ink-3:#6d8398;
+  --rule:#20364b; --rule-2:#31506e;
+  --accent:#66a9e2; --redline:#e0806a; --ok:#5fb18e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font:400 16.5px/1.68 var(--body);font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased}
+.page{max-width:1080px;margin:0 auto;padding:0 32px 120px}
+
+/* drawing title block */
+.block{border:1.5px solid var(--ink);margin-top:40px;background:var(--surface)}
+.block .top{display:grid;grid-template-columns:1fr auto;gap:24px;padding:26px 28px 22px;
+  border-bottom:1px solid var(--rule-2)}
+.eyebrow{font:600 11px var(--disp);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(34px,5.2vw,52px)/1.02 var(--disp);letter-spacing:-.012em;margin:12px 0 0;
+  text-wrap:balance;text-transform:uppercase}
+.sub{font:400 17.5px/1.55 var(--body);color:var(--ink-2);margin:14px 0 0;max-width:60ch}
+.stamp{font:600 10.5px var(--disp);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--redline);border:1.5px solid var(--redline);padding:7px 11px;height:fit-content;
+  transform:rotate(-3deg);white-space:nowrap}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.fld{padding:13px 18px;border-right:1px solid var(--rule)}
+.fld:last-child{border-right:0}
+.fld dt{font:600 9.5px var(--disp);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+.fld dd{margin:5px 0 0;font:500 13px var(--mono)}
+
+/* sections on an annotated grid */
+section{display:grid;grid-template-columns:132px 1fr;gap:34px;margin-top:60px;
+  border-top:1px solid var(--rule);padding-top:26px}
+.rail{font:600 10.5px var(--disp);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);
+  line-height:1.6}
+.rail b{display:block;color:var(--accent);font-size:22px;font-weight:700;letter-spacing:0;
+  font-family:var(--mono);margin-bottom:6px}
+h2{font:600 27px/1.16 var(--disp);margin:0 0 16px;letter-spacing:-.008em;text-wrap:balance}
+h3{font:600 16px var(--disp);margin:0 0 6px;letter-spacing:.01em}
+p{margin:0 0 15px;max-width:66ch}
+.lead{font-size:18.5px;line-height:1.62}
+strong{font-weight:500;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--accent) 22%,transparent) 62%)}
+em{font-style:italic;color:var(--ink-2)}
+code{font:500 13.5px var(--mono);background:var(--sunk);padding:1.5px 6px;border-radius:2px}
+a{color:var(--accent);text-underline-offset:3px}
+
+/* redline: a correction reality made to the plan */
+.rev{border-left:3px solid var(--redline);padding:0 0 2px 22px;margin:0 0 34px}
+.rev:last-child{margin-bottom:0}
+.revno{font:600 10px var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--redline);
+  display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.revno::after{content:"";flex:1;height:1px;background:var(--rule)}
+.beat{display:grid;grid-template-columns:88px 1fr;gap:14px;padding:7px 0;
+  border-bottom:1px dotted var(--rule);align-items:start}
+.beat:last-child{border-bottom:0}
+.beat dt{font:600 9.5px var(--disp);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);padding-top:5px}
+.beat dd{margin:0;font-size:14.5px;line-height:1.58}
+.beat.fix dt{color:var(--ok)}
+
+/* data */
+.chart{border:1px solid var(--rule);background:var(--surface);padding:20px 22px;margin:0 0 14px;
+  overflow-x:auto}
+.bar{display:grid;grid-template-columns:82px 1fr 46px;gap:14px;align-items:center;padding:6px 0}
+.bar span:first-child{font:600 11px var(--disp);letter-spacing:.1em;text-transform:uppercase}
+.bar i{display:block;height:16px;background:var(--accent);border-radius:1px;min-width:2px}
+.bar i.hot{background:var(--redline)}
+.bar b{font:500 13px var(--mono);text-align:right}
+.track{background:var(--sunk);height:16px;border-radius:1px}
+.figcap{font:400 13px/1.55 var(--body);color:var(--ink-3);margin:0 0 22px;max-width:66ch;font-style:italic}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+  border:1px solid var(--rule);background:var(--surface);margin:0 0 20px}
+.kpi{padding:15px 17px;border-right:1px solid var(--rule)}
+.kpi:last-child{border-right:0}
+.kpi b{display:block;font:600 25px var(--mono);letter-spacing:-.02em;line-height:1.1}
+.kpi span{font:600 9.5px var(--disp);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  display:block;margin-top:6px;line-height:1.45}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:0 0 16px}
+th{text-align:left;font:600 9.5px var(--disp);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);padding:0 12px 8px 0;border-bottom:1.5px solid var(--rule-2)}
+td{padding:11px 12px 11px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td.m{font:500 13px var(--mono)}
+
+.stages{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 14px}
+.stages td{padding:9px 12px 9px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.stages tr.here td{background:color-mix(in srgb,var(--accent) 11%,transparent);
+  font-weight:500;border-bottom-color:var(--rule-2)}
+.stages td.n{font:500 12px var(--mono);color:var(--ink-3);width:34px;padding-left:10px}
+.stages tr.here td.n{color:var(--accent)}
+.stages td.role{font:500 12px var(--mono);color:var(--ink-3);text-align:right;white-space:nowrap}
+.stages tr.here td.role{color:var(--accent)}
+
+ul{margin:0 0 15px;padding:0;list-style:none;max-width:66ch}
+li{padding:7px 0;border-bottom:1px dotted var(--rule);position:relative;font-size:15px}
+li:last-child{border-bottom:0}
+.quote{border-left:3px solid var(--accent);padding:3px 0 3px 20px;margin:0 0 16px;
+  font-style:italic;color:var(--ink-2);max-width:62ch}
+
+footer{margin-top:64px;border-top:1.5px solid var(--ink);padding-top:18px;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  font:500 11.5px var(--mono);color:var(--ink-3)}
+@media (max-width:760px){
+  section{grid-template-columns:1fr;gap:14px}
+  .rail{display:flex;gap:10px;align-items:baseline}
+  .rail b{margin:0}
+  .beat{grid-template-columns:1fr;gap:2px}
+  .page{padding:0 18px 80px}
+  .block .top{grid-template-columns:1fr}
+  .stamp{justify-self:start}
+}
+</style>
+
+<div class="page">
+
+<div class="block">
+  <div class="top">
+    <div>
+      <div class="eyebrow">Forward-deployed product work</div>
+      <h1>Preflight<br>Field Notes</h1>
+      <p class="sub">Building an integration-readiness tool on a brand-new API, and the five times reality contradicted the design.</p>
+    </div>
+    <div class="stamp">5 revisions<br>from evidence</div>
+  </div>
+  <dl class="fields">
+    <div class="fld"><dt>Subject</dt><dd>Orbit by Postman</dd></div>
+    <div class="fld"><dt>Artefact</dt><dd>Preflight v1</dd></div>
+    <div class="fld"><dt>Live API calls</dt><dd>131</dd></div>
+    <div class="fld"><dt>Assertions</dt><dd>83 / 83 pass</dd></div>
+    <div class="fld"><dt>Source</dt><dd>1,236 lines</dd></div>
+  </dl>
+</div>
+
+<section>
+  <div class="rail"><b>01</b>The problem</div>
+  <div>
+    <h2>Before you can promise a date, you have to know what is already built</h2>
+    <p class="lead">A forward-deployed engineer leaves a discovery workshop with a capability list and
+    one question standing between them and a commitment: <em>how much of this already exists, and how
+    much are we building from nothing?</em></p>
+    <p>Every downstream number depends on that split. A capability that maps to a documented vendor API
+    is an integration. A capability with no public path is an engineering project. Confusing the two is
+    how a six-week pilot becomes a six-month one, and the confusion is usually discovered in week three, not week one.</p>
+    <p>For the half that <em>does</em> exist, the cost is rarely writing the call. It is
+    <strong>getting permission to make it</strong>: an OAuth application, customer admin consent, a
+    security review, a DPA. That is the last mile, and the last mile is where forward-deployed work
+    lives.</p>
+    <p>Both halves of that answer were computable on day one. The authorisation model of every
+    candidate API is public; so is its absence. It went uncomputed because there was no programmatic
+    path from <em>&ldquo;triage support tickets&rdquo;</em> to <em>&ldquo;here is what exists, here is
+    what does not, and here is what each one demands of you.&rdquo;</em> Orbit closes that gap. Its <code>integrate</code> call returns a real <code>AUTH</code> section, and its silences are
+    themselves informative. That is the wedge, and it is why this product can exist now and could not
+    have six months ago.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>02</b>The motion</div>
+  <div>
+    <h2>Where this sits, and where it does not</h2>
+    <p>The forward-deployed motion runs roughly nine stages. Preflight is built for two of them.</p>
+    <table class="stages">
+      <tr><td class="n">1</td><td>Qualification: size the opportunity</td><td class="role">AE + SA</td></tr>
+      <tr><td class="n">2</td><td>Discovery workshop: what should the agent do</td><td class="role">feeds Preflight</td></tr>
+      <tr class="here"><td class="n">3</td><td>Technical scoping &amp; SOW: effort, sequence, date</td><td class="role">Preflight</td></tr>
+      <tr class="here"><td class="n">4</td><td>Access, security review, procurement</td><td class="role">Preflight</td></tr>
+      <tr><td class="n">5</td><td>First vertical slice</td><td class="role"></td></tr>
+      <tr><td class="n">6</td><td>Demo and iterate with the customer</td><td class="role"></td></tr>
+      <tr><td class="n">7</td><td>Harden: auth, errors, evals, observability</td><td class="role"></td></tr>
+      <tr><td class="n">8</td><td>Production cutover</td><td class="role"></td></tr>
+      <tr><td class="n">9</td><td>Handover, enablement, expansion</td><td class="role"></td></tr>
+    </table>
+    <p>Stages 3 and 4 are where the gap between a working prototype and a production deployment opens
+    up, and where a commitment made on instinct becomes a date the team has to hit. A narrow slot, but the expensive one.</p>
+    <p>The stage-4 contribution is the one people underrate. A security review asks <em>which third
+    parties, what scopes, what data leaves the building</em>. Preflight can answer that on day one
+    instead of week three, which is often the difference between a review that runs in parallel with the
+    build and one that blocks it.</p>
+    <p>It stays out of stages 5 onward. Once you are building, the constraint is no longer information. It is engineering, and a scoping instrument adds nothing.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>03</b>The build</div>
+  <div>
+    <h2>A readiness assessment, not a search tool</h2>
+    <p>Preflight takes a deployment brief in plain English and answers the scoping question first:
+    what already exists, what does not, and what each surviving capability will cost you in
+    permission. On the sample support-agent brief:</p>
+    <div class="kpis">
+      <div class="kpi"><b>1/6</b><span>no public path, build it</span></div>
+      <div class="kpi"><b>5/6</b><span>integrable</span></div>
+      <div class="kpi"><b>3/6</b><span>no security review needed</span></div>
+      <div class="kpi"><b>5</b><span>vendors entering review</span></div>
+    </div>
+    <p><strong>The first tile is the one that changes a SOW.</strong> One capability in six has no public path at all. That is not an integration line item but an engineering project, and
+    finding it in week one rather than week three is most of the value here. The timeline follows
+    from the split rather than the other way round.</p>
+    <p>For the five that are integrable, the report returns a phased plan, blocking findings, a
+    catalogue security scan, and Anthropic tool-use schemas for whatever cleared. Three can ship
+    without waiting on a security review; two cannot, and knowing which is which on day one is what
+    lets the review run in parallel with the build instead of blocking it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>04</b>Redlines</div>
+  <div>
+    <h2>Five times the evidence contradicted the design</h2>
+    <p>These are the actual corrections, in build order. Each one changed the product, and four of
+    the five were caught by instrumentation rather than by inspection. The last surfaced during final verification, after I had already called the tool validated.</p>
+
+    <div class="rev">
+      <div class="revno">Revision 1 &middot; API misuse</div>
+      <h3>I was asking Orbit the wrong question</h3>
+      <dl>
+        <div class="beat"><dt>Believed</dt><dd>Pass the deployment goal as the <code>task</code> on every
+          <code>integrate</code> call, so Orbit has full context.</dd></div>
+        <div class="beat"><dt>Observed</dt><dd>Orbit replied <code>FIT: Not at all</code> and
+          <em>truncated the entire brief</em>: no <code>AUTH</code>, no <code>STEPS</code>. It was
+          correctly judging one email endpoint against a whole support-deflection programme.</dd></div>
+        <div class="beat fix"><dt>Changed</dt><dd>Scope <code>task</code> to the single capability. More context was actively harmful, a result I would not have guessed.</dd></div>
+      </dl>
+    </div>
+
+    <div class="rev">
+      <div class="revno">Revision 2 &middot; Silent under-estimate</div>
+      <h3>Missing evidence became &ldquo;no auth required&rdquo;</h3>
+      <dl>
+        <div class="beat"><dt>Believed</dt><dd>A clean URL with no key parameter means an open endpoint.</dd></div>
+        <div class="beat"><dt>Observed</dt><dd>Brevo&rsquo;s email API scored <strong>0 days</strong>.
+          It needs an API key. My classifier had inferred &ldquo;no auth&rdquo; from absent evidence, the failure the tool exists to prevent.</dd></div>
+        <div class="beat fix"><dt>Changed</dt><dd>The classifier is now asymmetric by design.
+          <code>NONE</code> is returned <em>only</em> on an explicit Orbit statement; absence floors at
+          API-key and raises <code>AUTH_UNVERIFIED</code>. Optimism is the one direction this tool must
+          never fail in.</dd></div>
+      </dl>
+    </div>
+
+    <div class="rev">
+      <div class="revno">Revision 3 &middot; Over-correction</div>
+      <h3>A catalogue gap is not an internal system</h3>
+      <dl>
+        <div class="beat"><dt>Believed</dt><dd>If Orbit rejects every candidate, it is custom work.</dd></div>
+        <div class="beat"><dt>Observed</dt><dd><em>&ldquo;Open an issue in a GitHub repository&rdquo;</em>
+          returned only <code>GET</code> endpoints, so every candidate was rejected, and my tool called GitHub a <strong>60-day custom build</strong>. A worse error than the one I set out to fix.</dd></div>
+        <div class="beat fix"><dt>Changed</dt><dd>New verdict: <em>not in the public catalogue</em>. Keep
+          the vendor&rsquo;s real auth tier, flag for manual verification. Orbit also emits a re-search
+          hint on rejection, so the tool now follows it automatically before giving up.</dd></div>
+      </dl>
+    </div>
+
+    <div class="rev">
+      <div class="revno">Revision 4 &middot; Goodhart</div>
+      <h3>My strongest claim rested on an unstable signal, and my first fix cheated</h3>
+      <dl>
+        <div class="beat"><dt>Believed</dt><dd>A zero-result from Orbit proves no public API exists.
+          This drove the headline 60-day critical path.</dd></div>
+        <div class="beat"><dt>Observed</dt><dd>The same capability, phrased five ways, returned
+          <strong>0, 10, 10, 0, 10</strong> results. The verdict was a function of wording, not of
+          reality. Worse, the top hit for &ldquo;internal wiki&rdquo; was <em>Wikimedia Foundation</em>.</dd></div>
+        <div class="beat"><dt>First fix</dt><dd>Re-probe with simplified paraphrases. This stripped the
+          words <em>&ldquo;internal company&rdquo;</em>, and returned <code>NONE, 0 days, no flags</code>
+          for an internal knowledge base. I had improved the metric by asking an easier question.</dd></div>
+        <div class="beat fix"><dt>Changed</dt><dd>Internality markers (<em>our, internal, in-house,
+          proprietary</em>) are never stripped. They <em>are</em> the capability. Any capability naming
+          an internal system that resolves to a public vendor now raises a blocking
+          <code>INTERNAL_MISMATCH</code> and is scoped as custom work. The headline number is back, for a
+          sound reason instead of a fragile one.</dd></div>
+      </dl>
+    </div>
+    <div class="rev">
+      <div class="revno">Revision 5 &middot; Same bug, different door</div>
+      <h3>&ldquo;No authentication&rdquo; did not mean what I matched on</h3>
+      <dl>
+        <div class="beat"><dt>Believed</dt><dd>Revision 2 had closed the under-estimation hole: only an
+          explicit Orbit statement can yield a zero-day verdict.</dd></div>
+        <div class="beat"><dt>Observed</dt><dd>A cold-cache run scored <strong>Oracle Cloud object storage
+          at 0 days.</strong> Orbit had said: <em>&ldquo;No authentication scheme is present in the
+          supplied request or collection context. Provide any authentication required by the Oracle API
+          separately.&rdquo;</em> That is the collection author omitting auth, not an open API. My regex
+          matched the words &ldquo;no authentication&rdquo; and took the optimistic reading.</dd></div>
+        <div class="beat fix"><dt>Changed</dt><dd>The classifier now separates <em>undocumented</em>
+          (&ldquo;scheme is not present&rdquo;, &ldquo;provide separately&rdquo;) from <em>open</em> (&ldquo;no authentication is required&rdquo;). Contract-gated vendors can never score
+          as no-auth. Oracle now reads 45 days with the auth flagged unverified, and two regression
+          assertions pin the behaviour.</dd></div>
+        <div class="beat"><dt>Lesson</dt><dd>A guard written against one phrasing is not a guard against
+          the failure. This one survived three validation runs because every brief in the suite happened to use clearer wording. It took a capability I had never queried to expose it.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>05</b>Research</div>
+  <div>
+    <h2>What the catalogue actually covers</h2>
+    <p>Before trusting the tool I measured its dependency: 32 representative enterprise capabilities
+    across eight domains, 320 candidate endpoints. A defect is a catalogued entry an engineer should not ship: a sandbox host, a malformed URL, or an embedded credential.</p>
+    <div class="chart">
+      <div class="bar"><span>Finance</span><span class="track"><i class="hot" style="width:100%"></i></span><b>42%</b></div>
+      <div class="bar"><span>ITSM</span><span class="track"><i class="hot" style="width:52%"></i></span><b>22%</b></div>
+      <div class="bar"><span>HR</span><span class="track"><i style="width:43%"></i></span><b>18%</b></div>
+      <div class="bar"><span>Data</span><span class="track"><i style="width:24%"></i></span><b>10%</b></div>
+      <div class="bar"><span>Identity</span><span class="track"><i style="width:12%"></i></span><b>5%</b></div>
+      <div class="bar"><span>CRM</span><span class="track"><i style="width:5%"></i></span><b>2%</b></div>
+      <div class="bar"><span>Internal</span><span class="track"><i style="width:5%"></i></span><b>2%</b></div>
+      <div class="bar"><span>Comms</span><span class="track"><i style="width:1%"></i></span><b>0%</b></div>
+    </div>
+    <p class="figcap">Defect rate by domain, 40 candidates each. Overall 12.8%. Finance is the
+    outlier because payment vendors publish sandbox collections. PayPal, Adyen and GoCardless all surfaced test hosts that would silently no-op in production.</p>
+    <p>The operational read for an FDE: <strong>the catalogue is strong where integration is easy and
+    weakest exactly where the money and the risk are.</strong> Comms is clean and near-frictionless;
+    Finance is both the most defect-prone and the most consequential to get wrong. Plan review effort
+    accordingly rather than uniformly.</p>
+    <p>One catalogue entry carried a live-looking API key in its example URL. Preflight redacts any
+    such value on sight and never renders it. The catalogue is user-published content, so example
+    URLs are untrusted input.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>06</b>Rigour</div>
+  <div>
+    <h2>The harness caught what review did not</h2>
+    <p>Eighty-three assertions run against a live server across five deployment briefs. The most
+    serious catch was a security defect I had written myself:</p>
+    <p class="quote">PagerDuty&rsquo;s <code>routing_key</code>, a secret, was leaking into a
+    generated agent tool schema. I had filtered secrets on the URL path but not on the brief-derived
+    path.</p>
+    <p>A model must never be able to select its own credential. Secrets are now structurally excluded
+    on every path, and an assertion enforces it. Every validation run so far has surfaced a real defect;
+    none were found by reading the code.</p>
+    <p>The suite also had a blind spot it could not see. It exercised the API and never loaded the page,
+    so a duplicate <code>const</code> in the browser bundle shipped a <em>completely dead UI</em> while
+    all assertions passed. The harness now parses the inline script and checks every element it queries, and immediately caught a stale reference I had left behind.</p>
+    <table>
+      <tr><th>Guard</th><th>Enforces</th></tr>
+      <tr><td class="m">NONE only on evidence</td><td>Auth burden can never be silently under-estimated</td></tr>
+      <tr><td class="m">no secret in schema</td><td>The model cannot choose a credential</td></tr>
+      <tr><td class="m">internal &rArr; custom</td><td>A public catalogue never satisfies an internal system</td></tr>
+      <tr><td class="m">one assumption per row</td><td>Calibration can never masquerade as measurement</td></tr>
+      <tr><td class="m">determinism</td><td>The same brief yields the same commitment</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>07</b>Honesty</div>
+  <div>
+    <h2>Measured and assumed are kept structurally separate</h2>
+    <p>Every endpoint, authorisation model, gotcha, <code>FIT</code> verdict and coverage gap is real and reproduced unaltered: 131 live API calls, one <code>fetch</code> in the codebase, zero mocks. <strong>The day counts are not.</strong> The tier-to-calendar-day mapping is my estimate,
+    and the headline is real evidence multiplied by an invented constant.</p>
+    <p>Rather than bury that, it is load-bearing in the design. Every conclusion carries a decision
+    trace whose steps are typed <em>evidence</em>, <em>inference</em> or <em>assumption</em> with
+    their source, and an assertion guarantees exactly one assumption per row. An FDE who is asked
+    &ldquo;why fifteen days?&rdquo; in front of a customer can answer from the artefact.</p>
+    <p>The same discipline forced a smaller correction: my &ldquo;unknown vendor&rdquo; flag was
+    firing on Xero, Deel and Shippo, all real companies. The flag now reads <em>not on your approved
+    vendor list</em>, which is an honest claim about the customer&rsquo;s allowlist rather than a
+    claim about the vendor.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>08</b>Grounding</div>
+  <div>
+    <h2>Where the premise comes from</h2>
+    <p>The same discipline the tool applies to its outputs should apply to its premise, so here is
+    that premise separated by how each part is known.</p>
+    <table>
+      <tr><th style="width:22%">Claim</th><th style="width:20%">Standing</th><th>Basis</th></tr>
+      <tr><td>The forward-deployed model exists and is distinct</td><td class="m">public record</td>
+          <td>Palantir, OpenAI and Anthropic all publish forward-deployed engineering roles and
+          describe the motion openly. This is documented, not inferred.</td></tr>
+      <tr><td>Enterprise AI stalls between prototype and production</td><td class="m">public record</td>
+          <td>Widely reported across industry analysis and vendor postmortems. Established enough
+          that re-deriving it through primary research would be ceremony.</td></tr>
+      <tr><td>Integration and access are a principal cause of that stall</td><td class="m">reasoned</td>
+          <td>Follows from the two above plus the shape of the work: the model is the commodity,
+          the customer's systems are not. Plausible and widely echoed: not something I have
+          measured.</td></tr>
+      <tr><td>Catalogue defect rate is 12.8%, concentrated in Finance</td><td class="m">measured here</td>
+          <td>My own study: 32 capabilities, 8 domains, 320 candidates. Reproducible via
+          <code>coverage.mjs</code>.</td></tr>
+      <tr><td>OAuth costs ~15 calendar days, custom work ~60</td><td class="m">assumed</td>
+          <td>My estimate. Configuration, not evidence. Replace with your own delivery history.</td></tr>
+    </table>
+    <p>Two of these I established myself; two rest on a public record anyone can check; one is a
+    reasoned bridge between them that I have not measured and do not claim to have. <strong>No citation in this document is invented</strong>. Where I could not verify a specific source, I
+    have named the standing of the claim instead of dressing an assumption in a footnote.</p>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>09</b>Scope</div>
+  <div>
+    <h2>What I chose not to build</h2>
+    <p><strong>Cost modelling.</strong> It is the most requested thing a tool like this could add,
+    and Orbit carries no pricing data whatsoever. Building it would mean inventing numbers and
+    presenting them beside real ones. I already have exactly one invented number and it is fully
+    labelled; a second would corrupt the first.</p>
+    <p>Shipped instead, in priority order:</p>
+    <ul>
+      <li>Vendor pinning: let the FDE supply the customer&rsquo;s known stack, which retires most
+        mis-resolution at its root rather than flagging it downstream</li>
+      <li>A real dependency graph: today&rsquo;s critical path is <code>max(days)</code>, which
+        assumes perfect parallelism and therefore <em>understates</em> real timelines</li>
+      <li>Ranges over point estimates: OAuth at Slack is days, OAuth at Workday is months</li>
+      <li>Multi-resource briefs: Orbit accepts several endpoints per call and returns step
+        threading; I send one, so I am leaving sequencing information on the table</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="rail"><b>10</b>Limits</div>
+  <div>
+    <h2>Where it is still weak</h2>
+    <p><strong>The obvious objection first.</strong> Enterprise agents mostly touch the customer&rsquo;s
+    own instances and internal systems, and no public catalogue contains those. So is this solving the easy fraction?</p> <p>Partly, and the answer is the reason the framing in section 01 matters. The tool is not a
+    directory lookup; its most valuable output is <em>the boundary</em>. Knowing that one capability in
+    six has no public path, and that another resolved to a public vendor when the brief clearly named an
+    internal system, is the scoping information a SOW turns on. Coverage gaps are not the
+    tool&rsquo;s blind spot. They are its subject.</p>
+    <p>What it cannot do is see the customer&rsquo;s own tenant: their Zendesk instance, their SSO configuration, their data residency posture. An FDE walks out of the discovery workshop
+    already knowing that stack, which is why vendor pinning is first on the roadmap: it closes the gap
+    with information the engineer already has, rather than trying to infer it.</p>
+    <p>Precision tracks catalogue quality. For thinly covered capabilities Orbit returns a plausible-looking wrong endpoint rather than nothing. <em>&ldquo;Query application error metrics&rdquo;</em> resolved to Meta with a 100% fit score and no flags. The guards make most of
+    these visible; they do not catch all of them.</p>
+    <p>This is a scoping instrument, not an autopilot. It is designed to make a human&rsquo;s day-one
+    conversation with a customer sharper and better evidenced, not to replace the engineer&rsquo;s judgement about what their customer runs.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Preflight &middot; integration readiness assessment</span>
+  <span>Evidence: Orbit by Postman &middot; /v1/search, /v1/integrate</span>
+</footer>
+
+</div>

@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznpGdG6yHLahMEtU519xqvEnhwtA47Se9B60BTZhY10Z3rx5H7I:test:customer-look-up-no-id",
+      "name": "Customer - Look Up - No ID",
+      "description": "",
+      "method": "GET",
+      "url": "https://www.unbreakableapi.com/api/customers/",
+      "evaluateGuide": "Retrieves customer data from the customers resource without an ID parameter. Use it to inspect the endpoint's default customer lookup behavior.\nUse for: list customers, test lookup without ID, inspect default response\nNot supported: customer creation, updates, deletion, ID-specific lookup",
+      "provider": "Unbreakable API",
+      "product": "Unbreakable API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:JOKwu4rNznoQO4dp3duPNmEVTg0bIe2HqU38yEU4sX6aLRIZmjFIXEWQOfo:test:customer-look-up-blank-i",
+      "name": "Customer - Look Up - Blank ID",
+      "description": "",
+      "method": "GET",
+      "url": "https://www.unbreakableapi.com/api/customers/?id=",
+      "evaluateGuide": "Retrieves customer data while passing a blank ID parameter. Use it to test how the customer resource handles an empty identifier.\nUse for: test blank ID, inspect validation behavior, check default lookup response\nNot supported: customer creation, updates, deletion, populated ID lookup",
+      "provider": "Unbreakable API",
+      "product": "Unbreakable API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JiAoxKFdtOfjuRsA0z38rGA1DX2x23DqvTQURZZ7ECB0ROpodvRty8JVFxgq:vtiger:lookup",
+      "name": "Lookup",
+      "description": "This API enables you to search records with a phone or email id in different modules and fields.",
+      "method": "GET",
+      "url": "https://https://your-vtiger-instance.com/restapi/v1/vtiger/default/lookup?type=phone/email&value=xxx&searchIn=[\"moduleName\"]",
+      "evaluateGuide": "Searches Vtiger CRM records by phone or email across specified modules and fields. Use it to locate matching CRM records from contact information.\nUse for: find by phone, find by email, search selected modules\nNot supported: record creation, record updates, record deletion",
+      "provider": "Vtiger",
+      "product": "Vtiger CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgwghisW2pb26M5yU7CrZ05SFs8DY7VMfTReVwcIZlmt1jojzIG:zoho:associating-a-lookup-rec",
+      "name": "Associating a lookup record through an external field",
+      "description": "In this example, Contacts is the base module's API name where AccountName is a lookup field's API name in the Contacts module. ExternalAccount_ID is the API name of the external field in the Accounts module. We will reference the external field's value in the Accounts module to create a record in the Contacts module.",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v2/Contacts",
+      "evaluateGuide": "Creates a Contacts record while resolving an account lookup through an external field value. Use it to associate a new contact with an existing account.\nUse for: create associated contact, resolve account externally, set lookup relationship\nNot supported: contact updates, contact deletion, standalone account creation",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgwi23ekyPdnyazfvnxuwBSqlqFTEOZyAmOxnKlYwnQj7DByhLp:zoho:inserting-a-subform-look",
+      "name": "Inserting a subform lookup record through an external field in the associated module",
+      "description": "In this example, SubformExternal is the API name of the subform in the Contacts module. It has a look up field to the Deals module. The Deals module has an external field ExternalDeal_ID. We will reference this external field in the subform and insert a record in the Contacts module.",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v2/Contacts",
+      "evaluateGuide": "Creates a Contacts record containing a subform lookup resolved through an external Deal field. Use it to add associated deal data within a contact subform.\nUse for: create contact subform, associate a deal externally, add lookup data\nNot supported: subform updates, contact deletion, standalone deal creation",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgweTpMoif79V3XXH2N4yf3eNqt0DFcbue3XAlyBsWvl2Uo0ose:zoho:updating-a-record-throug",
+      "name": "Updating a record through the external value of a lookup record in that module",
+      "description": "In this example, Contacts is the base module and contains an account lookup field Account_Name. To update a record in the Contacts module, you must specify the external field's API name and its value in the Accounts module, and the external field's API name and its value in the Contacts module.",
+      "method": "PUT",
+      "url": "https://www.zohoapis.com/crm/v2/Contacts",
+      "evaluateGuide": "Updates a Contacts record using external field values for the contact and its account lookup. Use it to modify an existing contact and maintain its account association.\nUse for: update contact, resolve account externally, update lookup relationship\nNot supported: contact creation, contact deletion, subform modification",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhlcciYe2coqv1S79umVtshoB5rjnxJNzKWBw3pgmwRTdPymL7nGmp3Tdh6P:hubspot:search-for-contacts",
+      "name": "Search for contacts",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.hubapi.com/crm/v3/objects/contacts/search",
+      "evaluateGuide": "Searches HubSpot CRM contact records using search criteria in the payload. Use it to find contacts matching properties or filtering rules.\nUse for: search contacts, filter by properties, find matching CRM records\nNot supported: contact creation, contact updates, contact deletion",
+      "provider": "HubSpot",
+      "product": "HubSpot CRM"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:M9NB3mrdpgvut44niGy37mr2Ufzw4QQNLNdxWYbsN1fEmXPozIunjuOxW5L:zoho:updating-a-subform-looku",
+      "name": "Updating a subform lookup record through an external field in the associated module",
+      "description": "Specify the external field's API name and its value in the lookup field JSON object of the Subform.",
+      "method": "PUT",
+      "url": "https://www.zohoapis.com/crm/v2/Contacts/extcontact2",
+      "evaluateGuide": "Updates a contact's subform lookup record using an external field value. Use it to modify an associated subform entry without relying on an internal identifier.\nUse for: update subform lookup, resolve external value, modify associated entry\nNot supported: subform creation, contact deletion, standalone record creation",
+      "provider": "Zoho",
+      "product": "Zoho CRM"
+    }
+  ],
+  "meta": {
+    "q": "look up a customer record in a CRM",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

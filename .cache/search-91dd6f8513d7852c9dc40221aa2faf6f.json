@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEipwU7M5Y6IIwxPtQedaxeo7xT5P2fEZmn11jEtanG2TM8gRbXA:oracle:export-a-digital-assista",
+      "name": "Export a Digital Assistant to Object Storage",
+      "description": "Exports the specified Digital Assistant as an archive to Object Storage.",
+      "method": "POST",
+      "url": "https://digitalassistant-api.{{region}}.oci.oraclecloud.com/20190506/odaInstances/:odaInstanceId/digitalAssistants/:digitalAssistantId/actions/export",
+      "evaluateGuide": "Exports a specified Digital Assistant as an archive to Oracle Object Storage. Use the endpoint to create an export for later storage or retrieval.\nUse for: Export a Digital Assistant, archive assistant data, save an assistant export\nNot supported: Importing assistants, editing assistants, downloading archive content",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPUxmjtVB5qgeQlU57t5IuYGkMLwW:freshsales:retrieve-a-file-object-s",
+      "name": "Retrieve a File (Object storage)",
+      "description": "Retrieves the file object for a specific file id. The response includes a temporary signed download_url (valid ~5 minutes) to download the file content.\nDocumentation: https://developers.freshworks.com/docs/app-sdk/v3.0/cpq_document/data-store/object-storage/\nQuick Start:\n- Call GET /crm/sales/api/documents/{{fileId}} to retrieve file metadata and a short-lived download_url.\nParameters Explained:\n- fileId (required, path): File identifier returned on upload.\nCommon Errors & Fixes:\n- 404 Not Found: fileId incorrect or file was deleted/expired. Fix: confirm id via list endpoint.\nEdge Cases:\n- downloadurl is signed and valid only for a short time (doc says ~5 minutes). Request a fresh GET for a new downloadurl when needed.\nRate Limits & Constraints:\n- None documented beyond general request limits for the platform.",
+      "method": "GET",
+      "url": "https://domain.myfreshworks.com/crm/sales/api/documents/d2784e7c-a414-4da8-954c-911fe425094a",
+      "evaluateGuide": "Retrieves metadata for a specific Freshsales file and provides a short-lived URL for downloading its content.\nUse for: Retrieve file metadata, obtain a download URL, download a stored file\nNot supported: Uploading files, deleting files, listing files",
+      "provider": "Freshworks",
+      "product": "Freshsales"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPUxmjtVCdu45b8eoRLUh5Li9MoLp:freshsales:delete-a-file-object-sto",
+      "name": "Delete a File (Object storage)",
+      "description": "Deletes a specific file identified by its file id. Returns a success message on deletion.\nDocumentation: https://developers.freshworks.com/docs/app-sdk/v3.0/cpq_document/data-store/object-storage/\nQuick Start:\n- Call DELETE /crm/sales/api/documents/{{fileId}} with appropriate authorization.\nParameters Explained:\n- fileId (required, path): Identifier of the file to delete.\nCommon Errors & Fixes:\n- 404 Not Found: fileId incorrect or already deleted. Verify id via list endpoint.\n- 401 Unauthorized / 403 Forbidden: missing or invalid credentials. Ensure API key or token is correct.\nEdge Cases:\n- If a file had an expires_at scheduled, deleting before or after expiry may return Not Found if already deleted by expiry job.\nRate Limits & Constraints:\n- Deletion is subject to standard API rate limits; no special quotas documented for deletions.",
+      "method": "DELETE",
+      "url": "https://domain.myfreshworks.com/crm/sales/api/documents/d2784e7c-a414-4da8-954c-911fe425094a",
+      "evaluateGuide": "Deletes a specific file from Freshsales object storage using its file identifier.\nUse for: Delete a stored file, remove an expired file, remove an unwanted document\nNot supported: Retrieving files, uploading files, listing files",
+      "provider": "Freshworks",
+      "product": "Freshsales"
+    }
+  ],
+  "meta": {
+    "q": "archive a file to cold object storage",
+    "total": 3
+  }
+}

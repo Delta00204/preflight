@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JgzWAGXmnc9iozYpVzVFFIAMQL7nPD89Q4CkDBRpReOqMYRHwolAGrAP6f0k:whatsapp:get-endpoint-request-err",
+      "name": "Get Endpoint Request Error Rate Metric",
+      "description": "Can request specific fields by enabling the `fields` query param",
+      "method": "GET",
+      "url": "https://graph.facebook.com/v18.0/<FLOW_ID>?fields=metric.name(ENDPOINT_REQUEST_ERROR_RATE).granularity(LIFETIME).since(2024-01-28).until(2024-01-30)",
+      "evaluateGuide": "Retrieves the WhatsApp Flow endpoint error-rate metric for a lifetime or date range, with selectable response fields. Use for: checking Flow errors, measuring endpoint reliability, reviewing date-range metrics Not supported: sending messages, editing Flows, delivery analytics",
+      "provider": "Meta",
+      "product": "WhatsApp Business Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlyW9zBZRjRZWqgmVIbYX5OM0msulU:elastic:post-render-a-search-app",
+      "name": "POST Render a search application query",
+      "description": "None",
+      "method": "POST",
+      "url": "Render a search application query",
+      "evaluateGuide": "Submits a search application query to Elasticsearch and returns matching search results. Use for: running application searches, testing search queries, retrieving matching documents Not supported: index creation, document updates, cluster administration",
+      "provider": "Elastic",
+      "product": "Elasticsearch"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JiYOTxBoR3qnEQ3gJGKUeKfhz7qyogZaahUSzOxZDTZzaZI6iTmRWqK4mgPy:klaviyo:query-metric-aggregates",
+      "name": "Query Metric Aggregates",
+      "description": "Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events (not to be confused with custom metrics, which are not supported at this time). Queries must be passed in the JSON body of your POST request.\nTo request campaign and flow performance data that matches the data shown in Klaviyo's UI, we recommend the [Reporting API](https://developers.klaviyo.co",
+      "method": "POST",
+      "url": "https://a.klaviyo.com/api/metric-aggregates",
+      "evaluateGuide": "Queries and aggregates event data associated with Klaviyo metrics through a JSON payload. Use for: aggregating metric events, analyzing custom events, comparing integration metrics Not supported: custom metric queries, campaign reporting, flow performance reports",
+      "provider": "Klaviyo",
+      "product": "Klaviyo"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxp2ZZafeeHRkwdjkmU5LZWNaKtjr:apache:post-listmetrics",
+      "name": "POST listMetrics",
+      "description": "None",
+      "method": "POST",
+      "url": "listMetrics",
+      "evaluateGuide": "Submits a query to retrieve metric definitions or values from Apache SkyWalking. Use for: listing metrics, discovering available metrics, querying observability data Not supported: trace retrieval, log search, service configuration",
+      "provider": "Apache Software Foundation",
+      "product": "Apache SkyWalking"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LL3hJy19KjAvHcoyGiHA3je0tWY6cvDDHijNlJ8gr9mwpMdiQwpEVSmC6ysT:mongodb:return-atlas-search-metr",
+      "name": "Return Atlas Search Metrics for One Index in One Specified Namespace",
+      "description": "Returns the Atlas Search metrics data series within the provided time range for one namespace and index name on the specified process. You must have the Project Read Only or higher role to view the Atlas Search metric types.",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/atlas/v2/groups/:groupId/hosts/:processId/fts/metrics/indexes/:databaseName/:collectionName/:indexName/measurements?granularity=<string>&period=<string>&start=<dateTime>&end=<dateTime>&envelope=false&metrics=TOTAL_NUMBER_OF_QUERIES&metrics=NUMBER_OF_ERROR_QUERIES",
+      "evaluateGuide": "Returns Atlas Search metric series for one index and namespace within a specified time range. Use for: measuring search queries, checking search errors, analyzing index performance Not supported: index management, document search, cluster configuration",
+      "provider": "MongoDB",
+      "product": "MongoDB Atlas"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxp2ZZbAouQIoMzeRrSiW8fw3LiGT:apache:post-readnullablemetrics",
+      "name": "POST readNullableMetricsValue",
+      "description": "None",
+      "method": "POST",
+      "url": "readNullableMetricsValue",
+      "evaluateGuide": "Reads nullable metric values from Apache SkyWalking using the supplied query payload. Use for: retrieving optional metric values, inspecting observability metrics, handling nullable results Not supported: trace retrieval, log search, metric definition management",
+      "provider": "Apache Software Foundation",
+      "product": "Apache SkyWalking"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:5Gcup53DAAPCIy5b0s6oMeGEqIwt9ZXCvVqtGEfgJo04EUXQb60jwnVn9e:naxai:retrieve-metrics-of-sms",
+      "name": "Retrieve metrics of SMS delivery errors",
+      "description": "Retrieve the reporting metrics of SMS",
+      "method": "GET",
+      "url": "{{baseUrl}}/sms/reporting/metrics/delivery-errors?startDate=2023-05-01&stopDate=2023-05-07",
+      "evaluateGuide": "Retrieves SMS delivery-error reporting metrics for a specified date range. Use for: monitoring SMS failures, reviewing delivery errors, analyzing reporting periods Not supported: sending SMS, message content retrieval, recipient management",
+      "provider": "Naxai",
+      "product": "Naxai API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlxp2ZZbAlTS9wLBVNKrmcjuDavIln:apache:post-readlabeledmetricsv",
+      "name": "POST readLabeledMetricsValues",
+      "description": "None",
+      "method": "POST",
+      "url": "readLabeledMetricsValues",
+      "evaluateGuide": "Reads labeled metric values from Apache SkyWalking using the supplied query payload. Use for: retrieving labeled metrics, analyzing metric dimensions, inspecting observability data Not supported: trace retrieval, log search, metric creation",
+      "provider": "Apache Software Foundation",
+      "product": "Apache SkyWalking"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:19yfKJEipzeB0fsoOlswow8ihaaffSqdXbQKyX6hwKvmBcGBoxaNRWkcg:oracle:lists-work-request-error",
+      "name": "Lists work request errors",
+      "description": "Returns a paginated list of errors for the specified work request.",
+      "method": "GET",
+      "url": "https://dbtools.{{region}}.oci.oraclecloud.com/20201005/workRequests/:workRequestId/errors?sortOrder=ASC&sortBy=timeCreated&page=<string>&limit=10",
+      "evaluateGuide": "Lists errors associated with a specified Oracle Cloud work resource, with pagination and sorting options. Use for: diagnosing work failures, listing processing errors, reviewing error timestamps Not supported: creating work resources, retrying operations, retrieving successful results",
+      "provider": "Oracle",
+      "product": "Oracle Cloud Infrastructure"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3JOBuetaX2CFhoRAR9urDSx7im5WGRYqn9TIttduriYdSRozlEEMgwDIVoV:salesforce:query-default-permission",
+      "name": "Query Default Permissions (Metrics)",
+      "description": "Returns details of default permission rules granted to users and groups for metric resources in a project.\n\nVersion: Version 2.1 and later. Version 3.23 and later for the virtual connection default permissions methods.\n   Versioning Overview\n\n\nPermissions: Users who are not server administrators can query default permissions for a project only if they have theProjectLeader permission for that project (either",
+      "method": "GET",
+      "url": "https://your-server/api/3.20/sites/{{site-id}}/projects/:project-id/default-permissions/metrics",
+      "evaluateGuide": "Returns default permission rules for metric resources in a Tableau project. Use for: auditing metric permissions, reviewing default rules, checking user and group access Not supported: changing permissions, querying metric values, managing projects",
+      "provider": "Salesforce",
+      "product": "Tableau"
+    }
+  ],
+  "meta": {
+    "q": "query application error metrics",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

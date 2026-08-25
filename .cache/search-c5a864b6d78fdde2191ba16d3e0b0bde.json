@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWYoPaFZGhnrr6Xyt4OyhbtKE4YJkIwlXMnzEBxsdUwuwejtIZ:razorpay:fetch-a-specific-refund",
+      "name": "Fetch a Specific Refund for a Payment",
+      "description": "You can use this API to retrieve details of a specific refund made for a payment.",
+      "method": "GET",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refunds/{rfnd_id}",
+      "evaluateGuide": "Retrieves details for one refund associated with a payment. Use the response to inspect refund status and attributes.\nUse for: inspect a refund, verify refund details, look up refund status\nNot supported: creating refunds, updating refunds, listing all refunds",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDaQox726aMDRhBEQdlipZVKfrbpmj4PUCVZ4JUbNnGSl8II5O5:adyen:refund-a-payment",
+      "name": "Refund a payment",
+      "description": "Refunds a payment that has been captured, and returns a unique reference for this request. You get the outcome of the request asynchronously, in a REFUND webhook.  You can refund either the full captured amount or a part of the captured amount. You can also perform multiple partial refunds, as long as their sum doesn't exceed the cap",
+      "method": "POST",
+      "url": "https://checkout-test.adyen.com/v72/payments/:paymentPspReference/refunds",
+      "evaluateGuide": "Creates a full or partial refund for a captured payment. The refund result is delivered asynchronously through a webhook.\nUse for: refund a payment, issue a partial refund, issue multiple partial refunds\nNot supported: refunding uncaptured payments, retrieving refund details, synchronously confirming the outcome",
+      "provider": "Adyen",
+      "product": "Adyen Checkout"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWREqy1sMsMgFPaTULIdYURaQcszwI2qxaKeNFWD0Yu51YEwES:razorpay:create-a-normal-refund",
+      "name": "Create a Normal Refund",
+      "description": "You can use this API to create a normal refund for a payment.",
+      "method": "POST",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refund",
+      "evaluateGuide": "Creates a standard refund for a payment and returns a refund reference. Use it to return all or part of a captured payment.\nUse for: create a refund, refund a captured payment, issue a partial refund\nNot supported: retrieving refund details, cancelling refunds, refunding uncaptured payments",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I63l4CEzQrXTzITrBxLiV0SsAN5UjEDgcE4z77gKUdXFsvhCiHozgo54cWrR:paypal:refund-captured-payment",
+      "name": "Refund captured payment",
+      "description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an amount object in the JSON request body.",
+      "method": "POST",
+      "url": "https://api-m.sandbox.paypal.com/v2/payments/captures/:capture_id/refund",
+      "evaluateGuide": "Refunds a captured PayPal payment by capture identifier. An empty payload performs a full refund; an amount payload performs a partial refund.\nUse for: refund a capture, issue a full refund, issue a partial refund\nNot supported: refunding uncaptured payments, retrieving refund status, cancelling refunds",
+      "provider": "PayPal",
+      "product": "PayPal"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1I3J6bHUNLlRWTFYnTjKBjlE5YdGmlLNNUyMwlnuXjAx6gEbX1Ax0JdWK5DyU:razorpay:create-an-instant-refund",
+      "name": "Create an Instant Refund",
+      "description": "You can use this API to process refunds instantaneously to your customers.",
+      "method": "POST",
+      "url": "https://api.razorpay.com/v1/payments/{pay_id}/refund",
+      "evaluateGuide": "Creates an instantaneous refund for a payment. Use it to process a customer refund through Razorpay.\nUse for: issue an instant refund, refund a payment, return customer funds\nNot supported: retrieving refund details, refunding uncaptured payments, listing refunds",
+      "provider": "Razorpay",
+      "product": "Razorpay"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhmCFEs1UG31oP4GVzpHX8bJ4zYu2CtjGZpKckoct1KtAQtTrIgR10VaFlTE:mastercard:get-refund-payment-rails",
+      "name": "Get refund payment rails",
+      "description": "",
+      "method": "GET",
+      "url": "{{baseUrlPayments}}/refunds/:refundId/payment-rails",
+      "evaluateGuide": "Retrieves the payment rails associated with a refund. Use the response to identify how the refund is routed.\nUse for: inspect refund rails, identify refund routing, retrieve rail details\nNot supported: creating refunds, modifying refunds, retrieving general refund status",
+      "provider": "Mastercard",
+      "product": "Mastercard Open Finance"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr7sIPq6wbmZcRct7ehWnfARjgp2TCr:vality:get-v2-processing-invoic",
+      "name": "GET /v2/processing/invoices/{invoiceID}/payments/{paymentID}/refunds/{refundID}",
+      "description": "None",
+      "method": "GET",
+      "url": "{{baseUrl}}/v2/processing/invoices/{{invoiceID}}/payments/{{paymentID}}/refunds/{{refundID}}",
+      "evaluateGuide": "Retrieves a specific refund within an invoice payment. Use the response to inspect that refund's details.\nUse for: inspect a refund, verify refund details, look up a payment refund\nNot supported: creating refunds, updating refunds, listing all refunds",
+      "provider": "Vality",
+      "product": "Vality Payments API"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1MwMYUlmQ3fhItSAdGtMyMt4kx6IJvHla800vWVW8SN2vKaxGJiMkYFQaFglJ:paypal:refund-captured-payment",
+      "name": "Refund captured payment",
+      "description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an amount object in the JSON request body.",
+      "method": "POST",
+      "url": "{{base_url}}/v2/payments/captures/:capture_id/refund",
+      "evaluateGuide": "Refunds a captured PayPal payment by capture identifier. An empty payload performs a full refund; an amount payload performs a partial refund.\nUse for: refund a capture, issue a full refund, issue a partial refund\nNot supported: refunding uncaptured payments, retrieving refund status, cancelling refunds",
+      "provider": "PayPal",
+      "product": "PayPal"
+    }
+  ],
+  "meta": {
+    "q": "issue a refund for a payment",
+    "total": 8,
+    "nextCursor": "eyJmcm9tIjo4fQ=="
+  }
+}

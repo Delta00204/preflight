@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHyg5SHUn2z6ZiFhtYeSeV7RanB0i913tOvmsieY22Wv6j3q1mR3:merge:employee-payroll-runs-li",
+      "name": "employee payroll runs list",
+      "description": "Returns a list of EmployeePayrollRun objects.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/hris/v1/employee-payroll-runs",
+      "evaluateGuide": "Lists employee payroll run resources from the HRIS platform. Use it to browse available payroll runs across connected HR systems.\nUse for: list payroll runs, sync payroll data, review payroll run records\nNot supported: retrieving one run by ID, creating or updating runs",
+      "provider": "Merge",
+      "product": "Merge HRIS"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHygz3h5W9HAMrToMEYNIBMm1hKPSYLDec5tG49LyzuIw8aIS8Dl:merge:employee-payroll-runs-re",
+      "name": "employee payroll runs retrieve",
+      "description": "Returns an EmployeePayrollRun object with the given id.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/hris/v1/employee-payroll-runs/:id",
+      "evaluateGuide": "Retrieves one employee payroll run resource by its identifier. Use it to inspect a specific payroll run from connected HR systems.\nUse for: get a payroll run, inspect run details, retrieve payroll status\nNot supported: listing all runs, creating or updating runs",
+      "provider": "Merge",
+      "product": "Merge HRIS"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JfPDDopurw6WYX6Ynb0hF7y7juLG6EBVLacs0zMVgJt5wDhziaHl8MUovz9i:paylocity:create-new-payroll-batch",
+      "name": "Create New Payroll Batch",
+      "description": "Summary Description\nThe Pay Entry API allows API users to interface with Paylocity�s HR & Payroll module, specifically within the 'Run Payroll' feature. This API allows users to submit new payroll batches for a specified check date. The endpoint accepts summarized payroll data, allowing API users to import data from third-party systems.",
+      "method": "POST",
+      "url": "{{Paylocity Enviroment}}/apihub/payroll/v2/companies/{{companyId}}/payEntryImport",
+      "evaluateGuide": "Submits summarized payroll data as a new payroll batch for a specified check date. Use it to import payroll entries into Paylocity's Run Payroll feature.\nUse for: create payroll batch, import payroll data, submit pay entries\nNot supported: retrieving batches, editing employees, processing payments",
+      "provider": "Paylocity",
+      "product": "Paylocity Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aGr0ZwSm4qh4jIEGLCU2JjLNe3TWd4wr:workday:get-values-payrollinputs",
+      "name": "GET /values/payrollInputsGroup/runCategories/",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\nSecured by: Worker Data: Payroll Public API (Payroll Input)\nScope: Core Payroll\nParameters\n| Name | In | Required | Description |\n|---|---|---|---|\n| endDate | query | No | The end date for the positions, using the date format yyyy-mm-dd. |\n| limit | query | No | The maximum number of objects in a single response. The default and maximum is 1000. |\n| offset | query | No | The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter |\n| payComponent | query | No | The pay component for the worktags. You can use a returned id from GET/values/payrollInputsGroup/payComponents. |\n| search | query | No | A search string that matches display IDs. The search is case-insensitive and matches words that start with the given str |\n| startDate | query | No | The start date for the positions, using the date format yyyy-mm-dd. |\n| worker | query | No | The Workday ID of the worker. You can use a returned id from GET /workers in the Staffing service. |\nResponse Codes\n\n200 Successful response. A successful response can return no matched data.\n400 Invalid request. (https://community.workday.com/rest/error-messages)\n401 Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)\n403 User has insufficient permissions. (https://community.workday.com/rest/error-messages)\n404 Resource not found. (https://community.workday.com/rest/error-messages)",
+      "method": "GET",
+      "url": "/api/prismAnalytics/v3/{{tenant}}/values/payrollInputsGroup/runCategories/",
+      "evaluateGuide": "Retrieves valid run category values for payroll input parameters, with optional date and pagination filters. Use it to populate supported payroll category selections.\nUse for: list run categories, populate payroll inputs, validate category values\nNot supported: creating payroll runs, editing categories, retrieving employee records",
+      "provider": "Workday",
+      "product": "Workday Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9al34DujSxTkhdWrC7ByBFQjR8ubTTVtazcvCEjpwkM7MtZFhr:integration:allows-you-to-create-new",
+      "name": "Allows you to create new employees used in Xero payrun",
+      "description": "",
+      "method": "PUT",
+      "url": "https://api.xero.com/api.xro/2.0/Employees?summarizeErrors=false",
+      "evaluateGuide": "Creates or updates an employee resource used in a Xero pay run. Use it to add employee details to Xero Payroll.\nUse for: create payroll employee, update employee, sync employee details\nNot supported: retrieving employees, creating pay runs, processing payments",
+      "provider": "Xero",
+      "product": "Xero Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPVH01R4Y7BYfYSSkGZrugKMidbFx:exact:sync-payroll-employees",
+      "name": "Sync - Payroll/Employees",
+      "description": "Sync endpoint to read Payroll Employees (optimized for synchronisation).\nDocumentation: https://start.exactonline.nl/docs/HlpRestAPIResources.aspx?SourceAction=10\nQuick Start:\n- GET /api/v1/{{division}}/sync/Payroll/Employees\nParameters Explained:\n- division (path): Division identifier.\nCommon Errors & Fixes:\n- 401 Unauthorized: Missing/invalid token.\nEdge Cases & Rate Limits:\n- Sync endpoints return larger sets and are intended for full or delta sync flows.",
+      "method": "GET",
+      "url": "https://start.exactonline.nl/api/v1/1234567/sync/Payroll/Employees",
+      "evaluateGuide": "Reads payroll employee resources from Exact Online for synchronization, returning larger data sets for full or delta sync flows.\nUse for: sync payroll employees, import employee records, run employee data sync\nNot supported: creating employees, updating records, running payroll",
+      "provider": "Exact",
+      "product": "Exact Online"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZzDv1PVCQWzmjjIrx7dCWkMaFq6xojTwhpMz5neQQt4PvJpgI:integration:allows-you-to-retrieve-a",
+      "name": "Allows you to retrieve a specific employee used in Xero payrun",
+      "description": "",
+      "method": "GET",
+      "url": "https://api.xero.com/api.xro/2.0/Employees/:EmployeeID",
+      "evaluateGuide": "Retrieves one employee resource by ID for use in a Xero pay run. Use it to inspect a specific Xero Payroll employee.\nUse for: get employee, inspect employee details, retrieve pay run employee\nNot supported: listing employees, creating employees, running payroll",
+      "provider": "Xero",
+      "product": "Xero Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHygz3dwecL8cMC67CUoeKvWrm8uWSQESVw0UIkmXlRSPzZYQypy:merge:payroll-runs-list",
+      "name": "payroll runs list",
+      "description": "Returns a list of PayrollRun objects.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/hris/v1/payroll-runs",
+      "evaluateGuide": "Lists payroll run resources from connected HR systems through the HRIS platform. Use it to browse and synchronize payroll run records.\nUse for: list payroll runs, sync run data, review payroll records\nNot supported: retrieving one run by ID, creating or updating runs",
+      "provider": "Merge",
+      "product": "Merge HRIS"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jgb5F43F8b9ZvtgITkAeTxbjQ9qOzUGgr5REWXBrjurP8VJARyCICenChQdM:brewing:allows-you-to-create-a-s",
+      "name": "Allows you to create a single new employees used in Xero payrun",
+      "description": "",
+      "method": "POST",
+      "url": "https://api.xero.com/api.xro/2.0/Employees?summarizeErrors=false",
+      "evaluateGuide": "Creates a new employee resource used in a Xero pay run. Use it to add an employee to Xero Payroll.\nUse for: create payroll employee, add employee, sync employee details\nNot supported: retrieving employees, updating existing records, creating pay runs",
+      "provider": "Xero",
+      "product": "Xero Payroll"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNImPVH01M2tVl07IvJnSnYD0mo2VSek:exact:payroll-employees-list-g",
+      "name": "Payroll - Employees (List / Get)",
+      "description": "Retrieves Employees (payroll employees) for a division or single Employee by id.\nDocumentation: https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=PayrollEmployees\nOverview:\nEmployees returns payroll employee master records. Use the collection URL to list or query employees; use an id to fetch a single employee. (pkg.go.dev)\nQuick Start:\n- Acquire OAuth2 access token (Bearer). (docs.eponalegal.com)\n- Call GET {{baseUrl}}/api/v1/{{division}}/payroll/Employees\nParameters:\n- division (required): administration id.\n- id (optional): GUID of an employee (use in resource path to get specific employee).\n- $select, $filter, $top, $orderby, $expand - supported OData query options. (apideck.com)\nCommon Errors & Fixes:\n- 401: invalid token — renew token.\n- 403: insufficient permissions — ensure user/app has payroll-related rights.\n- 400: malformed query — check field names.\nEdge Cases:\n- Large result sets are paginated; follow d.__next or use $top and continuation tokens.\nRate Limits:\n- Respect Exact Online minute and daily quotas (typical examples: 60/minute, 5,000/day). (barcodescan.nl)",
+      "method": "GET",
+      "url": "https://start.exactonline.nl/api/v1/1234567/payroll/Employees",
+      "evaluateGuide": "Retrieves payroll employee master records for an Exact Online division, or a single employee when an ID is supplied. Use it to read payroll employee data.\nUse for: list employees, get employee by ID, query payroll employees\nNot supported: creating employees, updating records, running payroll",
+      "provider": "Exact",
+      "product": "Exact Online"
+    }
+  ],
+  "meta": {
+    "q": "run payroll for an employee",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}

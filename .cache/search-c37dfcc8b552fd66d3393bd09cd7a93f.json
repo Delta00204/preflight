@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHygwdSTpvDjYnEoQ4hyZzwLshGv6c06AtihlqYAfULeaE6itWbd:merge:time-off-balances-list",
+      "name": "time off balances list",
+      "description": "Returns a list of TimeOffBalance objects.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/hris/v1/time-off-balances",
+      "evaluateGuide": "Lists time-off balance records from an HR system so an agent can review available leave balances.\\nUse for: list leave balances, audit employee balances, find remaining time off\\nNot supported: retrieving one balance by ID, changing balances, creating leave",
+      "provider": "Merge",
+      "product": "Merge HRIS"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHyg3FHv9ghCBks8Ry7rydEW66POEOwCWwQjd7zrPbJVszPgNdeE:merge:time-off-balances-retrie",
+      "name": "time off balances retrieve",
+      "description": "Returns a TimeOffBalance object with the given id.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/hris/v1/time-off-balances/:id",
+      "evaluateGuide": "Retrieves one time-off balance record by identifier for detailed leave-balance inspection.\\nUse for: inspect a leave balance, verify an employee balance, retrieve balance details\\nNot supported: listing balances, changing balances, creating leave",
+      "provider": "Merge",
+      "product": "Merge HRIS"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlBNRD0ruDL2hafphXDEkCZRpKsfxrJX98bc32jJBj7VRbfOuKfQiSF3Mw:trackingtime:list-balances",
+      "name": "List Balances",
+      "description": "Lists time off balances by user and policy.",
+      "method": "GET",
+      "url": "{{api_url}}/:account_id/timeoffs/balances",
+      "evaluateGuide": "Lists time-off balances filtered by user and policy in TrackingTime.\\nUse for: view user balances, check policy balances, audit accrued time off\\nNot supported: updating balances, creating policies, retrieving unrelated time records",
+      "provider": "TrackingTime",
+      "product": "TrackingTime"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDaR29H2QYN0m7qzrnTucUKhkvOxzjWLASyncaizeKg6t55kEWv:adyen:update-the-time-zone-of",
+      "name": "Update the time zone of a balance account",
+      "description": "Updates a balance account.",
+      "method": "PATCH",
+      "url": "https://balanceplatform-api-test.adyen.com/bcl/v2/balanceAccounts/:id"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNlCq1ihrDaPuwupJzCgaEfPimJl9p1ZLDYPbB6sM7gYn7SROCPyhxsCW1M:adyen:update-the-time-zone-of",
+      "name": "Update the time zone of a balance account",
+      "description": "Updates a balance account.",
+      "method": "PATCH",
+      "url": "https://balanceplatform-api-test.adyen.com/bcl/v2/balanceAccounts/:id",
+      "evaluateGuide": "Updates a balance account in Adyen Balance Platform, including its time-zone setting.\\nUse for: change account time zone, maintain balance account settings, correct account configuration\\nNot supported: listing accounts, retrieving balances, transferring funds",
+      "provider": "Adyen",
+      "product": "Balance Platform"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHyg6NcxjRpXBEuCfF8oN5PdpwAT4qKe7AZLB0XdSjEu66Dtx1ak:merge:time-off-list",
+      "name": "time off list",
+      "description": "Returns a list of TimeOff objects.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/hris/v1/time-off",
+      "evaluateGuide": "Lists time-off records from an HR system so an agent can review employee leave entries.\\nUse for: list leave records, review employee absences, audit time-off history\\nNot supported: retrieving one record by ID, creating leave, approving leave",
+      "provider": "Merge",
+      "product": "Merge HRIS"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1JhNZN2INhHyg7gzR7Ypu5Bu18n2R3obdRbO2YLY0pyYUhoNMBT0z4aiNyFrJ:merge:time-off-retrieve",
+      "name": "time off retrieve",
+      "description": "Returns a TimeOff object with the given id.",
+      "method": "GET",
+      "url": "https://api.merge.dev/api/hris/v1/time-off/:id",
+      "evaluateGuide": "Retrieves one time-off record by identifier for detailed leave-entry inspection.\\nUse for: inspect a leave record, verify absence details, retrieve time-off information\\nNot supported: listing records, creating leave, approving leave",
+      "provider": "Merge",
+      "product": "Merge HRIS"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:aNIlwdjFfaFGqtwzqxnUu01DFAxACR3m:apifreaks:timezone-lookup",
+      "name": "Timezone Lookup",
+      "description": "Resolve timezone information for a location using IP address, coordinates, place names, airport codes (IATA/ICAO), or UN/LOCODE.\nDocumentation: https://apifreaks.com/api/timezone-lookup\nQuick Start:\n- Send a GET request to the timezone endpoint.\n- Provide your API key either as query parameter apiKey or as a header (APIFreaks supports both). Example: ?apiKey={{apiKeyValue}}.\n- Provide one of the supported input parameters: ip, lat+long, location, tz, iata_code, icao_code, or lo_code (UN/LOCODE).\nParameters Explained:\n- apiKey (required): Your APIFreaks API key (can be provided as query param or header). Example variable: {{apiKeyValue}}.\n- ip (optional): IPv4 or IPv6 address to determine timezone based on IP geolocation.\n- tz (optional): Timezone name (e.g., Europe/London) to directly get timezone data.\n- location (optional): City/address string (preferably \"City, Country\") to geocode and return timezone.\n- lat (optional): Latitude (used together with long) to lookup timezone by coordinates.\n- long (optional): Longitude (used together with lat) to lookup timezone by coordinates.\n- lang (optional): Language code for human-readable location fields. Valid: en, de, ru, ja, fr, cn, es, cs, it. Default: en.\n- iata_code (optional): 3-letter IATA airport code to resolve airport + timezone.\n- icao_code (optional): 4-letter ICAO airport code to resolve airport + timezone.\n- lo_code (optional): 5-character UN/LOCODE to resolve location + timezone.\nCommon Errors & Fixes:\n- 400 Bad Request: Usually caused by invalid latitude/longitude formats or invalid codes (IATA/ICAO/UN/LOCODE) — verify parameter formats.\n- 404 Not Found: Location / code not found — confirm the input (city spelling, code correctness) or try a different lookup method (coordinates or IP).\n- 401 Unauthorized / 403 Forbidden: Missing or invalid API key — provide apiKey as query param or header and ensure it is active.\nEdge Cases:\n- If multiple locations match a location string, geocoding may pick the best match — include country for disambiguation (e.g., \"Springfield, USA\").\n- IP-based lookups depend on geo-IP databases and may return approximate city-level data for some IPs (esp. mobile carriers).\n- Historical timezone data and DST transition details are included; be cautious when using date/time from older timestamps.\nRate Limits & Constraints:\n- APIFreaks enforces per-account credit limits and rate limits (refer to your APIFreaks account dashboard for exact quotas). Use caching where appropriate to reduce calls.",
+      "method": "GET",
+      "url": "",
+      "evaluateGuide": "Resolves timezone information from a supported location identifier or geographic input.\\nUse for: resolve an IP timezone, find a coordinate timezone, look up an airport timezone, identify a place timezone\\nNot supported: timezone conversion, calendar scheduling, geocoding",
+      "provider": "APIFreaks",
+      "product": "Timezone APIs"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1LIgWcoLTOeNJwxbWu0SOdMNtibOC2yo14iecIu0ie9yrodNzF5eYkZe8FK5M:freee:",
+      "name": "打刻の取得",
+      "description": "<h2 id=\"\">概要</h2>\n<p>指定した従業員・指定した打刻の詳細情報を返します。</p>",
+      "method": "GET",
+      "url": "https://api.freee.co.jp/hr/api/v1/employees/:employee_id/time_clocks/:id?company_id=1777708254",
+      "evaluateGuide": "Returns detailed clock-in or clock-out information for a specified employee and record.\\nUse for: retrieve a time clock, inspect employee attendance, verify a clock entry\\nNot supported: listing clock entries, editing attendance, creating time clocks",
+      "provider": "freee",
+      "product": "freee HR"
+    },
+    {
+      "resourceType": "endpoint",
+      "id": "urn:orbit:endpoint:v1:1Jhm6G1kxVDax8u8VbeFCZmDMiUNfAZWRq5YbjEkkFpBsHorI1fWyPsuJX0gD:siemens:overhead-life-time-looku",
+      "name": "Overhead Life Time Lookup",
+      "description": "",
+      "method": "POST",
+      "url": "//api/v1/MasterData/Overhead/LifeTimeLookup",
+      "evaluateGuide": "Looks up overhead life-cycle data in Teamcenter Product Cost Management.\\nUse for: look up overhead lifetime, evaluate cost-master data, retrieve life-cycle information\\nNot supported: updating master data, managing users, calculating unrelated costs",
+      "provider": "Siemens",
+      "product": "Teamcenter X Product Cost Management"
+    }
+  ],
+  "meta": {
+    "q": "look up employee time off balance",
+    "total": 10,
+    "nextCursor": "eyJmcm9tIjoxMH0="
+  }
+}
