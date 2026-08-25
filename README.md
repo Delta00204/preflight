@@ -24,6 +24,7 @@ step, no API key. Orbit itself requires no authentication.
 
 ```bash
 node validate.mjs     # 108 assertions, runs offline
+node scan-secrets.mjs # credential scan over the committed cache
 node coverage.mjs     # catalogue coverage study, 32 capabilities across 8 domains
 ```
 
@@ -160,9 +161,12 @@ Orbit calls and take 50 cache hits, so CI cannot fail on a rate limit and a fres
 clone produces results immediately rather than after roughly seventy seconds of
 cold requests. They are also evidence that the calls were real.
 
-The cache was scanned for embedded credentials before publication; none were
-found. Orbit's catalogue is user-published content and does sometimes contain
-live keys, so treat any example URL from it as untrusted input.
+Orbit's catalogue is user-published content and does sometimes contain live
+keys: a Positionstack credential was observed in a search result during
+development. `scan-secrets.mjs` therefore runs in CI over every committed file
+and fails the build on a literal credential, rather than relying on a manual
+check at publication time. Treat any example URL from the catalogue as untrusted
+input.
 
 ## Repository layout
 
@@ -170,6 +174,7 @@ live keys, so treat any example URL from it as untrusted input.
 server.mjs          local server, NDJSON progress streaming, request validation
 validate.mjs        verification suite
 coverage.mjs        catalogue coverage study
+scan-secrets.mjs    credential guard for the committed cache, runs in CI
 phrasing.mjs        the phrasing-stability experiment behind INTERNAL_MISMATCH
 config.json         calibration, the only assumed numbers
 lib/orbit.mjs       Orbit client with disk cache, 429 backoff and telemetry

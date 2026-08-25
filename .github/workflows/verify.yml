@@ -16,6 +16,11 @@ jobs:
         with:
           node-version: '20'
 
+      # The committed cache is third-party content. Fail the build rather than
+      # publish a credential someone else left in a public Postman collection.
+      - name: Scan for credentials
+        run: node scan-secrets.mjs
+
       - name: Start the server
         run: |
           node server.mjs &
